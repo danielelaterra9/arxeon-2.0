@@ -5,7 +5,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import { toast } from 'sonner';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const stripePromise = loadStripe('pk_test_zCUhMH1T0mWFcGotPa0tV96M');
+const stripePromise = loadStripe('pk_live_51SZY44Cdt6E6uRkpGd0maHnrXDrpGsnk70gbd64NYco7ZJIDJtG1CPGDLzqmgZEIs9YLicnw3AaSyC0CVGuKwSpw00sIiHe9uy');
 
 const CheckoutBasic = () => {
   const navigate = useNavigate();
