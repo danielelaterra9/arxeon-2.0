@@ -435,13 +435,13 @@ const Servizi = () => {
       <section className="py-16 bg-[#1f211f]">
         <div className="max-w-[1400px] mx-auto px-5 md:px-10">
           <div className="flex flex-col md:flex-row justify-center items-center gap-4">
-            <Link to="/valutazione" className="btn-secondary w-full md:w-auto justify-center">
+            <Link to="/checkout/basic" className="btn-secondary w-full md:w-auto justify-center">
               Attiva il pacchetto Basic
             </Link>
-            <Link to="/valutazione" className="btn-primary w-full md:w-auto justify-center">
+            <Link to="/checkout/premium" className="btn-primary w-full md:w-auto justify-center">
               Attiva il pacchetto Premium
             </Link>
-            <Link to="/valutazione" className="btn-secondary w-full md:w-auto justify-center">
+            <Link to="/checkout/gold" className="btn-secondary w-full md:w-auto justify-center">
               Attiva il pacchetto Gold
             </Link>
           </div>
