@@ -172,7 +172,7 @@ const ThankYou = () => {
           <h2 className="text-white font-bold text-2xl mb-4">Inizia subito</h2>
           <p className="text-[#9a9a96] mb-8">Compila il formulario di onboarding per permetterci di prepararci al meglio.</p>
           <Link 
-            to={`/onboarding${orderId ? `?order_id=${orderId}` : ''}`} 
+            to={`/onboarding${subscriptionId ? `?subscription_id=${subscriptionId}` : ''}`} 
             className="btn-primary text-base px-10 py-4"
           >
             Inizia l{"'"}onboarding
