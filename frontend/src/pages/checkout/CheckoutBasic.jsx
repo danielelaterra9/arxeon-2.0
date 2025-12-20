@@ -93,8 +93,6 @@ const CheckoutBasic = () => {
     return { monthly, oneShot };
   }, [selectedAddons]);
 
-  const totals = calculateTotal();
-
   return (
     <main className="pt-20 min-h-screen bg-[#161716]">
       {/* Header */}
