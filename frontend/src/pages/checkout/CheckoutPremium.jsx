@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowRight, Check, Info, ArrowUpRight } from 'lucide-react';
 
@@ -8,7 +8,6 @@ const CheckoutPremium = () => {
   const [selectedPlatform, setSelectedPlatform] = useState('');
   const [extraPlatform, setExtraPlatform] = useState(false);
   const [selectedAddons, setSelectedAddons] = useState([]);
-  const [showUpgradeMessage, setShowUpgradeMessage] = useState(false);
 
   const basePrice = 400;
 
@@ -67,30 +66,24 @@ const CheckoutPremium = () => {
     );
   };
 
-  useEffect(() => {
-    // Reset platform when scope changes
+  const handleScopeChange = useCallback((scopeId) => {
+    setSelectedScope(scopeId);
     setSelectedPlatform('');
     setExtraPlatform(false);
-  }, [selectedScope]);
+  }, []);
 
-  useEffect(() => {
-    // Upgrade logic: 2 ambiti OR 1 ambito + 2 add-on
+  const showUpgradeMessage = useMemo(() => {
     const hasExtraPlatform = extraPlatform ? 1 : 0;
     const relevantAddonsCount = selectedAddons.filter(id => {
       const addon = addons.find(a => a.id === id);
       return addon && addon.type !== 'one-shot';
     }).length;
-
     const totalScopes = selectedScope ? 1 + hasExtraPlatform : 0;
     const totalRelevantAddons = relevantAddonsCount + hasExtraPlatform;
-
-    setShowUpgradeMessage(
-      totalScopes >= 2 ||
-      (selectedScope && totalRelevantAddons >= 2)
-    );
+    return totalScopes >= 2 || (selectedScope && totalRelevantAddons >= 2);
   }, [selectedScope, extraPlatform, selectedAddons]);
 
-  const calculateTotal = () => {
+  const totals = useMemo(() => {
     let monthly = basePrice;
     let oneShot = 0;
 
