@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowRight, Check, Info, ArrowUpRight } from 'lucide-react';
 
 const CheckoutBasic = () => {
   const navigate = useNavigate();
   const [selectedAddons, setSelectedAddons] = useState([]);
-  const [showUpgradeMessage, setShowUpgradeMessage] = useState(false);
 
   const basePrice = 200;
 
@@ -44,7 +43,7 @@ const CheckoutBasic = () => {
       priceOneShot: 0,
       priceMonthly: 400,
       type: 'monthly',
-      note: 'È richiesto un budget minimo di CHF 300/mese per test e attivazione. Se l\'analisi iniziale mostra che la piattaforma scelta o il budget non sono ottimali, ti contatteremo per definire la soluzione migliore.'
+      note: "È richiesto un budget minimo di CHF 300/mese per test e attivazione. Se l'analisi iniziale mostra che la piattaforma scelta o il budget non sono ottimali, ti contatteremo per definire la soluzione migliore."
     },
     {
       id: 'gmb',
@@ -72,21 +71,18 @@ const CheckoutBasic = () => {
     );
   };
 
-  useEffect(() => {
+  const showUpgradeMessage = useMemo(() => {
     const monthlyCount = selectedAddons.filter(id => {
       const addon = addons.find(a => a.id === id);
       return addon && (addon.type === 'monthly' || addon.type === 'hybrid');
     }).length;
-
     const totalCount = selectedAddons.length;
-
-    setShowUpgradeMessage(monthlyCount >= 1 || totalCount >= 2);
+    return monthlyCount >= 1 || totalCount >= 2;
   }, [selectedAddons]);
 
-  const calculateTotal = () => {
+  const totals = useMemo(() => {
     let monthly = basePrice;
     let oneShot = 0;
-
     selectedAddons.forEach(id => {
       const addon = addons.find(a => a.id === id);
       if (addon) {
@@ -94,9 +90,8 @@ const CheckoutBasic = () => {
         oneShot += addon.priceOneShot;
       }
     });
-
     return { monthly, oneShot };
-  };
+  }, [selectedAddons]);
 
   const totals = calculateTotal();
 
