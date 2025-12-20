@@ -251,7 +251,7 @@ const Servizi = () => {
                   Il servizio più completo, pensato per chi desidera delegare il marketing a 360° 
                   con supervisione strategica continua.
                 </p>
-                <Link to="/valutazione" className="btn-secondary">
+                <Link to="/checkout/gold" className="btn-secondary">
                   Attiva il pacchetto Gold
                   <ArrowRight className="ml-2" size={16} />
                 </Link>
