@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { Toaster } from "sonner";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
@@ -10,21 +10,41 @@ import Valutazione from "./pages/Valutazione";
 import ValutazioneConferma from "./pages/ValutazioneConferma";
 import Metodo from "./pages/Metodo";
 import Contatti from "./pages/Contatti";
+import CheckoutBasic from "./pages/checkout/CheckoutBasic";
+import CheckoutPremium from "./pages/checkout/CheckoutPremium";
+import CheckoutGold from "./pages/checkout/CheckoutGold";
+
+// Layout component to conditionally show footer
+const Layout = ({ children }) => {
+  const location = useLocation();
+  const isCheckout = location.pathname.startsWith('/checkout');
+  
+  return (
+    <>
+      <Header />
+      {children}
+      {!isCheckout && <Footer />}
+    </>
+  );
+};
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/servizi" element={<Servizi />} />
-          <Route path="/valutazione" element={<Valutazione />} />
-          <Route path="/valutazione/conferma" element={<ValutazioneConferma />} />
-          <Route path="/metodo" element={<Metodo />} />
-          <Route path="/contatti" element={<Contatti />} />
-        </Routes>
-        <Footer />
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/servizi" element={<Servizi />} />
+            <Route path="/valutazione" element={<Valutazione />} />
+            <Route path="/valutazione/conferma" element={<ValutazioneConferma />} />
+            <Route path="/metodo" element={<Metodo />} />
+            <Route path="/contatti" element={<Contatti />} />
+            <Route path="/checkout/basic" element={<CheckoutBasic />} />
+            <Route path="/checkout/premium" element={<CheckoutPremium />} />
+            <Route path="/checkout/gold" element={<CheckoutGold />} />
+          </Routes>
+        </Layout>
       </BrowserRouter>
       <Toaster 
         position="top-right" 
