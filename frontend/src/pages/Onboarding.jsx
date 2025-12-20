@@ -118,7 +118,7 @@ const Onboarding = () => {
         },
         body: JSON.stringify({
           ...formData,
-          order_id: orderId
+          subscription_id: subscriptionId
         }),
       });
 
