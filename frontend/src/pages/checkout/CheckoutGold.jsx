@@ -1,11 +1,9 @@
 import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Check, Info, MessageCircle, Loader2 } from 'lucide-react';
-import { loadStripe } from '@stripe/stripe-js';
 import { toast } from 'sonner';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const stripePromise = loadStripe('pk_live_51SZY44Cdt6E6uRkpGd0maHnrXDrpGsnk70gbd64NYco7ZJIDJtG1CPGDLzqmgZEIs9YLicnw3AaSyC0CVGuKwSpw00sIiHe9uy');
 
 const CheckoutGold = () => {
   const [selectedAddons, setSelectedAddons] = useState([]);
@@ -15,24 +13,52 @@ const CheckoutGold = () => {
 
   const basePrice = 1700;
 
-  const toggleAddon = (addonId) => {
-    if (addonId === 'ecommerce' || addonId === 'custom') {
-      setShowContactModal(addonId);
-      return;
+  // Available add-ons for Gold (code-based)
+  const availableAddons = [
+    {
+      code: 'addon_second_business_monthly',
+      name: 'Gestione di un secondo business',
+      description: "Per la gestione di un'attività aggiuntiva distinta.",
+      priceMonthly: 1200,
+      selectable: true
+    },
+    {
+      code: 'oneshot_website',
+      name: 'Creazione o rifacimento sito',
+      description: 'Realizziamo o sistemiamo il tuo sito.',
+      priceOneShot: 800,
+      selectable: true
+    },
+    {
+      code: 'oneshot_logo',
+      name: 'Creazione o restyling logo',
+      description: "Miglioriamo l'immagine del tuo brand.",
+      priceOneShot: 650,
+      selectable: true
     }
+  ];
+
+  const toggleAddon = (addonCode) => {
     setSelectedAddons(prev =>
-      prev.includes(addonId)
-        ? prev.filter(id => id !== addonId)
-        : [...prev, addonId]
+      prev.includes(addonCode)
+        ? prev.filter(c => c !== addonCode)
+        : [...prev, addonCode]
     );
   };
 
   const totals = useMemo(() => {
     let monthly = basePrice;
-    if (selectedAddons.includes('second-business')) {
-      monthly += 1200;
-    }
-    return { monthly };
+    let oneShot = 0;
+
+    selectedAddons.forEach(code => {
+      const addon = availableAddons.find(a => a.code === code);
+      if (addon) {
+        if (addon.priceMonthly) monthly += addon.priceMonthly;
+        if (addon.priceOneShot) oneShot += addon.priceOneShot;
+      }
+    });
+
+    return { monthly, oneShot };
   }, [selectedAddons]);
 
   const handleCheckout = async () => {
@@ -44,44 +70,26 @@ const CheckoutGold = () => {
     setIsProcessing(true);
 
     try {
-      const items = [
-        {
-          name: 'Pacchetto Gold - Collaboratore marketing dedicato',
-          price: basePrice * 100,
-          type: 'subscription',
-          quantity: 1
-        }
-      ];
-
-      if (selectedAddons.includes('second-business')) {
-        items.push({
-          name: 'Gestione secondo business',
-          price: 120000,
-          type: 'subscription',
-          quantity: 1
-        });
-      }
-
-      const response = await fetch(`${BACKEND_URL}/api/create-checkout-session`, {
+      const response = await fetch(`${BACKEND_URL}/api/stripe/create-checkout-session`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           package: 'gold',
-          items,
-          customer_email: customerEmail
+          selectedAddons: selectedAddons,
+          customerEmail: customerEmail
         }),
       });
 
       const data = await response.json();
-      if (!response.ok) throw new Error(data.detail || 'Failed to create checkout session');
 
-      const stripe = await stripePromise;
-      const { error } = await stripe.redirectToCheckout({ sessionId: data.sessionId });
-      if (error) throw error;
+      if (!response.ok) {
+        throw new Error(data.detail || 'Errore nella creazione del checkout');
+      }
+
+      window.location.href = data.checkoutUrl;
     } catch (error) {
       console.error('Checkout error:', error);
       toast.error(error.message || 'Si è verificato un errore. Riprova.');
-    } finally {
       setIsProcessing(false);
     }
   };
@@ -178,8 +186,51 @@ const CheckoutGold = () => {
         </div>
       </section>
 
-      {/* Add-on fuori perimetro */}
+      {/* Add-on selezionabili */}
       <section className="py-12 bg-[#161716]">
+        <div className="max-w-[900px] mx-auto px-5 md:px-10">
+          <h2 className="text-white font-bold text-2xl mb-3">Servizi aggiuntivi</h2>
+          <p className="text-[#9a9a96] mb-8">
+            Puoi aggiungere questi servizi al tuo pacchetto Gold.
+          </p>
+
+          <div className="space-y-4">
+            {availableAddons.filter(a => a.selectable).map((addon) => (
+              <div
+                key={addon.code}
+                onClick={() => toggleAddon(addon.code)}
+                className={`bg-[#2a2c29] p-5 md:p-6 rounded-xl border cursor-pointer transition-all ${
+                  selectedAddons.includes(addon.code)
+                    ? 'border-[#c8f000]'
+                    : 'border-[#343633] hover:border-[#6f716d]'
+                }`}
+              >
+                <div className="flex items-start gap-4">
+                  <div className={`w-6 h-6 rounded border-2 flex-shrink-0 flex items-center justify-center mt-0.5 transition-colors ${
+                    selectedAddons.includes(addon.code)
+                      ? 'bg-[#c8f000] border-[#c8f000]'
+                      : 'border-[#6f716d]'
+                  }`}>
+                    {selectedAddons.includes(addon.code) && <Check size={14} className="text-[#161716]" />}
+                  </div>
+                  <div className="flex-grow">
+                    <div className="flex flex-wrap items-start justify-between gap-2 mb-2">
+                      <h3 className="text-white font-medium">{addon.name}</h3>
+                      <span className="text-[#c8f000] font-semibold">
+                        {addon.priceMonthly ? `CHF ${addon.priceMonthly.toLocaleString("it-CH")}/mese` : `CHF ${addon.priceOneShot} una tantum`}
+                      </span>
+                    </div>
+                    <p className="text-[#9a9a96] text-sm">{addon.description}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Esigenze fuori perimetro */}
+      <section className="py-12 bg-[#1f211f]">
         <div className="max-w-[900px] mx-auto px-5 md:px-10">
           <h2 className="text-white font-bold text-2xl mb-3">Esigenze fuori dal perimetro standard</h2>
           <p className="text-[#9a9a96] mb-8">
@@ -189,7 +240,7 @@ const CheckoutGold = () => {
           <div className="space-y-4">
             {/* E-commerce */}
             <div
-              onClick={() => toggleAddon('ecommerce')}
+              onClick={() => setShowContactModal('ecommerce')}
               className="bg-[#2a2c29] p-5 md:p-6 rounded-xl border border-[#343633] hover:border-[#6f716d] cursor-pointer transition-all"
             >
               <div className="flex items-start justify-between gap-4">
@@ -208,36 +259,9 @@ const CheckoutGold = () => {
               </div>
             </div>
 
-            {/* Secondo business */}
-            <div
-              onClick={() => toggleAddon('second-business')}
-              className={`bg-[#2a2c29] p-5 md:p-6 rounded-xl border cursor-pointer transition-all ${
-                selectedAddons.includes('second-business')
-                  ? 'border-[#c8f000]'
-                  : 'border-[#343633] hover:border-[#6f716d]'
-              }`}
-            >
-              <div className="flex items-start gap-4">
-                <div className={`w-6 h-6 rounded border-2 flex-shrink-0 flex items-center justify-center mt-0.5 transition-colors ${
-                  selectedAddons.includes('second-business')
-                    ? 'bg-[#c8f000] border-[#c8f000]'
-                    : 'border-[#6f716d]'
-                }`}>
-                  {selectedAddons.includes('second-business') && <Check size={14} className="text-[#161716]" />}
-                </div>
-                <div className="flex-grow">
-                  <div className="flex flex-wrap items-start justify-between gap-2 mb-2">
-                    <h3 className="text-white font-medium">Gestione di un secondo business</h3>
-                    <span className="text-[#c8f000] font-semibold">CHF 1{"'"}200/mese</span>
-                  </div>
-                  <p className="text-[#9a9a96] text-sm">Per la gestione di un{"'"}attività aggiuntiva distinta.</p>
-                </div>
-              </div>
-            </div>
-
             {/* Progetto custom */}
             <div
-              onClick={() => toggleAddon('custom')}
+              onClick={() => setShowContactModal('custom')}
               className="bg-[#2a2c29] p-5 md:p-6 rounded-xl border border-[#343633] hover:border-[#6f716d] cursor-pointer transition-all"
             >
               <div className="flex items-start justify-between gap-4">
@@ -263,7 +287,7 @@ const CheckoutGold = () => {
         <div className="max-w-[900px] mx-auto px-5 md:px-10">
           <div className="bg-[#2a2c29] p-6 rounded-xl border border-[#343633]">
             <label className="block text-white font-medium mb-2">
-              Email per la fatturazione
+              Email per la fatturazione <span className="text-[#c8f000]">*</span>
             </label>
             <input
               type="email"
@@ -286,9 +310,9 @@ const CheckoutGold = () => {
                 <span className="text-3xl font-bold text-white">CHF {totals.monthly.toLocaleString("it-CH")}</span>
                 <span className="text-[#9a9a96]">/mese</span>
               </div>
-              {selectedAddons.includes('second-business') && (
-                <p className="text-[#6f716d] text-sm mt-1">
-                  Include gestione secondo business
+              {totals.oneShot > 0 && (
+                <p className="text-[#c8f000] text-sm mt-1">
+                  + CHF {totals.oneShot} una tantum
                 </p>
               )}
             </div>
