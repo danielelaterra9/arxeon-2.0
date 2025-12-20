@@ -209,7 +209,7 @@ const CheckoutBasic = () => {
           {showUpgradeMessage && (
             <div className="mt-8 bg-[#343633] p-6 rounded-xl border border-[#c8f000]">
               <p className="text-white mb-4">
-                Se vuoi che gestiamo in modo continuativo un'attività ogni mese, il pacchetto Premium è spesso più semplice ed efficiente.
+                Se vuoi che gestiamo in modo continuativo un{"'"}attività ogni mese, il pacchetto Premium è spesso più semplice ed efficiente.
               </p>
               <button
                 onClick={() => navigate('/checkout/premium')}
