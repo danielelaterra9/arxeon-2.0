@@ -100,16 +100,14 @@ const CheckoutPremium = () => {
     });
 
     return { monthly, oneShot };
-  };
+  }, [extraPlatform, selectedAddons]);
 
-  const totals = calculateTotal();
-
-  const filteredAddons = addons.filter(addon => {
+  const filteredAddons = useMemo(() => addons.filter(addon => {
     if (addon.hideIfScope && addon.hideIfScope === selectedScope) {
       return false;
     }
     return true;
-  });
+  }), [selectedScope]);
 
   return (
     <main className="pt-20 min-h-screen bg-[#161716]">
