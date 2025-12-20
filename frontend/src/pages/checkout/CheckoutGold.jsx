@@ -1,10 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Check, Info, MessageCircle } from 'lucide-react';
+import { ArrowRight, Check, Info, MessageCircle, Loader2 } from 'lucide-react';
+import { loadStripe } from '@stripe/stripe-js';
+import { toast } from 'sonner';
+
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const stripePromise = loadStripe('pk_test_zCUhMH1T0mWFcGotPa0tV96M');
 
 const CheckoutGold = () => {
   const [selectedAddons, setSelectedAddons] = useState([]);
   const [showContactModal, setShowContactModal] = useState(null);
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [customerEmail, setCustomerEmail] = useState('');
 
   const basePrice = 1700;
 
@@ -20,17 +27,64 @@ const CheckoutGold = () => {
     );
   };
 
-  const calculateTotal = () => {
+  const totals = useMemo(() => {
     let monthly = basePrice;
-
     if (selectedAddons.includes('second-business')) {
       monthly += 1200;
     }
-
     return { monthly };
-  };
+  }, [selectedAddons]);
 
-  const totals = calculateTotal();
+  const handleCheckout = async () => {
+    if (!customerEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(customerEmail)) {
+      toast.error('Inserisci un indirizzo email valido');
+      return;
+    }
+
+    setIsProcessing(true);
+
+    try {
+      const items = [
+        {
+          name: 'Pacchetto Gold - Collaboratore marketing dedicato',
+          price: basePrice * 100,
+          type: 'subscription',
+          quantity: 1
+        }
+      ];
+
+      if (selectedAddons.includes('second-business')) {
+        items.push({
+          name: 'Gestione secondo business',
+          price: 120000,
+          type: 'subscription',
+          quantity: 1
+        });
+      }
+
+      const response = await fetch(`${BACKEND_URL}/api/create-checkout-session`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          package: 'gold',
+          items,
+          customer_email: customerEmail
+        }),
+      });
+
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.detail || 'Failed to create checkout session');
+
+      const stripe = await stripePromise;
+      const { error } = await stripe.redirectToCheckout({ sessionId: data.sessionId });
+      if (error) throw error;
+    } catch (error) {
+      console.error('Checkout error:', error);
+      toast.error(error.message || 'Si è verificato un errore. Riprova.');
+    } finally {
+      setIsProcessing(false);
+    }
+  };
 
   return (
     <main className="pt-20 min-h-screen bg-[#161716]">
