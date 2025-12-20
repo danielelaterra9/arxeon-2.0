@@ -1,8 +1,49 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const Metodo = () => {
+  const [currentCase, setCurrentCase] = useState(0);
+
+  const caseStudies = [
+    {
+      id: 1,
+      title: 'Studio professionale – Servizi B2B',
+      situation: 'Uno studio professionale con buona reputazione locale riceveva pochi contatti online. Il sito era datato, non c\'era presenza sui motori di ricerca e i social venivano aggiornati raramente.',
+      intervention: 'Abbiamo rifatto il sito con focus sulla chiarezza dell\'offerta, ottimizzato la scheda Google My Business e attivato una campagna Google Ads mirata su ricerche locali specifiche.',
+      result: 'Nel primo trimestre le richieste di contatto sono aumentate in modo stabile. Il costo per contatto si è rivelato sostenibile e il cliente ha potuto selezionare i progetti migliori.'
+    },
+    {
+      id: 2,
+      title: 'Attività locale – Ristorazione',
+      situation: 'Un ristorante con buona affluenza nel weekend faticava a riempire i tavoli nei giorni infrasettimanali. Non aveva una strategia chiara per comunicare offerte o eventi.',
+      intervention: 'Abbiamo impostato una gestione social costante, con contenuti mirati ai giorni deboli. Attivato un sistema di prenotazione semplificato e campagne Meta Ads geo-localizzate.',
+      result: 'L\'affluenza nei giorni feriali è migliorata progressivamente. Il cliente ha potuto pianificare meglio il personale e ridurre gli sprechi in cucina.'
+    },
+    {
+      id: 3,
+      title: 'E-commerce – Prodotti di nicchia',
+      situation: 'Un piccolo e-commerce con prodotti di qualità aveva traffico ma poche conversioni. Il funnel era confuso e mancava una strategia di remarketing.',
+      intervention: 'Abbiamo semplificato il percorso d\'acquisto, migliorato le schede prodotto e attivato campagne di remarketing su chi aveva visitato il sito senza acquistare.',
+      result: 'Il tasso di conversione è migliorato in modo misurabile. Il costo di acquisizione cliente si è ridotto, rendendo sostenibili anche campagne con budget contenuti.'
+    },
+    {
+      id: 4,
+      title: 'Startup – Servizi digitali',
+      situation: 'Una startup con un buon prodotto non riusciva a comunicare chiaramente il proprio valore. Il posizionamento era confuso e le campagne pubblicitarie non portavano risultati.',
+      intervention: 'Abbiamo lavorato sul posizionamento e sul messaggio, semplificando la proposta di valore. Rivisto il sito, creato landing page dedicate e testato diversi canali pubblicitari.',
+      result: 'Il messaggio è diventato più chiaro e le campagne hanno iniziato a generare lead qualificati. Il team ha potuto concentrarsi sullo sviluppo invece che sulla ricerca clienti.'
+    }
+  ];
+
+  const nextCase = () => {
+    setCurrentCase((prev) => (prev + 1) % caseStudies.length);
+  };
+
+  const prevCase = () => {
+    setCurrentCase((prev) => (prev - 1 + caseStudies.length) % caseStudies.length);
+  };
+
   return (
     <main className="pt-20">
       {/* HERO */}
