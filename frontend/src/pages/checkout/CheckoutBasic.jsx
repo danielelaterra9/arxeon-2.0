@@ -98,6 +98,86 @@ const CheckoutBasic = () => {
     return { monthly, oneShot };
   }, [selectedAddons]);
 
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [customerEmail, setCustomerEmail] = useState('');
+
+  const handleCheckout = async () => {
+    if (!customerEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(customerEmail)) {
+      toast.error('Inserisci un indirizzo email valido');
+      return;
+    }
+
+    setIsProcessing(true);
+
+    try {
+      // Build items array
+      const items = [
+        {
+          name: 'Pacchetto Basic - Consulenza strategica',
+          price: basePrice * 100, // Convert to cents
+          type: 'subscription',
+          quantity: 1
+        }
+      ];
+
+      // Add selected addons
+      selectedAddons.forEach(id => {
+        const addon = addons.find(a => a.id === id);
+        if (addon) {
+          if (addon.priceMonthly > 0) {
+            items.push({
+              name: addon.name,
+              price: addon.priceMonthly * 100,
+              type: 'subscription',
+              quantity: 1
+            });
+          }
+          if (addon.priceOneShot > 0) {
+            items.push({
+              name: addon.name + ' (setup)',
+              price: addon.priceOneShot * 100,
+              type: 'one_time',
+              quantity: 1
+            });
+          }
+        }
+      });
+
+      const response = await fetch(`${BACKEND_URL}/api/create-checkout-session`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          package: 'basic',
+          items,
+          customer_email: customerEmail
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.detail || 'Failed to create checkout session');
+      }
+
+      // Redirect to Stripe Checkout
+      const stripe = await stripePromise;
+      const { error } = await stripe.redirectToCheckout({
+        sessionId: data.sessionId,
+      });
+
+      if (error) {
+        throw error;
+      }
+    } catch (error) {
+      console.error('Checkout error:', error);
+      toast.error(error.message || 'Si è verificato un errore. Riprova.');
+    } finally {
+      setIsProcessing(false);
+    }
+  };
+
   return (
     <main className="pt-20 min-h-screen bg-[#161716]">
       {/* Header */}
