@@ -121,7 +121,7 @@ const Servizi = () => {
                   Pensato per chi gestisce già il proprio marketing in autonomia ma desidera una guida esperta, 
                   un'analisi esterna e indicazioni strategiche chiare.
                 </p>
-                <Link to="/valutazione" className="btn-secondary">
+                <Link to="/checkout/basic" className="btn-secondary">
                   Attiva il pacchetto Basic
                   <ArrowRight className="ml-2" size={16} />
                 </Link>
