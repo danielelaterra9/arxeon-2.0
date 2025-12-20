@@ -188,7 +188,7 @@ const Servizi = () => {
                   Pensato per chi utilizza già strumenti di marketing online ma vuole delegarne 
                   la gestione operativa a un partner affidabile.
                 </p>
-                <Link to="/valutazione" className="btn-primary">
+                <Link to="/checkout/premium" className="btn-primary">
                   Attiva il pacchetto Premium
                   <ArrowRight className="ml-2" size={16} />
                 </Link>
