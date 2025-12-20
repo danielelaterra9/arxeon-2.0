@@ -144,7 +144,7 @@ const CheckoutGold = () => {
                   <p className="text-[#9a9a96] text-sm">Vendita online di prodotti o servizi.</p>
                 </div>
                 <div className="text-right flex-shrink-0">
-                  <p className="text-[#c8f000] font-semibold">A partire da CHF 8'000</p>
+                  <p className="text-[#c8f000] font-semibold">A partire da CHF 8{"'"}000</p>
                   <p className="text-[#6f716d] text-sm">da definire in consulenza</p>
                   <button className="btn-secondary mt-3 text-sm py-2 px-4">
                     <MessageCircle size={14} className="mr-2" />
