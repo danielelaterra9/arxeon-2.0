@@ -1,34 +1,190 @@
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+/* Arxéon Global Styles - New Color Palette */
+
+/* Button Styles */
+.btn-primary {
+  background: #c8f000;
+  color: #161716;
+  border: none;
+  border-radius: 10rem;
+  padding: 1em 2em;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  min-height: 48px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.1em;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+.btn-primary:hover {
+  transform: scale(1.02);
+  opacity: 0.9;
 }
 
-.App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+.btn-primary:active {
+  transform: scale(0.98);
 }
 
-.App-link {
-    color: #61dafb;
+.btn-secondary {
+  background: transparent;
+  color: #c8f000;
+  border: 1px solid #c8f000;
+  border-radius: 10rem;
+  padding: 1em 2em;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-height: 48px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.1em;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+.btn-secondary:hover {
+  background: #c8f000;
+  color: #161716;
+  transform: scale(1.02);
+}
+
+.btn-secondary:active {
+  transform: scale(0.98);
+}
+
+/* Typography */
+.heading-display {
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  font-size: clamp(3rem, 5vw, 5rem);
+  line-height: 0.95;
+  color: #c8f000;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+}
+
+.heading-1 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  line-height: 1;
+  color: #c8f000;
+  letter-spacing: -0.02em;
+}
+
+.heading-2 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  line-height: 1.1;
+  color: #c8f000;
+  letter-spacing: -0.02em;
+}
+
+.heading-3 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  line-height: 1.2;
+  color: #ffffff;
+}
+
+.body-large {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: #9a9a96;
+}
+
+.body-medium {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #9a9a96;
+}
+
+.caption {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: #9a9a96;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Card Styles */
+.card-dark {
+  background: #2a2c29;
+  border: 1px solid #343633;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.card-dark:hover {
+  border-color: #c8f000;
+}
+
+/* Section Spacing */
+.section {
+  padding: 96px 40px;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 64px 20px;
+  }
+}
+
+/* Container */
+.container-main {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+@media (max-width: 768px) {
+  .container-main {
+    padding: 0 20px;
+  }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(200, 240, 0, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(200, 240, 0, 0.5);
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
 }
