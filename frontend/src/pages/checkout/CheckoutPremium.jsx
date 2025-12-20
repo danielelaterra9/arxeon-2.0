@@ -1,24 +1,22 @@
-import React, { useState, useMemo, useCallback } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowRight, Check, Info, ArrowUpRight, Loader2 } from 'lucide-react';
-import { loadStripe } from '@stripe/stripe-js';
 import { toast } from 'sonner';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const stripePromise = loadStripe('pk_live_51SZY44Cdt6E6uRkpGd0maHnrXDrpGsnk70gbd64NYco7ZJIDJtG1CPGDLzqmgZEIs9YLicnw3AaSyC0CVGuKwSpw00sIiHe9uy');
 
 const CheckoutPremium = () => {
   const navigate = useNavigate();
-  const [selectedScope, setSelectedScope] = useState('');
+  const [includedCategory, setIncludedCategory] = useState('');
   const [selectedPlatform, setSelectedPlatform] = useState('');
-  const [extraPlatform, setExtraPlatform] = useState(false);
   const [selectedAddons, setSelectedAddons] = useState([]);
   const [isProcessing, setIsProcessing] = useState(false);
   const [customerEmail, setCustomerEmail] = useState('');
 
   const basePrice = 400;
 
-  const scopes = [
+  // Categories for Premium (required field)
+  const categories = [
     { id: 'sito', name: 'Gestione e aggiornamento del sito internet' },
     { id: 'social', name: 'Gestione social media' },
     { id: 'ads', name: 'Gestione campagne pubblicitarie' },
@@ -29,92 +27,101 @@ const CheckoutPremium = () => {
   const socialPlatforms = ['Instagram', 'Facebook', 'LinkedIn', 'TikTok'];
   const adsPlatforms = ['Google Ads', 'Meta Ads', 'LinkedIn Ads', 'TikTok Ads'];
 
-  const addons = [
+  // Available add-ons for Premium (code-based)
+  const availableAddons = [
     {
-      id: 'sito',
-      name: 'Creazione o rifacimento sito',
-      description: 'Realizziamo o sistemiamo il tuo sito per renderlo chiaro e professionale.',
-      priceOneShot: 800,
-      priceMonthly: 0,
-      type: 'one-shot'
+      code: 'addon_social_extra_monthly',
+      name: 'Piattaforma social aggiuntiva',
+      description: 'Gestione di una seconda piattaforma social.',
+      priceMonthly: 400,
+      showIf: () => includedCategory === 'social'
     },
     {
-      id: 'logo',
-      name: 'Creazione o restyling logo',
-      description: "Miglioriamo l'immagine del tuo brand per renderla coerente e riconoscibile.",
-      priceOneShot: 650,
-      priceMonthly: 0,
-      type: 'one-shot'
+      code: 'addon_ads_extra_monthly',
+      name: 'Piattaforma ads aggiuntiva',
+      description: 'Gestione di una seconda piattaforma pubblicitaria.',
+      priceMonthly: 400,
+      showIf: () => includedCategory === 'ads'
     },
     {
-      id: 'gmb',
-      name: 'Ottimizzazione Google My Business',
-      description: 'Ottimizziamo la tua presenza locale su Google.',
-      priceOneShot: 200,
-      priceMonthly: 100,
-      type: 'hybrid'
-    },
-    {
-      id: 'seo-addon',
+      code: 'addon_seo_monthly',
       name: 'Ottimizzazione SEO',
       description: 'Miglioriamo la comprensione del sito da parte di Google.',
-      priceOneShot: 0,
       priceMonthly: 500,
-      type: 'monthly',
-      hideIfScope: 'seo'
+      showIf: () => includedCategory !== 'seo'
+    },
+    {
+      code: 'addon_gmb_monthly',
+      name: 'Google My Business (gestione mensile)',
+      description: 'Ottimizziamo la tua presenza locale su Google.',
+      priceMonthly: 100
+    },
+    {
+      code: 'oneshot_website',
+      name: 'Creazione o rifacimento sito',
+      description: 'Realizziamo o sistemiamo il tuo sito.',
+      priceOneShot: 800
+    },
+    {
+      code: 'oneshot_logo',
+      name: 'Creazione o restyling logo',
+      description: "Miglioriamo l'immagine del tuo brand.",
+      priceOneShot: 650
+    },
+    {
+      code: 'oneshot_gmb_setup',
+      name: 'Setup Google My Business',
+      description: 'Configurazione iniziale del profilo.',
+      priceOneShot: 200
     }
   ];
 
-  const toggleAddon = (addonId) => {
+  const toggleAddon = (addonCode) => {
     setSelectedAddons(prev =>
-      prev.includes(addonId)
-        ? prev.filter(id => id !== addonId)
-        : [...prev, addonId]
+      prev.includes(addonCode)
+        ? prev.filter(c => c !== addonCode)
+        : [...prev, addonCode]
     );
   };
 
-  const handleScopeChange = useCallback((scopeId) => {
-    setSelectedScope(scopeId);
+  const handleCategoryChange = (categoryId) => {
+    setIncludedCategory(categoryId);
     setSelectedPlatform('');
-    setExtraPlatform(false);
-  }, []);
+    // Remove category-specific addons when category changes
+    setSelectedAddons(prev => prev.filter(code => 
+      !['addon_social_extra_monthly', 'addon_ads_extra_monthly'].includes(code)
+    ));
+  };
 
-  const showUpgradeMessage = useMemo(() => {
-    const hasExtraPlatform = extraPlatform ? 1 : 0;
-    const relevantAddonsCount = selectedAddons.filter(id => {
-      const addon = addons.find(a => a.id === id);
-      return addon && addon.type !== 'one-shot';
-    }).length;
-    const totalScopes = selectedScope ? 1 + hasExtraPlatform : 0;
-    const totalRelevantAddons = relevantAddonsCount + hasExtraPlatform;
-    return totalScopes >= 2 || (selectedScope && totalRelevantAddons >= 2);
-  }, [selectedScope, extraPlatform, selectedAddons]);
+  const filteredAddons = useMemo(() => {
+    return availableAddons.filter(addon => {
+      if (addon.showIf) return addon.showIf();
+      return true;
+    });
+  }, [includedCategory]);
 
   const totals = useMemo(() => {
     let monthly = basePrice;
     let oneShot = 0;
 
-    if (extraPlatform) {
-      monthly += 400;
-    }
-
-    selectedAddons.forEach(id => {
-      const addon = addons.find(a => a.id === id);
+    selectedAddons.forEach(code => {
+      const addon = availableAddons.find(a => a.code === code);
       if (addon) {
-        monthly += addon.priceMonthly;
-        oneShot += addon.priceOneShot;
+        if (addon.priceMonthly) monthly += addon.priceMonthly;
+        if (addon.priceOneShot) oneShot += addon.priceOneShot;
       }
     });
 
     return { monthly, oneShot };
-  }, [extraPlatform, selectedAddons]);
+  }, [selectedAddons]);
 
-  const filteredAddons = useMemo(() => addons.filter(addon => {
-    if (addon.hideIfScope && addon.hideIfScope === selectedScope) {
-      return false;
-    }
-    return true;
-  }), [selectedScope]);
+  const showUpgradeMessage = useMemo(() => {
+    const monthlyAddons = selectedAddons.filter(code => {
+      const addon = availableAddons.find(a => a.code === code);
+      return addon && addon.priceMonthly;
+    });
+    return monthlyAddons.length >= 2;
+  }, [selectedAddons]);
 
   const handleCheckout = async () => {
     if (!customerEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(customerEmail)) {
@@ -122,12 +129,12 @@ const CheckoutPremium = () => {
       return;
     }
 
-    if (!selectedScope) {
-      toast.error('Seleziona un ambito di gestione');
+    if (!includedCategory) {
+      toast.error('Seleziona una categoria operativa inclusa');
       return;
     }
 
-    if ((selectedScope === 'social' || selectedScope === 'ads') && !selectedPlatform) {
+    if ((includedCategory === 'social' || includedCategory === 'ads') && !selectedPlatform) {
       toast.error('Seleziona una piattaforma');
       return;
     }
@@ -135,74 +142,28 @@ const CheckoutPremium = () => {
     setIsProcessing(true);
 
     try {
-      const scopeNames = {
-        sito: 'Gestione e aggiornamento sito',
-        social: `Gestione social media (${selectedPlatform})`,
-        ads: `Gestione campagne pubblicitarie (${selectedPlatform})`,
-        email: 'Email marketing',
-        seo: 'SEO'
-      };
-
-      const items = [
-        {
-          name: `Pacchetto Premium - ${scopeNames[selectedScope]}`,
-          price: basePrice * 100,
-          type: 'subscription',
-          quantity: 1
-        }
-      ];
-
-      if (extraPlatform) {
-        items.push({
-          name: selectedScope === 'social' ? 'Piattaforma social aggiuntiva' : 'Piattaforma ads aggiuntiva',
-          price: 40000,
-          type: 'subscription',
-          quantity: 1
-        });
-      }
-
-      selectedAddons.forEach(id => {
-        const addon = addons.find(a => a.id === id);
-        if (addon) {
-          if (addon.priceMonthly > 0) {
-            items.push({
-              name: addon.name,
-              price: addon.priceMonthly * 100,
-              type: 'subscription',
-              quantity: 1
-            });
-          }
-          if (addon.priceOneShot > 0) {
-            items.push({
-              name: addon.name + ' (setup)',
-              price: addon.priceOneShot * 100,
-              type: 'one_time',
-              quantity: 1
-            });
-          }
-        }
-      });
-
-      const response = await fetch(`${BACKEND_URL}/api/create-checkout-session`, {
+      const response = await fetch(`${BACKEND_URL}/api/stripe/create-checkout-session`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           package: 'premium',
-          items,
-          customer_email: customerEmail
+          selectedAddons: selectedAddons,
+          includedCategory: includedCategory,
+          selectedPlatform: selectedPlatform || null,
+          customerEmail: customerEmail
         }),
       });
 
       const data = await response.json();
-      if (!response.ok) throw new Error(data.detail || 'Failed to create checkout session');
 
-      const stripe = await stripePromise;
-      const { error } = await stripe.redirectToCheckout({ sessionId: data.sessionId });
-      if (error) throw error;
+      if (!response.ok) {
+        throw new Error(data.detail || 'Errore nella creazione del checkout');
+      }
+
+      window.location.href = data.checkoutUrl;
     } catch (error) {
       console.error('Checkout error:', error);
       toast.error(error.message || 'Si è verificato un errore. Riprova.');
-    } finally {
       setIsProcessing(false);
     }
   };
@@ -229,49 +190,47 @@ const CheckoutPremium = () => {
         </div>
       </section>
 
-      {/* Step 1: Scelta ambito */}
+      {/* Step 1: Categoria operativa inclusa (OBBLIGATORIA) */}
       <section className="py-12 bg-[#1f211f]">
         <div className="max-w-[900px] mx-auto px-5 md:px-10">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-8 h-8 rounded-full bg-[#c8f000] flex items-center justify-center text-[#161716] font-bold text-sm">
               1
             </div>
-            <h2 className="text-white font-bold text-xl">Cosa vuoi che gestiamo per te ogni mese?</h2>
+            <h2 className="text-white font-bold text-xl">Categoria operativa inclusa <span className="text-[#c8f000]">*</span></h2>
           </div>
           <p className="text-[#9a9a96] mb-8 ml-11">
-            Il pacchetto Premium include la gestione continuativa di un solo ambito. 
-            Se hai bisogno di gestire più ambiti, puoi aggiungerli oppure valutare il pacchetto Gold.
+            Il pacchetto Premium include la gestione continuativa di <strong className="text-white">una sola categoria</strong>. 
+            Seleziona quella più importante per te.
           </p>
 
           <div className="space-y-3 ml-11">
-            {scopes.map((scope) => (
+            {categories.map((category) => (
               <div
-                key={scope.id}
-                onClick={() => handleScopeChange(scope.id)}
+                key={category.id}
+                onClick={() => handleCategoryChange(category.id)}
                 className={`bg-[#2a2c29] p-5 rounded-xl border cursor-pointer transition-all flex items-center gap-4 ${
-                  selectedScope === scope.id
+                  includedCategory === category.id
                     ? 'border-[#c8f000]'
                     : 'border-[#343633] hover:border-[#6f716d]'
                 }`}
               >
                 <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors ${
-                  selectedScope === scope.id
-                    ? 'border-[#c8f000]'
-                    : 'border-[#6f716d]'
+                  includedCategory === category.id ? 'border-[#c8f000]' : 'border-[#6f716d]'
                 }`}>
-                  {selectedScope === scope.id && (
+                  {includedCategory === category.id && (
                     <div className="w-2.5 h-2.5 rounded-full bg-[#c8f000]"></div>
                   )}
                 </div>
-                <span className="text-white font-medium">{scope.name}</span>
+                <span className="text-white font-medium">{category.name}</span>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Step 2: Sotto-scelte condizionali */}
-      {(selectedScope === 'social' || selectedScope === 'ads') && (
+      {/* Step 2: Selezione piattaforma (condizionale) */}
+      {(includedCategory === 'social' || includedCategory === 'ads') && (
         <section className="py-12 bg-[#161716]">
           <div className="max-w-[900px] mx-auto px-5 md:px-10">
             <div className="flex items-center gap-3 mb-6">
@@ -279,25 +238,24 @@ const CheckoutPremium = () => {
                 2
               </div>
               <h2 className="text-white font-bold text-xl">
-                {selectedScope === 'social'
+                {includedCategory === 'social'
                   ? 'Su quale piattaforma vuoi che gestiamo i contenuti?'
                   : 'Su quale piattaforma vuoi fare pubblicità?'
                 }
               </h2>
             </div>
 
-            {selectedScope === 'ads' && (
+            {includedCategory === 'ads' && (
               <div className="bg-[#2a2c29] p-4 rounded-lg border border-[#343633] mb-6 ml-11">
                 <p className="text-[#9a9a96] text-sm">
                   <Info className="inline-block text-[#c8f000] mr-2" size={16} />
-                  Il budget pubblicitario non è incluso. È richiesto un budget minimo di CHF 300/mese per test e attivazione. 
-                  Se la piattaforma scelta o il budget non fossero adeguati, ti contatteremo per trovare la soluzione migliore.
+                  Il budget pubblicitario non è incluso. È richiesto un budget minimo di CHF 300/mese per test e attivazione.
                 </p>
               </div>
             )}
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 ml-11 mb-6">
-              {(selectedScope === 'social' ? socialPlatforms : adsPlatforms).map((platform) => (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 ml-11">
+              {(includedCategory === 'social' ? socialPlatforms : adsPlatforms).map((platform) => (
                 <div
                   key={platform}
                   onClick={() => setSelectedPlatform(platform)}
@@ -313,83 +271,52 @@ const CheckoutPremium = () => {
                 </div>
               ))}
             </div>
-
-            {/* Extra platform add-on */}
-            <div
-              onClick={() => setExtraPlatform(!extraPlatform)}
-              className={`bg-[#2a2c29] p-5 rounded-xl border cursor-pointer transition-all ml-11 ${
-                extraPlatform
-                  ? 'border-[#c8f000]'
-                  : 'border-[#343633] hover:border-[#6f716d]'
-              }`}
-            >
-              <div className="flex items-start gap-4">
-                <div className={`w-6 h-6 rounded border-2 flex-shrink-0 flex items-center justify-center transition-colors ${
-                  extraPlatform
-                    ? 'bg-[#c8f000] border-[#c8f000]'
-                    : 'border-[#6f716d]'
-                }`}>
-                  {extraPlatform && <Check size={14} className="text-[#161716]" />}
-                </div>
-                <div className="flex-grow">
-                  <div className="flex items-start justify-between gap-2">
-                    <h3 className="text-white font-medium">
-                      {selectedScope === 'social'
-                        ? "Aggiungi gestione di un'altra piattaforma social"
-                        : "Aggiungi gestione di un'altra piattaforma pubblicitaria"
-                      }
-                    </h3>
-                    <span className="text-[#c8f000] font-semibold">CHF 400/mese</span>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </section>
       )}
 
-      {/* Step 3: Add-on extra */}
-      {selectedScope && (
+      {/* Step 3: Add-on */}
+      {includedCategory && (
         <section className="py-12 bg-[#1f211f]">
           <div className="max-w-[900px] mx-auto px-5 md:px-10">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-8 h-8 rounded-full bg-[#343633] flex items-center justify-center text-white font-bold text-sm">
-                {(selectedScope === 'social' || selectedScope === 'ads') ? '3' : '2'}
+                {(includedCategory === 'social' || includedCategory === 'ads') ? '3' : '2'}
               </div>
-              <h2 className="text-white font-bold text-xl">Vuoi affidarci anche queste attività operative?</h2>
+              <h2 className="text-white font-bold text-xl">Vuoi aggiungere altri servizi?</h2>
             </div>
+            <p className="text-[#9a9a96] mb-8 ml-11">
+              Questi servizi non sono inclusi nel pacchetto base, ma possono essere aggiunti.
+            </p>
 
             <div className="space-y-4 ml-11">
               {filteredAddons.map((addon) => (
                 <div
-                  key={addon.id}
-                  onClick={() => toggleAddon(addon.id)}
+                  key={addon.code}
+                  onClick={() => toggleAddon(addon.code)}
                   className={`bg-[#2a2c29] p-5 rounded-xl border cursor-pointer transition-all ${
-                    selectedAddons.includes(addon.id)
+                    selectedAddons.includes(addon.code)
                       ? 'border-[#c8f000]'
                       : 'border-[#343633] hover:border-[#6f716d]'
                   }`}
                 >
                   <div className="flex items-start gap-4">
                     <div className={`w-6 h-6 rounded border-2 flex-shrink-0 flex items-center justify-center mt-0.5 transition-colors ${
-                      selectedAddons.includes(addon.id)
+                      selectedAddons.includes(addon.code)
                         ? 'bg-[#c8f000] border-[#c8f000]'
                         : 'border-[#6f716d]'
                     }`}>
-                      {selectedAddons.includes(addon.id) && <Check size={14} className="text-[#161716]" />}
+                      {selectedAddons.includes(addon.code) && <Check size={14} className="text-[#161716]" />}
                     </div>
                     <div className="flex-grow">
                       <div className="flex flex-wrap items-start justify-between gap-2 mb-1">
                         <h3 className="text-white font-medium">{addon.name}</h3>
                         <div className="text-right">
-                          {addon.priceOneShot > 0 && (
-                            <span className="text-[#c8f000] font-semibold">CHF {addon.priceOneShot} one-shot</span>
-                          )}
-                          {addon.priceOneShot > 0 && addon.priceMonthly > 0 && (
-                            <span className="text-[#6f716d]"> + </span>
-                          )}
-                          {addon.priceMonthly > 0 && (
+                          {addon.priceMonthly && (
                             <span className="text-[#c8f000] font-semibold">CHF {addon.priceMonthly}/mese</span>
+                          )}
+                          {addon.priceOneShot && (
+                            <span className="text-[#c8f000] font-semibold">CHF {addon.priceOneShot} una tantum</span>
                           )}
                         </div>
                       </div>
@@ -424,12 +351,12 @@ const CheckoutPremium = () => {
       )}
 
       {/* Email Input Section */}
-      {selectedScope && (
+      {includedCategory && (
         <section className="py-8 bg-[#161716]">
           <div className="max-w-[900px] mx-auto px-5 md:px-10">
             <div className="bg-[#2a2c29] p-6 rounded-xl border border-[#343633]">
               <label className="block text-white font-medium mb-2">
-                Email per la fatturazione
+                Email per la fatturazione <span className="text-[#c8f000]">*</span>
               </label>
               <input
                 type="email"
@@ -466,7 +393,7 @@ const CheckoutPremium = () => {
               <button 
                 onClick={handleCheckout}
                 className="btn-primary justify-center disabled:opacity-50 disabled:cursor-not-allowed"
-                disabled={isProcessing || !selectedScope || ((selectedScope === 'social' || selectedScope === 'ads') && !selectedPlatform) || !customerEmail}
+                disabled={isProcessing || !includedCategory || !customerEmail || ((includedCategory === 'social' || includedCategory === 'ads') && !selectedPlatform)}
               >
                 {isProcessing ? (
                   <>
