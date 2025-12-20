@@ -13,17 +13,21 @@ import Contatti from "./pages/Contatti";
 import CheckoutBasic from "./pages/checkout/CheckoutBasic";
 import CheckoutPremium from "./pages/checkout/CheckoutPremium";
 import CheckoutGold from "./pages/checkout/CheckoutGold";
+import ThankYou from "./pages/ThankYou";
+import Onboarding from "./pages/Onboarding";
 
 // Layout component to conditionally show footer
 const Layout = ({ children }) => {
   const location = useLocation();
   const isCheckout = location.pathname.startsWith('/checkout');
+  const isThankYou = location.pathname === '/thank-you';
+  const isOnboarding = location.pathname === '/onboarding';
   
   return (
     <>
       <Header />
       {children}
-      {!isCheckout && <Footer />}
+      {!isCheckout && !isThankYou && !isOnboarding && <Footer />}
     </>
   );
 };
@@ -43,6 +47,8 @@ function App() {
             <Route path="/checkout/basic" element={<CheckoutBasic />} />
             <Route path="/checkout/premium" element={<CheckoutPremium />} />
             <Route path="/checkout/gold" element={<CheckoutGold />} />
+            <Route path="/thank-you" element={<ThankYou />} />
+            <Route path="/onboarding" element={<Onboarding />} />
           </Routes>
         </Layout>
       </BrowserRouter>
