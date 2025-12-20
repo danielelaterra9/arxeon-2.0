@@ -73,6 +73,39 @@ const Contatti = () => {
           </div>
         </div>
       </section>
+
+      {/* RASSICURAZIONE UMANA */}
+      <section className="py-16 bg-[#161716]">
+        <div className="max-w-[700px] mx-auto px-5 md:px-10">
+          <div className="bg-[#1f211f] p-8 rounded-xl border border-[#343633]">
+            <h3 className="text-white font-semibold text-lg mb-4">
+              Dietro Arxéon ci sono persone, non solo strumenti.
+            </h3>
+            <p className="text-[#9a9a96] text-sm leading-relaxed mb-6">
+              Arxéon non è un sistema automatico né un servizio impersonale.
+              Analisi, strategia e decisioni vengono gestite da persone, con metodo, responsabilità e supervisione continua.
+            </p>
+            <ul className="space-y-2">
+              <li className="flex items-center gap-3 text-[#6f716d] text-sm">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#c8f000] flex-shrink-0"></span>
+                Strategia e direzione marketing
+              </li>
+              <li className="flex items-center gap-3 text-[#6f716d] text-sm">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#c8f000] flex-shrink-0"></span>
+                Analisi e lettura dei dati
+              </li>
+              <li className="flex items-center gap-3 text-[#6f716d] text-sm">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#c8f000] flex-shrink-0"></span>
+                Coordinamento operativo
+              </li>
+              <li className="flex items-center gap-3 text-[#6f716d] text-sm">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#c8f000] flex-shrink-0"></span>
+                Supervisione qualità e performance
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
     </main>
   );
 };
