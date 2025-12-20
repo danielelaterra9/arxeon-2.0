@@ -97,12 +97,12 @@ const ThankYou = () => {
           <p className="text-[#9a9a96] text-lg">
             Abbiamo ricevuto correttamente il pagamento.
           </p>
-          {order && (
+          {subscription && (
             <div className="mt-6 inline-block bg-[#2a2c29] px-6 py-3 rounded-full border border-[#343633]">
               <span className="text-[#9a9a96]">Pacchetto </span>
-              <span className="text-[#c8f000] font-semibold">{order.package?.charAt(0).toUpperCase() + order.package?.slice(1)}</span>
+              <span className="text-[#c8f000] font-semibold">{subscription.package?.charAt(0).toUpperCase() + subscription.package?.slice(1)}</span>
               <span className="text-[#9a9a96]"> • </span>
-              <span className="text-white font-semibold">CHF {(order.total_monthly / 100).toLocaleString('it-CH')}/mese</span>
+              <span className="text-white font-semibold">CHF {(subscription.total_monthly / 100).toLocaleString('it-CH')}/mese</span>
             </div>
           )}
         </div>
