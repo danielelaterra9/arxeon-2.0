@@ -149,7 +149,7 @@ const CheckoutPremium = () => {
             {scopes.map((scope) => (
               <div
                 key={scope.id}
-                onClick={() => setSelectedScope(scope.id)}
+                onClick={() => handleScopeChange(scope.id)}
                 className={`bg-[#2a2c29] p-5 rounded-xl border cursor-pointer transition-all flex items-center gap-4 ${
                   selectedScope === scope.id
                     ? 'border-[#c8f000]'
