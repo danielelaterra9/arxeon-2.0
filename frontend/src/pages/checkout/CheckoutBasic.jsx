@@ -1,6 +1,11 @@
 import React, { useState, useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ArrowRight, Check, Info, ArrowUpRight } from 'lucide-react';
+import { ArrowRight, Check, Info, ArrowUpRight, Loader2 } from 'lucide-react';
+import { loadStripe } from '@stripe/stripe-js';
+import { toast } from 'sonner';
+
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const stripePromise = loadStripe('pk_test_zCUhMH1T0mWFcGotPa0tV96M');
 
 const CheckoutBasic = () => {
   const navigate = useNavigate();
