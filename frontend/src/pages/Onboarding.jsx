@@ -16,7 +16,7 @@ const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const Onboarding = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const orderId = searchParams.get('order_id');
+  const subscriptionId = searchParams.get('subscription_id');
   
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
