@@ -308,6 +308,24 @@ const CheckoutBasic = () => {
         </div>
       </section>
 
+      {/* Email Input Section */}
+      <section className="py-8 bg-[#161716]">
+        <div className="max-w-[900px] mx-auto px-5 md:px-10">
+          <div className="bg-[#2a2c29] p-6 rounded-xl border border-[#343633]">
+            <label className="block text-white font-medium mb-2">
+              Email per la fatturazione
+            </label>
+            <input
+              type="email"
+              value={customerEmail}
+              onChange={(e) => setCustomerEmail(e.target.value)}
+              placeholder="tua@email.ch"
+              className="w-full px-4 py-3 bg-[#161716] border border-[#343633] rounded-lg text-white placeholder-[#6f716d] focus:outline-none focus:border-[#c8f000] transition-colors"
+            />
+          </div>
+        </div>
+      </section>
+
       {/* Riepilogo e CTA */}
       <section className="py-12 bg-[#1f211f] border-t border-[#343633] sticky bottom-0">
         <div className="max-w-[900px] mx-auto px-5 md:px-10">
@@ -326,11 +344,24 @@ const CheckoutBasic = () => {
             </div>
             <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
               <Link to="/valutazione" className="btn-secondary text-center justify-center">
-                Ho domande prima di procedere
+                Ho domande
               </Link>
-              <button className="btn-primary justify-center">
-                Procedi al pagamento
-                <ArrowRight className="ml-2" size={16} />
+              <button 
+                onClick={handleCheckout}
+                disabled={isProcessing || !customerEmail}
+                className="btn-primary justify-center disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isProcessing ? (
+                  <>
+                    <Loader2 className="mr-2 animate-spin\" size={16} />
+                    Elaborazione...
+                  </>
+                ) : (
+                  <>
+                    Procedi al pagamento
+                    <ArrowRight className="ml-2" size={16} />
+                  </>
+                )}
               </button>
             </div>
           </div>
