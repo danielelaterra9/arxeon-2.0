@@ -137,7 +137,7 @@ const CheckoutBasic = () => {
             <div className="bg-[#161716] p-4 rounded-lg border border-[#343633]">
               <p className="text-[#9a9a96] text-sm leading-relaxed">
                 <Info className="inline-block text-[#c8f000] mr-2" size={16} />
-                Con il pacchetto Basic ti aiutiamo a prendere decisioni migliori, ma l'implementazione resta a tuo carico. 
+                Con il pacchetto Basic ti aiutiamo a prendere decisioni migliori, ma l{"'"}implementazione resta a tuo carico. 
                 Se vuoi che gestiamo direttamente alcune attività operative, puoi aggiungerle qui sotto oppure valutare il pacchetto Premium.
               </p>
             </div>
