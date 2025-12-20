@@ -99,6 +99,100 @@ const Metodo = () => {
         </div>
       </section>
 
+      {/* ESEMPI REALI - CASE STUDIES */}
+      <section className="py-24 bg-[#1f211f]">
+        <div className="max-w-[1400px] mx-auto px-5 md:px-10">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-[#c8f000] font-bold text-2xl md:text-3xl mb-4 text-center">
+              Esempi reali di come applichiamo il metodo
+            </h2>
+            <p className="text-[#9a9a96] text-center mb-12">
+              Casi anonimi, risultati concreti.
+            </p>
+
+            {/* Case Study Slider */}
+            <div className="relative">
+              {/* Case Study Card */}
+              <div className="bg-[#161716] p-6 md:p-8 rounded-xl border border-[#343633]">
+                {/* Header */}
+                <div className="flex items-center justify-between mb-6">
+                  <span className="text-[#c8f000] text-sm font-medium">
+                    Caso {currentCase + 1} di {caseStudies.length}
+                  </span>
+                  <span className="text-[#6f716d] text-xs uppercase tracking-wider">
+                    {caseStudies[currentCase].title.split('–')[1]?.trim() || 'Case Study'}
+                  </span>
+                </div>
+
+                {/* Title */}
+                <h3 className="text-white font-bold text-xl mb-6">
+                  {caseStudies[currentCase].title}
+                </h3>
+
+                {/* Content Grid */}
+                <div className="space-y-6">
+                  <div>
+                    <h4 className="text-[#6f716d] text-xs uppercase tracking-wider mb-2">Situazione iniziale</h4>
+                    <p className="text-[#9a9a96] text-sm leading-relaxed">
+                      {caseStudies[currentCase].situation}
+                    </p>
+                  </div>
+
+                  <div>
+                    <h4 className="text-[#6f716d] text-xs uppercase tracking-wider mb-2">Intervento Arxéon</h4>
+                    <p className="text-[#9a9a96] text-sm leading-relaxed">
+                      {caseStudies[currentCase].intervention}
+                    </p>
+                  </div>
+
+                  <div className="bg-[#2a2c29] p-4 rounded-lg border-l-2 border-[#c8f000]">
+                    <h4 className="text-[#c8f000] text-xs uppercase tracking-wider mb-2">Risultato</h4>
+                    <p className="text-white text-sm leading-relaxed">
+                      {caseStudies[currentCase].result}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Navigation */}
+              <div className="flex items-center justify-between mt-6">
+                {/* Dots */}
+                <div className="flex items-center gap-2">
+                  {caseStudies.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentCase(index)}
+                      className={`w-2 h-2 rounded-full transition-colors ${
+                        index === currentCase ? 'bg-[#c8f000]' : 'bg-[#343633] hover:bg-[#6f716d]'
+                      }`}
+                      aria-label={`Vai al caso ${index + 1}`}
+                    />
+                  ))}
+                </div>
+
+                {/* Arrows */}
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={prevCase}
+                    className="w-10 h-10 rounded-full bg-[#2a2c29] border border-[#343633] flex items-center justify-center text-[#9a9a96] hover:text-[#c8f000] hover:border-[#c8f000] transition-colors"
+                    aria-label="Caso precedente"
+                  >
+                    <ChevronLeft size={18} />
+                  </button>
+                  <button
+                    onClick={nextCase}
+                    className="w-10 h-10 rounded-full bg-[#2a2c29] border border-[#343633] flex items-center justify-center text-[#9a9a96] hover:text-[#c8f000] hover:border-[#c8f000] transition-colors"
+                    aria-label="Caso successivo"
+                  >
+                    <ChevronRight size={18} />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* PERCHÉ FUNZIONA */}
       <section className="py-24 bg-[#2a2c29]">
         <div className="max-w-[1400px] mx-auto px-5 md:px-10">
