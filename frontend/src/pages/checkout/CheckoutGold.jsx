@@ -174,7 +174,7 @@ const CheckoutGold = () => {
                 <div className="flex-grow">
                   <div className="flex flex-wrap items-start justify-between gap-2 mb-2">
                     <h3 className="text-white font-medium">Gestione di un secondo business</h3>
-                    <span className="text-[#c8f000] font-semibold">CHF 1'200/mese</span>
+                    <span className="text-[#c8f000] font-semibold">CHF 1{"'"}200/mese</span>
                   </div>
                   <p className="text-[#9a9a96] text-sm">Per la gestione di un{"'"}attività aggiuntiva distinta.</p>
                 </div>
