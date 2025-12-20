@@ -6,11 +6,11 @@ const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 const ThankYou = () => {
   const [searchParams] = useSearchParams();
-  const [order, setOrder] = useState(null);
+  const [subscription, setSubscription] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const sessionId = searchParams.get('session_id');
-  const orderId = searchParams.get('order_id');
+  const subscriptionId = searchParams.get('subscription_id');
 
   useEffect(() => {
     const verifyPayment = async () => {
@@ -18,13 +18,13 @@ const ThankYou = () => {
         if (sessionId) {
           const response = await fetch(`${BACKEND_URL}/api/verify-session/${sessionId}`);
           const data = await response.json();
-          if (data.valid && data.order) {
-            setOrder(data.order);
+          if (data.valid && data.subscription) {
+            setSubscription(data.subscription);
           }
-        } else if (orderId) {
-          const response = await fetch(`${BACKEND_URL}/api/order/${orderId}`);
+        } else if (subscriptionId) {
+          const response = await fetch(`${BACKEND_URL}/api/subscription/${subscriptionId}`);
           const data = await response.json();
-          setOrder(data);
+          setSubscription(data);
         }
       } catch (error) {
         console.error('Error verifying payment:', error);
@@ -34,7 +34,7 @@ const ThankYou = () => {
     };
 
     verifyPayment();
-  }, [sessionId, orderId]);
+  }, [sessionId, subscriptionId]);
 
   // Load Calendly widget
   useEffect(() => {
