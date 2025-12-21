@@ -118,7 +118,7 @@ ADDON_PRICES = {
         "allowed_packages": ["basic", "premium", "gold"]
     },
     "oneshot_gmb_setup": {
-        "price_id": "price_gmb_setup",  # Replace with actual Stripe Price ID
+        "price_id": "price_1Sghd0Cdt6E6uRkpnSHWD1wT",
         "name": "Setup Google My Business",
         "amount": 20000,
         "type": "one_time",
