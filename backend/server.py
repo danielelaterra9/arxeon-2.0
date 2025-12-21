@@ -48,17 +48,17 @@ logger = logging.getLogger(__name__)
 # Package base prices (monthly subscriptions)
 PACKAGE_PRICES = {
     "basic": {
-        "price_id": "price_basic_monthly",  # Replace with actual Stripe Price ID
+        "price_id": "price_1SghaZCdt6E6uRkpGCC3Dkui",
         "name": "Pacchetto Basic",
         "amount": 20000  # CHF 200 in cents
     },
     "premium": {
-        "price_id": "price_premium_monthly",  # Replace with actual Stripe Price ID
+        "price_id": "price_1Sghb8Cdt6E6uRkpcC7fOGyH",
         "name": "Pacchetto Premium", 
         "amount": 40000  # CHF 400 in cents
     },
     "gold": {
-        "price_id": "price_gold_monthly",  # Replace with actual Stripe Price ID
+        "price_id": "price_1SghbTCdt6E6uRkpCTy7mQht",
         "name": "Pacchetto Gold",
         "amount": 170000  # CHF 1700 in cents
     }
@@ -68,35 +68,35 @@ PACKAGE_PRICES = {
 ADDON_PRICES = {
     # Monthly recurring add-ons
     "addon_social_extra_monthly": {
-        "price_id": "price_social_extra",  # Replace with actual Stripe Price ID
+        "price_id": "price_1SghdkCdt6E6uRkpi4C8pFpD",
         "name": "Piattaforma social aggiuntiva",
         "amount": 40000,
         "type": "recurring",
         "allowed_packages": ["premium", "gold"]
     },
     "addon_ads_extra_monthly": {
-        "price_id": "price_ads_extra",  # Replace with actual Stripe Price ID
+        "price_id": "price_1SgheOCdt6E6uRkpdJbRMAiZ",
         "name": "Piattaforma ads aggiuntiva",
         "amount": 40000,
         "type": "recurring",
         "allowed_packages": ["premium", "gold"]
     },
     "addon_seo_monthly": {
-        "price_id": "price_seo_monthly",  # Replace with actual Stripe Price ID
+        "price_id": "price_1SghgDCdt6E6uRkpn4mBHCcP",
         "name": "Ottimizzazione SEO",
         "amount": 50000,
         "type": "recurring",
         "allowed_packages": ["premium", "gold"]
     },
     "addon_gmb_monthly": {
-        "price_id": "price_gmb_monthly",  # Replace with actual Stripe Price ID
+        "price_id": "price_1SghfbCdt6E6uRkp02IkV6KW",
         "name": "Google My Business (mensile)",
         "amount": 10000,
         "type": "recurring",
         "allowed_packages": ["basic", "premium", "gold"]
     },
     "addon_second_business_monthly": {
-        "price_id": "price_second_business",  # Replace with actual Stripe Price ID
+        "price_id": "price_1SghgfCdt6E6uRkphliUzSXt",
         "name": "Gestione secondo business",
         "amount": 120000,
         "type": "recurring",
@@ -104,15 +104,15 @@ ADDON_PRICES = {
     },
     # One-time add-ons
     "oneshot_website": {
-        "price_id": "price_website_oneshot",  # Replace with actual Stripe Price ID
+        "price_id": "price_1SghNjCdt6E6uRkpvjlht162",
         "name": "Creazione/rifacimento sito",
         "amount": 80000,
         "type": "one_time",
         "allowed_packages": ["basic", "premium", "gold"]
     },
     "oneshot_logo": {
-        "price_id": "price_logo_oneshot",  # Replace with actual Stripe Price ID
-        "name": "Creazione/restyling logo",
+        "price_id": "price_1SghcOCdt6E6uRkp9DGPFgXe",
+        "name": "Creazione/restyling logo + visual identity",
         "amount": 65000,
         "type": "one_time",
         "allowed_packages": ["basic", "premium", "gold"]
