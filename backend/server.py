@@ -23,10 +23,27 @@ db = client[os.environ['DB_NAME']]
 # Stripe configuration
 stripe.api_key = os.environ.get('STRIPE_SECRET_KEY', '')
 STRIPE_WEBHOOK_SECRET = os.environ.get('STRIPE_WEBHOOK_SECRET', '')
-FRONTEND_URL = os.environ.get('FRONTEND_URL', 'http://localhost:3000')
+
+# App Base URL configuration (for Stripe redirects)
+APP_BASE_URL = os.environ.get('APP_BASE_URL', '')
 
 # Resend configuration
 RESEND_API_KEY = os.environ.get('RESEND_API_KEY', '')
+
+def get_base_url(request: Request) -> str:
+    """Get base URL from env or derive from request headers"""
+    if APP_BASE_URL:
+        return APP_BASE_URL.rstrip('/')
+    
+    # Fallback: derive from request headers
+    proto = request.headers.get('x-forwarded-proto', 'https')
+    host = request.headers.get('x-forwarded-host') or request.headers.get('host', '')
+    
+    if host:
+        return f"{proto}://{host}"
+    
+    # Last resort fallback
+    return 'https://marketing-packs.preview.emergentagent.com'
 
 # Create the main app
 app = FastAPI()
