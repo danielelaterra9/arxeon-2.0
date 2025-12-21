@@ -375,7 +375,7 @@ const CheckoutPremium = () => {
         <div className="max-w-[900px] mx-auto px-5 md:px-10">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <div>
-              <p className="text-[#9a9a96] text-sm mb-1">Totale mensile</p>
+              <p className="text-[#9a9a96] text-sm mb-1">Totale stimato</p>
               <div className="flex items-baseline gap-4">
                 <span className="text-3xl font-bold text-white">CHF {totals.monthly}</span>
                 <span className="text-[#9a9a96]">/mese</span>
@@ -385,6 +385,7 @@ const CheckoutPremium = () => {
                   + CHF {totals.oneShot} una tantum
                 </p>
               )}
+              <p className="text-[#6f716d] text-xs mt-2">Il totale finale sarà mostrato nella schermata di pagamento.</p>
             </div>
             <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
               <Link to="/valutazione" className="btn-secondary text-center justify-center">
