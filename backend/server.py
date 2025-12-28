@@ -1,4 +1,4 @@
-from fastapi import FastAPI, APIRouter, HTTPException, Request, Header
+from fastapi import FastAPI, APIRouter, HTTPException, Request, Header, BackgroundTasks
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -11,6 +11,9 @@ import uuid
 from datetime import datetime, timezone
 import stripe
 import json
+import asyncio
+import base64
+from io import BytesIO
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -33,6 +36,9 @@ FRONTEND_URL = FRONTEND_URL.rstrip('/')  # Remove trailing slash
 
 # Resend configuration
 RESEND_API_KEY = os.environ.get('RESEND_API_KEY', '')
+
+# Emergent LLM Key for AI generation
+EMERGENT_LLM_KEY = os.environ.get('EMERGENT_LLM_KEY', '')
 
 def get_base_url(request: Request) -> str:
     """Get base URL from env or derive from request headers"""
