@@ -239,7 +239,7 @@ async def send_email(to: str, subject: str, html_content: str):
             resend.api_key = RESEND_API_KEY
             
             params = {
-                "from": "Arxéon <noreply@arxeon.ch>",
+                "from": "Arxéon <onboarding@resend.dev>",
                 "to": [to],
                 "subject": subject,
                 "html": html_content
@@ -1262,7 +1262,7 @@ async def send_email_resend_with_attachment(to: str, subject: str, html_content:
             attachment_b64 = base64.b64encode(attachment_bytes).decode('utf-8')
             
             resend.Emails.send({
-                "from": "Arxéon <noreply@arxeon.ch>",
+                "from": "Arxéon <onboarding@resend.dev>",
                 "to": [to],
                 "subject": subject,
                 "html": html_content,
