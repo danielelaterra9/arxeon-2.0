@@ -738,6 +738,16 @@ async def get_onboarding(onboarding_id: str):
 async def root():
     return {"message": "Arxéon API"}
 
+@api_router.get("/debug/config")
+async def debug_config():
+    """Debug endpoint to verify URL configuration"""
+    return {
+        'FRONTEND_URL': FRONTEND_URL,
+        'APP_BASE_URL': APP_BASE_URL,
+        'APP_URL': os.environ.get('APP_URL', 'not set'),
+        'success_url_example': f"{FRONTEND_URL}/thank-you?session_id=test"
+    }
+
 @api_router.get("/config/stripe")
 async def get_stripe_config():
     """Return Stripe publishable key for frontend"""
