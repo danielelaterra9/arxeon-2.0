@@ -806,8 +806,7 @@ async def get_status_checks():
             check['timestamp'] = datetime.fromisoformat(check['timestamp'])
     return status_checks
 
-# Include the router
-app.include_router(api_router)
+# Router will be included after all endpoints are defined
 
 # ============================================================
 # FREE AUDIT / VALUTAZIONE STRATEGICA AI SYSTEM
