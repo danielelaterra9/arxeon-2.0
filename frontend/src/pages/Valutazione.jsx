@@ -497,6 +497,48 @@ const Valutazione = () => {
                     />
                     {errors.mainProblem && <p className="text-red-500 text-sm mt-1">{errors.mainProblem}</p>}
                   </div>
+
+                  {/* New Field: Previous Attempts */}
+                  <div>
+                    <label className="block text-white text-sm font-medium mb-2">
+                      Tentativi precedenti
+                    </label>
+                    <textarea
+                      name="previousAttempts"
+                      value={formData.previousAttempts}
+                      onChange={handleInputChange}
+                      rows={3}
+                      className="w-full px-4 py-3 bg-[#161716] border border-[#343633] rounded-lg text-white placeholder-[#6f716d] focus:outline-none focus:border-[#c8f000] transition-colors resize-none"
+                      placeholder="Hai già provato a risolvere questo problema? Come? (es: agenzie, freelance, campagne fai-da-te...)"
+                    />
+                  </div>
+
+                  {/* New Field: Improvement Importance */}
+                  <div>
+                    <label className="block text-white text-sm font-medium mb-3">
+                      Quanto è importante per te migliorare il marketing? <span className="text-[#c8f000]">*</span>
+                    </label>
+                    <div className="flex items-center justify-between gap-2">
+                      {[1, 2, 3, 4, 5].map((value) => (
+                        <button
+                          key={value}
+                          type="button"
+                          onClick={() => setFormData(prev => ({ ...prev, improvementImportance: value }))}
+                          className={`flex-1 py-3 px-4 rounded-lg border text-center font-medium transition-all ${
+                            formData.improvementImportance === value
+                              ? 'bg-[#c8f000] text-[#161716] border-[#c8f000]'
+                              : 'bg-[#161716] text-white border-[#343633] hover:border-[#c8f000]'
+                          }`}
+                        >
+                          {value}
+                        </button>
+                      ))}
+                    </div>
+                    <div className="flex justify-between mt-2 text-xs text-[#6f716d]">
+                      <span>Poco importante</span>
+                      <span>Molto importante</span>
+                    </div>
+                  </div>
                 </div>
               </div>
 
