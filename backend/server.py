@@ -809,6 +809,561 @@ async def get_status_checks():
 # Include the router
 app.include_router(api_router)
 
+# ============================================================
+# FREE AUDIT / VALUTAZIONE STRATEGICA AI SYSTEM
+# ============================================================
+
+# Pydantic model for free audit request
+class FreeAuditRequest(BaseModel):
+    fullName: str
+    email: EmailStr
+    phone: Optional[str] = ""
+    companyName: str
+    website: Optional[str] = ""
+    sector: str
+    geoArea: str
+    channels: List[str]
+    objective: str
+    budget: str
+    mainProblem: str
+    previousAttempts: Optional[str] = ""  # New field: tentativi precedenti
+    improvementImportance: int = Field(ge=1, le=5, default=3)  # New field: importanza 1-5
+
+class FreeAuditResponse(BaseModel):
+    id: str
+    status: str
+    message: str
+
+# Master prompt for AI evaluation
+EVALUATION_MASTER_PROMPT = """Agisci come un consulente di marketing strategico senior.
+
+Il tuo compito è redigere una VALUTAZIONE STRATEGICA PERSONALIZZATA
+per un potenziale cliente, basandoti esclusivamente sulle informazioni fornite.
+
+⚠️ Regole fondamentali:
+- NON usare linguaggio promozionale.
+- NON promettere risultati.
+- NON spiegare strategie complete o operative.
+- NON sembrare un report automatico.
+- Usa un tono professionale, chiaro, diretto, umano.
+- Scrivi come se il report fosse stato rivisto da un consulente reale.
+
+🎯 Obiettivo del documento:
+- Far emergere con chiarezza problemi, rischi e opportunità.
+- Creare consapevolezza e tensione decisionale.
+- Portare naturalmente al bisogno di supporto esterno.
+
+📄 Lunghezza:
+- 1–2 pagine massimo.
+- Lettura 5–7 minuti.
+
+📌 STRUTTURA OBBLIGATORIA:
+
+TITOLO:
+"Valutazione Strategica del Marketing"
+
+1. Introduzione personalizzata
+- Riassumi il contesto del business.
+- Dimostra comprensione della situazione attuale.
+
+2. Stato attuale – Diagnosi
+- Elenca 3–5 criticità principali.
+- Ogni punto deve avere:
+  • titolo breve
+  • spiegazione concreta
+  • implicazione pratica
+
+3. Rischi principali
+- Spiega cosa succede se la situazione resta invariata.
+- Usa un tono razionale, non allarmistico.
+
+4. Opportunità di miglioramento
+- Evidenzia dove esiste margine di crescita.
+- NON spiegare come farlo nel dettaglio.
+
+5. Priorità strategiche consigliate
+- Massimo 3 priorità.
+- Chiare, concrete, non tecniche.
+
+6. Conclusione
+- Ribadisci il valore di un approccio strutturato.
+- Chiudi invitando a un confronto per capire quale supporto è più adatto.
+
+📊 VALUTAZIONE FINALE (OBBLIGATORIA):
+Inserisci una sezione finale con:
+- Livello di maturità marketing (Basso / Medio / Avanzato)
+- Punteggio complessivo marketing (0–10)
+- Breve spiegazione del punteggio (3–4 righe)
+
+📥 DATI DEL BUSINESS:
+Nome: {nome}
+Azienda: {azienda}
+Settore: {settore}
+Area geografica: {area}
+Canali attuali: {canali}
+Obiettivo principale: {obiettivo}
+Budget mensile: {budget}
+Difficoltà principale: {problema}
+Tentativi precedenti: {tentativi}
+Importanza del miglioramento (1–5): {importanza}
+
+Genera la valutazione strategica completa."""
+
+async def generate_evaluation_with_ai(audit_data: dict) -> dict:
+    """Generate strategic evaluation using OpenAI GPT-4o via Emergent LLM Key"""
+    if not EMERGENT_LLM_KEY:
+        logger.warning("EMERGENT_LLM_KEY not configured, using mock evaluation")
+        return {
+            "text": generate_mock_evaluation(audit_data),
+            "score": 5,
+            "level": "Medio"
+        }
+    
+    try:
+        from emergentintegrations.llm.chat import LlmChat, UserMessage
+        
+        # Prepare the prompt with business data
+        prompt = EVALUATION_MASTER_PROMPT.format(
+            nome=audit_data.get('fullName', ''),
+            azienda=audit_data.get('companyName', ''),
+            settore=audit_data.get('sector', ''),
+            area=audit_data.get('geoArea', ''),
+            canali=', '.join(audit_data.get('channels', [])),
+            obiettivo=audit_data.get('objective', ''),
+            budget=audit_data.get('budget', ''),
+            problema=audit_data.get('mainProblem', ''),
+            tentativi=audit_data.get('previousAttempts', 'Non specificato'),
+            importanza=audit_data.get('improvementImportance', 3)
+        )
+        
+        # Initialize chat with GPT-4o
+        chat = LlmChat(
+            api_key=EMERGENT_LLM_KEY,
+            session_id=f"audit-{uuid.uuid4()}",
+            system_message="Sei un consulente di marketing strategico senior specializzato in analisi e valutazioni per PMI."
+        ).with_model("openai", "gpt-4o")
+        
+        # Send message and get response
+        user_message = UserMessage(text=prompt)
+        response = await chat.send_message(user_message)
+        
+        # Extract score and level from response (parse from text)
+        score = 5  # Default
+        level = "Medio"  # Default
+        
+        # Try to extract score from response
+        import re
+        score_match = re.search(r'Punteggio.*?(\d+)[/\s]*10', response, re.IGNORECASE)
+        if score_match:
+            score = int(score_match.group(1))
+        
+        level_match = re.search(r'Livello.*?maturità.*?(Basso|Medio|Avanzato)', response, re.IGNORECASE)
+        if level_match:
+            level = level_match.group(1).capitalize()
+        
+        logger.info(f"AI evaluation generated successfully for {audit_data.get('email')}")
+        
+        return {
+            "text": response,
+            "score": score,
+            "level": level
+        }
+        
+    except Exception as e:
+        logger.error(f"Error generating AI evaluation: {e}")
+        return {
+            "text": generate_mock_evaluation(audit_data),
+            "score": 5,
+            "level": "Medio"
+        }
+
+def generate_mock_evaluation(audit_data: dict) -> str:
+    """Generate a mock evaluation when AI is not available"""
+    return f"""VALUTAZIONE STRATEGICA DEL MARKETING
+
+Preparata per: {audit_data.get('companyName', 'N/A')}
+Settore: {audit_data.get('sector', 'N/A')}
+
+1. INTRODUZIONE
+
+Questa valutazione analizza la situazione marketing attuale di {audit_data.get('companyName', 'la tua azienda')}, 
+operante nel settore {audit_data.get('sector', 'specificato')}.
+
+2. STATO ATTUALE – DIAGNOSI
+
+Sulla base delle informazioni fornite, emergono alcune aree di attenzione:
+
+• Canali utilizzati: {', '.join(audit_data.get('channels', ['Non specificati']))}
+• Obiettivo dichiarato: {audit_data.get('objective', 'Non specificato')}
+• Problema principale: {audit_data.get('mainProblem', 'Non specificato')}
+
+3. RISCHI PRINCIPALI
+
+Mantenere la situazione invariata potrebbe comportare:
+- Dispersione di budget su canali non ottimizzati
+- Perdita di opportunità di crescita
+- Difficoltà nel raggiungere gli obiettivi prefissati
+
+4. OPPORTUNITÀ DI MIGLIORAMENTO
+
+Esistono margini di miglioramento significativi, in particolare nelle aree di:
+- Strategia complessiva
+- Ottimizzazione dei canali esistenti
+- Misurazione e analisi dei risultati
+
+5. PRIORITÀ STRATEGICHE CONSIGLIATE
+
+1. Definire una strategia marketing chiara e misurabile
+2. Ottimizzare l'allocazione del budget sui canali più performanti
+3. Implementare un sistema di monitoraggio dei risultati
+
+6. CONCLUSIONE
+
+Un approccio strutturato al marketing può fare la differenza tra investimenti dispersivi 
+e crescita sostenibile. Un confronto con un consulente esperto può aiutare a identificare 
+il percorso più adatto alla tua situazione specifica.
+
+📊 VALUTAZIONE FINALE:
+- Livello di maturità marketing: Medio
+- Punteggio complessivo: 5/10
+- Il punteggio riflette una situazione con buone basi ma margini di miglioramento 
+  significativi nella strategia e nell'esecuzione operativa.
+
+---
+Documento riservato – uso informativo
+Arxéon – Marketing strategico orientato ai risultati
+"""
+
+def generate_pdf_evaluation(evaluation_text: str, audit_data: dict) -> bytes:
+    """Generate PDF from evaluation text"""
+    try:
+        from reportlab.lib.pagesizes import A4
+        from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+        from reportlab.lib.units import cm
+        from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, PageBreak
+        from reportlab.lib.colors import HexColor
+        from reportlab.lib.enums import TA_CENTER, TA_JUSTIFY
+        
+        buffer = BytesIO()
+        doc = SimpleDocTemplate(
+            buffer,
+            pagesize=A4,
+            rightMargin=2*cm,
+            leftMargin=2*cm,
+            topMargin=2*cm,
+            bottomMargin=2*cm
+        )
+        
+        styles = getSampleStyleSheet()
+        
+        # Custom styles
+        title_style = ParagraphStyle(
+            'CustomTitle',
+            parent=styles['Heading1'],
+            fontSize=18,
+            spaceAfter=20,
+            textColor=HexColor('#1a1a1a'),
+            alignment=TA_CENTER
+        )
+        
+        header_style = ParagraphStyle(
+            'CustomHeader',
+            parent=styles['Heading2'],
+            fontSize=14,
+            spaceBefore=15,
+            spaceAfter=10,
+            textColor=HexColor('#333333')
+        )
+        
+        body_style = ParagraphStyle(
+            'CustomBody',
+            parent=styles['Normal'],
+            fontSize=11,
+            leading=16,
+            spaceAfter=8,
+            alignment=TA_JUSTIFY
+        )
+        
+        footer_style = ParagraphStyle(
+            'CustomFooter',
+            parent=styles['Normal'],
+            fontSize=9,
+            textColor=HexColor('#666666'),
+            alignment=TA_CENTER
+        )
+        
+        story = []
+        
+        # Header
+        story.append(Paragraph("Arxéon – Valutazione Strategica", title_style))
+        story.append(Spacer(1, 0.5*cm))
+        story.append(Paragraph(f"Preparata per: {audit_data.get('companyName', 'N/A')}", body_style))
+        story.append(Paragraph(f"Data: {datetime.now().strftime('%d/%m/%Y')}", body_style))
+        story.append(Spacer(1, 1*cm))
+        
+        # Process evaluation text
+        lines = evaluation_text.split('\n')
+        for line in lines:
+            line = line.strip()
+            if not line:
+                story.append(Spacer(1, 0.3*cm))
+                continue
+            
+            # Detect headers (lines with uppercase or numbered sections)
+            if line.isupper() or (len(line) > 2 and line[0].isdigit() and '.' in line[:3]):
+                story.append(Paragraph(line, header_style))
+            elif line.startswith('•') or line.startswith('-'):
+                story.append(Paragraph(f"  {line}", body_style))
+            elif line.startswith('📊') or line.startswith('---'):
+                story.append(Spacer(1, 0.5*cm))
+                story.append(Paragraph(line.replace('📊', '').strip(), header_style))
+            else:
+                # Escape special characters for ReportLab
+                line = line.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
+                story.append(Paragraph(line, body_style))
+        
+        # Footer
+        story.append(Spacer(1, 1*cm))
+        story.append(Paragraph("─" * 50, footer_style))
+        story.append(Paragraph("Documento riservato – uso informativo", footer_style))
+        story.append(Paragraph("Arxéon – Marketing strategico orientato ai risultati", footer_style))
+        
+        doc.build(story)
+        buffer.seek(0)
+        return buffer.getvalue()
+        
+    except Exception as e:
+        logger.error(f"Error generating PDF: {e}")
+        # Return a simple text-based fallback
+        return evaluation_text.encode('utf-8')
+
+async def send_confirmation_email_audit(audit_data: dict) -> bool:
+    """Send immediate confirmation email (Email 1)"""
+    to_email = audit_data.get('email')
+    first_name = audit_data.get('fullName', '').split()[0] if audit_data.get('fullName') else 'Cliente'
+    
+    subject = "Abbiamo ricevuto la tua richiesta di valutazione"
+    
+    html_content = f"""
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <style>
+            body {{ font-family: 'Inter', Arial, sans-serif; background: #f5f5f5; color: #333; padding: 40px; margin: 0; }}
+            .container {{ max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 12px; padding: 40px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }}
+            h1 {{ color: #1a1a1a; font-size: 24px; margin-bottom: 20px; }}
+            p {{ line-height: 1.7; color: #555; margin-bottom: 16px; }}
+            .highlight {{ background: #f8f9fa; padding: 20px; border-radius: 8px; border-left: 4px solid #c8f000; margin: 20px 0; }}
+            .footer {{ margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee; color: #888; font-size: 13px; }}
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Grazie per la tua richiesta</h1>
+            
+            <p>Ciao {first_name},</p>
+            
+            <p>abbiamo ricevuto correttamente la tua richiesta di valutazione strategica.</p>
+            
+            <p>In questo momento stiamo analizzando le informazioni che ci hai fornito.</p>
+            
+            <div class="highlight">
+                <p style="margin: 0;"><strong>La valutazione verrà controllata e rifinita manualmente</strong> per garantirti un contenuto chiaro e preciso.</p>
+            </div>
+            
+            <p>⏱ Riceverai la tua valutazione via email <strong>entro pochi minuti</strong>.</p>
+            
+            <div class="footer">
+                <p>A presto,<br><strong>Arxéon</strong></p>
+                <p>Marketing strategico orientato ai risultati<br>info@arxeon.ch | Lugano, Svizzera</p>
+            </div>
+        </div>
+    </body>
+    </html>
+    """
+    
+    return await send_email_resend(to_email, subject, html_content)
+
+async def send_evaluation_email_with_pdf(audit_data: dict, pdf_bytes: bytes, evaluation_result: dict) -> bool:
+    """Send evaluation email with PDF attachment (Email 2)"""
+    to_email = audit_data.get('email')
+    first_name = audit_data.get('fullName', '').split()[0] if audit_data.get('fullName') else 'Cliente'
+    
+    subject = "La tua valutazione strategica è pronta"
+    
+    html_content = f"""
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <style>
+            body {{ font-family: 'Inter', Arial, sans-serif; background: #f5f5f5; color: #333; padding: 40px; margin: 0; }}
+            .container {{ max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 12px; padding: 40px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }}
+            h1 {{ color: #1a1a1a; font-size: 24px; margin-bottom: 20px; }}
+            p {{ line-height: 1.7; color: #555; margin-bottom: 16px; }}
+            ul {{ padding-left: 20px; margin: 20px 0; }}
+            li {{ margin-bottom: 10px; color: #555; }}
+            .cta {{ display: inline-block; background: #c8f000; color: #1a1a1a; padding: 14px 28px; border-radius: 8px; text-decoration: none; font-weight: bold; margin: 20px 0; }}
+            .cta:hover {{ background: #b8e000; }}
+            .score-box {{ background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0; text-align: center; }}
+            .score {{ font-size: 36px; font-weight: bold; color: #c8f000; }}
+            .level {{ font-size: 14px; color: #666; margin-top: 5px; }}
+            .footer {{ margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee; color: #888; font-size: 13px; }}
+            .secondary-link {{ color: #666; font-size: 13px; }}
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>La tua valutazione è pronta</h1>
+            
+            <p>Ciao {first_name},</p>
+            
+            <p>in allegato trovi la <strong>valutazione strategica del tuo marketing</strong>, basata sulle informazioni che ci hai fornito.</p>
+            
+            <div class="score-box">
+                <div class="score">{evaluation_result.get('score', 5)}/10</div>
+                <div class="level">Livello di maturità: {evaluation_result.get('level', 'Medio')}</div>
+            </div>
+            
+            <p>Il documento evidenzia:</p>
+            <ul>
+                <li>Le principali <strong>criticità attuali</strong></li>
+                <li>I <strong>rischi</strong> se la situazione resta invariata</li>
+                <li>Le <strong>priorità strategiche</strong> su cui intervenire</li>
+            </ul>
+            
+            <p>Se vuoi capire come intervenire in modo concreto e quale tipo di supporto è più adatto al tuo caso, puoi esplorare le opzioni disponibili:</p>
+            
+            <p style="text-align: center;">
+                <a href="{FRONTEND_URL}/servizi" class="cta">Scopri i servizi disponibili</a>
+            </p>
+            
+            <p class="secondary-link" style="text-align: center;">
+                In alternativa, puoi rispondere a questa email per un primo confronto.
+            </p>
+            
+            <div class="footer">
+                <p>A presto,<br><strong>Arxéon</strong></p>
+                <p>Marketing strategico orientato ai risultati<br>info@arxeon.ch | Lugano, Svizzera</p>
+            </div>
+        </div>
+    </body>
+    </html>
+    """
+    
+    return await send_email_resend_with_attachment(to_email, subject, html_content, pdf_bytes, "valutazione-strategica.pdf")
+
+async def send_email_resend_with_attachment(to: str, subject: str, html_content: str, attachment_bytes: bytes, attachment_name: str) -> bool:
+    """Send email via Resend with PDF attachment"""
+    if RESEND_API_KEY:
+        try:
+            import resend
+            resend.api_key = RESEND_API_KEY
+            
+            # Encode attachment to base64
+            attachment_b64 = base64.b64encode(attachment_bytes).decode('utf-8')
+            
+            resend.Emails.send({
+                "from": "Arxéon <noreply@arxeon.ch>",
+                "to": [to],
+                "subject": subject,
+                "html": html_content,
+                "attachments": [
+                    {
+                        "filename": attachment_name,
+                        "content": attachment_b64,
+                    }
+                ]
+            })
+            logger.info(f"Email with attachment sent to {to}")
+            return True
+        except Exception as e:
+            logger.error(f"Failed to send email with attachment via Resend: {e}")
+    
+    # Mock/Log fallback
+    logger.info(f"[MOCK EMAIL WITH ATTACHMENT] To: {to}")
+    logger.info(f"[MOCK EMAIL] Subject: {subject}")
+    logger.info(f"[MOCK EMAIL] Attachment: {attachment_name} ({len(attachment_bytes)} bytes)")
+    return True
+
+async def process_audit_background(audit_id: str, audit_data: dict):
+    """Background task to generate evaluation and send email after delay"""
+    try:
+        # Generate AI evaluation
+        logger.info(f"Generating AI evaluation for audit {audit_id}")
+        evaluation_result = await generate_evaluation_with_ai(audit_data)
+        
+        # Generate PDF
+        logger.info(f"Generating PDF for audit {audit_id}")
+        pdf_bytes = generate_pdf_evaluation(evaluation_result['text'], audit_data)
+        
+        # Update database with evaluation
+        await db.free_audits.update_one(
+            {'id': audit_id},
+            {'$set': {
+                'evaluation_text': evaluation_result['text'],
+                'evaluation_score': evaluation_result['score'],
+                'evaluation_level': evaluation_result['level'],
+                'status': 'completed',
+                'completed_at': datetime.now(timezone.utc).isoformat()
+            }}
+        )
+        
+        # Wait 5 minutes before sending the evaluation email
+        logger.info(f"Waiting 5 minutes before sending evaluation email for audit {audit_id}")
+        await asyncio.sleep(300)  # 5 minutes = 300 seconds
+        
+        # Send Email 2 with PDF
+        await send_evaluation_email_with_pdf(audit_data, pdf_bytes, evaluation_result)
+        
+        logger.info(f"Audit {audit_id} completed successfully")
+        
+    except Exception as e:
+        logger.error(f"Error processing audit {audit_id}: {e}")
+        await db.free_audits.update_one(
+            {'id': audit_id},
+            {'$set': {'status': 'error', 'error': str(e)}}
+        )
+
+@api_router.post("/free-audit", response_model=FreeAuditResponse)
+async def create_free_audit(request: FreeAuditRequest, background_tasks: BackgroundTasks):
+    """
+    Create a free strategic audit request.
+    1. Saves data to DB
+    2. Sends immediate confirmation email
+    3. Starts background task for AI evaluation + PDF + delayed email
+    """
+    audit_id = str(uuid.uuid4())
+    
+    # Prepare audit data
+    audit_data = request.model_dump()
+    audit_data['id'] = audit_id
+    audit_data['status'] = 'pending'
+    audit_data['created_at'] = datetime.now(timezone.utc).isoformat()
+    
+    # Save to database
+    await db.free_audits.insert_one(audit_data)
+    logger.info(f"Free audit request saved: {audit_id}")
+    
+    # Send immediate confirmation email (Email 1)
+    await send_confirmation_email_audit(audit_data)
+    
+    # Start background processing (AI + PDF + Email 2 after 5 min)
+    background_tasks.add_task(process_audit_background, audit_id, audit_data)
+    
+    return FreeAuditResponse(
+        id=audit_id,
+        status="pending",
+        message="Richiesta ricevuta. Riceverai la valutazione via email entro pochi minuti."
+    )
+
+@api_router.get("/free-audit/{audit_id}")
+async def get_free_audit(audit_id: str):
+    """Get audit status and details"""
+    audit = await db.free_audits.find_one({'id': audit_id}, {'_id': 0})
+    if not audit:
+        raise HTTPException(status_code=404, detail="Audit not found")
+    return audit
+
 app.add_middleware(
     CORSMiddleware,
     allow_credentials=True,
