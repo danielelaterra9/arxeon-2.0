@@ -453,13 +453,21 @@ const Servizi = () => {
           ================================================== */}
       <section className="py-24 bg-[#161716]">
         <div className="max-w-[1400px] mx-auto px-5 md:px-10 text-center">
-          <p className="text-white text-xl md:text-2xl font-medium mb-8">
-            Non sei sicuro di quale pacchetto fa per te?
+          <h2 className="text-white text-xl md:text-2xl font-bold mb-4">
+            Hai ancora dubbi?
+          </h2>
+          <p className="text-[#9a9a96] text-lg mb-8">
+            Ti aiutiamo a capire cosa ha davvero senso fare nel tuo caso specifico.
           </p>
-          <Link to="/valutazione" className="btn-primary text-base px-10 py-4">
-            Richiedi una valutazione gratuita
-            <ArrowRight className="ml-2" size={18} />
-          </Link>
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+            <Link to="/valutazione" className="btn-primary text-base px-8 py-4">
+              Valutazione gratuita
+              <ArrowRight className="ml-2" size={18} />
+            </Link>
+            <Link to="/servizi#pacchetti" className="btn-secondary text-base px-8 py-4">
+              Vedi i pacchetti
+            </Link>
+          </div>
         </div>
       </section>
     </main>
