@@ -1181,7 +1181,7 @@ async def send_confirmation_email_audit(audit_data: dict) -> bool:
     </html>
     """
     
-    return await send_email_resend(to_email, subject, html_content)
+    return await send_email(to_email, subject, html_content)
 
 async def send_evaluation_email_with_pdf(audit_data: dict, pdf_bytes: bytes, evaluation_result: dict) -> bool:
     """Send evaluation email with PDF attachment (Email 2)"""
