@@ -102,11 +102,39 @@ const Valutazione = () => {
     setIsSubmitting(true);
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      sessionStorage.setItem('valutazioneData', JSON.stringify(formData));
+      // Call backend API
+      const response = await fetch(`${BACKEND_URL}/api/free-audit`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          fullName: formData.fullName,
+          email: formData.email,
+          phone: formData.phone,
+          companyName: formData.companyName,
+          website: formData.website,
+          sector: formData.sector,
+          geoArea: formData.geoArea,
+          channels: formData.channels,
+          objective: formData.objective,
+          budget: formData.budget,
+          mainProblem: formData.mainProblem,
+          previousAttempts: formData.previousAttempts,
+          improvementImportance: formData.improvementImportance,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Errore nella richiesta');
+      }
+
+      const data = await response.json();
+      sessionStorage.setItem('valutazioneData', JSON.stringify({...formData, auditId: data.id}));
       toast.success('Richiesta inviata con successo!');
       navigate('/valutazione/conferma');
     } catch (error) {
+      console.error('Error submitting audit:', error);
       toast.error('Si è verificato un errore. Riprova.');
     } finally {
       setIsSubmitting(false);
