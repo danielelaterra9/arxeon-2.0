@@ -1363,6 +1363,9 @@ async def get_free_audit(audit_id: str):
         raise HTTPException(status_code=404, detail="Audit not found")
     return audit
 
+# Include the router after all endpoints are defined
+app.include_router(api_router)
+
 app.add_middleware(
     CORSMiddleware,
     allow_credentials=True,
