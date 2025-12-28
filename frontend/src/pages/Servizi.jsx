@@ -19,6 +19,7 @@ const Servizi = () => {
   ];
 
   const faqs = [
+    // Nuove FAQ
     {
       question: "Quanto tempo serve per vedere risultati concreti?",
       answer: "Dipende dal punto di partenza e dal tipo di attività, ma in generale:\n\n• Chiarezza strategica e direzione arrivano subito (prime settimane)\n• Miglioramenti operativi entro 30–60 giorni\n• Risultati misurabili su acquisizione o performance richiedono continuità\n\nIl nostro obiettivo non è \"fare marketing\", ma mettere in ordine le priorità giuste e lavorare su ciò che ha reale impatto."
@@ -31,6 +32,20 @@ const Servizi = () => {
       question: "Qual è la differenza reale tra Basic e Premium?",
       answer: "La differenza è semplice:\n\nBasic → pensiamo insieme cosa fare\nConsulenza strategica, analisi e supporto decisionale.\nL'implementazione resta a tuo carico.\n\nPremium → ci occupiamo noi di un ambito operativo\nOltre alla strategia, gestiamo direttamente un'area specifica (es. social, ads, sito, SEO).\n\nSe vuoi solo guida, Basic è sufficiente.\nSe vuoi delegare, Premium è la scelta più efficace."
     },
+    // FAQ originali
+    {
+      question: "Il Basic include operatività o accesso agli account?",
+      answer: "No. Il Basic è esclusivamente consulenza strategica e analisi. Nessuna operatività e nessun accesso agli account."
+    },
+    {
+      question: "Nel Premium cosa significa \"una categoria alla volta\"?",
+      answer: "Scegli un ambito principale (sito, social, ads, email o SEO). Fuori da questo ambito le attività sono gestite come add-on."
+    },
+    {
+      question: "Con il Gold posso delegare tutto il marketing?",
+      answer: "Sì, per un solo business e un solo settore. Attività multi-business richiedono accordo separato."
+    },
+    // Nuove FAQ
     {
       question: "Quanto budget serve per le campagne pubblicitarie?",
       answer: "Il budget pubblicitario non è incluso nei pacchetti.\n\nCome riferimento:\n• Budget minimo consigliato: CHF 300/mese per test e attivazione\n• Il budget ideale dipende da obiettivi, mercato e piattaforma\n\nSe dall'analisi iniziale emerge che budget o piattaforma non sono adeguati, ti avvisiamo prima di procedere."
@@ -39,6 +54,16 @@ const Servizi = () => {
       question: "Posso cambiare pacchetto nel tempo?",
       answer: "Sì.\n\nÈ normale partire da un livello e poi evolvere.\n\nPuoi:\n• Passare da Basic a Premium quando vuoi delegare\n• Passare a Gold se il business cresce e serve una gestione completa\n• Rivedere l'assetto in base alle esigenze reali\n\nIl sistema è pensato per adattarsi, non per bloccarti."
     },
+    // FAQ originali
+    {
+      question: "In quanto tempo rispondete e prendete in carico i lavori?",
+      answer: "Premium: risposta entro 24h, presa in carico entro 48h lavorative.\nGold: risposta e presa in carico entro 24h lavorative."
+    },
+    {
+      question: "Perché il Gold costa CHF 1'700/mese?",
+      answer: "Include gestione operativa completa, priorità e supervisione strategica continua, come un collaboratore esterno dedicato, senza i costi di un'assunzione interna."
+    },
+    // Nuove FAQ
     {
       question: "Quanto lavoro operativo devo fare io?",
       answer: "Dipende dal pacchetto scelto:\n\n• Basic → sei tu a implementare, noi ti guidiamo\n• Premium → tu collabori, noi gestiamo l'ambito concordato\n• Gold → il tuo coinvolgimento operativo è minimo\n\nIn ogni caso, il nostro obiettivo è semplificarti il lavoro, non aggiungerne."
