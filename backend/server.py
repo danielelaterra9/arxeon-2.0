@@ -27,6 +27,10 @@ STRIPE_WEBHOOK_SECRET = os.environ.get('STRIPE_WEBHOOK_SECRET', '')
 # App Base URL configuration (for Stripe redirects)
 APP_BASE_URL = os.environ.get('APP_BASE_URL', '')
 
+# Frontend URL for Stripe redirects (uses APP_URL from supervisor or APP_BASE_URL)
+FRONTEND_URL = APP_BASE_URL or os.environ.get('APP_URL', 'http://localhost:3000')
+FRONTEND_URL = FRONTEND_URL.rstrip('/')  # Remove trailing slash
+
 # Resend configuration
 RESEND_API_KEY = os.environ.get('RESEND_API_KEY', '')
 
