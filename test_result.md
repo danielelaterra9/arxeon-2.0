@@ -102,7 +102,7 @@
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
 
-user_problem_statement: "Test the new /api/free-audit endpoint on the Arxéon backend"
+user_problem_statement: "Test the Valutazione (Free Audit) form on the Arxéon website with new fields"
 
 backend:
   - task: "Free Audit API Endpoint"
@@ -118,7 +118,17 @@ backend:
           comment: "✅ POST /api/free-audit endpoint working correctly - returns valid UUID, status 'pending', and proper message. ✅ GET /api/free-audit/{id} endpoint working correctly - retrieves saved audit data successfully. ✅ Background AI evaluation generation working with GPT-4o via Emergent LLM. ✅ Email 1 (immediate confirmation) sent successfully (mock mode). ✅ Background task processing with 5-minute delay for Email 2. ✅ PDF generation working. Fixed issue: moved app.include_router call after endpoint definitions and corrected send_email function name."
 
 frontend:
-  # No frontend testing required for this task
+  - task: "Valutazione Form with New Fields"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/pages/Valutazione.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+          agent: "testing"
+          comment: "Testing Valutazione form with new fields: 'Tentativi precedenti' textarea and 'Quanto è importante per te migliorare il marketing?' (1-5 scale). Need to verify form functionality, validation, API integration, and redirect to confirmation page."
 
 metadata:
   created_by: "testing_agent"
