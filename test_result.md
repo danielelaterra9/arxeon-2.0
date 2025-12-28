@@ -138,7 +138,7 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Free Audit API Endpoint"
+    - "Valutazione Form with New Fields"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
@@ -146,3 +146,5 @@ test_plan:
 agent_communication:
     - agent: "testing"
       message: "Successfully tested /api/free-audit endpoint. All functionality working correctly including POST request validation, data persistence, AI evaluation generation, email sending (mock), and background task processing. Fixed two critical issues: 1) Router inclusion order - moved app.include_router after endpoint definitions, 2) Function name error - corrected send_email_resend to send_email. Endpoint now fully functional on both local and external URLs."
+    - agent: "testing"
+      message: "Starting comprehensive testing of Valutazione form with new fields: 'Tentativi precedenti' textarea and 'Quanto è importante per te migliorare il marketing?' 1-5 scale buttons. Will test form loading, field visibility, validation, submission, API integration, success toast, and redirect to confirmation page."
