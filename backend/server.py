@@ -1300,8 +1300,8 @@ async def process_audit_background(audit_id: str, audit_data: dict):
             {'id': audit_id},
             {'$set': {
                 'evaluation_text': evaluation_result['text'],
-                'evaluation_score': evaluation_result['score'],
-                'evaluation_level': evaluation_result['level'],
+                'marketing_score': evaluation_result['score'],
+                'marketing_level': evaluation_result['level'],
                 'status': 'completed',
                 'completed_at': datetime.now(timezone.utc).isoformat()
             }}
