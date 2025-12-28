@@ -12,6 +12,8 @@ import {
 } from '../components/ui/select';
 import { toast } from 'sonner';
 
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+
 const Valutazione = () => {
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -27,6 +29,8 @@ const Valutazione = () => {
     objective: '',
     budget: '',
     mainProblem: '',
+    previousAttempts: '',  // New field
+    improvementImportance: 3,  // New field (1-5)
     privacyConsent: false,
   });
 
