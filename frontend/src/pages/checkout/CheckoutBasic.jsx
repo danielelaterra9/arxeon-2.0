@@ -133,8 +133,11 @@ const CheckoutBasic = () => {
               <p className="text-[#6f716d] text-xs mt-2">Il totale finale sarà mostrato nella schermata di pagamento.</p>
             </div>
             <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
-              <Link to="/valutazione" className="btn-secondary text-center justify-center">
+              <Link to="/servizi#faq" className="btn-secondary text-center justify-center">
                 Ho domande
+              </Link>
+              <Link to="/servizi" className="btn-secondary text-center justify-center">
+                Vedi i pacchetti
               </Link>
               <button 
                 onClick={handleCheckout}
