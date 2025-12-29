@@ -498,8 +498,8 @@ const Servizi = () => {
               Valutazione gratuita
               <ArrowRight className="ml-2" size={18} />
             </Link>
-            <Link to="/servizi#pacchetti" className="btn-secondary text-base px-8 py-4">
-              Vedi i pacchetti
+            <Link to="/contatti" className="btn-secondary text-base px-8 py-4">
+              Contatti
             </Link>
           </div>
         </div>
