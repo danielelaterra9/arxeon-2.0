@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { ArrowRight, Check, X } from 'lucide-react';
 import {
   Accordion,
@@ -9,6 +9,22 @@ import {
 } from '../components/ui/accordion';
 
 const Servizi = () => {
+  const location = useLocation();
+
+  // Handle scroll to anchor on page load
+  useEffect(() => {
+    if (location.hash) {
+      const element = document.getElementById(location.hash.slice(1));
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [location]);
+
   const comparisonData = [
     { label: 'Frequenza analisi', basic: '1 al mese', premium: '2 al mese', gold: 'Continua' },
     { label: 'Consulenze', basic: '1 call/mese (20-40 min)', premium: '2 call/mese (20-40 min)', gold: 'Supervisione continua' },
