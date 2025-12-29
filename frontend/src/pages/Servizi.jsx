@@ -232,7 +232,7 @@ const Servizi = () => {
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
                       <Check className="text-[#c8f000] flex-shrink-0 mt-0.5" size={18} />
-                      <span className="text-[#9a9a96]">2 analisi strategiche mensili</span>
+                      <span className="text-[#9a9a96]">1 analisi strategica mensile</span>
                     </li>
                     <li className="flex items-start gap-3">
                       <Check className="text-[#c8f000] flex-shrink-0 mt-0.5" size={18} />
@@ -257,7 +257,7 @@ const Servizi = () => {
                     </li>
                     <li className="flex items-start gap-3">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#c8f000] mt-2 flex-shrink-0"></span>
-                      <span className="text-[#9a9a96]">Attività fuori ambito come add-on o servizi one-shot</span>
+                      <span className="text-[#9a9a96]">Possibilità di aggiunta servizi o altri canali</span>
                     </li>
                   </ul>
                 </div>
