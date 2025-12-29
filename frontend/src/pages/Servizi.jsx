@@ -436,7 +436,7 @@ const Servizi = () => {
       {/* ==================================================
           4) FAQ – DOMANDE FREQUENTI
           ================================================== */}
-      <section className="py-24 bg-[#2a2c29]">
+      <section id="faq" className="py-24 bg-[#2a2c29] scroll-mt-24">
         <div className="max-w-[1400px] mx-auto px-5 md:px-10">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-[#c8f000] font-bold text-2xl md:text-3xl mb-12 text-center">
