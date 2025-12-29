@@ -153,21 +153,21 @@ const Home = () => {
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-8 mb-12">
-            <div className="bg-[#2a2c29] p-8 rounded-xl border border-[#343633] hover:border-[#c8f000] transition-colors">
+            <Link to="/servizi#basic" className="bg-[#2a2c29] p-8 rounded-xl border border-[#343633] hover:border-[#c8f000] transition-colors cursor-pointer block">
               <div className="text-[#c8f000] font-bold text-2xl mb-2">Basic</div>
               <p className="text-[#6f716d] text-sm uppercase tracking-wider mb-4">Solo consulenza strategica</p>
               <p className="text-[#9a9a96]">Per chi vuole restare autonomo con una guida esterna</p>
-            </div>
-            <div className="bg-[#2a2c29] p-8 rounded-xl border border-[#c8f000]">
+            </Link>
+            <Link to="/servizi#premium" className="bg-[#2a2c29] p-8 rounded-xl border border-[#c8f000] hover:border-[#c8f000] transition-colors cursor-pointer block">
               <div className="text-[#c8f000] font-bold text-2xl mb-2">Premium</div>
               <p className="text-[#6f716d] text-sm uppercase tracking-wider mb-4">Gestione operativa di un singolo ambito</p>
               <p className="text-[#9a9a96]">Per chi vuole delegare un canale specifico</p>
-            </div>
-            <div className="bg-[#2a2c29] p-8 rounded-xl border border-[#343633] hover:border-[#c8f000] transition-colors">
+            </Link>
+            <Link to="/servizi#gold" className="bg-[#2a2c29] p-8 rounded-xl border border-[#343633] hover:border-[#c8f000] transition-colors cursor-pointer block">
               <div className="text-[#c8f000] font-bold text-2xl mb-2">Gold</div>
               <p className="text-[#6f716d] text-sm uppercase tracking-wider mb-4">Collaborazione marketing completa</p>
               <p className="text-[#9a9a96]">Per chi vuole un collaboratore dedicato</p>
-            </div>
+            </Link>
           </div>
           <div className="text-center">
             <Link to="/servizi" className="btn-secondary">
