@@ -95,8 +95,7 @@ const CheckoutBasic = () => {
             <div className="bg-[#161716] p-4 rounded-lg border border-[#343633]">
               <p className="text-[#9a9a96] text-sm leading-relaxed">
                 <Info className="inline-block text-[#c8f000] mr-2" size={16} />
-                Con il pacchetto Basic ti aiutiamo a prendere decisioni migliori, ma l{"'"}implementazione resta a tuo carico. 
-                Se vuoi che gestiamo direttamente alcune attività operative, valuta il pacchetto Premium o Gold.
+                Con il pacchetto Basic ti aiutiamo a prendere decisioni migliori, ma l{"'"}implementazione resta a tuo carico.
               </p>
             </div>
           </div>
@@ -117,20 +116,6 @@ const CheckoutBasic = () => {
               placeholder="tua@email.ch"
               className="w-full px-4 py-3 bg-[#161716] border border-[#343633] rounded-lg text-white placeholder-[#6f716d] focus:outline-none focus:border-[#c8f000] transition-colors"
             />
-          </div>
-        </div>
-      </section>
-
-      {/* Upgrade suggestion */}
-      <section className="py-8 bg-[#161716]">
-        <div className="max-w-[900px] mx-auto px-5 md:px-10">
-          <div className="bg-[#343633] p-6 rounded-xl border border-[#6f716d]">
-            <p className="text-[#9a9a96] mb-4">
-              Se vuoi che gestiamo direttamente attività operative come social, ads o SEO, il pacchetto Premium è la scelta giusta.
-            </p>
-            <Link to="/checkout/premium" className="text-[#c8f000] font-medium hover:underline inline-flex items-center gap-1">
-              Scopri il pacchetto Premium →
-            </Link>
           </div>
         </div>
       </section>
