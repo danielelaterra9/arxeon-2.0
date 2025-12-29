@@ -278,6 +278,7 @@ const Servizi = () => {
                 <div className="mb-6">
                   <span className="text-4xl font-bold text-white">CHF 1'700</span>
                   <span className="text-[#9a9a96] ml-2">/ mese</span>
+                  <span className="ml-4 inline-block bg-[#c8f000] text-[#161716] text-xs font-bold px-3 py-1 rounded-full">Ultimi 2 posti disponibili</span>
                 </div>
                 <p className="text-[#6f716d] text-sm mb-6">(servizio completo di consulenza e gestione)</p>
                 <p className="text-[#9a9a96] leading-relaxed mb-8">
