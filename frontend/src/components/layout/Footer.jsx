@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, Linkedin, Instagram } from 'lucide-react';
+import { Mail, MapPin, Linkedin } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -19,20 +19,12 @@ const Footer = () => {
             </p>
             <div className="flex gap-4">
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/company/thearxeon/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full border border-[#343633] flex items-center justify-center text-[#9a9a96] hover:text-[#c8f000] hover:border-[#c8f000] transition-colors"
               >
                 <Linkedin size={18} />
-              </a>
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full border border-[#343633] flex items-center justify-center text-[#9a9a96] hover:text-[#c8f000] hover:border-[#c8f000] transition-colors"
-              >
-                <Instagram size={18} />
               </a>
             </div>
           </div>
@@ -87,15 +79,9 @@ const Footer = () => {
                 </a>
               </li>
               <li className="flex items-start gap-3">
-                <Phone size={18} className="text-[#c8f000] mt-0.5 flex-shrink-0" />
-                <a href="tel:+41000000000" className="text-[#9a9a96] hover:text-[#c8f000] transition-colors text-sm">
-                  +41 00 000 00 00
-                </a>
-              </li>
-              <li className="flex items-start gap-3">
                 <MapPin size={18} className="text-[#c8f000] mt-0.5 flex-shrink-0" />
                 <span className="text-[#9a9a96] text-sm">
-                  Lugano, Svizzera
+                  Svizzera
                 </span>
               </li>
             </ul>
