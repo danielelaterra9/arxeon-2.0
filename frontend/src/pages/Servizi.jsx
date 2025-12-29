@@ -199,7 +199,7 @@ const Servizi = () => {
             {/* ------------------
                 PACCHETTO PREMIUM
                 ------------------ */}
-            <div className="grid lg:grid-cols-2 gap-12 items-start">
+            <div id="premium" className="grid lg:grid-cols-2 gap-12 items-start scroll-mt-24">
               <div>
                 <span className="text-[#6f716d] text-sm uppercase tracking-wider mb-2 block">Pacchetto</span>
                 <h2 className="text-[#c8f000] font-bold text-3xl mb-2">Premium</h2>
