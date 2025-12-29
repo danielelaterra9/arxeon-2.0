@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Check, Info, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
@@ -9,7 +9,12 @@ const CheckoutBasic = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [customerEmail, setCustomerEmail] = useState('');
 
-  // Basic package: CHF 200/mese - NO add-on operativi, solo one-shot consentiti
+  // Scroll to top on page load
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  // Basic package: CHF 200/mese - NO add-on operativi
   const basePrice = 200;
 
   const handleCheckout = async () => {
