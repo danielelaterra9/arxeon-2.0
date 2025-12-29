@@ -181,10 +181,6 @@ const Servizi = () => {
                     </li>
                     <li className="flex items-start gap-3">
                       <Check className="text-[#c8f000] flex-shrink-0 mt-0.5" size={18} />
-                      <span className="text-[#9a9a96]">Analisi dati forniti dal cliente</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <Check className="text-[#c8f000] flex-shrink-0 mt-0.5" size={18} />
                       <span className="text-[#9a9a96]">1 consulenza strategica mensile (20–40 minuti)</span>
                     </li>
                   </ul>
@@ -199,10 +195,6 @@ const Servizi = () => {
                     <li className="flex items-start gap-3">
                       <X className="text-[#6f716d] flex-shrink-0 mt-0.5" size={18} />
                       <span className="text-[#6f716d]">Nessuna gestione diretta</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <X className="text-[#6f716d] flex-shrink-0 mt-0.5" size={18} />
-                      <span className="text-[#6f716d]">Nessun accesso agli account</span>
                     </li>
                   </ul>
                 </div>
