@@ -26,8 +26,8 @@ const Servizi = () => {
   }, [location]);
 
   const comparisonData = [
-    { label: 'Frequenza analisi', basic: '1 al mese', premium: '2 al mese', gold: 'Continua' },
-    { label: 'Consulenze', basic: '1 call/mese (20-40 min)', premium: '2 call/mese (20-40 min)', gold: 'Supervisione continua' },
+    { label: 'Frequenza analisi', basic: '1 al mese', premium: '1 al mese', gold: '2 al mese' },
+    { label: 'Consulenze', basic: '1 call/mese (20-40 min)', premium: '2 call/mese (20-40 min)', gold: 'Supervisione continua via mail' },
     { label: 'Attività operativa', basic: 'No', premium: 'Sì, 1 categoria', gold: 'Sì, senza limiti' },
     { label: 'Tempo di risposta', basic: '—', premium: 'Entro 24h lavorative', gold: 'Entro 24h lavorative' },
     { label: 'Presa in carico', basic: '—', premium: 'Entro 48h lavorative', gold: 'Entro 24h lavorative' },
