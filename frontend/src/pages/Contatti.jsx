@@ -1,17 +1,10 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { Mail, ArrowRight } from 'lucide-react';
 
 const Contatti = () => {
-  // Load Calendly widget script
+  // Scroll to top on page load
   useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://assets.calendly.com/assets/external/widget.js';
-    script.async = true;
-    document.body.appendChild(script);
-    return () => {
-      document.body.removeChild(script);
-    };
+    window.scrollTo(0, 0);
   }, []);
 
   return (
@@ -25,28 +18,17 @@ const Contatti = () => {
             </h1>
             <p className="text-[#9a9a96] text-lg leading-relaxed">
               Se hai domande o vuoi chiarire alcuni punti,<br />
-              puoi prenotare una call di chiarimento strategico.
+              scrivici direttamente.
             </p>
           </div>
         </div>
       </section>
 
-      {/* PRENOTAZIONE CALENDLY */}
-      <section className="py-16 bg-[#161716]">
-        <div className="max-w-[900px] mx-auto px-5 md:px-10">
-          <div 
-            className="calendly-inline-widget rounded-xl overflow-hidden border border-[#343633]" 
-            data-url="https://calendly.com/arxeon/30min?hide_gdpr_banner=1&background_color=161716&text_color=ffffff&primary_color=c8f000" 
-            style={{ minWidth: '320px', height: '700px' }}
-          />
-        </div>
-      </section>
-
-      {/* CONTATTI DIRETTI */}
+      {/* CONTATTI EMAIL */}
       <section className="py-24 bg-[#1f211f]">
         <div className="max-w-[1400px] mx-auto px-5 md:px-10">
           <div className="max-w-xl mx-auto text-center">
-            <h2 className="text-white font-bold text-2xl mb-8">Preferisci scriverci?</h2>
+            <h2 className="text-white font-bold text-2xl mb-8">Scrivici</h2>
             
             <a 
               href="mailto:info@arxeon.ch" 
@@ -61,20 +43,15 @@ const Contatti = () => {
               </div>
             </a>
 
-            <p className="text-[#9a9a96] text-sm leading-relaxed mb-8">
+            <p className="text-[#9a9a96] text-sm leading-relaxed">
               Nessuna pressione, nessun obbligo.<br />
               Solo una conversazione per capire se possiamo aiutarti.
             </p>
-
-            <Link to="/valutazione" className="btn-secondary">
-              Oppure richiedi una valutazione gratuita
-              <ArrowRight className="ml-2" size={16} />
-            </Link>
           </div>
         </div>
       </section>
 
-      {/* RASSICURAZIONE UMANA */}
+      {/* RASSICURAZIONE UMANA + LINK CHIAMATA */}
       <section className="py-16 bg-[#161716]">
         <div className="max-w-[700px] mx-auto px-5 md:px-10">
           <div className="bg-[#1f211f] p-8 rounded-xl border border-[#343633]">
@@ -85,7 +62,7 @@ const Contatti = () => {
               Arxéon non è un sistema automatico né un servizio impersonale.
               Analisi, strategia e decisioni vengono gestite da persone, con metodo, responsabilità e supervisione continua.
             </p>
-            <ul className="space-y-2">
+            <ul className="space-y-2 mb-8">
               <li className="flex items-center gap-3 text-[#6f716d] text-sm">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#c8f000] flex-shrink-0"></span>
                 Strategia e direzione marketing
@@ -103,6 +80,39 @@ const Contatti = () => {
                 Supervisione qualità e performance
               </li>
             </ul>
+            
+            {/* Sezione chiamata conoscitiva */}
+            <div className="pt-6 border-t border-[#343633]">
+              <h4 className="text-white font-semibold mb-4">Preferisci una chiamata?</h4>
+              <p className="text-[#9a9a96] text-sm mb-4">
+                Una chiamata conoscitiva è utile <strong className="text-white">solo se</strong>:
+              </p>
+              <ul className="space-y-2 mb-6">
+                <li className="flex items-start gap-3 text-[#9a9a96] text-sm">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#c8f000] mt-1.5 flex-shrink-0"></span>
+                  Hai già consultato la sezione FAQ
+                </li>
+                <li className="flex items-start gap-3 text-[#9a9a96] text-sm">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#c8f000] mt-1.5 flex-shrink-0"></span>
+                  Hai pensato o provato a fare la valutazione gratuita
+                </li>
+                <li className="flex items-start gap-3 text-[#9a9a96] text-sm">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#c8f000] mt-1.5 flex-shrink-0"></span>
+                  Hai deciso di collaborare ma non sai quale pacchetto scegliere
+                </li>
+                <li className="flex items-start gap-3 text-[#9a9a96] text-sm">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#c8f000] mt-1.5 flex-shrink-0"></span>
+                  Il progetto include più servizi o prodotti (es. e-commerce o holding)
+                </li>
+              </ul>
+              <a 
+                href="mailto:info@arxeon.ch?subject=Richiesta chiamata conoscitiva" 
+                className="inline-flex items-center gap-2 text-[#c8f000] font-medium hover:underline"
+              >
+                Richiedi una chiamata conoscitiva
+                <ArrowRight size={16} />
+              </a>
+            </div>
           </div>
         </div>
       </section>
