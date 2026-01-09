@@ -457,6 +457,29 @@ const Valutazione = () => {
                       ))}
                     </div>
                     {errors.channels && <p className="text-red-500 text-sm mt-2">{errors.channels}</p>}
+                    
+                    {/* Campo per link social - appare quando social o ads sono selezionati */}
+                    {hasSocialChannels && (
+                      <div className="mt-4 p-4 bg-[#161716] rounded-lg border border-[#343633]">
+                        <label className="block text-white text-sm font-medium mb-2">
+                          Link o nome delle tue pagine social <span className="text-[#c8f000]">*</span>
+                        </label>
+                        <p className="text-[#6f716d] text-xs mb-3">
+                          Inserisci il link diretto o il nome delle tue pagine social (es: facebook.com/tuapagina, @tuoaccount)
+                        </p>
+                        <textarea
+                          name="socialLinks"
+                          value={formData.socialLinks}
+                          onChange={handleInputChange}
+                          rows={2}
+                          className={`w-full px-4 py-3 bg-[#2a2c29] border rounded-lg text-white placeholder-[#6f716d] focus:outline-none focus:border-[#c8f000] transition-colors resize-none ${
+                            errors.socialLinks ? 'border-red-500' : 'border-[#343633]'
+                          }`}
+                          placeholder="es: facebook.com/miazienda, instagram.com/miazienda"
+                        />
+                        {errors.socialLinks && <p className="text-red-500 text-sm mt-1">{errors.socialLinks}</p>}
+                      </div>
+                    )}
                   </div>
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
