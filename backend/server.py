@@ -53,7 +53,7 @@ def get_base_url(request: Request) -> str:
         return f"{proto}://{host}"
     
     # Last resort fallback
-    return 'https://marketing-packs.preview.emergentagent.com'
+    return 'https://translate-fr-6.preview.emergentagent.com'
 
 # Create the main app
 app = FastAPI()

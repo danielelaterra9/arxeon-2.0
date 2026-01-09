@@ -11,7 +11,7 @@ import uuid
 from datetime import datetime
 
 # Backend URL from frontend/.env
-BACKEND_URL = "https://arxeon-payment.preview.emergentagent.com"
+BACKEND_URL = "https://translate-fr-6.preview.emergentagent.com"
 
 def test_free_audit_endpoint():
     """Test the /api/free-audit endpoint with valid data"""
