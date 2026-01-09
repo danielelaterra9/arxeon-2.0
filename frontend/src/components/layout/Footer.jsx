@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, MapPin, Linkedin } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const { t } = useTranslation();
 
   return (
     <footer className="bg-[#161716] border-t border-[#343633]">
@@ -15,7 +17,7 @@ const Footer = () => {
               <span className="text-2xl font-bold text-[#c8f000] tracking-tight">Arxéon</span>
             </Link>
             <p className="text-[#9a9a96] text-sm leading-relaxed mb-6">
-              Marketing strategico orientato ai risultati. Trasformiamo i tuoi investimenti in crescita misurabile.
+              {t('footer.description')}
             </p>
             <div className="flex gap-4">
               <a
@@ -31,26 +33,26 @@ const Footer = () => {
 
           {/* Navigation */}
           <div>
-            <h4 className="text-white font-semibold mb-6">Navigazione</h4>
+            <h4 className="text-white font-semibold mb-6">{t('footer.navigation')}</h4>
             <ul className="space-y-3">
               <li>
                 <Link to="/" className="text-[#9a9a96] hover:text-[#c8f000] transition-colors text-sm">
-                  Home
+                  {t('nav.home')}
                 </Link>
               </li>
               <li>
                 <Link to="/servizi" className="text-[#9a9a96] hover:text-[#c8f000] transition-colors text-sm">
-                  Servizi & Pacchetti
+                  {t('nav.services')}
                 </Link>
               </li>
               <li>
                 <Link to="/metodo" className="text-[#9a9a96] hover:text-[#c8f000] transition-colors text-sm">
-                  Il Nostro Metodo
+                  {t('nav.method')}
                 </Link>
               </li>
               <li>
                 <Link to="/valutazione" className="text-[#9a9a96] hover:text-[#c8f000] transition-colors text-sm">
-                  Valutazione Gratuita
+                  {t('nav.evaluation')}
                 </Link>
               </li>
             </ul>
@@ -58,19 +60,19 @@ const Footer = () => {
 
           {/* Services */}
           <div>
-            <h4 className="text-white font-semibold mb-6">Servizi</h4>
+            <h4 className="text-white font-semibold mb-6">{t('footer.services_section')}</h4>
             <ul className="space-y-3">
-              <li className="text-[#9a9a96] text-sm">Social Media Marketing</li>
-              <li className="text-[#9a9a96] text-sm">Google & Meta Ads</li>
-              <li className="text-[#9a9a96] text-sm">Email Marketing</li>
-              <li className="text-[#9a9a96] text-sm">CRM & Automazioni</li>
-              <li className="text-[#9a9a96] text-sm">SEO & Content</li>
+              <li className="text-[#9a9a96] text-sm">{t('footer.services.social')}</li>
+              <li className="text-[#9a9a96] text-sm">{t('footer.services.ads')}</li>
+              <li className="text-[#9a9a96] text-sm">{t('footer.services.email')}</li>
+              <li className="text-[#9a9a96] text-sm">{t('footer.services.crm')}</li>
+              <li className="text-[#9a9a96] text-sm">{t('footer.services.seo')}</li>
             </ul>
           </div>
 
           {/* Contact */}
           <div>
-            <h4 className="text-white font-semibold mb-6">Contatti</h4>
+            <h4 className="text-white font-semibold mb-6">{t('footer.contact')}</h4>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <Mail size={18} className="text-[#c8f000] mt-0.5 flex-shrink-0" />
@@ -81,7 +83,7 @@ const Footer = () => {
               <li className="flex items-start gap-3">
                 <MapPin size={18} className="text-[#c8f000] mt-0.5 flex-shrink-0" />
                 <span className="text-[#9a9a96] text-sm">
-                  Svizzera
+                  {t('footer.location')}
                 </span>
               </li>
             </ul>
@@ -91,16 +93,8 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="mt-16 pt-8 border-t border-[#343633] flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-[#6f716d] text-sm">
-            © {currentYear} Arxéon. Tutti i diritti riservati.
+            © {currentYear} Arxéon. {t('footer.rights')}
           </p>
-          <div className="flex gap-6">
-            <Link to="/privacy" className="text-[#6f716d] hover:text-[#c8f000] transition-colors text-sm">
-              Privacy Policy
-            </Link>
-            <Link to="/termini" className="text-[#6f716d] hover:text-[#c8f000] transition-colors text-sm">
-              Termini di Servizio
-            </Link>
-          </div>
         </div>
       </div>
     </footer>
