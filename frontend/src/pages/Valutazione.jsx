@@ -220,7 +220,7 @@ const Valutazione = () => {
                   </div>
                   <div className="pt-2">
                     <h3 className="text-white font-semibold text-lg mb-2">Ricevi un report sintetico via email</h3>
-                    <p className="text-[#9a9a96]">Entro 48 ore ricevi la valutazione con raccomandazioni concrete.</p>
+                    <p className="text-[#9a9a96]">Entro qualche minuto ricevi la valutazione con raccomandazioni concrete.</p>
                   </div>
                 </div>
               </div>
