@@ -76,6 +76,11 @@ const Valutazione = () => {
     }
   };
 
+  // Check if social channels are selected
+  const hasSocialChannels = formData.channels.some(ch => 
+    ['social', 'ads'].includes(ch)
+  );
+
   const validateForm = () => {
     const newErrors = {};
     if (!formData.fullName.trim()) newErrors.fullName = 'Campo obbligatorio';
@@ -84,10 +89,14 @@ const Valutazione = () => {
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = 'Email non valida';
     }
+    if (!formData.phone.trim()) newErrors.phone = 'Campo obbligatorio';
     if (!formData.companyName.trim()) newErrors.companyName = 'Campo obbligatorio';
     if (!formData.sector) newErrors.sector = 'Seleziona un settore';
     if (!formData.geoArea) newErrors.geoArea = 'Seleziona un\'area geografica';
     if (formData.channels.length === 0) newErrors.channels = 'Seleziona almeno un canale';
+    if (hasSocialChannels && !formData.socialLinks.trim()) {
+      newErrors.socialLinks = 'Inserisci il nome o link della pagina social';
+    }
     if (!formData.objective) newErrors.objective = 'Seleziona un obiettivo';
     if (!formData.budget) newErrors.budget = 'Seleziona un budget';
     if (!formData.mainProblem.trim()) newErrors.mainProblem = 'Campo obbligatorio';
