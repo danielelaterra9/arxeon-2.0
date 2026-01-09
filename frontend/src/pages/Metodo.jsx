@@ -103,12 +103,9 @@ const Metodo = () => {
       <section className="py-24 bg-[#1f211f]">
         <div className="max-w-[1400px] mx-auto px-5 md:px-10">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-[#c8f000] font-bold text-2xl md:text-3xl mb-4 text-center">
+            <h2 className="text-[#c8f000] font-bold text-2xl md:text-3xl mb-12 text-center">
               Esempi reali di come applichiamo il metodo
             </h2>
-            <p className="text-[#9a9a96] text-center mb-12">
-              Casi anonimi, risultati concreti.
-            </p>
 
             {/* Case Study Slider */}
             <div className="relative">
