@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
-import { sectors, geoAreas, channels, objectives, budgets } from '../data/mock';
+import { ArrowRight, Loader2, Info } from 'lucide-react';
+import { toast } from 'sonner';
 import { Checkbox } from '../components/ui/checkbox';
 import {
   Select,
@@ -10,7 +10,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '../components/ui/select';
-import { toast } from 'sonner';
+import { sectors, geoAreas, channels, objectives, budgets } from '../data/mock';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
@@ -26,15 +26,21 @@ const Valutazione = () => {
     sector: '',
     geoArea: '',
     channels: [],
+    socialLinks: '',  // New field for social links
     objective: '',
     budget: '',
     mainProblem: '',
-    previousAttempts: '',  // New field
-    improvementImportance: 3,  // New field (1-5)
+    previousAttempts: '',
+    improvementImportance: 3,
     privacyConsent: false,
   });
 
   const [errors, setErrors] = useState({});
+
+  // Scroll to top on page load
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
