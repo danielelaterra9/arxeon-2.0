@@ -76,8 +76,8 @@ const Home = () => {
         <div className="max-w-[1400px] mx-auto px-5 md:px-10">
           <div className="max-w-3xl">
             <h2 className="text-[#c8f000] font-bold text-3xl md:text-4xl leading-tight mb-8">
-              Arxéon rende il marketing<br />
-              uno strumento di lavoro.
+              Arxéon è il sistema di marketing<br />
+              che lavora per te.
             </h2>
             <div className="space-y-6">
               <p className="text-[#9a9a96] text-lg leading-relaxed">
