@@ -408,15 +408,15 @@ const Servizi = () => {
           {/* Mobile Cards */}
           <div className="lg:hidden space-y-6">
             {[
-              { name: 'Basic', price: 'CHF 200/mese', data: comparisonData.map(r => r.basic), highlighted: false, badge: 'Più economico', badgeStyle: 'bg-[#343633] text-[#9a9a96]' },
-              { name: 'Premium', price: 'CHF 400/mese', data: comparisonData.map(r => r.premium), highlighted: true, badge: 'Più scelto', badgeStyle: 'bg-[#c8f000] text-[#161716]' },
-              { name: 'Gold', price: 'CHF 1\'700/mese', data: comparisonData.map(r => r.gold), highlighted: false, badge: 'Il più performante e completo', badgeStyle: 'bg-[#c8f000] text-[#161716]' }
+              { name: 'Basic', price: 'CHF 200/mese', data: comparisonData.map(r => r.basic), highlighted: false, badge: 'Più economico' },
+              { name: 'Premium', price: 'CHF 400/mese', data: comparisonData.map(r => r.premium), highlighted: true, badge: 'Più scelto' },
+              { name: 'Gold', price: 'CHF 1\'700/mese', data: comparisonData.map(r => r.gold), highlighted: false, badge: 'Più performante' }
             ].map((pkg) => (
               <div 
                 key={pkg.name} 
                 className={`bg-[#2a2c29] rounded-xl p-6 border ${pkg.highlighted ? 'border-2 border-[#c8f000]' : 'border-[#343633]'} relative`}
               >
-                <span className={`absolute -top-3 left-1/2 -translate-x-1/2 ${pkg.badgeStyle} text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap`}>
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#c8f000] text-[#161716] text-xs font-bold px-3 py-1 rounded-full uppercase whitespace-nowrap">
                   {pkg.badge}
                 </span>
                 <h3 className="text-[#c8f000] font-bold text-xl mb-1 mt-2">{pkg.name}</h3>
