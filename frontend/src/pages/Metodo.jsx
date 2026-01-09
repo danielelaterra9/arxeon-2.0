@@ -187,6 +187,14 @@ const Metodo = () => {
               </div>
             </div>
           </div>
+          
+          {/* CTA dopo testimonianze */}
+          <div className="text-center mt-12">
+            <Link to="/servizi#basic" className="btn-primary">
+              Scegli il pacchetto più adatto
+              <ArrowRight className="ml-2" size={16} />
+            </Link>
+          </div>
         </div>
       </section>
 
