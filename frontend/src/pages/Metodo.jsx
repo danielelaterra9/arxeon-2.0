@@ -241,13 +241,19 @@ const Metodo = () => {
             <p className="text-[#9a9a96] text-lg leading-relaxed mb-4">
               Non lavoriamo con tutti.
             </p>
-            <p className="text-white text-lg leading-relaxed mb-12">
+            <p className="text-white text-lg leading-relaxed mb-8">
               Lavoriamo quando il marketing può essere migliorato in modo concreto.
             </p>
-            <Link to="/valutazione" className="btn-primary">
-              Richiedi una valutazione gratuita
-              <ArrowRight className="ml-2" size={16} />
+            <Link to="/valutazione" className="text-[#c8f000] text-lg font-medium hover:underline inline-flex items-center gap-2 mb-8">
+              Scoprilo ora, con la valutazione gratuita
+              <ArrowRight size={18} />
             </Link>
+            <div>
+              <Link to="/valutazione" className="btn-primary">
+                Richiedi una valutazione gratuita
+                <ArrowRight className="ml-2" size={16} />
+              </Link>
+            </div>
           </div>
         </div>
       </section>
