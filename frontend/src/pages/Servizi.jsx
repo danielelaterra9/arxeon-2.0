@@ -271,7 +271,7 @@ const Servizi = () => {
                         {t('services.comparison.badge_complete')}
                       </span>
                       <span className="text-[#c8f000] font-bold text-xl">Gold</span>
-                      <p className="text-[#9a9a96] text-sm mt-1">CHF 1'700/mese</p>
+                      <p className="text-[#9a9a96] text-sm mt-1">CHF 1&apos;700/mese</p>
                     </div>
                   </th>
                 </tr>
