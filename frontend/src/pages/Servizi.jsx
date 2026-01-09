@@ -306,7 +306,7 @@ const Servizi = () => {
             {[
               { name: 'Basic', price: 'CHF 200/mese', data: comparisonData.map(r => r.basic), highlighted: false, badge: t('services.comparison.badge_economic') },
               { name: 'Premium', price: 'CHF 400/mese', data: comparisonData.map(r => r.premium), highlighted: true, badge: t('services.comparison.badge_popular') },
-              { name: 'Gold', price: 'CHF 1\'700/mese', data: comparisonData.map(r => r.gold), highlighted: false, badge: t('services.comparison.badge_complete') }
+              { name: 'Gold', price: 'CHF 1700/mese', data: comparisonData.map(r => r.gold), highlighted: false, badge: t('services.comparison.badge_complete') }
             ].map((pkg) => (
               <div 
                 key={pkg.name} 
