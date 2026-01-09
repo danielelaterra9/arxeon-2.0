@@ -339,16 +339,19 @@ const Valutazione = () => {
                   </div>
                   <div>
                     <label className="block text-white text-sm font-medium mb-2">
-                      Telefono <span className="text-[#6f716d] text-xs">(opzionale)</span>
+                      Telefono <span className="text-[#c8f000]">*</span>
                     </label>
                     <input
                       type="tel"
                       name="phone"
                       value={formData.phone}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 bg-[#161716] border border-[#343633] rounded-lg text-white placeholder-[#6f716d] focus:outline-none focus:border-[#c8f000] transition-colors"
+                      className={`w-full px-4 py-3 bg-[#161716] border rounded-lg text-white placeholder-[#6f716d] focus:outline-none focus:border-[#c8f000] transition-colors ${
+                        errors.phone ? 'border-red-500' : 'border-[#343633]'
+                      }`}
                       placeholder="+41 00 000 00 00"
                     />
+                    {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
                   </div>
                 </div>
               </div>
