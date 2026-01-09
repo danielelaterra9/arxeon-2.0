@@ -221,6 +221,14 @@ const Metodo = () => {
                 <p className="text-[#9a9a96] text-sm">Sai sempre cosa stiamo facendo, perché e quali risultati stiamo ottenendo.</p>
               </div>
             </div>
+            
+            {/* CTA sotto Perché funziona */}
+            <div className="text-center mt-12">
+              <Link to="/servizi#basic" className="btn-primary">
+                Scegli il pacchetto più adatto
+                <ArrowRight className="ml-2" size={16} />
+              </Link>
+            </div>
           </div>
         </div>
       </section>
