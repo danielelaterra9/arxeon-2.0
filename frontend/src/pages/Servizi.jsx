@@ -352,7 +352,10 @@ const Servizi = () => {
                 <tr>
                   <th className="p-4 text-left text-[#9a9a96] font-medium"></th>
                   <th className="p-6 text-center">
-                    <div className="bg-[#2a2c29] rounded-t-xl p-6 border border-[#343633] border-b-0">
+                    <div className="bg-[#2a2c29] rounded-t-xl p-6 border border-[#343633] border-b-0 relative">
+                      <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#343633] text-[#9a9a96] text-xs font-bold px-3 py-1 rounded-full">
+                        Più economico
+                      </span>
                       <span className="text-[#c8f000] font-bold text-xl">Basic</span>
                       <p className="text-[#9a9a96] text-sm mt-1">CHF 200/mese</p>
                     </div>
@@ -367,7 +370,10 @@ const Servizi = () => {
                     </div>
                   </th>
                   <th className="p-6 text-center">
-                    <div className="bg-[#2a2c29] rounded-t-xl p-6 border border-[#343633] border-b-0">
+                    <div className="bg-[#2a2c29] rounded-t-xl p-6 border border-[#343633] border-b-0 relative">
+                      <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#c8f000] text-[#161716] text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap">
+                        Il più performante e completo
+                      </span>
                       <span className="text-[#c8f000] font-bold text-xl">Gold</span>
                       <p className="text-[#9a9a96] text-sm mt-1">CHF 1'700/mese</p>
                     </div>
