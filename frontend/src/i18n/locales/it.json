@@ -1,0 +1,399 @@
+{
+  "nav": {
+    "home": "Home",
+    "services": "Servizi",
+    "evaluation": "Valutazione gratuita",
+    "method": "Metodo",
+    "contact": "Contatti"
+  },
+  "header": {
+    "cta": "VALUTAZIONE GRATUITA"
+  },
+  "home": {
+    "hero": {
+      "title1": "Marketing strategico.",
+      "title2": "Risultati misurabili.",
+      "subtitle": "Arxéon affianca PMI svizzere e professionisti con un marketing strutturato, chiaro e orientato ai risultati. Senza dispersioni.",
+      "cta_evaluation": "Richiedi una valutazione gratuita",
+      "cta_packages": "Scopri i pacchetti"
+    },
+    "problem": {
+      "title1": "Il problema non è fare marketing.",
+      "title2": "È farlo senza controllo.",
+      "description": "Molti business investono tempo e budget in attività marketing che non portano risultati chiari:",
+      "point1": "social pubblicati senza una strategia reale",
+      "point2": "pubblicità che consuma budget senza dati leggibili",
+      "point3": "siti web che non generano contatti",
+      "point4": "decisioni prese a sensazione",
+      "conclusion": "Il problema non è fare marketing, ma farlo senza una direzione chiara o senza sapere cosa aspettarsi."
+    },
+    "solution": {
+      "title1": "Arxéon è il sistema di marketing",
+      "title2": "che lavora per te.",
+      "description1": "Arxéon non aggiunge attività inutili.",
+      "description2": "Rende il marketing comprensibile, strutturato e orientato ai risultati.",
+      "principle": "Ogni progetto parte da un principio semplice:",
+      "principle_highlight": "il marketing deve aiutare il business a prendere decisioni migliori."
+    },
+    "howItWorks": {
+      "title": "Ecco come lavoriamo",
+      "step1_title": "Analisi",
+      "step1_desc": "Analizziamo la tua situazione attuale, gli strumenti utilizzati e gli obiettivi di business.",
+      "step2_title": "Strategia",
+      "step2_desc": "Definiamo insieme una direzione chiara, con priorità e indicatori da monitorare.",
+      "step3_title": "Esecuzione",
+      "step3_desc": "Gestiamo le attività operative concordate, con report regolari e supervisione continua."
+    },
+    "packages": {
+      "title1": "Tre pacchetti. Una sola logica:",
+      "title2": "far funzionare il marketing.",
+      "subtitle": "La differenza tra i pacchetti non è cosa facciamo, ma quanto profondamente entriamo nel tuo marketing.",
+      "basic": {
+        "name": "Basic",
+        "tagline": "Solo consulenza strategica",
+        "description": "Per chi vuole restare autonomo con una guida esterna"
+      },
+      "premium": {
+        "name": "Premium",
+        "tagline": "Gestione operativa di un singolo ambito",
+        "description": "Per chi vuole delegare un canale specifico"
+      },
+      "gold": {
+        "name": "Gold",
+        "tagline": "Collaborazione marketing completa",
+        "description": "Per chi vuole un collaboratore dedicato"
+      },
+      "compare_cta": "Confronta i pacchetti"
+    },
+    "cta_final": {
+      "title": "Non sai quale pacchetto scegliere?",
+      "subtitle": "Richiedi una valutazione gratuita e ti aiuteremo a capire cosa ha davvero senso nel tuo caso.",
+      "button": "Richiedi una valutazione gratuita"
+    }
+  },
+  "services": {
+    "hero": {
+      "title": "Servizi e pacchetti",
+      "subtitle": "Ogni pacchetto è progettato per adattarsi a una fase diversa del business."
+    },
+    "packages": {
+      "basic": {
+        "label": "Pacchetto",
+        "name": "Basic",
+        "tagline": "Consulenza strategica per decisioni autonome",
+        "description": "Il pacchetto Basic è pensato per chi vuole una lettura professionale e esterna del proprio marketing, senza delegare l'operatività. Ricevi direzione, chiarezza e strumenti per agire in autonomia.",
+        "price": "CHF 200",
+        "period": "/ mese",
+        "includes_title": "Include:",
+        "include1": "Analisi mensile del business e del marketing",
+        "include2": "Analisi strumenti utilizzati dal cliente",
+        "include3": "1 consulenza strategica mensile (20–40 minuti)",
+        "excludes_title": "Non include:",
+        "exclude1": "Nessuna attività operativa",
+        "exclude2": "Nessuna gestione diretta",
+        "cta": "Attiva il pacchetto Basic"
+      },
+      "premium": {
+        "label": "Pacchetto",
+        "name": "Premium",
+        "tagline": "Strategia + Operatività su un ambito",
+        "description": "Il pacchetto Premium unisce analisi strategica e esecuzione operativa su un ambito a scelta. Ideale se vuoi delegare un canale marketing specifico mantenendo il controllo.",
+        "price": "CHF 400",
+        "period": "/ mese",
+        "includes_title": "Include:",
+        "include1": "1 analisi strategica mensile",
+        "include2": "2 consulenze mensili (20–40 minuti)",
+        "include3": "Tempo di risposta entro 24h lavorative",
+        "include4": "Presa in carico operativa entro 48h lavorative",
+        "scope_title": "Ambito operativo:",
+        "scope1": "1 sola categoria alla volta (sito/landing, social, advertising, email marketing, SEO)",
+        "scope2": "Possibilità di aggiunta servizi o altri canali",
+        "cta": "Attiva il pacchetto Premium"
+      },
+      "gold": {
+        "label": "Pacchetto",
+        "name": "Gold",
+        "tagline": "Collaboratore marketing dedicato al tuo business",
+        "description": "Il pacchetto Gold offre una collaborazione marketing completa. Come avere un collaboratore interno dedicato al marketing, ma con un metodo strutturato e senza i costi di un'assunzione.",
+        "price": "CHF 1'700",
+        "period": "/ mese",
+        "availability": "Ultimi 2 posti disponibili",
+        "includes_title": "Include:",
+        "include1": "Supervisione marketing continua",
+        "include2": "2 analisi strategiche mensili",
+        "include3": "Tempo di risposta e presa in carico entro 24h lavorative",
+        "include4": "Attività operativa senza limiti di categoria",
+        "cta": "Attiva il pacchetto Gold"
+      }
+    },
+    "comparison": {
+      "title": "Comparazione tecnica",
+      "frequency": "Frequenza analisi",
+      "consultations": "Consulenze",
+      "operational": "Attività operativa",
+      "response_time": "Tempo di risposta",
+      "handling": "Presa in carico",
+      "account_access": "Accesso agli account",
+      "badge_economic": "PIÙ ECONOMICO",
+      "badge_popular": "PIÙ SCELTO",
+      "badge_complete": "PIÙ PERFORMANTE"
+    },
+    "faq": {
+      "title": "Domande frequenti",
+      "q1": "Quanto tempo serve per vedere risultati concreti?",
+      "a1": "Dipende dal punto di partenza e dal tipo di attività, ma in generale:\n\n• Chiarezza strategica e direzione arrivano subito (prime settimane)\n• Miglioramenti operativi entro 30–60 giorni\n• Risultati misurabili su acquisizione o performance richiedono continuità\n\nIl nostro obiettivo non è \"fare marketing\", ma mettere in ordine le priorità giuste e lavorare su ciò che ha reale impatto.",
+      "q2": "Cosa succede se ho già un'agenzia o un freelance che lavora sul marketing?",
+      "a2": "Non è un problema.\n\nIn molti casi Arxéon lavora a monte, come guida strategica o supervisione.\n\nPossiamo:\n• Affiancare chi già opera\n• Migliorare ciò che è già attivo\n• Oppure prendere in carico solo una parte specifica\n\nIl focus resta sempre: risultati, non sovrapposizioni inutili.",
+      "q3": "Qual è la differenza reale tra Basic e Premium?",
+      "a3": "La differenza è semplice:\n\nBasic → pensiamo insieme cosa fare\nConsulenza strategica, analisi e supporto decisionale.\nL'implementazione resta a tuo carico.\n\nPremium → ci occupiamo noi di un ambito operativo\nOltre alla strategia, gestiamo direttamente un'area specifica (es. social, ads, sito, SEO).\n\nSe vuoi solo guida, Basic è sufficiente.\nSe vuoi delegare, Premium è la scelta più efficace.",
+      "q4": "Il Basic include operatività o accesso agli account?",
+      "a4": "No. Il Basic è esclusivamente consulenza strategica e analisi. Nessuna operatività e nessun accesso agli account.",
+      "q5": "Nel Premium cosa significa \"una categoria alla volta\"?",
+      "a5": "Scegli un ambito principale (sito, social, ads, email o SEO). Fuori da questo ambito le attività sono gestite come add-on.",
+      "q6": "Con il Gold posso delegare tutto il marketing?",
+      "a6": "Sì, per un solo business e un solo settore. Attività multi-business richiedono accordo separato.",
+      "q7": "Quanto budget serve per le campagne pubblicitarie?",
+      "a7": "Il budget pubblicitario non è incluso nei pacchetti.\n\nCome riferimento:\n• Budget minimo consigliato: CHF 300/mese per test e attivazione\n• Il budget ideale dipende da obiettivi, mercato e piattaforma\n\nSe dall'analisi iniziale emerge che budget o piattaforma non sono adeguati, ti avvisiamo prima di procedere.",
+      "q8": "Posso cambiare pacchetto nel tempo?",
+      "a8": "Sì.\n\nÈ normale partire da un livello e poi evolvere.\n\nPuoi:\n• Passare da Basic a Premium quando vuoi delegare\n• Passare a Gold se il business cresce e serve una gestione completa\n• Rivedere l'assetto in base alle esigenze reali\n\nIl sistema è pensato per adattarsi, non per bloccarti.",
+      "q9": "In quanto tempo rispondete e prendete in carico i lavori?",
+      "a9": "Premium: risposta entro 24h, presa in carico entro 48h lavorative.\nGold: risposta e presa in carico entro 24h lavorative.",
+      "q10": "Perché il Gold costa CHF 1'700/mese?",
+      "a10": "Include gestione operativa completa, priorità e supervisione strategica continua, come un collaboratore esterno dedicato, senza i costi di un'assunzione interna.",
+      "q11": "Quanto lavoro operativo devo fare io?",
+      "a11": "Dipende dal pacchetto scelto:\n\n• Basic → sei tu a implementare, noi ti guidiamo\n• Premium → tu collabori, noi gestiamo l'ambito concordato\n• Gold → il tuo coinvolgimento operativo è minimo\n\nIn ogni caso, il nostro obiettivo è semplificarti il lavoro, non aggiungerne.",
+      "q12": "Cosa succede se il servizio non è adatto al mio caso?",
+      "a12": "Trasparenza totale.\n\nSe durante la valutazione iniziale emerge che:\n• Il pacchetto scelto non è adatto\n• Il timing non è corretto\n• O non possiamo portare valore reale\n\nTe lo diciamo apertamente e ridefiniamo la soluzione più sensata, anche se questo significa non procedere subito."
+    },
+    "cta_final": {
+      "title": "Hai ancora dubbi?",
+      "subtitle": "Ti aiutiamo a capire cosa ha davvero senso fare nel tuo caso specifico.",
+      "cta_evaluation": "Valutazione gratuita",
+      "cta_contact": "Contatti"
+    }
+  },
+  "evaluation": {
+    "hero": {
+      "title": "Valutazione gratuita del marketing",
+      "subtitle": "Una lettura professionale, senza impegno. Un punto di partenza per capire cosa migliorare."
+    },
+    "steps": {
+      "step1_title": "Compila il form",
+      "step1_desc": "Poche informazioni sul tuo business e sul tuo marketing attuale.",
+      "step2_title": "Analizziamo la situazione",
+      "step2_desc": "Valutiamo le informazioni e prepariamo il feedback.",
+      "step3_title": "Ricevi un report sintetico via email",
+      "step3_desc": "Entro qualche minuto ricevi la valutazione con raccomandazioni concrete."
+    },
+    "whatYouGet": {
+      "title": "Cosa ottieni",
+      "point1": "Una lettura esterna e professionale",
+      "point2": "Punti di miglioramento concreti",
+      "point3": "Maggiore chiarezza sulle priorità",
+      "point4": "Valutare se ha senso collaborare con noi"
+    },
+    "whatIsNot": {
+      "title": "Cosa non è questa valutazione",
+      "point1": "Non è una consulenza strategica completa",
+      "point2": "Non è una call di vendita",
+      "point3": "Non comporta obblighi o vincoli"
+    },
+    "whoIsFor": {
+      "title": "A chi è utile",
+      "intro": "La valutazione è utile se vuoi:",
+      "point1": "capire se il tuo marketing è coerente",
+      "point2": "evitare sprechi",
+      "point3": "prendere decisioni più consapevoli"
+    },
+    "form": {
+      "title": "Richiedi la tua valutazione",
+      "fullName": "Nome completo",
+      "email": "Email",
+      "phone": "Telefono",
+      "companyName": "Nome azienda",
+      "website": "Sito web",
+      "sector": "Settore di attività",
+      "sector_placeholder": "Seleziona un settore",
+      "geoArea": "Area geografica",
+      "geoArea_placeholder": "Seleziona un'area",
+      "channels": "Canali marketing attuali",
+      "channels_hint": "Seleziona tutti i canali che utilizzi attualmente",
+      "socialLinks": "Link o nome delle tue pagine social",
+      "socialLinks_hint": "Inserisci il link diretto o il nome delle tue pagine social (es: facebook.com/tuapagina, @tuoaccount)",
+      "objective": "Obiettivo principale",
+      "objective_placeholder": "Seleziona un obiettivo",
+      "budget": "Budget marketing mensile",
+      "budget_placeholder": "Seleziona una fascia",
+      "mainProblem": "Qual è il tuo problema principale?",
+      "mainProblem_placeholder": "Descrivi brevemente la sfida principale che vorresti affrontare con il marketing...",
+      "previousAttempts": "Tentativi precedenti",
+      "previousAttempts_placeholder": "Hai già provato a risolvere questo problema? Come? (es: agenzie, freelance, campagne fai-da-te...)",
+      "importance": "Quanto è importante per te migliorare il marketing?",
+      "importance_low": "Poco importante",
+      "importance_high": "Molto importante",
+      "privacy": "Accetto la privacy policy e acconsento al trattamento dei dati per ricevere la valutazione.",
+      "submit": "Compila la valutazione gratuita",
+      "submitting": "Invio in corso...",
+      "ai_note": "Le richieste di valutazione sono analizzate dai nostri software AI e successivamente verificate e valutate manualmente entro pochi minuti.",
+      "required": "Campo obbligatorio",
+      "invalid_email": "Email non valida",
+      "select_sector": "Seleziona un settore",
+      "select_area": "Seleziona un'area geografica",
+      "select_channel": "Seleziona almeno un canale",
+      "insert_social": "Inserisci il nome o link della pagina social",
+      "select_objective": "Seleziona un obiettivo",
+      "select_budget": "Seleziona un budget",
+      "accept_privacy": "Devi accettare per continuare"
+    },
+    "sectors": {
+      "consulting": "Consulenza e servizi professionali",
+      "retail": "Commercio al dettaglio",
+      "ecommerce": "E-commerce",
+      "hospitality": "Ospitalità e ristorazione",
+      "health": "Salute e benessere",
+      "technology": "Tecnologia e digitale",
+      "manufacturing": "Produzione e industria",
+      "real_estate": "Immobiliare",
+      "finance": "Finanza e assicurazioni",
+      "education": "Formazione e istruzione",
+      "other": "Altro"
+    },
+    "areas": {
+      "ticino": "Ticino",
+      "romandie": "Svizzera romanda",
+      "deutschschweiz": "Svizzera tedesca",
+      "national": "Tutta la Svizzera",
+      "international": "Internazionale"
+    },
+    "channels_list": {
+      "social": "Social media",
+      "ads": "Pubblicità online",
+      "seo": "SEO",
+      "email": "Email marketing",
+      "website": "Sito web",
+      "offline": "Marketing offline",
+      "none": "Nessuno al momento"
+    },
+    "objectives": {
+      "acquisition": "Acquisizione nuovi clienti",
+      "retention": "Fidelizzazione clienti esistenti",
+      "awareness": "Aumento della notorietà",
+      "sales": "Incremento vendite",
+      "leads": "Generazione lead",
+      "other": "Altro"
+    },
+    "budgets": {
+      "under500": "Meno di CHF 500",
+      "500_1000": "CHF 500 - 1'000",
+      "1000_2000": "CHF 1'000 - 2'000",
+      "2000_5000": "CHF 2'000 - 5'000",
+      "over5000": "Oltre CHF 5'000",
+      "undefined": "Non ancora definito"
+    }
+  },
+  "method": {
+    "hero": {
+      "title": "Il nostro metodo",
+      "subtitle": "Niente formule magiche, niente promesse vaghe. Solo un metodo chiaro, testato e adattabile."
+    },
+    "principles": {
+      "title": "Principi fondamentali",
+      "principle1_title": "Chiarezza prima di tutto",
+      "principle1_desc": "Partiamo sempre da un'analisi strutturata, non da intuizioni. Senza chiarezza non c'è strategia.",
+      "principle2_title": "Priorità, non dispersione",
+      "principle2_desc": "Non facciamo \"tutto\". Identifichiamo ciò che conta davvero e concentriamo le risorse lì.",
+      "principle3_title": "Risultati misurabili",
+      "principle3_desc": "Ciò che non può essere misurato non può essere migliorato. Ogni azione ha indicatori chiari."
+    },
+    "cases": {
+      "title": "Esempi reali di come applichiamo il metodo"
+    },
+    "whyItWorks": {
+      "title": "Perché funziona",
+      "reason1_title": "Approccio strutturato",
+      "reason1_desc": "Non lavoriamo a improvvisazione. Ogni decisione segue un processo definito.",
+      "reason2_title": "Comunicazione diretta",
+      "reason2_desc": "Niente meeting inutili o report incomprensibili. Aggiornamento chiaro e puntuale.",
+      "reason3_title": "Chiarezza operativa",
+      "reason3_desc": "Sai sempre cosa stiamo facendo, perché e quali risultati stiamo ottenendo."
+    },
+    "cta_packages": "Scegli il pacchetto più adatto",
+    "whoWeWork": {
+      "title": "Con chi lavoriamo",
+      "text1": "Non lavoriamo con tutti.",
+      "text2": "Lavoriamo quando il marketing può essere migliorato in modo concreto.",
+      "discover": "Scoprilo ora, con la valutazione gratuita",
+      "cta": "Richiedi una valutazione gratuita"
+    }
+  },
+  "contact": {
+    "hero": {
+      "title": "Parliamone in modo chiaro.",
+      "subtitle": "Se hai domande o vuoi chiarire alcuni punti, scrivici direttamente."
+    },
+    "email": {
+      "title": "Scrivici",
+      "response_time": "Rispondiamo entro 24 ore lavorative"
+    },
+    "reassurance": {
+      "title": "Dietro Arxéon ci sono persone, non solo strumenti.",
+      "description": "Arxéon non è un sistema automatico né un servizio impersonale. Analisi, strategia e decisioni vengono gestite da persone, con metodo, responsabilità e supervisione continua.",
+      "point1": "Strategia e direzione marketing",
+      "point2": "Analisi e lettura dei dati",
+      "point3": "Coordinamento operativo",
+      "point4": "Supervisione qualità e performance"
+    },
+    "call": {
+      "title": "Preferisci una chiamata?",
+      "intro": "Una chiamata conoscitiva è utile solo se:",
+      "condition1": "Hai già consultato la sezione FAQ",
+      "condition2": "Hai pensato o provato a fare la valutazione gratuita",
+      "condition3": "Hai deciso di collaborare ma non sai quale pacchetto scegliere",
+      "condition4": "Il progetto include più servizi o prodotti (es. e-commerce o holding)",
+      "cta": "Richiedi una chiamata conoscitiva"
+    },
+    "no_pressure": "Nessuna pressione, nessun obbligo. Solo una conversazione per capire se possiamo aiutarti."
+  },
+  "footer": {
+    "description": "Marketing strategico orientato ai risultati. Trasformiamo i tuoi investimenti in crescita misurabile.",
+    "navigation": "Navigazione",
+    "services_section": "Servizi",
+    "services": {
+      "social": "Social Media Marketing",
+      "ads": "Google & Meta Ads",
+      "email": "Email Marketing",
+      "crm": "CRM & Automazioni",
+      "seo": "SEO & Content"
+    },
+    "contact": "Contatti",
+    "location": "Svizzera",
+    "rights": "Tutti i diritti riservati."
+  },
+  "checkout": {
+    "basic": {
+      "title": "Attiva il pacchetto Basic",
+      "subtitle": "Solo consulenza strategica",
+      "description": "Con il pacchetto Basic ti aiutiamo a prendere decisioni migliori, ma l'implementazione resta a tuo carico.",
+      "price": "CHF 200/mese",
+      "email_label": "Email per la fatturazione",
+      "questions": "Ho domande",
+      "see_packages": "Vedi i pacchetti",
+      "proceed": "Procedi al pagamento",
+      "processing": "Elaborazione..."
+    }
+  },
+  "thankYou": {
+    "title": "Grazie per la fiducia!",
+    "subtitle": "Il tuo abbonamento è stato attivato con successo.",
+    "nextSteps": "Prossimi passi:",
+    "step1": "Compila il formulario di onboarding",
+    "step2": "Prepariamo la tua prima analisi",
+    "step3": "Riceverai il primo report entro 7 giorni"
+  },
+  "common": {
+    "loading": "Caricamento...",
+    "error": "Si è verificato un errore",
+    "success": "Successo!",
+    "optional": "opzionale"
+  }
+}
