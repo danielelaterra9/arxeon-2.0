@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight, Loader2, Info } from 'lucide-react';
 import { toast } from 'sonner';
+import { useTranslation } from 'react-i18next';
 import { Checkbox } from '../components/ui/checkbox';
 import {
   Select,
@@ -10,11 +11,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from '../components/ui/select';
-import { sectors, geoAreas, channels, objectives, budgets } from '../data/mock';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 const Valutazione = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
@@ -26,7 +27,7 @@ const Valutazione = () => {
     sector: '',
     geoArea: '',
     channels: [],
-    socialLinks: '',  // New field for social links
+    socialLinks: '',
     objective: '',
     budget: '',
     mainProblem: '',
@@ -36,6 +37,57 @@ const Valutazione = () => {
   });
 
   const [errors, setErrors] = useState({});
+
+  // Options from translations
+  const sectors = [
+    { id: 'consulting', label: t('evaluation.sectors.consulting') },
+    { id: 'retail', label: t('evaluation.sectors.retail') },
+    { id: 'ecommerce', label: t('evaluation.sectors.ecommerce') },
+    { id: 'hospitality', label: t('evaluation.sectors.hospitality') },
+    { id: 'health', label: t('evaluation.sectors.health') },
+    { id: 'technology', label: t('evaluation.sectors.technology') },
+    { id: 'manufacturing', label: t('evaluation.sectors.manufacturing') },
+    { id: 'real_estate', label: t('evaluation.sectors.real_estate') },
+    { id: 'finance', label: t('evaluation.sectors.finance') },
+    { id: 'education', label: t('evaluation.sectors.education') },
+    { id: 'other', label: t('evaluation.sectors.other') },
+  ];
+
+  const geoAreas = [
+    { id: 'ticino', label: t('evaluation.areas.ticino') },
+    { id: 'romandie', label: t('evaluation.areas.romandie') },
+    { id: 'deutschschweiz', label: t('evaluation.areas.deutschschweiz') },
+    { id: 'national', label: t('evaluation.areas.national') },
+    { id: 'international', label: t('evaluation.areas.international') },
+  ];
+
+  const channels = [
+    { id: 'social', label: t('evaluation.channels_list.social') },
+    { id: 'ads', label: t('evaluation.channels_list.ads') },
+    { id: 'seo', label: t('evaluation.channels_list.seo') },
+    { id: 'email', label: t('evaluation.channels_list.email') },
+    { id: 'website', label: t('evaluation.channels_list.website') },
+    { id: 'offline', label: t('evaluation.channels_list.offline') },
+    { id: 'none', label: t('evaluation.channels_list.none') },
+  ];
+
+  const objectives = [
+    { id: 'acquisition', label: t('evaluation.objectives.acquisition') },
+    { id: 'retention', label: t('evaluation.objectives.retention') },
+    { id: 'awareness', label: t('evaluation.objectives.awareness') },
+    { id: 'sales', label: t('evaluation.objectives.sales') },
+    { id: 'leads', label: t('evaluation.objectives.leads') },
+    { id: 'other', label: t('evaluation.objectives.other') },
+  ];
+
+  const budgets = [
+    { id: 'under500', label: t('evaluation.budgets.under500') },
+    { id: '500_1000', label: t('evaluation.budgets.500_1000') },
+    { id: '1000_2000', label: t('evaluation.budgets.1000_2000') },
+    { id: '2000_5000', label: t('evaluation.budgets.2000_5000') },
+    { id: 'over5000', label: t('evaluation.budgets.over5000') },
+    { id: 'undefined', label: t('evaluation.budgets.undefined') },
+  ];
 
   // Scroll to top on page load
   useEffect(() => {
@@ -83,24 +135,24 @@ const Valutazione = () => {
 
   const validateForm = () => {
     const newErrors = {};
-    if (!formData.fullName.trim()) newErrors.fullName = 'Campo obbligatorio';
+    if (!formData.fullName.trim()) newErrors.fullName = t('evaluation.form.required');
     if (!formData.email.trim()) {
-      newErrors.email = 'Campo obbligatorio';
+      newErrors.email = t('evaluation.form.required');
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'Email non valida';
+      newErrors.email = t('evaluation.form.invalid_email');
     }
-    if (!formData.phone.trim()) newErrors.phone = 'Campo obbligatorio';
-    if (!formData.companyName.trim()) newErrors.companyName = 'Campo obbligatorio';
-    if (!formData.sector) newErrors.sector = 'Seleziona un settore';
-    if (!formData.geoArea) newErrors.geoArea = 'Seleziona un\'area geografica';
-    if (formData.channels.length === 0) newErrors.channels = 'Seleziona almeno un canale';
+    if (!formData.phone.trim()) newErrors.phone = t('evaluation.form.required');
+    if (!formData.companyName.trim()) newErrors.companyName = t('evaluation.form.required');
+    if (!formData.sector) newErrors.sector = t('evaluation.form.select_sector');
+    if (!formData.geoArea) newErrors.geoArea = t('evaluation.form.select_area');
+    if (formData.channels.length === 0) newErrors.channels = t('evaluation.form.select_channel');
     if (hasSocialChannels && !formData.socialLinks.trim()) {
-      newErrors.socialLinks = 'Inserisci il nome o link della pagina social';
+      newErrors.socialLinks = t('evaluation.form.insert_social');
     }
-    if (!formData.objective) newErrors.objective = 'Seleziona un obiettivo';
-    if (!formData.budget) newErrors.budget = 'Seleziona un budget';
-    if (!formData.mainProblem.trim()) newErrors.mainProblem = 'Campo obbligatorio';
-    if (!formData.privacyConsent) newErrors.privacyConsent = 'Devi accettare per continuare';
+    if (!formData.objective) newErrors.objective = t('evaluation.form.select_objective');
+    if (!formData.budget) newErrors.budget = t('evaluation.form.select_budget');
+    if (!formData.mainProblem.trim()) newErrors.mainProblem = t('evaluation.form.required');
+    if (!formData.privacyConsent) newErrors.privacyConsent = t('evaluation.form.accept_privacy');
     
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -110,14 +162,13 @@ const Valutazione = () => {
     e.preventDefault();
     
     if (!validateForm()) {
-      toast.error('Per favore, compila tutti i campi obbligatori');
+      toast.error(t('evaluation.form.required'));
       return;
     }
 
     setIsSubmitting(true);
 
     try {
-      // Call backend API
       const response = await fetch(`${BACKEND_URL}/api/free-audit`, {
         method: 'POST',
         headers: {
@@ -146,11 +197,11 @@ const Valutazione = () => {
 
       const data = await response.json();
       sessionStorage.setItem('valutazioneData', JSON.stringify({...formData, auditId: data.id}));
-      toast.success('Richiesta inviata con successo!');
+      toast.success(t('common.success'));
       navigate('/valutazione/conferma');
     } catch (error) {
       console.error('Error submitting audit:', error);
-      toast.error('Si è verificato un errore. Riprova.');
+      toast.error(t('common.error'));
     } finally {
       setIsSubmitting(false);
     }
@@ -163,36 +214,20 @@ const Valutazione = () => {
         <div className="max-w-[1400px] mx-auto px-5 md:px-10">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-[#c8f000] font-bold text-4xl md:text-5xl leading-tight mb-6">
-              Valutazione gratuita<br />del tuo marketing
+              {t('evaluation.hero.title')}
             </h1>
             <p className="text-[#9a9a96] text-lg leading-relaxed">
-              Prima di investire tempo o budget, capisci cosa funziona davvero e cosa no.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* PERCHÉ ESISTE */}
-      <section className="py-16 bg-[#1f211f]">
-        <div className="max-w-[1400px] mx-auto px-5 md:px-10">
-          <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-white font-bold text-2xl mb-6">Perché offriamo una valutazione gratuita</h2>
-            <p className="text-[#9a9a96] leading-relaxed">
-              Scegliere un servizio marketing senza chiarezza è rischioso.<br />
-              La valutazione serve a fornire una prima analisi oggettiva della situazione, 
-              per aiutarti a capire se e come intervenire.
+              {t('evaluation.hero.subtitle')}
             </p>
           </div>
         </div>
       </section>
 
       {/* COME FUNZIONA */}
-      <section className="py-24 bg-[#161716]">
+      <section className="py-24 bg-[#1f211f]">
         <div className="max-w-[1400px] mx-auto px-5 md:px-10">
-          <h2 className="text-white font-bold text-2xl mb-16 text-center">Come funziona</h2>
           <div className="max-w-3xl mx-auto">
             <div className="relative">
-              {/* Vertical line */}
               <div className="absolute left-6 top-0 bottom-0 w-px bg-[#343633] hidden md:block"></div>
               
               <div className="space-y-12">
@@ -201,8 +236,8 @@ const Valutazione = () => {
                     1
                   </div>
                   <div className="pt-2">
-                    <h3 className="text-white font-semibold text-lg mb-2">Compili un questionario guidato</h3>
-                    <p className="text-[#9a9a96]">Rispondi a domande mirate sulla tua situazione attuale.</p>
+                    <h3 className="text-white font-semibold text-lg mb-2">{t('evaluation.steps.step1_title')}</h3>
+                    <p className="text-[#9a9a96]">{t('evaluation.steps.step1_desc')}</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-8">
@@ -210,8 +245,8 @@ const Valutazione = () => {
                     2
                   </div>
                   <div className="pt-2">
-                    <h3 className="text-white font-semibold text-lg mb-2">Analizziamo le informazioni fornite</h3>
-                    <p className="text-[#9a9a96]">Studiamo i dati e identifichiamo opportunità e criticità.</p>
+                    <h3 className="text-white font-semibold text-lg mb-2">{t('evaluation.steps.step2_title')}</h3>
+                    <p className="text-[#9a9a96]">{t('evaluation.steps.step2_desc')}</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-8">
@@ -219,8 +254,8 @@ const Valutazione = () => {
                     3
                   </div>
                   <div className="pt-2">
-                    <h3 className="text-white font-semibold text-lg mb-2">Ricevi un report sintetico via email</h3>
-                    <p className="text-[#9a9a96]">Entro qualche minuto ricevi la valutazione con raccomandazioni concrete.</p>
+                    <h3 className="text-white font-semibold text-lg mb-2">{t('evaluation.steps.step3_title')}</h3>
+                    <p className="text-[#9a9a96]">{t('evaluation.steps.step3_desc')}</p>
                   </div>
                 </div>
               </div>
@@ -230,63 +265,62 @@ const Valutazione = () => {
       </section>
 
       {/* COSA OTTIENI / COSA NON È / A CHI È UTILE */}
-      <section className="py-16 bg-[#1f211f]">
+      <section className="py-16 bg-[#161716]">
         <div className="max-w-[1400px] mx-auto px-5 md:px-10">
           <div className="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto">
             <div>
-              <h3 className="text-white font-bold text-xl mb-6">Cosa ottieni</h3>
+              <h3 className="text-white font-bold text-xl mb-6">{t('evaluation.whatYouGet.title')}</h3>
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#c8f000] mt-2.5 flex-shrink-0"></span>
-                  <span className="text-[#9a9a96]">Una lettura esterna e professionale</span>
+                  <span className="text-[#9a9a96]">{t('evaluation.whatYouGet.point1')}</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#c8f000] mt-2.5 flex-shrink-0"></span>
-                  <span className="text-[#9a9a96]">Punti di miglioramento concreti</span>
+                  <span className="text-[#9a9a96]">{t('evaluation.whatYouGet.point2')}</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#c8f000] mt-2.5 flex-shrink-0"></span>
-                  <span className="text-[#9a9a96]">Maggiore chiarezza sulle priorità</span>
+                  <span className="text-[#9a9a96]">{t('evaluation.whatYouGet.point3')}</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#c8f000] mt-2.5 flex-shrink-0"></span>
-                  <span className="text-[#9a9a96]">Valutare se ha senso collaborare con noi</span>
+                  <span className="text-[#9a9a96]">{t('evaluation.whatYouGet.point4')}</span>
                 </li>
               </ul>
             </div>
             <div>
-              <h3 className="text-white font-bold text-xl mb-6">Cosa non è questa valutazione</h3>
+              <h3 className="text-white font-bold text-xl mb-6">{t('evaluation.whatIsNot.title')}</h3>
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#6f716d] mt-2.5 flex-shrink-0"></span>
-                  <span className="text-[#6f716d]">Non è una consulenza strategica completa</span>
+                  <span className="text-[#6f716d]">{t('evaluation.whatIsNot.point1')}</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#6f716d] mt-2.5 flex-shrink-0"></span>
-                  <span className="text-[#6f716d]">Non è una call di vendita</span>
+                  <span className="text-[#6f716d]">{t('evaluation.whatIsNot.point2')}</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#6f716d] mt-2.5 flex-shrink-0"></span>
-                  <span className="text-[#6f716d]">Non comporta obblighi o vincoli</span>
+                  <span className="text-[#6f716d]">{t('evaluation.whatIsNot.point3')}</span>
                 </li>
               </ul>
             </div>
-            {/* A CHI È UTILE - PIÙ VISIBILE */}
             <div className="bg-[#2a2c29] p-6 rounded-xl border-2 border-[#c8f000]">
-              <h3 className="text-[#c8f000] font-bold text-xl mb-6">A chi è utile</h3>
-              <p className="text-white mb-4 font-medium">La valutazione è utile se vuoi:</p>
+              <h3 className="text-[#c8f000] font-bold text-xl mb-6">{t('evaluation.whoIsFor.title')}</h3>
+              <p className="text-white mb-4 font-medium">{t('evaluation.whoIsFor.intro')}</p>
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#c8f000] mt-2.5 flex-shrink-0"></span>
-                  <span className="text-white">capire se il tuo marketing è coerente</span>
+                  <span className="text-white">{t('evaluation.whoIsFor.point1')}</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#c8f000] mt-2.5 flex-shrink-0"></span>
-                  <span className="text-white">evitare sprechi</span>
+                  <span className="text-white">{t('evaluation.whoIsFor.point2')}</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#c8f000] mt-2.5 flex-shrink-0"></span>
-                  <span className="text-white">prendere decisioni più consapevoli</span>
+                  <span className="text-white">{t('evaluation.whoIsFor.point3')}</span>
                 </li>
               </ul>
             </div>
@@ -295,19 +329,18 @@ const Valutazione = () => {
       </section>
 
       {/* FORM SECTION */}
-      <section className="py-24 bg-[#161716]">
+      <section className="py-24 bg-[#1f211f]">
         <div className="max-w-[1400px] mx-auto px-5 md:px-10">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-[#c8f000] font-bold text-2xl mb-12 text-center">Compila la valutazione gratuita</h2>
+            <h2 className="text-[#c8f000] font-bold text-2xl mb-12 text-center">{t('evaluation.form.title')}</h2>
             
             <form onSubmit={handleSubmit} className="space-y-8">
               {/* Personal Info */}
               <div className="bg-[#2a2c29] p-8 rounded-xl border border-[#343633]">
-                <h3 className="text-white font-semibold mb-6">Informazioni di contatto</h3>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-white text-sm font-medium mb-2">
-                      Nome e Cognome <span className="text-[#c8f000]">*</span>
+                      {t('evaluation.form.fullName')} <span className="text-[#c8f000]">*</span>
                     </label>
                     <input
                       type="text"
@@ -323,7 +356,7 @@ const Valutazione = () => {
                   </div>
                   <div>
                     <label className="block text-white text-sm font-medium mb-2">
-                      Email <span className="text-[#c8f000]">*</span>
+                      {t('evaluation.form.email')} <span className="text-[#c8f000]">*</span>
                     </label>
                     <input
                       type="email"
@@ -339,7 +372,7 @@ const Valutazione = () => {
                   </div>
                   <div>
                     <label className="block text-white text-sm font-medium mb-2">
-                      Telefono <span className="text-[#c8f000]">*</span>
+                      {t('evaluation.form.phone')} <span className="text-[#c8f000]">*</span>
                     </label>
                     <input
                       type="tel"
@@ -353,16 +386,9 @@ const Valutazione = () => {
                     />
                     {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
                   </div>
-                </div>
-              </div>
-
-              {/* Company Info */}
-              <div className="bg-[#2a2c29] p-8 rounded-xl border border-[#343633]">
-                <h3 className="text-white font-semibold mb-6">Informazioni aziendali</h3>
-                <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-white text-sm font-medium mb-2">
-                      Nome Azienda / Brand <span className="text-[#c8f000]">*</span>
+                      {t('evaluation.form.companyName')} <span className="text-[#c8f000]">*</span>
                     </label>
                     <input
                       type="text"
@@ -378,7 +404,7 @@ const Valutazione = () => {
                   </div>
                   <div>
                     <label className="block text-white text-sm font-medium mb-2">
-                      Sito web <span className="text-[#6f716d] text-xs">(opzionale)</span>
+                      {t('evaluation.form.website')} <span className="text-[#6f716d] text-xs">({t('common.optional')})</span>
                     </label>
                     <input
                       type="url"
@@ -391,18 +417,18 @@ const Valutazione = () => {
                   </div>
                   <div>
                     <label className="block text-white text-sm font-medium mb-2">
-                      Settore <span className="text-[#c8f000]">*</span>
+                      {t('evaluation.form.sector')} <span className="text-[#c8f000]">*</span>
                     </label>
                     <Select value={formData.sector} onValueChange={(value) => handleSelectChange('sector', value)}>
                       <SelectTrigger className={`w-full px-4 py-3 h-auto bg-[#161716] border rounded-lg text-white focus:ring-0 focus:ring-offset-0 ${
                         errors.sector ? 'border-red-500' : 'border-[#343633]'
                       }`}>
-                        <SelectValue placeholder="Seleziona il settore" />
+                        <SelectValue placeholder={t('evaluation.form.sector_placeholder')} />
                       </SelectTrigger>
                       <SelectContent className="bg-[#2a2c29] border-[#343633]">
                         {sectors.map((sector) => (
-                          <SelectItem key={sector} value={sector} className="text-white hover:bg-[#343633] focus:bg-[#343633] focus:text-[#c8f000]">
-                            {sector}
+                          <SelectItem key={sector.id} value={sector.id} className="text-white hover:bg-[#343633] focus:bg-[#343633] focus:text-[#c8f000]">
+                            {sector.label}
                           </SelectItem>
                         ))}
                       </SelectContent>
@@ -411,18 +437,18 @@ const Valutazione = () => {
                   </div>
                   <div>
                     <label className="block text-white text-sm font-medium mb-2">
-                      Area geografica <span className="text-[#c8f000]">*</span>
+                      {t('evaluation.form.geoArea')} <span className="text-[#c8f000]">*</span>
                     </label>
                     <Select value={formData.geoArea} onValueChange={(value) => handleSelectChange('geoArea', value)}>
                       <SelectTrigger className={`w-full px-4 py-3 h-auto bg-[#161716] border rounded-lg text-white focus:ring-0 focus:ring-offset-0 ${
                         errors.geoArea ? 'border-red-500' : 'border-[#343633]'
                       }`}>
-                        <SelectValue placeholder="Seleziona l'area" />
+                        <SelectValue placeholder={t('evaluation.form.geoArea_placeholder')} />
                       </SelectTrigger>
                       <SelectContent className="bg-[#2a2c29] border-[#343633]">
                         {geoAreas.map((area) => (
-                          <SelectItem key={area} value={area} className="text-white hover:bg-[#343633] focus:bg-[#343633] focus:text-[#c8f000]">
-                            {area}
+                          <SelectItem key={area.id} value={area.id} className="text-white hover:bg-[#343633] focus:bg-[#343633] focus:text-[#c8f000]">
+                            {area.label}
                           </SelectItem>
                         ))}
                       </SelectContent>
@@ -434,12 +460,12 @@ const Valutazione = () => {
 
               {/* Marketing Info */}
               <div className="bg-[#2a2c29] p-8 rounded-xl border border-[#343633]">
-                <h3 className="text-white font-semibold mb-6">Il tuo marketing attuale</h3>
                 <div className="space-y-6">
                   <div>
                     <label className="block text-white text-sm font-medium mb-4">
-                      Canali attualmente utilizzati <span className="text-[#c8f000]">*</span>
+                      {t('evaluation.form.channels')} <span className="text-[#c8f000]">*</span>
                     </label>
+                    <p className="text-[#6f716d] text-xs mb-3">{t('evaluation.form.channels_hint')}</p>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                       {channels.map((channel) => (
                         <button
@@ -458,14 +484,13 @@ const Valutazione = () => {
                     </div>
                     {errors.channels && <p className="text-red-500 text-sm mt-2">{errors.channels}</p>}
                     
-                    {/* Campo per link social - appare quando social o ads sono selezionati */}
                     {hasSocialChannels && (
                       <div className="mt-4 p-4 bg-[#161716] rounded-lg border border-[#343633]">
                         <label className="block text-white text-sm font-medium mb-2">
-                          Link o nome delle tue pagine social <span className="text-[#c8f000]">*</span>
+                          {t('evaluation.form.socialLinks')} <span className="text-[#c8f000]">*</span>
                         </label>
                         <p className="text-[#6f716d] text-xs mb-3">
-                          Inserisci il link diretto o il nome delle tue pagine social (es: facebook.com/tuapagina, @tuoaccount)
+                          {t('evaluation.form.socialLinks_hint')}
                         </p>
                         <textarea
                           name="socialLinks"
@@ -484,18 +509,18 @@ const Valutazione = () => {
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-white text-sm font-medium mb-2">
-                        Obiettivo principale <span className="text-[#c8f000]">*</span>
+                        {t('evaluation.form.objective')} <span className="text-[#c8f000]">*</span>
                       </label>
                       <Select value={formData.objective} onValueChange={(value) => handleSelectChange('objective', value)}>
                         <SelectTrigger className={`w-full px-4 py-3 h-auto bg-[#161716] border rounded-lg text-white focus:ring-0 focus:ring-offset-0 ${
                           errors.objective ? 'border-red-500' : 'border-[#343633]'
                         }`}>
-                          <SelectValue placeholder="Cosa vuoi ottenere?" />
+                          <SelectValue placeholder={t('evaluation.form.objective_placeholder')} />
                         </SelectTrigger>
                         <SelectContent className="bg-[#2a2c29] border-[#343633]">
                           {objectives.map((obj) => (
-                            <SelectItem key={obj} value={obj} className="text-white hover:bg-[#343633] focus:bg-[#343633] focus:text-[#c8f000]">
-                              {obj}
+                            <SelectItem key={obj.id} value={obj.id} className="text-white hover:bg-[#343633] focus:bg-[#343633] focus:text-[#c8f000]">
+                              {obj.label}
                             </SelectItem>
                           ))}
                         </SelectContent>
@@ -504,18 +529,18 @@ const Valutazione = () => {
                     </div>
                     <div>
                       <label className="block text-white text-sm font-medium mb-2">
-                        Budget marketing mensile <span className="text-[#c8f000]">*</span>
+                        {t('evaluation.form.budget')} <span className="text-[#c8f000]">*</span>
                       </label>
                       <Select value={formData.budget} onValueChange={(value) => handleSelectChange('budget', value)}>
                         <SelectTrigger className={`w-full px-4 py-3 h-auto bg-[#161716] border rounded-lg text-white focus:ring-0 focus:ring-offset-0 ${
                           errors.budget ? 'border-red-500' : 'border-[#343633]'
                         }`}>
-                          <SelectValue placeholder="Seleziona il budget" />
+                          <SelectValue placeholder={t('evaluation.form.budget_placeholder')} />
                         </SelectTrigger>
                         <SelectContent className="bg-[#2a2c29] border-[#343633]">
                           {budgets.map((budget) => (
-                            <SelectItem key={budget} value={budget} className="text-white hover:bg-[#343633] focus:bg-[#343633] focus:text-[#c8f000]">
-                              {budget}
+                            <SelectItem key={budget.id} value={budget.id} className="text-white hover:bg-[#343633] focus:bg-[#343633] focus:text-[#c8f000]">
+                              {budget.label}
                             </SelectItem>
                           ))}
                         </SelectContent>
@@ -525,7 +550,7 @@ const Valutazione = () => {
                   </div>
                   <div>
                     <label className="block text-white text-sm font-medium mb-2">
-                      Qual è il tuo problema principale? <span className="text-[#c8f000]">*</span>
+                      {t('evaluation.form.mainProblem')} <span className="text-[#c8f000]">*</span>
                     </label>
                     <textarea
                       name="mainProblem"
@@ -535,15 +560,14 @@ const Valutazione = () => {
                       className={`w-full px-4 py-3 bg-[#161716] border rounded-lg text-white placeholder-[#6f716d] focus:outline-none focus:border-[#c8f000] transition-colors resize-none ${
                         errors.mainProblem ? 'border-red-500' : 'border-[#343633]'
                       }`}
-                      placeholder="Descrivi brevemente la sfida principale che vorresti affrontare con il marketing..."
+                      placeholder={t('evaluation.form.mainProblem_placeholder')}
                     />
                     {errors.mainProblem && <p className="text-red-500 text-sm mt-1">{errors.mainProblem}</p>}
                   </div>
 
-                  {/* New Field: Previous Attempts */}
                   <div>
                     <label className="block text-white text-sm font-medium mb-2">
-                      Tentativi precedenti
+                      {t('evaluation.form.previousAttempts')}
                     </label>
                     <textarea
                       name="previousAttempts"
@@ -551,14 +575,13 @@ const Valutazione = () => {
                       onChange={handleInputChange}
                       rows={3}
                       className="w-full px-4 py-3 bg-[#161716] border border-[#343633] rounded-lg text-white placeholder-[#6f716d] focus:outline-none focus:border-[#c8f000] transition-colors resize-none"
-                      placeholder="Hai già provato a risolvere questo problema? Come? (es: agenzie, freelance, campagne fai-da-te...)"
+                      placeholder={t('evaluation.form.previousAttempts_placeholder')}
                     />
                   </div>
 
-                  {/* New Field: Improvement Importance */}
                   <div>
                     <label className="block text-white text-sm font-medium mb-3">
-                      Quanto è importante per te migliorare il marketing? <span className="text-[#c8f000]">*</span>
+                      {t('evaluation.form.importance')} <span className="text-[#c8f000]">*</span>
                     </label>
                     <div className="flex items-center justify-between gap-2">
                       {[1, 2, 3, 4, 5].map((value) => (
@@ -577,8 +600,8 @@ const Valutazione = () => {
                       ))}
                     </div>
                     <div className="flex justify-between mt-2 text-xs text-[#6f716d]">
-                      <span>Poco importante</span>
-                      <span>Molto importante</span>
+                      <span>{t('evaluation.form.importance_low')}</span>
+                      <span>{t('evaluation.form.importance_high')}</span>
                     </div>
                   </div>
                 </div>
@@ -596,9 +619,7 @@ const Valutazione = () => {
                     }`}
                   />
                   <label htmlFor="privacy" className="text-[#9a9a96] text-sm leading-relaxed cursor-pointer">
-                    Acconsento al trattamento dei miei dati personali secondo la{' '}
-                    <a href="/privacy" className="text-[#c8f000] hover:underline">Privacy Policy</a>{' '}
-                    e accetto di essere ricontattato dal team Arxéon per la valutazione richiesta. <span className="text-[#c8f000]">*</span>
+                    {t('evaluation.form.privacy')} <span className="text-[#c8f000]">*</span>
                   </label>
                 </div>
                 {errors.privacyConsent && <p className="text-red-500 text-sm mb-4">{errors.privacyConsent}</p>}
@@ -613,20 +634,19 @@ const Valutazione = () => {
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                       </svg>
-                      Invio in corso...
+                      {t('evaluation.form.submitting')}
                     </span>
                   ) : (
                     <>
-                      Compila la valutazione gratuita
+                      {t('evaluation.form.submit')}
                       <ArrowRight className="ml-2" size={18} />
                     </>
                   )}
                 </button>
-                {/* Nota su AI + verifica manuale */}
                 <div className="flex items-start gap-2 mt-4 p-3 bg-[#161716] rounded-lg border border-[#343633]">
                   <Info className="text-[#c8f000] flex-shrink-0 mt-0.5" size={16} />
                   <p className="text-[#6f716d] text-sm">
-                    Le richieste di valutazione sono analizzate dai nostri software AI e successivamente verificate e valutate manualmente entro pochi minuti.
+                    {t('evaluation.form.ai_note')}
                   </p>
                 </div>
               </div>
