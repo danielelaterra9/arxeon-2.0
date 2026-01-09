@@ -11,7 +11,11 @@ const ValutazioneConferma = () => {
   useEffect(() => {
     const storedData = sessionStorage.getItem('valutazioneData');
     if (storedData) {
-      setFormData(JSON.parse(storedData));
+      const parsedData = JSON.parse(storedData);
+      // Use timeout to avoid setState in effect synchronously
+      setTimeout(() => {
+        setFormData(parsedData);
+      }, 0);
     } else {
       navigate('/valutazione');
     }
