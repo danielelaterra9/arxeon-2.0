@@ -1,7 +1,10 @@
 import React, { useEffect } from 'react';
 import { Mail, ArrowRight } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const Contatti = () => {
+  const { t } = useTranslation();
+
   // Scroll to top on page load
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -14,11 +17,10 @@ const Contatti = () => {
         <div className="max-w-[1400px] mx-auto px-5 md:px-10">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-[#c8f000] font-bold text-4xl md:text-5xl leading-tight mb-6">
-              Parliamone in modo chiaro.
+              {t('contact.hero.title')}
             </h1>
             <p className="text-[#9a9a96] text-lg leading-relaxed">
-              Se hai domande o vuoi chiarire alcuni punti,<br />
-              scrivici direttamente.
+              {t('contact.hero.subtitle')}
             </p>
           </div>
         </div>
@@ -28,7 +30,7 @@ const Contatti = () => {
       <section className="py-24 bg-[#1f211f]">
         <div className="max-w-[1400px] mx-auto px-5 md:px-10">
           <div className="max-w-xl mx-auto text-center">
-            <h2 className="text-white font-bold text-2xl mb-8">Scrivici</h2>
+            <h2 className="text-white font-bold text-2xl mb-8">{t('contact.email.title')}</h2>
             
             <a 
               href="mailto:info@arxeon.ch" 
@@ -39,13 +41,12 @@ const Contatti = () => {
               </div>
               <div className="text-left">
                 <p className="text-[#c8f000] font-semibold">info@arxeon.ch</p>
-                <p className="text-[#6f716d] text-sm">Rispondiamo entro 24 ore lavorative</p>
+                <p className="text-[#6f716d] text-sm">{t('contact.email.response_time')}</p>
               </div>
             </a>
 
             <p className="text-[#9a9a96] text-sm leading-relaxed">
-              Nessuna pressione, nessun obbligo.<br />
-              Solo una conversazione per capire se possiamo aiutarti.
+              {t('contact.no_pressure')}
             </p>
           </div>
         </div>
@@ -56,60 +57,59 @@ const Contatti = () => {
         <div className="max-w-[700px] mx-auto px-5 md:px-10">
           <div className="bg-[#1f211f] p-8 rounded-xl border border-[#343633]">
             <h3 className="text-white font-semibold text-lg mb-4">
-              Dietro Arxéon ci sono persone, non solo strumenti.
+              {t('contact.reassurance.title')}
             </h3>
             <p className="text-[#9a9a96] text-sm leading-relaxed mb-6">
-              Arxéon non è un sistema automatico né un servizio impersonale.
-              Analisi, strategia e decisioni vengono gestite da persone, con metodo, responsabilità e supervisione continua.
+              {t('contact.reassurance.description')}
             </p>
             <ul className="space-y-2 mb-8">
               <li className="flex items-center gap-3 text-[#6f716d] text-sm">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#c8f000] flex-shrink-0"></span>
-                Strategia e direzione marketing
+                {t('contact.reassurance.point1')}
               </li>
               <li className="flex items-center gap-3 text-[#6f716d] text-sm">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#c8f000] flex-shrink-0"></span>
-                Analisi e lettura dei dati
+                {t('contact.reassurance.point2')}
               </li>
               <li className="flex items-center gap-3 text-[#6f716d] text-sm">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#c8f000] flex-shrink-0"></span>
-                Coordinamento operativo
+                {t('contact.reassurance.point3')}
               </li>
               <li className="flex items-center gap-3 text-[#6f716d] text-sm">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#c8f000] flex-shrink-0"></span>
-                Supervisione qualità e performance
+                {t('contact.reassurance.point4')}
               </li>
             </ul>
             
             {/* Sezione chiamata conoscitiva */}
             <div className="pt-6 border-t border-[#343633]">
-              <h4 className="text-white font-semibold mb-4">Preferisci una chiamata?</h4>
+              <h4 className="text-white font-semibold mb-4">{t('contact.call.title')}</h4>
               <p className="text-[#9a9a96] text-sm mb-4">
-                Una chiamata conoscitiva è utile <strong className="text-white">solo se</strong>:
+                {t('contact.call.intro')}
               </p>
               <ul className="space-y-2 mb-6">
                 <li className="flex items-start gap-3 text-[#9a9a96] text-sm">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#c8f000] mt-1.5 flex-shrink-0"></span>
-                  Hai già consultato la sezione FAQ
+                  {t('contact.call.condition1')}
                 </li>
                 <li className="flex items-start gap-3 text-[#9a9a96] text-sm">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#c8f000] mt-1.5 flex-shrink-0"></span>
-                  Hai pensato o provato a fare la valutazione gratuita
+                  {t('contact.call.condition2')}
                 </li>
                 <li className="flex items-start gap-3 text-[#9a9a96] text-sm">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#c8f000] mt-1.5 flex-shrink-0"></span>
-                  Hai deciso di collaborare ma non sai quale pacchetto scegliere
+                  {t('contact.call.condition3')}
                 </li>
                 <li className="flex items-start gap-3 text-[#9a9a96] text-sm">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#c8f000] mt-1.5 flex-shrink-0"></span>
-                  Il progetto include più servizi o prodotti (es. e-commerce o holding)
+                  {t('contact.call.condition4')}
                 </li>
               </ul>
               <a 
                 href="mailto:info@arxeon.ch?subject=Richiesta chiamata conoscitiva" 
                 className="inline-flex items-center gap-2 text-[#c8f000] font-medium hover:underline"
               >
-                Richiedi una chiamata conoscitiva
+                {t('contact.call.cta')}
                 <ArrowRight size={16} />
               </a>
             </div>

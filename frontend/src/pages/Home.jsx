@@ -1,8 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const Home = () => {
+  const { t } = useTranslation();
+
   return (
     <main className="pt-20">
       {/* SEZIONE 1 – HERO */}
@@ -10,24 +13,22 @@ const Home = () => {
         <div className="max-w-[1400px] mx-auto px-5 md:px-10 py-20 w-full">
           <div className="max-w-4xl">
             <h1 className="text-[#c8f000] font-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[0.95] tracking-tight mb-8">
-              Marketing che lavora<br />
-              per il tuo business,<br />
-              <span className="text-white">non il contrario.</span>
+              {t('home.hero.title1')}<br />
+              {t('home.hero.title2')}
             </h1>
             <p className="text-[#9a9a96] text-lg md:text-xl leading-relaxed max-w-2xl mb-10">
-              Servizi marketing strutturati, dalla consulenza strategica alla gestione operativa, 
-              per professionisti e aziende che vogliono chiarezza, controllo e risultati misurabili.
+              {t('home.hero.subtitle')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 items-start">
               <Link to="/valutazione" className="btn-primary text-base px-8 py-4">
-                Ottieni una valutazione gratuita
+                {t('home.hero.cta_evaluation')}
                 <ArrowRight className="ml-2" size={18} />
               </Link>
               <Link 
                 to="/servizi" 
                 className="text-[#9a9a96] hover:text-[#c8f000] transition-colors text-base font-medium py-4 px-2 flex items-center gap-2"
               >
-                Scopri i pacchetti
+                {t('home.hero.cta_packages')}
                 <ArrowRight size={16} />
               </Link>
             </div>
@@ -40,32 +41,32 @@ const Home = () => {
         <div className="max-w-[1400px] mx-auto px-5 md:px-10">
           <div className="max-w-3xl">
             <h2 className="text-[#c8f000] font-bold text-3xl md:text-4xl leading-tight mb-8">
-              Il problema non è fare marketing.<br />
-              <span className="text-white">È farlo senza controllo.</span>
+              {t('home.problem.title1')}<br />
+              <span className="text-white">{t('home.problem.title2')}</span>
             </h2>
             <p className="text-[#9a9a96] text-lg mb-8">
-              Molti business investono tempo e budget in attività marketing che non portano risultati chiari:
+              {t('home.problem.description')}
             </p>
             <ul className="space-y-4 mb-8">
               <li className="flex items-start gap-4">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#c8f000] mt-2.5 flex-shrink-0"></span>
-                <span className="text-[#9a9a96] text-lg">social pubblicati senza una strategia reale</span>
+                <span className="text-[#9a9a96] text-lg">{t('home.problem.point1')}</span>
               </li>
               <li className="flex items-start gap-4">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#c8f000] mt-2.5 flex-shrink-0"></span>
-                <span className="text-[#9a9a96] text-lg">pubblicità che consuma budget senza dati leggibili</span>
+                <span className="text-[#9a9a96] text-lg">{t('home.problem.point2')}</span>
               </li>
               <li className="flex items-start gap-4">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#c8f000] mt-2.5 flex-shrink-0"></span>
-                <span className="text-[#9a9a96] text-lg">siti web che non generano contatti</span>
+                <span className="text-[#9a9a96] text-lg">{t('home.problem.point3')}</span>
               </li>
               <li className="flex items-start gap-4">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#c8f000] mt-2.5 flex-shrink-0"></span>
-                <span className="text-[#9a9a96] text-lg">decisioni prese a sensazione</span>
+                <span className="text-[#9a9a96] text-lg">{t('home.problem.point4')}</span>
               </li>
             </ul>
             <p className="text-white text-xl font-medium">
-              Il problema non è fare marketing, ma farlo senza una direzione chiara o senza sapere cosa aspettarsi.
+              {t('home.problem.conclusion')}
             </p>
           </div>
         </div>
@@ -76,53 +77,38 @@ const Home = () => {
         <div className="max-w-[1400px] mx-auto px-5 md:px-10">
           <div className="max-w-3xl">
             <h2 className="text-[#c8f000] font-bold text-3xl md:text-4xl leading-tight mb-8">
-              Arxéon è il sistema di marketing<br />
-              che lavora per te.
+              {t('home.solution.title1')}<br />
+              {t('home.solution.title2')}
             </h2>
             <div className="space-y-6">
               <p className="text-[#9a9a96] text-lg leading-relaxed">
-                Arxéon non aggiunge attività inutili.
+                {t('home.solution.description1')}
               </p>
               <p className="text-white text-xl font-medium leading-relaxed">
-                Rende il marketing comprensibile, strutturato e orientato ai risultati.
+                {t('home.solution.description2')}
               </p>
               <p className="text-[#9a9a96] text-lg leading-relaxed">
-                Ogni progetto parte da un principio semplice:
+                {t('home.solution.principle')}
               </p>
               <p className="text-[#c8f000] text-xl font-semibold leading-relaxed mb-8">
-                il marketing deve aiutare il business a prendere decisioni migliori.
+                {t('home.solution.principle_highlight')}
               </p>
-              <div className="bg-[#2a2c29] p-6 rounded-xl border border-[#343633]">
-                <p className="text-white font-medium mb-4">Arxéon lavora su due livelli:</p>
-                <ul className="space-y-3">
-                  <li className="flex items-start gap-3">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#c8f000] mt-2.5 flex-shrink-0"></span>
-                    <span className="text-[#9a9a96]">supporto strategico per chi vuole restare autonomo</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#c8f000] mt-2.5 flex-shrink-0"></span>
-                    <span className="text-[#9a9a96]">gestione operativa per chi desidera delegare in modo controllato</span>
-                  </li>
-                </ul>
-              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* SEZIONE 4 – METODO IN 4 STEP */}
+      {/* SEZIONE 4 – METODO IN 3 STEP */}
       <section className="py-24 bg-[#2a2c29]">
         <div className="max-w-[1400px] mx-auto px-5 md:px-10">
           <h2 className="text-[#c8f000] font-bold text-3xl md:text-4xl leading-tight mb-16 max-w-2xl">
-            Un metodo chiaro,<br />
-            applicato a ogni progetto.
+            {t('home.howItWorks.title')}
           </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+          <div className="grid md:grid-cols-3 gap-8 mb-8">
             {[
-              { num: '01', title: 'Analisi', desc: 'Capire cosa funziona e cosa no' },
-              { num: '02', title: 'Direzione strategica', desc: 'Definire priorità realistiche' },
-              { num: '03', title: 'Gestione o supporto', desc: 'In base al pacchetto scelto' },
-              { num: '04', title: 'Ottimizzazione', desc: 'Solo dove previsto dal pacchetto' },
+              { num: '01', title: t('home.howItWorks.step1_title'), desc: t('home.howItWorks.step1_desc') },
+              { num: '02', title: t('home.howItWorks.step2_title'), desc: t('home.howItWorks.step2_desc') },
+              { num: '03', title: t('home.howItWorks.step3_title'), desc: t('home.howItWorks.step3_desc') },
             ].map((step, index) => (
               <div key={index} className="relative">
                 <div className="text-5xl font-black text-[#9a9a96] mb-4">{step.num}</div>
@@ -131,9 +117,6 @@ const Home = () => {
               </div>
             ))}
           </div>
-          <p className="text-[#6f716d] text-sm italic">
-            Il livello di intervento dipende dal pacchetto scelto.
-          </p>
         </div>
       </section>
 
@@ -142,92 +125,56 @@ const Home = () => {
         <div className="max-w-[1400px] mx-auto px-5 md:px-10">
           <div className="text-center mb-16">
             <h2 className="text-[#c8f000] font-bold text-3xl md:text-4xl leading-tight mb-4">
-              Tre pacchetti. Una sola logica:
+              {t('home.packages.title1')}
             </h2>
             <p className="text-white text-2xl md:text-3xl font-bold mb-6">
-              far funzionare il marketing.
+              {t('home.packages.title2')}
             </p>
             <p className="text-[#9a9a96] text-lg max-w-2xl mx-auto">
-              La differenza tra i pacchetti non è cosa facciamo,<br />
-              ma quanto profondamente entriamo nel tuo marketing.
+              {t('home.packages.subtitle')}
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-8 mb-12">
             <Link to="/servizi#basic" className="bg-[#2a2c29] p-8 rounded-xl border border-[#343633] hover:border-[#c8f000] transition-colors cursor-pointer block">
-              <div className="text-[#c8f000] font-bold text-2xl mb-2">Basic</div>
-              <p className="text-[#6f716d] text-sm uppercase tracking-wider mb-4">Solo consulenza strategica</p>
-              <p className="text-[#9a9a96]">Per chi vuole restare autonomo con una guida esterna</p>
+              <div className="text-[#c8f000] font-bold text-2xl mb-2">{t('home.packages.basic.name')}</div>
+              <p className="text-[#6f716d] text-sm uppercase tracking-wider mb-4">{t('home.packages.basic.tagline')}</p>
+              <p className="text-[#9a9a96]">{t('home.packages.basic.description')}</p>
             </Link>
             <Link to="/servizi#premium" className="bg-[#2a2c29] p-8 rounded-xl border border-[#c8f000] hover:border-[#c8f000] transition-colors cursor-pointer block">
-              <div className="text-[#c8f000] font-bold text-2xl mb-2">Premium</div>
-              <p className="text-[#6f716d] text-sm uppercase tracking-wider mb-4">Gestione operativa di un singolo ambito</p>
-              <p className="text-[#9a9a96]">Per chi vuole delegare un canale specifico</p>
+              <div className="text-[#c8f000] font-bold text-2xl mb-2">{t('home.packages.premium.name')}</div>
+              <p className="text-[#6f716d] text-sm uppercase tracking-wider mb-4">{t('home.packages.premium.tagline')}</p>
+              <p className="text-[#9a9a96]">{t('home.packages.premium.description')}</p>
             </Link>
             <Link to="/servizi#gold" className="bg-[#2a2c29] p-8 rounded-xl border border-[#343633] hover:border-[#c8f000] transition-colors cursor-pointer block">
-              <div className="text-[#c8f000] font-bold text-2xl mb-2">Gold</div>
-              <p className="text-[#6f716d] text-sm uppercase tracking-wider mb-4">Collaborazione marketing completa</p>
-              <p className="text-[#9a9a96]">Per chi vuole un collaboratore dedicato</p>
+              <div className="text-[#c8f000] font-bold text-2xl mb-2">{t('home.packages.gold.name')}</div>
+              <p className="text-[#6f716d] text-sm uppercase tracking-wider mb-4">{t('home.packages.gold.tagline')}</p>
+              <p className="text-[#9a9a96]">{t('home.packages.gold.description')}</p>
             </Link>
           </div>
           <div className="text-center">
             <Link to="/servizi" className="btn-secondary">
-              Confronta i pacchetti
+              {t('home.packages.compare_cta')}
               <ArrowRight className="ml-2" size={16} />
             </Link>
           </div>
         </div>
       </section>
 
-      {/* SEZIONE 6 – VALUTAZIONE GRATUITA */}
+      {/* SEZIONE 6 – CTA FINALE */}
       <section className="py-24 bg-[#1f211f]">
         <div className="max-w-[1400px] mx-auto px-5 md:px-10">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-[#c8f000] font-bold text-3xl md:text-4xl leading-tight mb-8">
-              Prima di investire,<br />
-              capisci cosa ti serve davvero.
+            <h2 className="text-white font-bold text-3xl md:text-4xl leading-tight mb-8">
+              {t('home.cta_final.title')}
             </h2>
-            <p className="text-[#9a9a96] text-lg mb-8">
-              Puoi richiedere una valutazione gratuita del tuo marketing:
-            </p>
-            <div className="flex flex-col md:flex-row justify-center gap-6 md:gap-12 mb-8 text-left md:text-center">
-              <div className="flex items-center gap-3">
-                <span className="w-8 h-8 rounded-full bg-[#c8f000] flex items-center justify-center text-[#161716] font-bold text-sm">1</span>
-                <span className="text-white">compili un questionario guidato</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <span className="w-8 h-8 rounded-full bg-[#c8f000] flex items-center justify-center text-[#161716] font-bold text-sm">2</span>
-                <span className="text-white">analizziamo la tua situazione</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <span className="w-8 h-8 rounded-full bg-[#c8f000] flex items-center justify-center text-[#161716] font-bold text-sm">3</span>
-                <span className="text-white">ricevi un report chiaro via email</span>
-              </div>
-            </div>
-            <p className="text-[#9a9a96] text-base mb-10 max-w-2xl mx-auto">
-              La valutazione gratuita serve a capire se e come possiamo lavorare insieme. 
-              Non è una consulenza generica e non comporta alcun obbligo.
+            <p className="text-[#9a9a96] text-lg mb-10">
+              {t('home.cta_final.subtitle')}
             </p>
             <Link to="/valutazione" className="btn-primary text-base px-10 py-4">
-              Richiedi la valutazione gratuita
+              {t('home.cta_final.button')}
               <ArrowRight className="ml-2" size={18} />
             </Link>
           </div>
-        </div>
-      </section>
-
-      {/* SEZIONE 7 – CTA FINALE */}
-      <section className="py-24 bg-[#343633]">
-        <div className="max-w-[1400px] mx-auto px-5 md:px-10 text-center">
-          <p className="text-white text-2xl md:text-3xl font-bold mb-4 leading-tight">
-            Il vero costo non è investire nel marketing.
-          </p>
-          <p className="text-[#c8f000] text-2xl md:text-3xl font-bold mb-10 leading-tight">
-            È continuare senza una strategia.
-          </p>
-          <Link to="/valutazione" className="btn-primary text-base px-10 py-4 bg-white text-[#161716] hover:bg-[#c8f000]">
-            Ottieni ora la tua valutazione gratuita
-            <ArrowRight className="ml-2" size={18} />
-          </Link>
         </div>
       </section>
     </main>
