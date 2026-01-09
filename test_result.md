@@ -118,33 +118,31 @@ backend:
           comment: "✅ POST /api/free-audit endpoint working correctly - returns valid UUID, status 'pending', and proper message. ✅ GET /api/free-audit/{id} endpoint working correctly - retrieves saved audit data successfully. ✅ Background AI evaluation generation working with GPT-4o via Emergent LLM. ✅ Email 1 (immediate confirmation) sent successfully (mock mode). ✅ Background task processing with 5-minute delay for Email 2. ✅ PDF generation working. Fixed issue: moved app.include_router call after endpoint definitions and corrected send_email function name."
 
 frontend:
-  - task: "Valutazione Form with New Fields"
+  - task: "i18n Translation System FR/IT"
     implemented: true
     working: "NA"
-    file: "/app/frontend/src/pages/Valutazione.jsx"
+    file: "/app/frontend/src/i18n/config.js"
     stuck_count: 0
     priority: "high"
     needs_retesting: true
     status_history:
         - working: "NA"
-          agent: "testing"
-          comment: "Testing Valutazione form with new fields: 'Tentativi precedenti' textarea and 'Quanto è importante per te migliorare il marketing?' (1-5 scale). Need to verify form functionality, validation, API integration, and redirect to confirmation page."
+          agent: "main"
+          comment: "Integrated useTranslation() in all pages: Home.jsx, Servizi.jsx, Valutazione.jsx, Metodo.jsx, Contatti.jsx, ThankYou.jsx, ValutazioneConferma.jsx. LanguageSwitcher already exists in Header. Translation files it.json and fr.json are complete."
 
 metadata:
   created_by: "testing_agent"
   version: "1.0"
-  test_sequence: 1
+  test_sequence: 2
   run_ui: false
 
 test_plan:
   current_focus:
-    - "Valutazione Form with New Fields"
+    - "i18n Translation System FR/IT"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
 
 agent_communication:
-    - agent: "testing"
-      message: "Successfully tested /api/free-audit endpoint. All functionality working correctly including POST request validation, data persistence, AI evaluation generation, email sending (mock), and background task processing. Fixed two critical issues: 1) Router inclusion order - moved app.include_router after endpoint definitions, 2) Function name error - corrected send_email_resend to send_email. Endpoint now fully functional on both local and external URLs."
-    - agent: "testing"
-      message: "Starting comprehensive testing of Valutazione form with new fields: 'Tentativi precedenti' textarea and 'Quanto è importante per te migliorare il marketing?' 1-5 scale buttons. Will test form loading, field visibility, validation, submission, API integration, success toast, and redirect to confirmation page."
+    - agent: "main"
+      message: "Integrated i18n translations in all pages. The system now supports French (FR) and Italian (IT) with a language switcher in the header. All pages use useTranslation() hook with translation keys from it.json and fr.json files."
