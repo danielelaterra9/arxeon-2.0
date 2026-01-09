@@ -622,9 +622,13 @@ const Valutazione = () => {
                     </>
                   )}
                 </button>
-                <p className="text-[#6f716d] text-sm text-center mt-4">
-                  Le richieste vengono valutate manualmente.
-                </p>
+                {/* Nota su AI + verifica manuale */}
+                <div className="flex items-start gap-2 mt-4 p-3 bg-[#161716] rounded-lg border border-[#343633]">
+                  <Info className="text-[#c8f000] flex-shrink-0 mt-0.5" size={16} />
+                  <p className="text-[#6f716d] text-sm">
+                    Le richieste di valutazione sono analizzate dai nostri software AI e successivamente verificate e valutate manualmente entro pochi minuti.
+                  </p>
+                </div>
               </div>
             </form>
           </div>
