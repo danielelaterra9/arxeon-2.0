@@ -250,7 +250,7 @@ const Valutazione = () => {
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#c8f000] mt-2.5 flex-shrink-0"></span>
-                  <span className="text-[#9a9a96]">Indicazione del pacchetto più adatto (se pertinente)</span>
+                  <span className="text-[#9a9a96]">Valutare se ha senso collaborare con noi</span>
                 </li>
               </ul>
             </div>
@@ -271,21 +271,22 @@ const Valutazione = () => {
                 </li>
               </ul>
             </div>
-            <div>
-              <h3 className="text-white font-bold text-xl mb-6">A chi è utile</h3>
-              <p className="text-[#9a9a96] mb-4">La valutazione è utile se vuoi:</p>
+            {/* A CHI È UTILE - PIÙ VISIBILE */}
+            <div className="bg-[#2a2c29] p-6 rounded-xl border-2 border-[#c8f000]">
+              <h3 className="text-[#c8f000] font-bold text-xl mb-6">A chi è utile</h3>
+              <p className="text-white mb-4 font-medium">La valutazione è utile se vuoi:</p>
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#c8f000] mt-2.5 flex-shrink-0"></span>
-                  <span className="text-[#9a9a96]">capire se il tuo marketing è coerente</span>
+                  <span className="text-white">capire se il tuo marketing è coerente</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#c8f000] mt-2.5 flex-shrink-0"></span>
-                  <span className="text-[#9a9a96]">evitare sprechi</span>
+                  <span className="text-white">evitare sprechi</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#c8f000] mt-2.5 flex-shrink-0"></span>
-                  <span className="text-[#9a9a96]">prendere decisioni più consapevoli</span>
+                  <span className="text-white">prendere decisioni più consapevoli</span>
                 </li>
               </ul>
             </div>
