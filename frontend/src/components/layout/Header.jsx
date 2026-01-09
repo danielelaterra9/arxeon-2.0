@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from '../LanguageSwitcher';
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const { t } = useTranslation();
 
   const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'Servizi', path: '/servizi' },
-    { name: 'Valutazione gratuita', path: '/valutazione' },
-    { name: 'Metodo', path: '/metodo' },
-    { name: 'Contatti', path: '/contatti' },
+    { name: t('nav.home'), path: '/' },
+    { name: t('nav.services'), path: '/servizi' },
+    { name: t('nav.evaluation'), path: '/valutazione' },
+    { name: t('nav.method'), path: '/metodo' },
+    { name: t('nav.contact'), path: '/contatti' },
   ];
 
   const isActive = (path) => location.pathname === path;
@@ -42,23 +45,27 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* CTA Button Desktop */}
-          <div className="hidden lg:block">
+          {/* Language Switcher + CTA Button Desktop */}
+          <div className="hidden lg:flex items-center gap-6">
+            <LanguageSwitcher />
             <Link
               to="/valutazione"
               className="btn-primary text-sm"
             >
-              Valutazione Gratuita
+              {t('header.cta')}
             </Link>
           </div>
 
           {/* Mobile Menu Button */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 text-white hover:text-[#c8f000] transition-colors"
-          >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          <div className="lg:hidden flex items-center gap-4">
+            <LanguageSwitcher />
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="p-2 text-white hover:text-[#c8f000] transition-colors"
+            >
+              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -85,7 +92,7 @@ const Header = () => {
               onClick={() => setMobileMenuOpen(false)}
               className="btn-primary mt-4 text-center"
             >
-              Valutazione Gratuita
+              {t('header.cta')}
             </Link>
           </nav>
         </div>
