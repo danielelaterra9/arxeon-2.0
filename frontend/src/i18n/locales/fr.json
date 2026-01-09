@@ -1,0 +1,399 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "services": "Services",
+    "evaluation": "Évaluation gratuite",
+    "method": "Méthode",
+    "contact": "Contact"
+  },
+  "header": {
+    "cta": "ÉVALUATION GRATUITE"
+  },
+  "home": {
+    "hero": {
+      "title1": "Marketing stratégique.",
+      "title2": "Résultats mesurables.",
+      "subtitle": "Arxéon accompagne les PME suisses et les professionnels avec un marketing structuré, clair et orienté vers les résultats. Sans dispersion.",
+      "cta_evaluation": "Demander une évaluation gratuite",
+      "cta_packages": "Découvrir les forfaits"
+    },
+    "problem": {
+      "title1": "Le problème n'est pas de faire du marketing.",
+      "title2": "C'est de le faire sans contrôle.",
+      "description": "Beaucoup d'entreprises investissent du temps et du budget dans des activités marketing qui ne donnent pas de résultats clairs:",
+      "point1": "réseaux sociaux publiés sans stratégie réelle",
+      "point2": "publicité qui consomme du budget sans données lisibles",
+      "point3": "sites web qui ne génèrent pas de contacts",
+      "point4": "décisions prises au feeling",
+      "conclusion": "Le problème n'est pas de faire du marketing, mais de le faire sans direction claire ou sans savoir à quoi s'attendre."
+    },
+    "solution": {
+      "title1": "Arxéon est le système de marketing",
+      "title2": "qui travaille pour vous.",
+      "description1": "Arxéon n'ajoute pas d'activités inutiles.",
+      "description2": "Rend le marketing compréhensible, structuré et orienté résultats.",
+      "principle": "Chaque projet part d'un principe simple:",
+      "principle_highlight": "le marketing doit aider l'entreprise à prendre de meilleures décisions."
+    },
+    "howItWorks": {
+      "title": "Voici comment nous travaillons",
+      "step1_title": "Analyse",
+      "step1_desc": "Nous analysons votre situation actuelle, les outils utilisés et les objectifs commerciaux.",
+      "step2_title": "Stratégie",
+      "step2_desc": "Nous définissons ensemble une direction claire, avec les priorités et les indicateurs à surveiller.",
+      "step3_title": "Exécution",
+      "step3_desc": "Nous gérons les activités opérationnelles convenues, avec des rapports réguliers et une supervision continue."
+    },
+    "packages": {
+      "title1": "Trois forfaits. Une seule logique:",
+      "title2": "faire fonctionner le marketing.",
+      "subtitle": "La différence entre les forfaits n'est pas ce que nous faisons, mais à quel point nous entrons dans votre marketing.",
+      "basic": {
+        "name": "Basic",
+        "tagline": "Conseil stratégique uniquement",
+        "description": "Pour ceux qui veulent rester autonomes avec un guide externe"
+      },
+      "premium": {
+        "name": "Premium",
+        "tagline": "Gestion opérationnelle d'un seul domaine",
+        "description": "Pour ceux qui veulent déléguer un canal spécifique"
+      },
+      "gold": {
+        "name": "Gold",
+        "tagline": "Collaboration marketing complète",
+        "description": "Pour ceux qui veulent un collaborateur dédié"
+      },
+      "compare_cta": "Comparer les forfaits"
+    },
+    "cta_final": {
+      "title": "Vous ne savez pas quel forfait choisir?",
+      "subtitle": "Demandez une évaluation gratuite et nous vous aiderons à comprendre ce qui a vraiment du sens dans votre cas.",
+      "button": "Demander une évaluation gratuite"
+    }
+  },
+  "services": {
+    "hero": {
+      "title": "Services et forfaits",
+      "subtitle": "Chaque forfait est conçu pour s'adapter à une phase différente du business."
+    },
+    "packages": {
+      "basic": {
+        "label": "Forfait",
+        "name": "Basic",
+        "tagline": "Conseil stratégique pour décisions autonomes",
+        "description": "Le forfait Basic est pensé pour ceux qui veulent une lecture professionnelle et externe de leur marketing, sans déléguer l'opérationnel. Vous recevez direction, clarté et outils pour agir de manière autonome.",
+        "price": "CHF 200",
+        "period": "/ mois",
+        "includes_title": "Inclus:",
+        "include1": "Analyse mensuelle du business et du marketing",
+        "include2": "Analyse des outils utilisés par le client",
+        "include3": "1 consultation stratégique mensuelle (20-40 minutes)",
+        "excludes_title": "Non inclus:",
+        "exclude1": "Aucune activité opérationnelle",
+        "exclude2": "Aucune gestion directe",
+        "cta": "Activer le forfait Basic"
+      },
+      "premium": {
+        "label": "Forfait",
+        "name": "Premium",
+        "tagline": "Stratégie + Opérationnel sur un domaine",
+        "description": "Le forfait Premium combine analyse stratégique et exécution opérationnelle sur un domaine de votre choix. Idéal si vous voulez déléguer un canal marketing spécifique tout en gardant le contrôle.",
+        "price": "CHF 400",
+        "period": "/ mois",
+        "includes_title": "Inclus:",
+        "include1": "1 analyse stratégique mensuelle",
+        "include2": "2 consultations mensuelles (20-40 minutes)",
+        "include3": "Temps de réponse sous 24h ouvrables",
+        "include4": "Prise en charge opérationnelle sous 48h ouvrables",
+        "scope_title": "Périmètre opérationnel:",
+        "scope1": "1 seule catégorie à la fois (site/landing, social, publicité, email marketing, SEO)",
+        "scope2": "Possibilité d'ajouter des services ou d'autres canaux",
+        "cta": "Activer le forfait Premium"
+      },
+      "gold": {
+        "label": "Forfait",
+        "name": "Gold",
+        "tagline": "Collaborateur marketing dédié à votre business",
+        "description": "Le forfait Gold offre une collaboration marketing complète. Comme avoir un collaborateur interne dédié au marketing, mais avec une méthode structurée et sans les coûts d'une embauche.",
+        "price": "CHF 1'700",
+        "period": "/ mois",
+        "availability": "2 dernières places disponibles",
+        "includes_title": "Inclus:",
+        "include1": "Supervision marketing continue",
+        "include2": "2 analyses stratégiques mensuelles",
+        "include3": "Temps de réponse et prise en charge sous 24h ouvrables",
+        "include4": "Activité opérationnelle sans limites de catégorie",
+        "cta": "Activer le forfait Gold"
+      }
+    },
+    "comparison": {
+      "title": "Comparaison technique",
+      "frequency": "Fréquence analyses",
+      "consultations": "Consultations",
+      "operational": "Activité opérationnelle",
+      "response_time": "Temps de réponse",
+      "handling": "Prise en charge",
+      "account_access": "Accès aux comptes",
+      "badge_economic": "PLUS ÉCONOMIQUE",
+      "badge_popular": "PLUS CHOISI",
+      "badge_complete": "PLUS PERFORMANT"
+    },
+    "faq": {
+      "title": "Questions fréquentes",
+      "q1": "Combien de temps faut-il pour voir des résultats concrets?",
+      "a1": "Cela dépend du point de départ et du type d'activité, mais en général:\n\n• Clarté stratégique et direction arrivent immédiatement (premières semaines)\n• Améliorations opérationnelles sous 30-60 jours\n• Résultats mesurables sur l'acquisition ou la performance nécessitent de la continuité\n\nNotre objectif n'est pas de \"faire du marketing\", mais de mettre en ordre les bonnes priorités et de travailler sur ce qui a un impact réel.",
+      "q2": "Que se passe-t-il si j'ai déjà une agence ou un freelance qui travaille sur le marketing?",
+      "a2": "Ce n'est pas un problème.\n\nDans de nombreux cas, Arxéon travaille en amont, comme guide stratégique ou supervision.\n\nNous pouvons:\n• Accompagner ceux qui opèrent déjà\n• Améliorer ce qui est déjà actif\n• Ou prendre en charge seulement une partie spécifique\n\nLe focus reste toujours: résultats, pas de chevauchements inutiles.",
+      "q3": "Quelle est la différence réelle entre Basic et Premium?",
+      "a3": "La différence est simple:\n\nBasic → nous réfléchissons ensemble à ce qu'il faut faire\nConseil stratégique, analyse et support décisionnel.\nL'implémentation reste à votre charge.\n\nPremium → nous nous occupons d'un domaine opérationnel\nEn plus de la stratégie, nous gérons directement un domaine spécifique (ex: social, ads, site, SEO).\n\nSi vous voulez seulement un guide, Basic suffit.\nSi vous voulez déléguer, Premium est le choix le plus efficace.",
+      "q4": "Le Basic inclut-il des activités opérationnelles ou un accès aux comptes?",
+      "a4": "Non. Le Basic est exclusivement du conseil stratégique et de l'analyse. Aucune activité opérationnelle et aucun accès aux comptes.",
+      "q5": "Dans le Premium, que signifie \"une catégorie à la fois\"?",
+      "a5": "Vous choisissez un domaine principal (site, social, ads, email ou SEO). Les activités hors de ce domaine sont gérées comme add-on.",
+      "q6": "Avec le Gold, puis-je déléguer tout le marketing?",
+      "a6": "Oui, pour un seul business et un seul secteur. Les activités multi-business nécessitent un accord séparé.",
+      "q7": "Quel budget faut-il pour les campagnes publicitaires?",
+      "a7": "Le budget publicitaire n'est pas inclus dans les forfaits.\n\nComme référence:\n• Budget minimum conseillé: CHF 300/mois pour test et activation\n• Le budget idéal dépend des objectifs, du marché et de la plateforme\n\nSi l'analyse initiale révèle que le budget ou la plateforme ne sont pas adaptés, nous vous informons avant de procéder.",
+      "q8": "Puis-je changer de forfait dans le temps?",
+      "a8": "Oui.\n\nC'est normal de commencer à un niveau puis d'évoluer.\n\nVous pouvez:\n• Passer de Basic à Premium quand vous voulez déléguer\n• Passer à Gold si le business grandit et nécessite une gestion complète\n• Revoir la configuration selon les besoins réels\n\nLe système est conçu pour s'adapter, pas pour vous bloquer.",
+      "q9": "En combien de temps répondez-vous et prenez-vous en charge les travaux?",
+      "a9": "Premium: réponse sous 24h, prise en charge sous 48h ouvrables.\nGold: réponse et prise en charge sous 24h ouvrables.",
+      "q10": "Pourquoi le Gold coûte CHF 1'700/mois?",
+      "a10": "Il inclut une gestion opérationnelle complète, priorité et supervision stratégique continue, comme un collaborateur externe dédié, sans les coûts d'une embauche interne.",
+      "q11": "Combien de travail opérationnel dois-je faire?",
+      "a11": "Cela dépend du forfait choisi:\n\n• Basic → c'est vous qui implémentez, nous vous guidons\n• Premium → vous collaborez, nous gérons le domaine convenu\n• Gold → votre implication opérationnelle est minimale\n\nDans tous les cas, notre objectif est de vous simplifier le travail, pas d'en ajouter.",
+      "q12": "Que se passe-t-il si le service n'est pas adapté à mon cas?",
+      "a12": "Transparence totale.\n\nSi lors de l'évaluation initiale il ressort que:\n• Le forfait choisi n'est pas adapté\n• Le timing n'est pas correct\n• Ou nous ne pouvons pas apporter de valeur réelle\n\nNous vous le disons ouvertement et redéfinissons la solution la plus sensée, même si cela signifie ne pas procéder immédiatement."
+    },
+    "cta_final": {
+      "title": "Vous avez encore des doutes?",
+      "subtitle": "Nous vous aidons à comprendre ce qui a vraiment du sens dans votre cas spécifique.",
+      "cta_evaluation": "Évaluation gratuite",
+      "cta_contact": "Contact"
+    }
+  },
+  "evaluation": {
+    "hero": {
+      "title": "Évaluation gratuite du marketing",
+      "subtitle": "Une lecture professionnelle, sans engagement. Un point de départ pour comprendre quoi améliorer."
+    },
+    "steps": {
+      "step1_title": "Remplis le formulaire",
+      "step1_desc": "Quelques informations sur ton business et ton marketing actuel.",
+      "step2_title": "Nous analysons la situation",
+      "step2_desc": "Nous évaluons les informations et préparons le feedback.",
+      "step3_title": "Tu reçois un rapport synthétique par email",
+      "step3_desc": "En quelques minutes tu reçois l'évaluation avec des recommandations concrètes."
+    },
+    "whatYouGet": {
+      "title": "Ce que tu obtiens",
+      "point1": "Une lecture externe et professionnelle",
+      "point2": "Des points d'amélioration concrets",
+      "point3": "Plus de clarté sur les priorités",
+      "point4": "Évaluer s'il est logique de collaborer avec nous"
+    },
+    "whatIsNot": {
+      "title": "Ce que cette évaluation n'est pas",
+      "point1": "Ce n'est pas un conseil stratégique complet",
+      "point2": "Ce n'est pas un appel de vente",
+      "point3": "Cela ne comporte aucune obligation ni engagement"
+    },
+    "whoIsFor": {
+      "title": "À qui c'est utile",
+      "intro": "L'évaluation est utile si tu veux:",
+      "point1": "comprendre si ton marketing est cohérent",
+      "point2": "éviter les gaspillages",
+      "point3": "prendre des décisions plus éclairées"
+    },
+    "form": {
+      "title": "Demande ton évaluation",
+      "fullName": "Nom complet",
+      "email": "Email",
+      "phone": "Téléphone",
+      "companyName": "Nom de l'entreprise",
+      "website": "Site web",
+      "sector": "Secteur d'activité",
+      "sector_placeholder": "Sélectionne un secteur",
+      "geoArea": "Zone géographique",
+      "geoArea_placeholder": "Sélectionne une zone",
+      "channels": "Canaux marketing actuels",
+      "channels_hint": "Sélectionne tous les canaux que tu utilises actuellement",
+      "socialLinks": "Lien ou nom de tes pages sociales",
+      "socialLinks_hint": "Insère le lien direct ou le nom de tes pages sociales (ex: facebook.com/tapage, @toncompte)",
+      "objective": "Objectif principal",
+      "objective_placeholder": "Sélectionne un objectif",
+      "budget": "Budget marketing mensuel",
+      "budget_placeholder": "Sélectionne une fourchette",
+      "mainProblem": "Quel est ton problème principal?",
+      "mainProblem_placeholder": "Décris brièvement le défi principal que tu voudrais affronter avec le marketing...",
+      "previousAttempts": "Tentatives précédentes",
+      "previousAttempts_placeholder": "As-tu déjà essayé de résoudre ce problème? Comment? (ex: agences, freelances, campagnes faites soi-même...)",
+      "importance": "Quelle est l'importance pour toi d'améliorer le marketing?",
+      "importance_low": "Peu important",
+      "importance_high": "Très important",
+      "privacy": "J'accepte la politique de confidentialité et consens au traitement des données pour recevoir l'évaluation.",
+      "submit": "Envoyer l'évaluation gratuite",
+      "submitting": "Envoi en cours...",
+      "ai_note": "Les demandes d'évaluation sont analysées par nos logiciels IA et ensuite vérifiées et évaluées manuellement en quelques minutes.",
+      "required": "Champ obligatoire",
+      "invalid_email": "Email non valide",
+      "select_sector": "Sélectionne un secteur",
+      "select_area": "Sélectionne une zone géographique",
+      "select_channel": "Sélectionne au moins un canal",
+      "insert_social": "Insère le nom ou le lien de la page sociale",
+      "select_objective": "Sélectionne un objectif",
+      "select_budget": "Sélectionne un budget",
+      "accept_privacy": "Tu dois accepter pour continuer"
+    },
+    "sectors": {
+      "consulting": "Conseil et services professionnels",
+      "retail": "Commerce de détail",
+      "ecommerce": "E-commerce",
+      "hospitality": "Hôtellerie et restauration",
+      "health": "Santé et bien-être",
+      "technology": "Technologie et digital",
+      "manufacturing": "Production et industrie",
+      "real_estate": "Immobilier",
+      "finance": "Finance et assurance",
+      "education": "Formation et éducation",
+      "other": "Autre"
+    },
+    "areas": {
+      "ticino": "Tessin",
+      "romandie": "Suisse romande",
+      "deutschschweiz": "Suisse alémanique",
+      "national": "Toute la Suisse",
+      "international": "International"
+    },
+    "channels_list": {
+      "social": "Réseaux sociaux",
+      "ads": "Publicité en ligne",
+      "seo": "SEO",
+      "email": "Email marketing",
+      "website": "Site web",
+      "offline": "Marketing offline",
+      "none": "Aucun actuellement"
+    },
+    "objectives": {
+      "acquisition": "Acquisition de nouveaux clients",
+      "retention": "Fidélisation des clients existants",
+      "awareness": "Augmentation de la notoriété",
+      "sales": "Augmentation des ventes",
+      "leads": "Génération de leads",
+      "other": "Autre"
+    },
+    "budgets": {
+      "under500": "Moins de CHF 500",
+      "500_1000": "CHF 500 - 1'000",
+      "1000_2000": "CHF 1'000 - 2'000",
+      "2000_5000": "CHF 2'000 - 5'000",
+      "over5000": "Plus de CHF 5'000",
+      "undefined": "Pas encore défini"
+    }
+  },
+  "method": {
+    "hero": {
+      "title": "Notre méthode",
+      "subtitle": "Pas de formules magiques, pas de promesses vagues. Juste une méthode claire, testée et adaptable."
+    },
+    "principles": {
+      "title": "Principes fondamentaux",
+      "principle1_title": "Clarté avant tout",
+      "principle1_desc": "Nous partons toujours d'une analyse structurée, pas d'intuitions. Sans clarté il n'y a pas de stratégie.",
+      "principle2_title": "Priorités, pas de dispersion",
+      "principle2_desc": "Nous ne faisons pas \"tout\". Nous identifions ce qui compte vraiment et concentrons les ressources là.",
+      "principle3_title": "Résultats mesurables",
+      "principle3_desc": "Ce qui ne peut pas être mesuré ne peut pas être amélioré. Chaque action a des indicateurs clairs."
+    },
+    "cases": {
+      "title": "Exemples réels de comment nous appliquons la méthode"
+    },
+    "whyItWorks": {
+      "title": "Pourquoi ça fonctionne",
+      "reason1_title": "Approche structurée",
+      "reason1_desc": "Nous ne travaillons pas à l'improviste. Chaque décision suit un processus défini.",
+      "reason2_title": "Communication directe",
+      "reason2_desc": "Pas de réunions inutiles ou de rapports incompréhensibles. Mise à jour claire et ponctuelle.",
+      "reason3_title": "Clarté opérationnelle",
+      "reason3_desc": "Tu sais toujours ce que nous faisons, pourquoi et quels résultats nous obtenons."
+    },
+    "cta_packages": "Choisis le forfait le plus adapté",
+    "whoWeWork": {
+      "title": "Avec qui nous travaillons",
+      "text1": "Nous ne travaillons pas avec tout le monde.",
+      "text2": "Nous travaillons quand le marketing peut être amélioré de manière concrète.",
+      "discover": "Découvre-le maintenant, avec l'évaluation gratuite",
+      "cta": "Demander une évaluation gratuite"
+    }
+  },
+  "contact": {
+    "hero": {
+      "title": "Parlons-en clairement.",
+      "subtitle": "Si tu as des questions ou veux clarifier certains points, écris-nous directement."
+    },
+    "email": {
+      "title": "Écris-nous",
+      "response_time": "Nous répondons sous 24 heures ouvrables"
+    },
+    "reassurance": {
+      "title": "Derrière Arxéon il y a des personnes, pas seulement des outils.",
+      "description": "Arxéon n'est pas un système automatique ni un service impersonnel. Analyses, stratégie et décisions sont gérées par des personnes, avec méthode, responsabilité et supervision continue.",
+      "point1": "Stratégie et direction marketing",
+      "point2": "Analyse et lecture des données",
+      "point3": "Coordination opérationnelle",
+      "point4": "Supervision qualité et performance"
+    },
+    "call": {
+      "title": "Tu préfères un appel?",
+      "intro": "Un appel de découverte est utile seulement si:",
+      "condition1": "Tu as déjà consulté la section FAQ",
+      "condition2": "Tu as pensé ou essayé de faire l'évaluation gratuite",
+      "condition3": "Tu as décidé de collaborer mais ne sais pas quel forfait choisir",
+      "condition4": "Le projet inclut plusieurs services ou produits (ex: e-commerce ou holding)",
+      "cta": "Demander un appel de découverte"
+    },
+    "no_pressure": "Aucune pression, aucune obligation. Juste une conversation pour comprendre si nous pouvons t'aider."
+  },
+  "footer": {
+    "description": "Marketing stratégique orienté résultats. Nous transformons tes investissements en croissance mesurable.",
+    "navigation": "Navigation",
+    "services_section": "Services",
+    "services": {
+      "social": "Social Media Marketing",
+      "ads": "Google & Meta Ads",
+      "email": "Email Marketing",
+      "crm": "CRM & Automatisations",
+      "seo": "SEO & Contenu"
+    },
+    "contact": "Contact",
+    "location": "Suisse",
+    "rights": "Tous droits réservés."
+  },
+  "checkout": {
+    "basic": {
+      "title": "Activer le forfait Basic",
+      "subtitle": "Conseil stratégique uniquement",
+      "description": "Avec le forfait Basic nous t'aidons à prendre de meilleures décisions, mais l'implémentation reste à ta charge.",
+      "price": "CHF 200/mois",
+      "email_label": "Email pour la facturation",
+      "questions": "J'ai des questions",
+      "see_packages": "Voir les forfaits",
+      "proceed": "Procéder au paiement",
+      "processing": "Traitement..."
+    }
+  },
+  "thankYou": {
+    "title": "Merci pour ta confiance!",
+    "subtitle": "Ton abonnement a été activé avec succès.",
+    "nextSteps": "Prochaines étapes:",
+    "step1": "Complète le formulaire d'onboarding",
+    "step2": "Nous préparons ta première analyse",
+    "step3": "Tu recevras le premier rapport sous 7 jours"
+  },
+  "common": {
+    "loading": "Chargement...",
+    "error": "Une erreur s'est produite",
+    "success": "Succès!",
+    "optional": "optionnel"
+  }
+}
