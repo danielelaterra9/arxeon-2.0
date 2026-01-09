@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { CheckCircle, ArrowRight, FileText, ClipboardList, Search, Calendar } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 const ThankYou = () => {
+  const { t } = useTranslation();
   const [searchParams] = useSearchParams();
   const [subscription, setSubscription] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -36,7 +38,6 @@ const ThankYou = () => {
     verifyPayment();
   }, [sessionId, subscriptionId]);
 
-  // Load Calendly widget
   useEffect(() => {
     const script = document.createElement('script');
     script.src = 'https://assets.calendly.com/assets/external/widget.js';
@@ -49,35 +50,12 @@ const ThankYou = () => {
     };
   }, []);
 
-  const steps = [
-    {
-      icon: FileText,
-      title: 'Riceverai il contratto via email',
-      description: 'Ti invieremo il contratto di servizio da accettare online.'
-    },
-    {
-      icon: ClipboardList,
-      title: 'Compila il formulario di onboarding',
-      description: 'Raccogliamo le informazioni necessarie per iniziare.'
-    },
-    {
-      icon: Search,
-      title: 'Analizziamo il tuo caso',
-      description: 'Il nostro team studierà la tua situazione attuale.'
-    },
-    {
-      icon: Calendar,
-      title: 'Prenota la prima consulenza',
-      description: 'Fissiamo un incontro per allinearci sugli obiettivi.'
-    }
-  ];
-
   if (loading) {
     return (
       <main className="pt-20 min-h-screen bg-[#161716] flex items-center justify-center">
         <div className="text-center">
           <div className="w-12 h-12 border-4 border-[#c8f000] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-[#9a9a96]">Verifica pagamento in corso...</p>
+          <p className="text-[#9a9a96]">{t('common.loading')}</p>
         </div>
       </main>
     );
@@ -92,10 +70,10 @@ const ThankYou = () => {
             <CheckCircle className="text-[#c8f000]" size={40} />
           </div>
           <h1 className="text-[#c8f000] font-bold text-4xl md:text-5xl mb-4">
-            Grazie, il tuo servizio Arxéon è attivo.
+            {t('thankYou.title')}
           </h1>
           <p className="text-[#9a9a96] text-lg">
-            Abbiamo ricevuto correttamente il pagamento.
+            {t('thankYou.subtitle')}
           </p>
           {subscription && (
             <div className="mt-6 inline-block bg-[#2a2c29] px-6 py-3 rounded-full border border-[#343633]">
@@ -111,82 +89,66 @@ const ThankYou = () => {
       {/* Next Steps */}
       <section className="py-16 bg-[#1f211f]">
         <div className="max-w-[900px] mx-auto px-5 md:px-10">
-          <h2 className="text-white font-bold text-2xl mb-4 text-center">Ecco cosa succede ora</h2>
-          <p className="text-[#9a9a96] text-center mb-12">Segui questi passaggi per attivare il servizio.</p>
+          <h2 className="text-white font-bold text-2xl mb-4 text-center">{t('thankYou.nextSteps')}</h2>
           
           <div className="relative">
-            {/* Connecting line */}
             <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-[#343633] hidden md:block transform -translate-x-1/2"></div>
             
             <div className="space-y-8">
-              {steps.map((step, index) => (
-                <div key={index} className="flex items-start gap-6 md:gap-12">
-                  {index % 2 === 0 ? (
-                    <>
-                      <div className="hidden md:block flex-1 text-right">
-                        <h3 className="text-white font-semibold text-lg">{step.title}</h3>
-                        <p className="text-[#9a9a96] text-sm mt-1">{step.description}</p>
-                      </div>
-                      <div className="w-12 h-12 rounded-full bg-[#c8f000] flex items-center justify-center flex-shrink-0 z-10">
-                        <span className="text-[#161716] font-bold">{index + 1}</span>
-                      </div>
-                      <div className="flex-1 md:opacity-0">
-                        <h3 className="text-white font-semibold text-lg md:hidden">{step.title}</h3>
-                        <p className="text-[#9a9a96] text-sm mt-1 md:hidden">{step.description}</p>
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      <div className="hidden md:block flex-1"></div>
-                      <div className="w-12 h-12 rounded-full bg-[#c8f000] flex items-center justify-center flex-shrink-0 z-10">
-                        <span className="text-[#161716] font-bold">{index + 1}</span>
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="text-white font-semibold text-lg">{step.title}</h3>
-                        <p className="text-[#9a9a96] text-sm mt-1">{step.description}</p>
-                      </div>
-                    </>
-                  )}
+              <div className="flex items-start gap-6 md:gap-12">
+                <div className="hidden md:block flex-1 text-right">
+                  <h3 className="text-white font-semibold text-lg">{t('thankYou.step1')}</h3>
                 </div>
-              ))}
+                <div className="w-12 h-12 rounded-full bg-[#c8f000] flex items-center justify-center flex-shrink-0 z-10">
+                  <span className="text-[#161716] font-bold">1</span>
+                </div>
+                <div className="flex-1 md:opacity-0">
+                  <h3 className="text-white font-semibold text-lg md:hidden">{t('thankYou.step1')}</h3>
+                </div>
+              </div>
+              <div className="flex items-start gap-6 md:gap-12">
+                <div className="hidden md:block flex-1"></div>
+                <div className="w-12 h-12 rounded-full bg-[#c8f000] flex items-center justify-center flex-shrink-0 z-10">
+                  <span className="text-[#161716] font-bold">2</span>
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-white font-semibold text-lg">{t('thankYou.step2')}</h3>
+                </div>
+              </div>
+              <div className="flex items-start gap-6 md:gap-12">
+                <div className="hidden md:block flex-1 text-right">
+                  <h3 className="text-white font-semibold text-lg">{t('thankYou.step3')}</h3>
+                </div>
+                <div className="w-12 h-12 rounded-full bg-[#c8f000] flex items-center justify-center flex-shrink-0 z-10">
+                  <span className="text-[#161716] font-bold">3</span>
+                </div>
+                <div className="flex-1 md:opacity-0">
+                  <h3 className="text-white font-semibold text-lg md:hidden">{t('thankYou.step3')}</h3>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Legal Note */}
-      <section className="py-8 bg-[#161716]">
-        <div className="max-w-[900px] mx-auto px-5 md:px-10">
-          <div className="bg-[#2a2c29] p-5 rounded-xl border border-[#343633]">
-            <p className="text-[#6f716d] text-sm text-center">
-              L{"'"}attivazione del servizio avviene tramite accettazione online. 
-              Se necessario, ti chiederemo una firma digitale del contratto.
-            </p>
-          </div>
-        </div>
-      </section>
-
       {/* CTA - Onboarding */}
-      <section className="py-16 bg-[#1f211f]">
+      <section className="py-16 bg-[#161716]">
         <div className="max-w-[900px] mx-auto px-5 md:px-10 text-center">
-          <h2 className="text-white font-bold text-2xl mb-4">Inizia subito</h2>
-          <p className="text-[#9a9a96] mb-8">Compila il formulario di onboarding per permetterci di prepararci al meglio.</p>
           <Link 
             to={`/onboarding${subscriptionId ? `?subscription_id=${subscriptionId}` : ''}`} 
             className="btn-primary text-base px-10 py-4"
           >
-            Inizia l{"'"}onboarding
+            {t('thankYou.step1')}
             <ArrowRight className="ml-2" size={18} />
           </Link>
         </div>
       </section>
 
       {/* Calendly Preview */}
-      <section className="py-16 bg-[#161716]">
+      <section className="py-16 bg-[#1f211f]">
         <div className="max-w-[900px] mx-auto px-5 md:px-10">
           <div className="text-center mb-8">
-            <h2 className="text-white font-bold text-2xl mb-4">Oppure prenota subito la consulenza</h2>
-            <p className="text-[#9a9a96]">Se preferisci, puoi già fissare la prima consulenza.</p>
+            <h2 className="text-white font-bold text-2xl mb-4">{t('contact.call.title')}</h2>
           </div>
           <div 
             className="calendly-inline-widget rounded-xl overflow-hidden border border-[#343633]" 
