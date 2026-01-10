@@ -19,16 +19,18 @@ const LanguageSwitcher = () => {
 
   return (
     <div className="flex items-center gap-1">
-      <Globe size={16} className="text-[#9a9a96] mr-1" />
+      <Globe size={16} className="text-[#9a9a96] mr-1 flex-shrink-0" />
       {languages.map((lang, index) => (
         <React.Fragment key={lang.code}>
           <button
             onClick={() => handleLanguageChange(lang.code)}
-            className={`text-sm font-medium transition-colors ${
+            className={`text-sm font-medium transition-colors px-2 py-1 min-w-[32px] min-h-[32px] flex items-center justify-center rounded ${
               currentLang === lang.code
                 ? 'text-[#c8f000]'
-                : 'text-[#9a9a96] hover:text-white'
+                : 'text-[#9a9a96] hover:text-white active:text-[#c8f000]'
             }`}
+            aria-label={`Switch to ${lang.label}`}
+            type="button"
           >
             {lang.label}
           </button>
