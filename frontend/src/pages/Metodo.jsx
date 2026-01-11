@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 const Metodo = () => {
   const { t } = useTranslation();
   const [currentCase, setCurrentCase] = useState(0);
+  const { trackViewMetodo } = useAnalytics();
+
+  useEffect(() => {
+    trackViewMetodo();
+  }, [trackViewMetodo]);
 
   const caseStudies = [
     {
