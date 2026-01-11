@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowRight, Check, Info, ArrowUpRight, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
+import { useAnalytics } from '../../hooks/useAnalytics';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
@@ -12,6 +13,7 @@ const CheckoutPremium = () => {
   const [selectedAddons, setSelectedAddons] = useState([]);
   const [isProcessing, setIsProcessing] = useState(false);
   const [customerEmail, setCustomerEmail] = useState('');
+  const { trackStartCheckout } = useAnalytics();
 
   const basePrice = 400;
 
