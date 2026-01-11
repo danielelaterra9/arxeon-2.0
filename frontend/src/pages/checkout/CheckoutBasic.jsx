@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Check, Info, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
+import { useAnalytics } from '../../hooks/useAnalytics';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 const CheckoutBasic = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [customerEmail, setCustomerEmail] = useState('');
+  const { trackStartCheckout } = useAnalytics();
 
   // Scroll to top on page load
   useEffect(() => {
@@ -22,6 +24,9 @@ const CheckoutBasic = () => {
       toast.error('Inserisci un indirizzo email valido');
       return;
     }
+
+    // Track checkout start
+    trackStartCheckout('basic', basePrice, 0, []);
 
     setIsProcessing(true);
 
