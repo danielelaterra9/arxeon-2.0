@@ -424,6 +424,8 @@
     "loading": "Chargement...",
     "error": "Une erreur s'est produite",
     "success": "Succès!",
-    "optional": "optionnel"
+    "optional": "optionnel",
+    "package": "Forfait",
+    "per_month": "/mois"
   }
 }
