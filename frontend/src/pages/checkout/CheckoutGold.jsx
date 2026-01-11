@@ -2,11 +2,13 @@ import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Check, Info, MessageCircle, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
+import { useTranslation } from 'react-i18next';
 import { useAnalytics } from '../../hooks/useAnalytics';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 const CheckoutGold = () => {
+  const { t } = useTranslation();
   const [selectedAddons, setSelectedAddons] = useState([]);
   const [showContactModal, setShowContactModal] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
