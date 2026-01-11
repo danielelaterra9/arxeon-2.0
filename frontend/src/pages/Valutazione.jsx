@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ArrowRight, Loader2, Info } from 'lucide-react';
 import { toast } from 'sonner';
 import { useTranslation } from 'react-i18next';
+import { useAnalytics } from '../hooks/useAnalytics';
 import { Checkbox } from '../components/ui/checkbox';
 import {
   Select,
@@ -17,6 +18,7 @@ const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const Valutazione = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const { trackViewValutazione, trackSubmitValutazione } = useAnalytics();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     fullName: '',
