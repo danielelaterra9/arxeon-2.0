@@ -396,6 +396,22 @@
       "processing": "Traitement..."
     }
   },
+  "checkout": {
+    "per_month": "/mois",
+    "one_time": "unique",
+    "total_estimated": "Total estimé",
+    "total_note": "Le total final sera affiché sur l'écran de paiement.",
+    "back_to_packages": "← Retour aux forfaits",
+    "email_label": "Email pour la facturation",
+    "email_placeholder": "ton@email.ch",
+    "email_error": "Saisis une adresse email valide",
+    "questions": "J'ai des questions",
+    "proceed": "Procéder au paiement",
+    "processing": "Traitement...",
+    "budget_note": "Le budget publicitaire n'est pas inclus. Un budget minimum de CHF 300/mois est requis pour les tests et l'activation.",
+    "select_platform": "Sélectionne une plateforme",
+    "select_category": "Sélectionne une catégorie opérationnelle incluse"
+  },
   "thankYou": {
     "title": "Merci pour ta confiance!",
     "subtitle": "Ton abonnement a été activé avec succès.",
