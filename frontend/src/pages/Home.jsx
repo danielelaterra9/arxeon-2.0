@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 const Home = () => {
   const { t } = useTranslation();
+  const { trackViewHome } = useAnalytics();
+
+  useEffect(() => {
+    trackViewHome();
+  }, [trackViewHome]);
 
   return (
     <main className="pt-20">
