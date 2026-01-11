@@ -424,6 +424,8 @@
     "loading": "Caricamento...",
     "error": "Si è verificato un errore",
     "success": "Successo!",
-    "optional": "opzionale"
+    "optional": "opzionale",
+    "package": "Pacchetto",
+    "per_month": "/mese"
   }
 }
