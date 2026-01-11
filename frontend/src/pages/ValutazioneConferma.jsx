@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { CheckCircle, ArrowRight, Calendar, Mail } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 const ValutazioneConferma = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [formData, setFormData] = useState(null);
+  const { trackViewThankYouValutazione } = useAnalytics();
 
   useEffect(() => {
     const storedData = sessionStorage.getItem('valutazioneData');
@@ -16,10 +18,12 @@ const ValutazioneConferma = () => {
       setTimeout(() => {
         setFormData(parsedData);
       }, 0);
+      // Track page view
+      trackViewThankYouValutazione();
     } else {
       navigate('/valutazione');
     }
-  }, [navigate]);
+  }, [navigate, trackViewThankYouValutazione]);
 
   useEffect(() => {
     const script = document.createElement('script');
