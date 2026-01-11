@@ -1,14 +1,17 @@
 import React, { useEffect } from 'react';
 import { Mail, ArrowRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 const Contatti = () => {
   const { t } = useTranslation();
+  const { trackViewContatti } = useAnalytics();
 
-  // Scroll to top on page load
+  // Track page view and scroll to top
   useEffect(() => {
+    trackViewContatti();
     window.scrollTo(0, 0);
-  }, []);
+  }, [trackViewContatti]);
 
   return (
     <main className="pt-20">
