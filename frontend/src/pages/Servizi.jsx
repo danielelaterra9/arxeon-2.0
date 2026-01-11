@@ -260,7 +260,7 @@ const Servizi = () => {
                         {t('services.comparison.badge_economic')}
                       </span>
                       <span className="text-[#c8f000] font-bold text-xl">Basic</span>
-                      <p className="text-[#9a9a96] text-sm mt-1">CHF 200/mese</p>
+                      <p className="text-[#9a9a96] text-sm mt-1">CHF 200{t('services.comparison.per_month')}</p>
                     </div>
                   </th>
                   <th className="p-6 text-center">
@@ -269,7 +269,7 @@ const Servizi = () => {
                         {t('services.comparison.badge_popular')}
                       </span>
                       <span className="text-[#c8f000] font-bold text-xl">Premium</span>
-                      <p className="text-[#9a9a96] text-sm mt-1">CHF 400/mese</p>
+                      <p className="text-[#9a9a96] text-sm mt-1">CHF 400{t('services.comparison.per_month')}</p>
                     </div>
                   </th>
                   <th className="p-6 text-center">
@@ -278,7 +278,7 @@ const Servizi = () => {
                         {t('services.comparison.badge_complete')}
                       </span>
                       <span className="text-[#c8f000] font-bold text-xl">Gold</span>
-                      <p className="text-[#9a9a96] text-sm mt-1">CHF 1&apos;700/mese</p>
+                      <p className="text-[#9a9a96] text-sm mt-1">CHF 1&apos;700{t('services.comparison.per_month')}</p>
                     </div>
                   </th>
                 </tr>
