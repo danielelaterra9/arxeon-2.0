@@ -396,6 +396,22 @@
       "processing": "Elaborazione..."
     }
   },
+  "checkout": {
+    "per_month": "/mese",
+    "one_time": "una tantum",
+    "total_estimated": "Totale stimato",
+    "total_note": "Il totale finale sarà mostrato nella schermata di pagamento.",
+    "back_to_packages": "← Torna ai pacchetti",
+    "email_label": "Email per la fatturazione",
+    "email_placeholder": "tua@email.ch",
+    "email_error": "Inserisci un indirizzo email valido",
+    "questions": "Ho domande",
+    "proceed": "Procedi al pagamento",
+    "processing": "Elaborazione...",
+    "budget_note": "Il budget pubblicitario non è incluso. È richiesto un budget minimo di CHF 300/mese per test e attivazione.",
+    "select_platform": "Seleziona una piattaforma",
+    "select_category": "Seleziona una categoria operativa inclusa"
+  },
   "thankYou": {
     "title": "Grazie per la fiducia!",
     "subtitle": "Il tuo abbonamento è stato attivato con successo.",
