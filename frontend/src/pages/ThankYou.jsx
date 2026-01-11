@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { CheckCircle, ArrowRight, FileText, ClipboardList, Search, Calendar } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
@@ -10,6 +11,7 @@ const ThankYou = () => {
   const [searchParams] = useSearchParams();
   const [subscription, setSubscription] = useState(null);
   const [loading, setLoading] = useState(true);
+  const { trackCompleteCheckout } = useAnalytics();
 
   const sessionId = searchParams.get('session_id');
   const subscriptionId = searchParams.get('subscription_id');
@@ -23,6 +25,8 @@ const ThankYou = () => {
           if (data.valid && data.subscription) {
             setSubscription(data.subscription);
             
+            // Track complete checkout via GTM
+            trackCompleteCheckout(data.subscription);
             // Track affiliate purchase if affiliate cookie exists
             if (window.ArxeonAffiliate && window.ArxeonAffiliate.hasAffiliate()) {
               try {
