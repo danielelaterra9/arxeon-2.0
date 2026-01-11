@@ -67,7 +67,7 @@ const CheckoutGold = () => {
 
   const handleCheckout = async () => {
     if (!customerEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(customerEmail)) {
-      toast.error('Inserisci un indirizzo email valido');
+      toast.error(t('checkout.email_error'));
       return;
     }
 
