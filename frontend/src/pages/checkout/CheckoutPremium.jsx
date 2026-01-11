@@ -382,21 +382,21 @@ const CheckoutPremium = () => {
         <div className="max-w-[900px] mx-auto px-5 md:px-10">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <div>
-              <p className="text-[#9a9a96] text-sm mb-1">Totale stimato</p>
+              <p className="text-[#9a9a96] text-sm mb-1">{t('checkout.total_estimated')}</p>
               <div className="flex items-baseline gap-4">
                 <span className="text-3xl font-bold text-white">CHF {totals.monthly}</span>
-                <span className="text-[#9a9a96]">/mese</span>
+                <span className="text-[#9a9a96]">{t('checkout.per_month')}</span>
               </div>
               {totals.oneShot > 0 && (
                 <p className="text-[#c8f000] text-sm mt-1">
-                  + CHF {totals.oneShot} una tantum
+                  + CHF {totals.oneShot} {t('checkout.one_time')}
                 </p>
               )}
-              <p className="text-[#6f716d] text-xs mt-2">Il totale finale sarà mostrato nella schermata di pagamento.</p>
+              <p className="text-[#6f716d] text-xs mt-2">{t('checkout.total_note')}</p>
             </div>
             <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
               <Link to="/valutazione" className="btn-secondary text-center justify-center">
-                Ho domande
+                {t('checkout.questions')}
               </Link>
               <button 
                 onClick={handleCheckout}
@@ -406,11 +406,11 @@ const CheckoutPremium = () => {
                 {isProcessing ? (
                   <>
                     <Loader2 className="mr-2 animate-spin" size={16} />
-                    Elaborazione...
+                    {t('checkout.processing')}
                   </>
                 ) : (
                   <>
-                    Procedi al pagamento
+                    {t('checkout.proceed')}
                     <ArrowRight className="ml-2" size={16} />
                   </>
                 )}
