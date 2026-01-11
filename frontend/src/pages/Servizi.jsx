@@ -35,12 +35,12 @@ const Servizi = () => {
   }, [location]);
 
   const comparisonData = [
-    { label: t('services.comparison.frequency'), basic: '1 al mese', premium: '1 al mese', gold: '2 al mese' },
-    { label: t('services.comparison.consultations'), basic: '1 call/mese (20-40 min)', premium: '2 call/mese (20-40 min)', gold: 'Supervisione continua' },
-    { label: t('services.comparison.operational'), basic: 'No', premium: 'Sì, 1 categoria', gold: 'Sì, senza limiti' },
-    { label: t('services.comparison.response_time'), basic: '—', premium: 'Entro 24h', gold: 'Entro 24h' },
-    { label: t('services.comparison.handling'), basic: '—', premium: 'Entro 48h', gold: 'Entro 24h' },
-    { label: t('services.comparison.account_access'), basic: 'No', premium: 'Sì, 1 categoria', gold: 'Sì, completo' },
+    { label: t('services.comparison.frequency'), basic: t('services.comparison.basic_frequency'), premium: t('services.comparison.premium_frequency'), gold: t('services.comparison.gold_frequency') },
+    { label: t('services.comparison.consultations'), basic: t('services.comparison.basic_consultations'), premium: t('services.comparison.premium_consultations'), gold: t('services.comparison.gold_consultations') },
+    { label: t('services.comparison.operational'), basic: t('services.comparison.no'), premium: t('services.comparison.yes_1_category'), gold: t('services.comparison.yes_unlimited') },
+    { label: t('services.comparison.response_time'), basic: t('services.comparison.na'), premium: t('services.comparison.within_24h'), gold: t('services.comparison.within_24h') },
+    { label: t('services.comparison.handling'), basic: t('services.comparison.na'), premium: t('services.comparison.within_48h'), gold: t('services.comparison.within_24h') },
+    { label: t('services.comparison.account_access'), basic: t('services.comparison.no'), premium: t('services.comparison.yes_1_category'), gold: t('services.comparison.yes_complete') },
   ];
 
   const faqs = [
