@@ -224,7 +224,7 @@ const CheckoutGold = () => {
                     <div className="flex flex-wrap items-start justify-between gap-2 mb-2">
                       <h3 className="text-white font-medium">{addon.name}</h3>
                       <span className="text-[#c8f000] font-semibold">
-                        {addon.priceMonthly ? `CHF ${addon.priceMonthly.toLocaleString("it-CH")}/mese` : `CHF ${addon.priceOneShot} una tantum`}
+                        {addon.priceMonthly ? `CHF ${addon.priceMonthly.toLocaleString("it-CH")}${t('checkout.per_month')}` : `CHF ${addon.priceOneShot} ${t('checkout.one_time')}`}
                       </span>
                     </div>
                     <p className="text-[#9a9a96] text-sm">{addon.description}</p>
