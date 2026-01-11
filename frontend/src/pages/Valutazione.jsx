@@ -200,6 +200,10 @@ const Valutazione = () => {
 
       const data = await response.json();
       sessionStorage.setItem('valutazioneData', JSON.stringify({...formData, auditId: data.id}));
+      
+      // Track form submission
+      trackSubmitValutazione(formData);
+      
       toast.success(t('common.success'));
       navigate('/valutazione/conferma');
     } catch (error) {
