@@ -2,11 +2,13 @@ import React, { useState, useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowRight, Check, Info, ArrowUpRight, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
+import { useTranslation } from 'react-i18next';
 import { useAnalytics } from '../../hooks/useAnalytics';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 const CheckoutPremium = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [includedCategory, setIncludedCategory] = useState('');
   const [selectedPlatform, setSelectedPlatform] = useState('');
