@@ -320,10 +320,10 @@ const CheckoutPremium = () => {
                         <h3 className="text-white font-medium">{addon.name}</h3>
                         <div className="text-right">
                           {addon.priceMonthly && (
-                            <span className="text-[#c8f000] font-semibold">CHF {addon.priceMonthly}/mese</span>
+                            <span className="text-[#c8f000] font-semibold">CHF {addon.priceMonthly}{t('checkout.per_month')}</span>
                           )}
                           {addon.priceOneShot && (
-                            <span className="text-[#c8f000] font-semibold">CHF {addon.priceOneShot} una tantum</span>
+                            <span className="text-[#c8f000] font-semibold">CHF {addon.priceOneShot} {t('checkout.one_time')}</span>
                           )}
                         </div>
                       </div>
