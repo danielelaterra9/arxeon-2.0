@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ArrowRight, Check, X } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { useAnalytics } from '../hooks/useAnalytics';
 import {
   Accordion,
   AccordionContent,
@@ -12,6 +13,12 @@ import {
 const Servizi = () => {
   const { t } = useTranslation();
   const location = useLocation();
+  const { trackViewServices } = useAnalytics();
+
+  // Track page view
+  useEffect(() => {
+    trackViewServices();
+  }, [trackViewServices]);
 
   // Handle scroll to anchor on page load
   useEffect(() => {
