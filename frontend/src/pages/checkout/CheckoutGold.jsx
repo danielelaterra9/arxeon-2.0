@@ -69,6 +69,9 @@ const CheckoutGold = () => {
       return;
     }
 
+    // Track checkout start
+    trackStartCheckout('gold', totals.monthly, totals.oneShot, selectedAddons);
+
     setIsProcessing(true);
 
     try {
