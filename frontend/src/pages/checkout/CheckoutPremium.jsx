@@ -129,17 +129,17 @@ const CheckoutPremium = () => {
 
   const handleCheckout = async () => {
     if (!customerEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(customerEmail)) {
-      toast.error('Inserisci un indirizzo email valido');
+      toast.error(t('checkout.email_error'));
       return;
     }
 
     if (!includedCategory) {
-      toast.error('Seleziona una categoria operativa inclusa');
+      toast.error(t('checkout.select_category'));
       return;
     }
 
     if ((includedCategory === 'social' || includedCategory === 'ads') && !selectedPlatform) {
-      toast.error('Seleziona una piattaforma');
+      toast.error(t('checkout.select_platform'));
       return;
     }
 
