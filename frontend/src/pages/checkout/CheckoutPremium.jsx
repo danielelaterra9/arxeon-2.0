@@ -141,6 +141,9 @@ const CheckoutPremium = () => {
       return;
     }
 
+    // Track checkout start
+    trackStartCheckout('premium', totals.monthly, totals.oneShot, selectedAddons);
+
     setIsProcessing(true);
 
     try {
