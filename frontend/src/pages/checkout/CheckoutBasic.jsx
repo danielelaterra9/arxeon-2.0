@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Check, Info, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
+import { useTranslation } from 'react-i18next';
 import { useAnalytics } from '../../hooks/useAnalytics';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 const CheckoutBasic = () => {
+  const { t } = useTranslation();
   const [isProcessing, setIsProcessing] = useState(false);
   const [customerEmail, setCustomerEmail] = useState('');
   const { trackStartCheckout } = useAnalytics();
@@ -21,7 +23,7 @@ const CheckoutBasic = () => {
 
   const handleCheckout = async () => {
     if (!customerEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(customerEmail)) {
-      toast.error('Inserisci un indirizzo email valido');
+      toast.error(t('checkout.email_error'));
       return;
     }
 
