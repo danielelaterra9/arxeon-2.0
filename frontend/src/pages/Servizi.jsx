@@ -311,9 +311,9 @@ const Servizi = () => {
           {/* Mobile Cards */}
           <div className="lg:hidden space-y-6">
             {[
-              { name: 'Basic', price: 'CHF 200/mese', data: comparisonData.map(r => r.basic), highlighted: false, badge: t('services.comparison.badge_economic') },
-              { name: 'Premium', price: 'CHF 400/mese', data: comparisonData.map(r => r.premium), highlighted: true, badge: t('services.comparison.badge_popular') },
-              { name: 'Gold', price: 'CHF 1700/mese', data: comparisonData.map(r => r.gold), highlighted: false, badge: t('services.comparison.badge_complete') }
+              { name: 'Basic', price: `CHF 200${t('services.comparison.per_month')}`, data: comparisonData.map(r => r.basic), highlighted: false, badge: t('services.comparison.badge_economic') },
+              { name: 'Premium', price: `CHF 400${t('services.comparison.per_month')}`, data: comparisonData.map(r => r.premium), highlighted: true, badge: t('services.comparison.badge_popular') },
+              { name: 'Gold', price: `CHF 1'700${t('services.comparison.per_month')}`, data: comparisonData.map(r => r.gold), highlighted: false, badge: t('services.comparison.badge_complete') }
             ].map((pkg) => (
               <div 
                 key={pkg.name} 
@@ -328,7 +328,7 @@ const Servizi = () => {
                   {comparisonData.map((row, index) => (
                     <div key={index} className="flex justify-between items-start gap-4">
                       <span className="text-[#6f716d] text-sm">{row.label}</span>
-                      <span className={`text-sm text-right ${pkg.data[index] === 'No' || pkg.data[index] === '—' ? 'text-[#6f716d]' : 'text-white'}`}>
+                      <span className={`text-sm text-right ${pkg.data[index] === t('services.comparison.no') || pkg.data[index] === t('services.comparison.na') ? 'text-[#6f716d]' : 'text-white'}`}>
                         {pkg.data[index]}
                       </span>
                     </div>
