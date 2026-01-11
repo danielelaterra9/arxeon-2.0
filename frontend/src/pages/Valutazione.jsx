@@ -91,10 +91,11 @@ const Valutazione = () => {
     { id: 'undefined', label: t('evaluation.budgets.undefined') },
   ];
 
-  // Scroll to top on page load
+  // Scroll to top and track page view
   useEffect(() => {
+    trackViewValutazione();
     window.scrollTo(0, 0);
-  }, []);
+  }, [trackViewValutazione]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
