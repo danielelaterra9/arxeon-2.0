@@ -22,11 +22,43 @@ const ThankYou = () => {
           const data = await response.json();
           if (data.valid && data.subscription) {
             setSubscription(data.subscription);
+            
+            // Track affiliate purchase if affiliate cookie exists
+            if (window.ArxeonAffiliate && window.ArxeonAffiliate.hasAffiliate()) {
+              try {
+                await window.ArxeonAffiliate.trackPurchase({
+                  customer_email: data.subscription.customer_email || '',
+                  amount_chf: data.subscription.total_monthly / 100,
+                  product_name: `Pacchetto ${data.subscription.package?.charAt(0).toUpperCase() + data.subscription.package?.slice(1)}`,
+                  is_recurring: true,
+                  month_number: 1
+                });
+                console.log('Affiliate purchase tracked successfully');
+              } catch (affiliateError) {
+                console.error('Error tracking affiliate purchase:', affiliateError);
+              }
+            }
           }
         } else if (subscriptionId) {
           const response = await fetch(`${BACKEND_URL}/api/subscription/${subscriptionId}`);
           const data = await response.json();
           setSubscription(data);
+          
+          // Track affiliate purchase if affiliate cookie exists
+          if (window.ArxeonAffiliate && window.ArxeonAffiliate.hasAffiliate()) {
+            try {
+              await window.ArxeonAffiliate.trackPurchase({
+                customer_email: data.customer_email || '',
+                amount_chf: data.total_monthly / 100,
+                product_name: `Pacchetto ${data.package?.charAt(0).toUpperCase() + data.package?.slice(1)}`,
+                is_recurring: true,
+                month_number: 1
+              });
+              console.log('Affiliate purchase tracked successfully');
+            } catch (affiliateError) {
+              console.error('Error tracking affiliate purchase:', affiliateError);
+            }
+          }
         }
       } catch (error) {
         console.error('Error verifying payment:', error);
