@@ -48,6 +48,9 @@ const ThankYou = () => {
           const data = await response.json();
           setSubscription(data);
           
+          // Track complete checkout via GTM
+          trackCompleteCheckout(data);
+          
           // Track affiliate purchase if affiliate cookie exists
           if (window.ArxeonAffiliate && window.ArxeonAffiliate.hasAffiliate()) {
             try {
@@ -72,7 +75,7 @@ const ThankYou = () => {
     };
 
     verifyPayment();
-  }, [sessionId, subscriptionId]);
+  }, [sessionId, subscriptionId, trackCompleteCheckout]);
 
   useEffect(() => {
     const script = document.createElement('script');
