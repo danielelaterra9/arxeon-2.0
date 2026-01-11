@@ -136,7 +136,21 @@
       "account_access": "Accès aux comptes",
       "badge_economic": "PLUS ÉCONOMIQUE",
       "badge_popular": "PLUS CHOISI",
-      "badge_complete": "PLUS PERFORMANT"
+      "badge_complete": "PLUS PERFORMANT",
+      "per_month": "/mois",
+      "basic_frequency": "1 par mois",
+      "premium_frequency": "1 par mois",
+      "gold_frequency": "2 par mois",
+      "basic_consultations": "1 appel/mois (20-40 min)",
+      "premium_consultations": "2 appels/mois (20-40 min)",
+      "gold_consultations": "Supervision continue",
+      "no": "Non",
+      "yes_1_category": "Oui, 1 catégorie",
+      "yes_unlimited": "Oui, sans limites",
+      "yes_complete": "Oui, complet",
+      "within_24h": "Sous 24h",
+      "within_48h": "Sous 48h",
+      "na": "—"
     },
     "faq": {
       "title": "Questions fréquentes",
