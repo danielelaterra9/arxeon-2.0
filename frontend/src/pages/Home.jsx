@@ -135,11 +135,11 @@ const Home = () => {
               <h3 className="text-[#c8f000] font-bold text-xl mb-6">{t('home.testimonials.title')}</h3>
               <div className="space-y-4">
                 <div className="bg-[#2a2c29] p-5 rounded-xl border border-[#343633]">
-                  <p className="text-white text-sm italic mb-3">"{t('home.testimonials.quote1')}"</p>
+                  <p className="text-white text-sm italic mb-3">&ldquo;{t('home.testimonials.quote1')}&rdquo;</p>
                   <p className="text-[#6f716d] text-xs">— {t('home.testimonials.author1')}</p>
                 </div>
                 <div className="bg-[#2a2c29] p-5 rounded-xl border border-[#343633]">
-                  <p className="text-white text-sm italic mb-3">"{t('home.testimonials.quote2')}"</p>
+                  <p className="text-white text-sm italic mb-3">&ldquo;{t('home.testimonials.quote2')}&rdquo;</p>
                   <p className="text-[#6f716d] text-xs">— {t('home.testimonials.author2')}</p>
                 </div>
               </div>
