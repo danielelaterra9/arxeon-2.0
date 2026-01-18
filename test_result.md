@@ -102,7 +102,7 @@
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
 
-user_problem_statement: "Test the Valutazione (Free Audit) form on the Arxéon website with new fields"
+user_problem_statement: "Test completo delle modifiche alla homepage di Arxéon - verificare sezione Solution, testimonials + founder, footer copyright, e test in francese e mobile"
 
 backend:
   - task: "Free Audit API Endpoint"
