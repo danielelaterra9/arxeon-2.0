@@ -28,12 +28,26 @@
       "conclusion": "Il problema non è fare marketing, ma farlo senza una direzione chiara o senza sapere cosa aspettarsi."
     },
     "solution": {
-      "title1": "Arxéon è il sistema di marketing",
+      "title1": "In Arxéon c'è un sistema di marketing",
       "title2": "che lavora per te.",
-      "description1": "Arxéon non aggiunge attività inutili.",
-      "description2": "Rende il marketing comprensibile, strutturato e orientato ai risultati.",
+      "description1": "In Arxéon non aggiungiamo attività inutili.",
+      "description2": "Rendiamo il marketing comprensibile, strutturato e orientato ai risultati.",
       "principle": "Ogni progetto parte da un principio semplice:",
       "principle_highlight": "il marketing deve aiutare il business a prendere decisioni migliori."
+    },
+    "testimonials": {
+      "title": "Cosa dicono i nostri clienti",
+      "read_more": "Leggi altri casi studio",
+      "quote1": "Finalmente un approccio al marketing che posso capire e misurare.",
+      "author1": "Studio professionale, Ticino",
+      "quote2": "Hanno trasformato il nostro modo di vedere la pubblicità online.",
+      "author2": "E-commerce, Svizzera Romanda"
+    },
+    "founder": {
+      "name": "Daniele La Terra",
+      "role": "CEO e Project Manager Arxéon",
+      "bio": "Dopo più di 15 anni tra formazione universitaria e lavoro tecnico in Italia come lavoratore autonomo ho creato quest'azienda con un solo obiettivo: aiutare imprenditori e autonomi a migliorare il loro business lavorando su un marketing strategico personalizzato, efficace e accessibile a tutti.",
+      "linkedin_cta": "Scopri di più su di me e su Arxéon su LinkedIn"
     },
     "howItWorks": {
       "title": "Ecco come lavoriamo",
