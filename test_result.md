@@ -132,6 +132,39 @@ frontend:
         - working: true
           agent: "testing"
           comment: "✅ i18n translation system fully functional! ✅ LanguageSwitcher (FR | IT) visible in header with Globe icon. ✅ Default language is French with correct hero text: 'Marketing stratégique. Résultats mesurables.' ✅ Italian switching works perfectly - hero text changes to 'Marketing strategico. Risultati misurabili.' ✅ French switching works perfectly - can switch back from Italian to French. ✅ Navigation menu translations work correctly (Home/Accueil, Servizi/Services, etc.). ✅ Services page navigation and translations working. ✅ All translation keys properly implemented in fr.json and it.json files. ✅ Language persistence working across page navigation. ✅ i18next configuration with localStorage detection working correctly."
+  - task: "Homepage Solution Section Updates"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/pages/Home.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "Updated Solution section with Italian text 'In Arxéon c'è un sistema di marketing che lavora per te' and French 'Chez Arxéon il y a un système de marketing qui travaille pour vous'. Added description 'In Arxéon non aggiungiamo attività inutili. Rendiamo il marketing comprensibile, strutturato e orientato ai risultati.'"
+  - task: "Testimonials and Founder Section"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/pages/Home.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "Added new section after 'Ecco come lavoriamo' with compact testimonials (2 quotes), 'Leggi altri casi studio' link to /metodo, and CEO profile with Daniele La Terra photo, name, role 'CEO e Project Manager Arxéon', bio starting with 'Dopo più di 15 anni...', and LinkedIn link."
+  - task: "Footer Copyright Update"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/components/layout/Footer.jsx"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "Updated footer copyright to show '© 2020-2025 Arxéon' instead of just current year. Uses currentYear variable to show '© 2020-{currentYear} Arxéon'."
 
 metadata:
   created_by: "testing_agent"
