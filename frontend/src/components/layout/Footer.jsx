@@ -93,7 +93,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="mt-16 pt-8 border-t border-[#343633] flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-[#6f716d] text-sm">
-            © {currentYear} Arxéon. {t('footer.rights')}
+            © 2020-{currentYear} Arxéon. {t('footer.rights')}
           </p>
         </div>
       </div>
