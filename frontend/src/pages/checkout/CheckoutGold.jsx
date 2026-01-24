@@ -246,9 +246,9 @@ const CheckoutGold = () => {
 
           <div className="space-y-4">
             {/* E-commerce */}
-            <div
-              onClick={() => setShowContactModal('ecommerce')}
-              className="bg-[#2a2c29] p-5 md:p-6 rounded-xl border border-[#343633] hover:border-[#6f716d] cursor-pointer transition-all"
+            <Link
+              to="/contatti"
+              className="bg-[#2a2c29] p-5 md:p-6 rounded-xl border border-[#343633] hover:border-[#6f716d] cursor-pointer transition-all block"
             >
               <div className="flex items-start justify-between gap-4">
                 <div>
@@ -256,20 +256,20 @@ const CheckoutGold = () => {
                   <p className="text-[#9a9a96] text-sm">Vendita online di prodotti o servizi.</p>
                 </div>
                 <div className="text-right flex-shrink-0">
-                  <p className="text-[#c8f000] font-semibold">A partire da CHF 8{"'"}000</p>
+                  <p className="text-[#c8f000] font-semibold">A partire da CHF 8&apos;000</p>
                   <p className="text-[#6f716d] text-sm">da definire in consulenza</p>
-                  <button className="btn-secondary mt-3 text-sm py-2 px-4">
+                  <span className="btn-secondary mt-3 text-sm py-2 px-4 inline-flex items-center">
                     <MessageCircle size={14} className="mr-2" />
                     Parliamone
-                  </button>
+                  </span>
                 </div>
               </div>
-            </div>
+            </Link>
 
             {/* Progetto custom */}
-            <div
-              onClick={() => setShowContactModal('custom')}
-              className="bg-[#2a2c29] p-5 md:p-6 rounded-xl border border-[#343633] hover:border-[#6f716d] cursor-pointer transition-all"
+            <Link
+              to="/contatti"
+              className="bg-[#2a2c29] p-5 md:p-6 rounded-xl border border-[#343633] hover:border-[#6f716d] cursor-pointer transition-all block"
             >
               <div className="flex items-start justify-between gap-4">
                 <div>
@@ -278,13 +278,13 @@ const CheckoutGold = () => {
                 </div>
                 <div className="text-right flex-shrink-0">
                   <p className="text-[#c8f000] font-semibold">Solo su misura</p>
-                  <button className="btn-secondary mt-3 text-sm py-2 px-4">
+                  <span className="btn-secondary mt-3 text-sm py-2 px-4 inline-flex items-center">
                     <MessageCircle size={14} className="mr-2" />
                     Richiedi consulenza
-                  </button>
+                  </span>
                 </div>
               </div>
-            </div>
+            </Link>
           </div>
         </div>
       </section>
@@ -294,13 +294,13 @@ const CheckoutGold = () => {
         <div className="max-w-[900px] mx-auto px-5 md:px-10">
           <div className="bg-[#2a2c29] p-6 rounded-xl border border-[#343633]">
             <label className="block text-white font-medium mb-2">
-              Email per la fatturazione <span className="text-[#c8f000]">*</span>
+              {t('checkout.email_label')} <span className="text-[#c8f000]">*</span>
             </label>
             <input
               type="email"
               value={customerEmail}
               onChange={(e) => setCustomerEmail(e.target.value)}
-              placeholder="tua@email.ch"
+              placeholder={t('checkout.email_placeholder')}
               className="w-full px-4 py-3 bg-[#161716] border border-[#343633] rounded-lg text-white placeholder-[#6f716d] focus:outline-none focus:border-[#c8f000] transition-colors"
             />
           </div>
