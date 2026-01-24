@@ -11,6 +11,7 @@ const Metodo = () => {
 
   useEffect(() => {
     trackViewMetodo();
+    window.scrollTo(0, 0);
   }, [trackViewMetodo]);
 
   const caseStudies = [
