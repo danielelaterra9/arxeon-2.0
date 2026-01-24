@@ -196,12 +196,7 @@ metadata:
   run_ui: true
 
 test_plan:
-  current_focus:
-    - "Servizi Page - Servizi Singoli Section"
-    - "Checkout Basic - Remove Buttons and Add Add-ons"
-    - "Checkout Premium - Remove Ho domande Button"
-    - "Checkout Gold - Remove Ho domande and Update Logo Price"
-    - "Contatti Page - Calendly Widget"
+  current_focus: []
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
