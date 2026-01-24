@@ -166,6 +166,41 @@
       "within_48h": "Sous 48h",
       "na": "—"
     },
+    "addons": {
+      "title": "Services individuels",
+      "subtitle": "Tu préfères ne pas activer un forfait? Tu peux choisir des services individuels selon tes besoins.",
+      "monthly": "/mois",
+      "oneshot": "unique",
+      "social_extra": {
+        "name": "Gestion plateforme social",
+        "description": "Gestion professionnelle d'une plateforme sociale au choix."
+      },
+      "ads_extra": {
+        "name": "Gestion campagnes publicitaires",
+        "description": "Gestion d'une plateforme publicitaire au choix."
+      },
+      "seo": {
+        "name": "Optimisation SEO",
+        "description": "Nous améliorons la compréhension du site par Google."
+      },
+      "gmb": {
+        "name": "Google My Business (gestion mensuelle)",
+        "description": "Nous optimisons ta présence locale sur Google."
+      },
+      "website": {
+        "name": "Création ou refonte de site",
+        "description": "Nous créons ou améliorons ton site."
+      },
+      "logo": {
+        "name": "Création ou restyling logo",
+        "description": "Nous améliorons l'image de ta marque."
+      },
+      "gmb_setup": {
+        "name": "Setup Google My Business",
+        "description": "Configuration initiale du profil."
+      },
+      "cta": "Demander des informations"
+    },
     "faq": {
       "title": "Questions fréquentes",
       "q1": "Combien de temps faut-il pour voir des résultats concrets?",
