@@ -102,7 +102,7 @@
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
 
-user_problem_statement: "Test completo delle modifiche alla homepage di Arxéon - verificare sezione Solution, testimonials + founder, footer copyright, e test in francese e mobile"
+user_problem_statement: "Test completo delle modifiche ai servizi e checkout di Arxéon - verificare sezione Servizi singoli, modifiche checkout Basic/Premium/Gold, e pagina Contatti con Calendly"
 
 backend:
   - task: "Free Audit API Endpoint"
