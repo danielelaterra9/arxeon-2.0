@@ -134,15 +134,18 @@ frontend:
           comment: "✅ SERVIZI SINGOLI SECTION VERIFIED: Section found with ID #servizi-singoli positioned correctly ABOVE FAQ section. All required pricing found: CHF 400/mois (social/ads), CHF 500/mois (SEO), CHF 100/mois (GMB), CHF 800 unique (website), CHF 650 unique (logo), CHF 200 unique (GMB setup). 'Demander des informations' link correctly points to /contatti. Section title 'Services individuels' displays properly in French."
   - task: "Checkout Basic - Remove Buttons and Add Add-ons"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/frontend/src/pages/checkout/CheckoutBasic.jsx"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
         - working: "NA"
           agent: "main"
           comment: "Removed 'Ho domande' and 'Onboarding' buttons. Added add-on section with same services as Premium. Only 'Procedi al pagamento' button remains."
+        - working: true
+          agent: "testing"
+          comment: "✅ CHECKOUT BASIC VERIFIED: 'Ho domande' and 'Onboarding' buttons correctly removed (0 found). Add-on section present with services: Gestione piattaforma social, Gestione campagne pubblicitarie, Ottimizzazione SEO, Creazione o rifacimento sito, Creazione o restyling logo. 'Procéder au paiement' button found (disabled until email entered). All requirements met."
   - task: "Checkout Premium - Remove Ho domande Button"
     implemented: true
     working: "NA"
