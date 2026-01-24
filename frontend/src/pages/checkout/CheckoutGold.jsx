@@ -37,7 +37,7 @@ const CheckoutGold = () => {
       code: 'oneshot_logo',
       name: 'Creazione o restyling logo',
       description: "Miglioriamo l'immagine del tuo brand.",
-      priceOneShot: 650,
+      priceOneShot: 250,
       selectable: true
     }
   ];
