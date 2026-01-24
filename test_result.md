@@ -176,15 +176,18 @@ frontend:
           comment: "✅ CHECKOUT GOLD VERIFIED: 'Ho domande' button correctly removed (0 found). Logo price correctly updated to CHF 250 unique (found in pricing list). 'Parliamone' and 'Richiedi consulenza' links both correctly point to /contatti. All requirements successfully implemented."
   - task: "Contatti Page - Calendly Widget"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/frontend/src/pages/Contatti.jsx"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
         - working: "NA"
           agent: "main"
           comment: "Added Calendly widget for booking calls. Widget should be visible and functional with proper styling."
+        - working: true
+          agent: "testing"
+          comment: "✅ CONTATTI CALENDLY WIDGET VERIFIED: Calendly widget container found and visible with correct data-url (https://calendly.com/arxeon/30min). Widget has proper height (650px) and Calendly script loaded successfully. Widget displays '30 Minute start your business' booking interface with Daniele La Terra. Fully functional for call booking."
 
 metadata:
   created_by: "testing_agent"
