@@ -162,15 +162,18 @@ frontend:
           comment: "✅ CHECKOUT PREMIUM VERIFIED: 'Ho domande' button correctly removed (0 found). 'Procéder au paiement' button found (disabled until required fields completed). Only the payment button remains as requested."
   - task: "Checkout Gold - Remove Ho domande and Update Logo Price"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/frontend/src/pages/checkout/CheckoutGold.jsx"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
         - working: "NA"
           agent: "main"
           comment: "Removed 'Ho domande' button. Updated logo price to 250 CHF (was 650). 'Parliamone' and 'Richiedi consulenza' links point to /contatti."
+        - working: true
+          agent: "testing"
+          comment: "✅ CHECKOUT GOLD VERIFIED: 'Ho domande' button correctly removed (0 found). Logo price correctly updated to CHF 250 unique (found in pricing list). 'Parliamone' and 'Richiedi consulenza' links both correctly point to /contatti. All requirements successfully implemented."
   - task: "Contatti Page - Calendly Widget"
     implemented: true
     working: "NA"
