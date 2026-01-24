@@ -10,7 +10,6 @@ const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const CheckoutGold = () => {
   const { t } = useTranslation();
   const [selectedAddons, setSelectedAddons] = useState([]);
-  const [showContactModal, setShowContactModal] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const [customerEmail, setCustomerEmail] = useState('');
   const { trackStartCheckout } = useAnalytics();
