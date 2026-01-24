@@ -120,15 +120,18 @@ backend:
 frontend:
   - task: "Servizi Page - Servizi Singoli Section"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/frontend/src/pages/Servizi.jsx"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
         - working: "NA"
           agent: "main"
           comment: "Added new 'Servizi singoli' section above FAQ with add-on services: social 400/mese, ads 400/mese, SEO 500/mese, GMB 100/mese, sito 800 una tantum, logo 650 una tantum, GMB setup 200 una tantum. 'Richiedi informazioni' link points to /contatti."
+        - working: true
+          agent: "testing"
+          comment: "✅ SERVIZI SINGOLI SECTION VERIFIED: Section found with ID #servizi-singoli positioned correctly ABOVE FAQ section. All required pricing found: CHF 400/mois (social/ads), CHF 500/mois (SEO), CHF 100/mois (GMB), CHF 800 unique (website), CHF 650 unique (logo), CHF 200 unique (GMB setup). 'Demander des informations' link correctly points to /contatti. Section title 'Services individuels' displays properly in French."
   - task: "Checkout Basic - Remove Buttons and Add Add-ons"
     implemented: true
     working: "NA"
