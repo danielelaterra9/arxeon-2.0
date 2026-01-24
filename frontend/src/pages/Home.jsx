@@ -154,7 +154,7 @@ const Home = () => {
               <div className="flex flex-col sm:flex-row gap-5">
                 <div className="flex-shrink-0">
                   <img 
-                    src="https://media.licdn.com/dms/image/v2/D4D03AQGUdGYs25ZNEQ/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1728918126053?e=1742428800&v=beta&t=oGXhfVzKWBzKMHv_k4cQvMw0oFlZmMkYZYWZyKqCTrI"
+                    src="https://customer-assets.emergentagent.com/job_0d7d2f0d-026c-4f95-9f3a-66486d7dba2b/artifacts/1s69yh5o_IMG_20250227_111122.jpg"
                     alt="Daniele La Terra"
                     className="w-20 h-20 rounded-full object-cover border-2 border-[#c8f000]"
                   />
