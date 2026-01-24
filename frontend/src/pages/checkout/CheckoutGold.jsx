@@ -325,9 +325,6 @@ const CheckoutGold = () => {
               <p className="text-[#6f716d] text-xs mt-2">{t('checkout.total_note')}</p>
             </div>
             <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
-              <Link to="/valutazione" className="btn-secondary text-center justify-center">
-                {t('checkout.questions')}
-              </Link>
               <button 
                 onClick={handleCheckout}
                 disabled={isProcessing || !customerEmail}
@@ -349,15 +346,11 @@ const CheckoutGold = () => {
           </div>
         </div>
       </section>
+    </main>
+  );
+};
 
-      {/* Contact Modal */}
-      {showContactModal && (
-        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4" onClick={() => setShowContactModal(null)}>
-          <div className="bg-[#2a2c29] p-6 md:p-8 rounded-xl border border-[#343633] max-w-lg w-full" onClick={(e) => e.stopPropagation()}>
-            <h3 className="text-[#c8f000] font-bold text-xl mb-4">
-              {showContactModal === 'ecommerce' ? 'Progetto e-commerce' : 'Progetto su misura'}
-            </h3>
-            <p className="text-[#9a9a96] mb-6">
+export default CheckoutGold;
               {showContactModal === 'ecommerce'
                 ? 'I progetti e-commerce richiedono una valutazione dedicata per definire costi e tempistiche in base alle tue esigenze specifiche.'
                 : 'I progetti complessi o le analisi strategiche avanzate vengono valutati caso per caso per garantire il miglior risultato.'
