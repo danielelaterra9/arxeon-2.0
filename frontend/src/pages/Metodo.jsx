@@ -238,16 +238,10 @@ const Metodo = () => {
             <p className="text-white text-lg leading-relaxed mb-8">
               {t('method.whoWeWork.text2')}
             </p>
-            <Link to="/valutazione" className="text-[#c8f000] text-lg font-medium hover:underline inline-flex items-center gap-2 mb-8">
-              {t('method.whoWeWork.discover')}
-              <ArrowRight size={18} />
+            <Link to="/valutazione" className="btn-primary">
+              {t('method.whoWeWork.cta')}
+              <ArrowRight className="ml-2" size={16} />
             </Link>
-            <div>
-              <Link to="/valutazione" className="btn-primary">
-                {t('method.whoWeWork.cta')}
-                <ArrowRight className="ml-2" size={16} />
-              </Link>
-            </div>
           </div>
         </div>
       </section>
