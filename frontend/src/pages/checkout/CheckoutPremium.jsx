@@ -395,9 +395,6 @@ const CheckoutPremium = () => {
               <p className="text-[#6f716d] text-xs mt-2">{t('checkout.total_note')}</p>
             </div>
             <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
-              <Link to="/valutazione" className="btn-secondary text-center justify-center">
-                {t('checkout.questions')}
-              </Link>
               <button 
                 onClick={handleCheckout}
                 className="btn-primary justify-center disabled:opacity-50 disabled:cursor-not-allowed"
