@@ -340,6 +340,87 @@ const Servizi = () => {
         </div>
       </section>
 
+      {/* SERVIZI SINGOLI / ADD-ON */}
+      <section id="servizi-singoli" className="py-24 bg-[#161716] scroll-mt-24">
+        <div className="max-w-[1400px] mx-auto px-5 md:px-10">
+          <div className="text-center mb-12">
+            <h2 className="text-[#c8f000] font-bold text-2xl md:text-3xl mb-4">
+              {t('services.addons.title')}
+            </h2>
+            <p className="text-[#9a9a96] text-lg max-w-2xl mx-auto">
+              {t('services.addons.subtitle')}
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {/* Servizi mensili */}
+            <div className="bg-[#2a2c29] p-6 rounded-xl border border-[#343633] hover:border-[#c8f000] transition-colors">
+              <div className="flex justify-between items-start mb-3">
+                <h3 className="text-white font-semibold">{t('services.addons.social_extra.name')}</h3>
+                <span className="text-[#c8f000] font-bold text-sm">CHF 400{t('services.addons.monthly')}</span>
+              </div>
+              <p className="text-[#9a9a96] text-sm">{t('services.addons.social_extra.description')}</p>
+            </div>
+            
+            <div className="bg-[#2a2c29] p-6 rounded-xl border border-[#343633] hover:border-[#c8f000] transition-colors">
+              <div className="flex justify-between items-start mb-3">
+                <h3 className="text-white font-semibold">{t('services.addons.ads_extra.name')}</h3>
+                <span className="text-[#c8f000] font-bold text-sm">CHF 400{t('services.addons.monthly')}</span>
+              </div>
+              <p className="text-[#9a9a96] text-sm">{t('services.addons.ads_extra.description')}</p>
+            </div>
+            
+            <div className="bg-[#2a2c29] p-6 rounded-xl border border-[#343633] hover:border-[#c8f000] transition-colors">
+              <div className="flex justify-between items-start mb-3">
+                <h3 className="text-white font-semibold">{t('services.addons.seo.name')}</h3>
+                <span className="text-[#c8f000] font-bold text-sm">CHF 500{t('services.addons.monthly')}</span>
+              </div>
+              <p className="text-[#9a9a96] text-sm">{t('services.addons.seo.description')}</p>
+            </div>
+            
+            <div className="bg-[#2a2c29] p-6 rounded-xl border border-[#343633] hover:border-[#c8f000] transition-colors">
+              <div className="flex justify-between items-start mb-3">
+                <h3 className="text-white font-semibold">{t('services.addons.gmb.name')}</h3>
+                <span className="text-[#c8f000] font-bold text-sm">CHF 100{t('services.addons.monthly')}</span>
+              </div>
+              <p className="text-[#9a9a96] text-sm">{t('services.addons.gmb.description')}</p>
+            </div>
+            
+            {/* Servizi una tantum */}
+            <div className="bg-[#2a2c29] p-6 rounded-xl border border-[#343633] hover:border-[#c8f000] transition-colors">
+              <div className="flex justify-between items-start mb-3">
+                <h3 className="text-white font-semibold">{t('services.addons.website.name')}</h3>
+                <span className="text-[#c8f000] font-bold text-sm">CHF 800 {t('services.addons.oneshot')}</span>
+              </div>
+              <p className="text-[#9a9a96] text-sm">{t('services.addons.website.description')}</p>
+            </div>
+            
+            <div className="bg-[#2a2c29] p-6 rounded-xl border border-[#343633] hover:border-[#c8f000] transition-colors">
+              <div className="flex justify-between items-start mb-3">
+                <h3 className="text-white font-semibold">{t('services.addons.logo.name')}</h3>
+                <span className="text-[#c8f000] font-bold text-sm">CHF 650 {t('services.addons.oneshot')}</span>
+              </div>
+              <p className="text-[#9a9a96] text-sm">{t('services.addons.logo.description')}</p>
+            </div>
+            
+            <div className="bg-[#2a2c29] p-6 rounded-xl border border-[#343633] hover:border-[#c8f000] transition-colors">
+              <div className="flex justify-between items-start mb-3">
+                <h3 className="text-white font-semibold">{t('services.addons.gmb_setup.name')}</h3>
+                <span className="text-[#c8f000] font-bold text-sm">CHF 200 {t('services.addons.oneshot')}</span>
+              </div>
+              <p className="text-[#9a9a96] text-sm">{t('services.addons.gmb_setup.description')}</p>
+            </div>
+          </div>
+          
+          <div className="text-center mt-10">
+            <Link to="/contatti" className="btn-secondary">
+              {t('services.addons.cta')}
+              <ArrowRight className="ml-2" size={16} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* FAQ */}
       <section id="faq" className="py-24 bg-[#2a2c29] scroll-mt-24">
         <div className="max-w-[1400px] mx-auto px-5 md:px-10">
