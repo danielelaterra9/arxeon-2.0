@@ -148,15 +148,18 @@ frontend:
           comment: "✅ CHECKOUT BASIC VERIFIED: 'Ho domande' and 'Onboarding' buttons correctly removed (0 found). Add-on section present with services: Gestione piattaforma social, Gestione campagne pubblicitarie, Ottimizzazione SEO, Creazione o rifacimento sito, Creazione o restyling logo. 'Procéder au paiement' button found (disabled until email entered). All requirements met."
   - task: "Checkout Premium - Remove Ho domande Button"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/frontend/src/pages/checkout/CheckoutPremium.jsx"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
         - working: "NA"
           agent: "main"
           comment: "Removed 'Ho domande' button. Only 'Procedi al pagamento' button remains."
+        - working: true
+          agent: "testing"
+          comment: "✅ CHECKOUT PREMIUM VERIFIED: 'Ho domande' button correctly removed (0 found). 'Procéder au paiement' button found (disabled until required fields completed). Only the payment button remains as requested."
   - task: "Checkout Gold - Remove Ho domande and Update Logo Price"
     implemented: true
     working: "NA"
