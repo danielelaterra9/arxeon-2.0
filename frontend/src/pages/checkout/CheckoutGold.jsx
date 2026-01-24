@@ -350,25 +350,3 @@ const CheckoutGold = () => {
 };
 
 export default CheckoutGold;
-              {showContactModal === 'ecommerce'
-                ? 'I progetti e-commerce richiedono una valutazione dedicata per definire costi e tempistiche in base alle tue esigenze specifiche.'
-                : 'I progetti complessi o le analisi strategiche avanzate vengono valutati caso per caso per garantire il miglior risultato.'
-              }
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <button onClick={() => setShowContactModal(null)} className="btn-secondary flex-1 justify-center">
-                Annulla
-              </button>
-              <Link to="/contatti" className="btn-primary flex-1 justify-center">
-                Prenota una call
-                <ArrowRight className="ml-2" size={16} />
-              </Link>
-            </div>
-          </div>
-        </div>
-      )}
-    </main>
-  );
-};
-
-export default CheckoutGold;
