@@ -118,62 +118,61 @@ backend:
           comment: "✅ POST /api/free-audit endpoint working correctly - returns valid UUID, status 'pending', and proper message. ✅ GET /api/free-audit/{id} endpoint working correctly - retrieves saved audit data successfully. ✅ Background AI evaluation generation working with GPT-4o via Emergent LLM. ✅ Email 1 (immediate confirmation) sent successfully (mock mode). ✅ Background task processing with 5-minute delay for Email 2. ✅ PDF generation working. Fixed issue: moved app.include_router call after endpoint definitions and corrected send_email function name."
 
 frontend:
-  - task: "i18n Translation System FR/IT"
+  - task: "Servizi Page - Servizi Singoli Section"
     implemented: true
-    working: true
-    file: "/app/frontend/src/i18n/config.js"
+    working: "NA"
+    file: "/app/frontend/src/pages/Servizi.jsx"
     stuck_count: 0
     priority: "high"
-    needs_retesting: false
+    needs_retesting: true
     status_history:
         - working: "NA"
           agent: "main"
-          comment: "Integrated useTranslation() in all pages: Home.jsx, Servizi.jsx, Valutazione.jsx, Metodo.jsx, Contatti.jsx, ThankYou.jsx, ValutazioneConferma.jsx. LanguageSwitcher already exists in Header. Translation files it.json and fr.json are complete."
-        - working: true
-          agent: "testing"
-          comment: "✅ i18n translation system fully functional! ✅ LanguageSwitcher (FR | IT) visible in header with Globe icon. ✅ Default language is French with correct hero text: 'Marketing stratégique. Résultats mesurables.' ✅ Italian switching works perfectly - hero text changes to 'Marketing strategico. Risultati misurabili.' ✅ French switching works perfectly - can switch back from Italian to French. ✅ Navigation menu translations work correctly (Home/Accueil, Servizi/Services, etc.). ✅ Services page navigation and translations working. ✅ All translation keys properly implemented in fr.json and it.json files. ✅ Language persistence working across page navigation. ✅ i18next configuration with localStorage detection working correctly."
-  - task: "Homepage Solution Section Updates"
+          comment: "Added new 'Servizi singoli' section above FAQ with add-on services: social 400/mese, ads 400/mese, SEO 500/mese, GMB 100/mese, sito 800 una tantum, logo 650 una tantum, GMB setup 200 una tantum. 'Richiedi informazioni' link points to /contatti."
+  - task: "Checkout Basic - Remove Buttons and Add Add-ons"
     implemented: true
-    working: true
-    file: "/app/frontend/src/pages/Home.jsx"
+    working: "NA"
+    file: "/app/frontend/src/pages/checkout/CheckoutBasic.jsx"
     stuck_count: 0
     priority: "high"
-    needs_retesting: false
+    needs_retesting: true
     status_history:
         - working: "NA"
           agent: "main"
-          comment: "Updated Solution section with Italian text 'In Arxéon c'è un sistema di marketing che lavora per te' and French 'Chez Arxéon il y a un système de marketing qui travaille pour vous'. Added description 'In Arxéon non aggiungiamo attività inutili. Rendiamo il marketing comprensibile, strutturato e orientato ai risultati.'"
-        - working: true
-          agent: "testing"
-          comment: "✅ SOLUTION SECTION VERIFIED: Italian text 'In Arxéon c'è un sistema di marketing che lavora per te' displays correctly. French text 'Chez Arxéon il y a un système de marketing qui travaille pour vous' displays correctly. Description 'In Arxéon non aggiungiamo attività inutili. Rendiamo il marketing comprensibile, strutturato e orientato ai risultati.' is present and correct in both languages. Desktop and mobile responsive layouts working properly."
-  - task: "Testimonials and Founder Section"
+          comment: "Removed 'Ho domande' and 'Onboarding' buttons. Added add-on section with same services as Premium. Only 'Procedi al pagamento' button remains."
+  - task: "Checkout Premium - Remove Ho domande Button"
     implemented: true
-    working: true
-    file: "/app/frontend/src/pages/Home.jsx"
+    working: "NA"
+    file: "/app/frontend/src/pages/checkout/CheckoutPremium.jsx"
     stuck_count: 0
     priority: "high"
-    needs_retesting: false
+    needs_retesting: true
     status_history:
         - working: "NA"
           agent: "main"
-          comment: "Added new section after 'Ecco come lavoriamo' with compact testimonials (2 quotes), 'Leggi altri casi studio' link to /metodo, and CEO profile with Daniele La Terra photo, name, role 'CEO e Project Manager Arxéon', bio starting with 'Dopo più di 15 anni...', and LinkedIn link."
-        - working: true
-          agent: "testing"
-          comment: "✅ TESTIMONIALS + FOUNDER SECTION VERIFIED: Found 2 compact testimonial quotes as requested. 'Leggi altri casi studio' link correctly points to /metodo. Daniele La Terra founder profile complete with: correct name 'Daniele La Terra', role 'CEO e Project Manager Arxéon', bio starting with 'Dopo più di 15 anni tra formazione universitaria e lavoro tecnico in Italia...', LinkedIn link present, founder photo with correct alt text. Section positioned correctly after 'Ecco come lavoriamo'. Mobile layout responsive with flex-col on mobile, flex-row on desktop. Both Italian and French translations working correctly."
-  - task: "Footer Copyright Update"
+          comment: "Removed 'Ho domande' button. Only 'Procedi al pagamento' button remains."
+  - task: "Checkout Gold - Remove Ho domande and Update Logo Price"
     implemented: true
-    working: true
-    file: "/app/frontend/src/components/layout/Footer.jsx"
+    working: "NA"
+    file: "/app/frontend/src/pages/checkout/CheckoutGold.jsx"
     stuck_count: 0
-    priority: "medium"
-    needs_retesting: false
+    priority: "high"
+    needs_retesting: true
     status_history:
         - working: "NA"
           agent: "main"
-          comment: "Updated footer copyright to show '© 2020-2025 Arxéon' instead of just current year. Uses currentYear variable to show '© 2020-{currentYear} Arxéon'."
-        - working: true
-          agent: "testing"
-          comment: "✅ FOOTER COPYRIGHT VERIFIED: Footer correctly displays '© 2020-2026 Arxéon. Tous droits réservés.' (showing 2020-current year range as requested). Copyright format is correct and includes the full range from 2020 to current year. Working in both French and Italian languages."
+          comment: "Removed 'Ho domande' button. Updated logo price to 250 CHF (was 650). 'Parliamone' and 'Richiedi consulenza' links point to /contatti."
+  - task: "Contatti Page - Calendly Widget"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/pages/Contatti.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "Added Calendly widget for booking calls. Widget should be visible and functional with proper styling."
 
 metadata:
   created_by: "testing_agent"
