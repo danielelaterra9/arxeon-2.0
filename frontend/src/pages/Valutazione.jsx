@@ -191,6 +191,7 @@ const Valutazione = () => {
           mainProblem: formData.mainProblem,
           previousAttempts: formData.previousAttempts,
           improvementImportance: formData.improvementImportance,
+          language: i18n.language?.substring(0, 2) || 'fr',
         }),
       });
 
