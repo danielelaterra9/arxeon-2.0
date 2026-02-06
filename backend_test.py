@@ -142,8 +142,8 @@ def test_get_audit_endpoint(audit_id):
             
             # Verify key data matches
             if (response_data.get("id") == audit_id and 
-                response_data.get("fullName") == "Test User" and
-                response_data.get("email") == "test@example.com"):
+                response_data.get("fullName") == "Test Utente Arxeon" and
+                response_data.get("email") == "test@arxeon.ch"):
                 print(f"\n✅ GET /api/free-audit/{audit_id} - SUCCESS")
                 print(f"   - Audit data saved correctly")
                 return True
