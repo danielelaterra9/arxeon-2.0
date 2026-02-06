@@ -21,11 +21,11 @@ const CheckoutPremium = () => {
 
   // Categories for Premium (required field)
   const categories = [
-    { id: 'sito', name: 'Gestione e aggiornamento del sito internet' },
-    { id: 'social', name: 'Gestione social media' },
-    { id: 'ads', name: 'Gestione campagne pubblicitarie' },
-    { id: 'email', name: 'Email marketing' },
-    { id: 'seo', name: 'SEO' }
+    { id: 'sito', nameKey: 'checkout.premium.categories.sito' },
+    { id: 'social', nameKey: 'checkout.premium.categories.social' },
+    { id: 'ads', nameKey: 'checkout.premium.categories.ads' },
+    { id: 'email', nameKey: 'checkout.premium.categories.email' },
+    { id: 'seo', nameKey: 'checkout.premium.categories.seo' }
   ];
 
   const socialPlatforms = ['Instagram', 'Facebook', 'LinkedIn', 'TikTok'];
@@ -35,47 +35,47 @@ const CheckoutPremium = () => {
   const availableAddons = [
     {
       code: 'addon_social_extra_monthly',
-      name: 'Piattaforma social aggiuntiva',
-      description: 'Gestione di una seconda piattaforma social.',
+      nameKey: 'checkout.addons.social_extra.name',
+      descKey: 'checkout.addons.social_extra.description',
       priceMonthly: 400,
       showIf: () => includedCategory === 'social'
     },
     {
       code: 'addon_ads_extra_monthly',
-      name: 'Piattaforma ads aggiuntiva',
-      description: 'Gestione di una seconda piattaforma pubblicitaria.',
+      nameKey: 'checkout.addons.ads_extra.name',
+      descKey: 'checkout.addons.ads_extra.description',
       priceMonthly: 400,
       showIf: () => includedCategory === 'ads'
     },
     {
       code: 'addon_seo_monthly',
-      name: 'Ottimizzazione SEO',
-      description: 'Miglioriamo la comprensione del sito da parte di Google.',
+      nameKey: 'checkout.addons.seo.name',
+      descKey: 'checkout.addons.seo.description',
       priceMonthly: 500,
       showIf: () => includedCategory !== 'seo'
     },
     {
       code: 'addon_gmb_monthly',
-      name: 'Google My Business (gestione mensile)',
-      description: 'Ottimizziamo la tua presenza locale su Google.',
+      nameKey: 'checkout.addons.gmb.name',
+      descKey: 'checkout.addons.gmb.description',
       priceMonthly: 100
     },
     {
       code: 'oneshot_website',
-      name: 'Creazione o rifacimento sito',
-      description: 'Realizziamo o sistemiamo il tuo sito.',
+      nameKey: 'checkout.addons.website.name',
+      descKey: 'checkout.addons.website.description',
       priceOneShot: 800
     },
     {
       code: 'oneshot_logo',
-      name: 'Creazione o restyling logo',
-      description: "Miglioriamo l'immagine del tuo brand.",
+      nameKey: 'checkout.addons.logo.name',
+      descKey: 'checkout.addons.logo.description',
       priceOneShot: 650
     },
     {
       code: 'oneshot_gmb_setup',
-      name: 'Setup Google My Business',
-      description: 'Configurazione iniziale del profilo.',
+      nameKey: 'checkout.addons.gmb_setup.name',
+      descKey: 'checkout.addons.gmb_setup.description',
       priceOneShot: 200
     }
   ];
@@ -164,13 +164,13 @@ const CheckoutPremium = () => {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.detail || 'Errore nella creazione del checkout');
+        throw new Error(data.detail || t('common.error'));
       }
 
       window.location.href = data.checkoutUrl;
     } catch (error) {
       console.error('Checkout error:', error);
-      toast.error(error.message || 'Si è verificato un errore. Riprova.');
+      toast.error(error.message || t('common.error'));
       setIsProcessing(false);
     }
   };
@@ -181,17 +181,17 @@ const CheckoutPremium = () => {
       <section className="py-16 bg-[#161716] border-b border-[#343633]">
         <div className="max-w-[900px] mx-auto px-5 md:px-10">
           <Link to="/servizi" className="text-[#9a9a96] hover:text-[#c8f000] transition-colors text-sm mb-6 inline-flex items-center gap-2">
-            ← Torna ai pacchetti
+            {t('checkout.back_to_packages')}
           </Link>
           <div className="flex items-start justify-between flex-wrap gap-6">
             <div>
               <span className="text-[#6f716d] text-sm uppercase tracking-wider mb-2 block">Checkout</span>
-              <h1 className="text-[#c8f000] font-bold text-4xl md:text-5xl mb-2">Pacchetto Premium</h1>
-              <p className="text-[#9a9a96] text-lg">Consulenza + gestione operativa di un ambito</p>
+              <h1 className="text-[#c8f000] font-bold text-4xl md:text-5xl mb-2">{t('checkout.premium.title')}</h1>
+              <p className="text-[#9a9a96] text-lg">{t('checkout.premium.subtitle')}</p>
             </div>
             <div className="text-right">
               <span className="text-4xl font-bold text-white">CHF {basePrice}</span>
-              <span className="text-[#9a9a96] ml-2">/ mese</span>
+              <span className="text-[#9a9a96] ml-2">{t('checkout.per_month')}</span>
             </div>
           </div>
         </div>
@@ -204,11 +204,10 @@ const CheckoutPremium = () => {
             <div className="w-8 h-8 rounded-full bg-[#c8f000] flex items-center justify-center text-[#161716] font-bold text-sm">
               1
             </div>
-            <h2 className="text-white font-bold text-xl">Categoria operativa inclusa <span className="text-[#c8f000]">*</span></h2>
+            <h2 className="text-white font-bold text-xl">{t('checkout.premium.step1_title')} <span className="text-[#c8f000]">*</span></h2>
           </div>
           <p className="text-[#9a9a96] mb-8 ml-11">
-            Il pacchetto Premium include la gestione continuativa di <strong className="text-white">una sola categoria</strong>. 
-            Seleziona quella più importante per te.
+            {t('checkout.premium.step1_desc')}
           </p>
 
           <div className="space-y-3 ml-11">
@@ -229,7 +228,7 @@ const CheckoutPremium = () => {
                     <div className="w-2.5 h-2.5 rounded-full bg-[#c8f000]"></div>
                   )}
                 </div>
-                <span className="text-white font-medium">{category.name}</span>
+                <span className="text-white font-medium">{t(category.nameKey)}</span>
               </div>
             ))}
           </div>
@@ -246,8 +245,8 @@ const CheckoutPremium = () => {
               </div>
               <h2 className="text-white font-bold text-xl">
                 {includedCategory === 'social'
-                  ? 'Su quale piattaforma vuoi che gestiamo i contenuti?'
-                  : 'Su quale piattaforma vuoi fare pubblicità?'
+                  ? t('checkout.premium.step2_social')
+                  : t('checkout.premium.step2_ads')
                 }
               </h2>
             </div>
@@ -256,7 +255,7 @@ const CheckoutPremium = () => {
               <div className="bg-[#2a2c29] p-4 rounded-lg border border-[#343633] mb-6 ml-11">
                 <p className="text-[#9a9a96] text-sm">
                   <Info className="inline-block text-[#c8f000] mr-2" size={16} />
-                  Il budget pubblicitario non è incluso. È richiesto un budget minimo di CHF 300/mese per test e attivazione.
+                  {t('checkout.budget_note')}
                 </p>
               </div>
             )}
@@ -290,10 +289,10 @@ const CheckoutPremium = () => {
               <div className="w-8 h-8 rounded-full bg-[#343633] flex items-center justify-center text-white font-bold text-sm">
                 {(includedCategory === 'social' || includedCategory === 'ads') ? '3' : '2'}
               </div>
-              <h2 className="text-white font-bold text-xl">Vuoi aggiungere altri servizi?</h2>
+              <h2 className="text-white font-bold text-xl">{t('checkout.premium.step3_title')}</h2>
             </div>
             <p className="text-[#9a9a96] mb-8 ml-11">
-              Questi servizi non sono inclusi nel pacchetto base, ma possono essere aggiunti.
+              {t('checkout.premium.step3_desc')}
             </p>
 
             <div className="space-y-4 ml-11">
@@ -317,7 +316,7 @@ const CheckoutPremium = () => {
                     </div>
                     <div className="flex-grow">
                       <div className="flex flex-wrap items-start justify-between gap-2 mb-1">
-                        <h3 className="text-white font-medium">{addon.name}</h3>
+                        <h3 className="text-white font-medium">{t(addon.nameKey)}</h3>
                         <div className="text-right">
                           {addon.priceMonthly && (
                             <span className="text-[#c8f000] font-semibold">CHF {addon.priceMonthly}{t('checkout.per_month')}</span>
@@ -327,7 +326,7 @@ const CheckoutPremium = () => {
                           )}
                         </div>
                       </div>
-                      <p className="text-[#9a9a96] text-sm">{addon.description}</p>
+                      <p className="text-[#9a9a96] text-sm">{t(addon.descKey)}</p>
                     </div>
                   </div>
                 </div>
@@ -343,13 +342,13 @@ const CheckoutPremium = () => {
           <div className="max-w-[900px] mx-auto px-5 md:px-10">
             <div className="bg-[#343633] p-6 rounded-xl border border-[#c8f000]">
               <p className="text-white mb-4">
-                Se vuoi delegare più attività operative in parallelo, il pacchetto Gold è spesso più semplice ed efficiente.
+                {t('checkout.premium.upgrade_message')}
               </p>
               <button
                 onClick={() => navigate('/checkout/gold')}
                 className="btn-primary"
               >
-                Valuta il pacchetto Gold
+                {t('checkout.premium.upgrade_cta')}
                 <ArrowUpRight className="ml-2" size={16} />
               </button>
             </div>
@@ -363,13 +362,13 @@ const CheckoutPremium = () => {
           <div className="max-w-[900px] mx-auto px-5 md:px-10">
             <div className="bg-[#2a2c29] p-6 rounded-xl border border-[#343633]">
               <label className="block text-white font-medium mb-2">
-                Email per la fatturazione <span className="text-[#c8f000]">*</span>
+                {t('checkout.email_label')} <span className="text-[#c8f000]">*</span>
               </label>
               <input
                 type="email"
                 value={customerEmail}
                 onChange={(e) => setCustomerEmail(e.target.value)}
-                placeholder="tua@email.ch"
+                placeholder={t('checkout.email_placeholder')}
                 className="w-full px-4 py-3 bg-[#161716] border border-[#343633] rounded-lg text-white placeholder-[#6f716d] focus:outline-none focus:border-[#c8f000] transition-colors"
               />
             </div>
