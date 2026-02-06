@@ -459,7 +459,110 @@
     "processing": "Traitement...",
     "budget_note": "Le budget publicitaire n'est pas inclus. Un budget minimum de CHF 300/mois est requis pour les tests et l'activation.",
     "select_platform": "Sélectionne une plateforme",
-    "select_category": "Sélectionne une catégorie opérationnelle incluse"
+    "select_category": "Sélectionne une catégorie opérationnelle incluse",
+    "basic": {
+      "title": "Forfait Basic",
+      "subtitle": "Conseil stratégique pour décisions autonomes",
+      "includes_title": "Ce que comprend le forfait Basic",
+      "include1": "Analyse mensuelle du business et du marketing",
+      "include2": "Analyse des outils et données fournis par le client",
+      "include3": "1 consultation stratégique mensuelle (20-40 minutes)",
+      "note": "Avec le forfait Basic nous t'aidons à prendre de meilleures décisions, mais l'implémentation reste à ta charge.",
+      "addons_title": "Services supplémentaires",
+      "addons_subtitle": "Ajoute des services opérationnels à ton forfait Basic"
+    },
+    "premium": {
+      "title": "Forfait Premium",
+      "subtitle": "Conseil + gestion opérationnelle d'un domaine",
+      "step1_title": "Catégorie opérationnelle incluse",
+      "step1_desc": "Le forfait Premium inclut la gestion continue d'une seule catégorie. Sélectionne celle qui est la plus importante pour toi.",
+      "step2_social": "Sur quelle plateforme veux-tu que nous gérions les contenus?",
+      "step2_ads": "Sur quelle plateforme veux-tu faire de la publicité?",
+      "step3_title": "Veux-tu ajouter d'autres services?",
+      "step3_desc": "Ces services ne sont pas inclus dans le forfait de base, mais peuvent être ajoutés.",
+      "upgrade_message": "Si tu veux déléguer plus d'activités opérationnelles en parallèle, le forfait Gold est souvent plus simple et efficace.",
+      "upgrade_cta": "Évaluer le forfait Gold",
+      "categories": {
+        "sito": "Gestion et mise à jour du site internet",
+        "social": "Gestion des réseaux sociaux",
+        "ads": "Gestion des campagnes publicitaires",
+        "email": "Email marketing",
+        "seo": "SEO"
+      }
+    },
+    "gold": {
+      "title": "Forfait Gold",
+      "subtitle": "Collaborateur marketing dédié",
+      "includes_title": "Le forfait Gold comprend tout",
+      "operational_title": "Gestion opérationnelle complète",
+      "operational1": "Site internet et landing pages",
+      "operational2": "Réseaux sociaux (toutes les plateformes)",
+      "operational3": "Campagnes publicitaires",
+      "operational4": "Email marketing",
+      "operational5": "SEO et optimisation",
+      "strategic_title": "Supervision stratégique",
+      "strategic1": "Analyse continue du business",
+      "strategic2": "Direction stratégique dédiée",
+      "strategic3": "Réponse sous 24h ouvrables",
+      "strategic4": "Prise en charge sous 24h ouvrables",
+      "strategic5": "Rapports et appels périodiques",
+      "scope_note": "Le forfait Gold est valable pour un seul business et un seul secteur. Multi-business ou multi-secteur nécessitent un accord séparé.",
+      "addons_title": "Services supplémentaires",
+      "addons_subtitle": "Tu peux ajouter ces services à ton forfait Gold.",
+      "custom_title": "Besoins hors périmètre standard",
+      "custom_subtitle": "Pour des projets plus complexes ou des besoins particuliers, nous pouvons évaluer ensemble les options.",
+      "ecommerce_title": "Projet e-commerce",
+      "ecommerce_desc": "Vente en ligne de produits ou services.",
+      "ecommerce_price": "À partir de CHF 8'000",
+      "ecommerce_note": "à définir en consultation",
+      "custom_project_title": "Projet dédié, complexe ou analyse stratégique avancée",
+      "custom_project_desc": "Pour des besoins particuliers qui nécessitent une approche sur mesure.",
+      "custom_project_price": "Sur mesure uniquement",
+      "talk_cta": "Parlons-en",
+      "consultation_cta": "Demander une consultation"
+    },
+    "addons": {
+      "social": {
+        "name": "Gestion plateforme sociale",
+        "description": "Gestion professionnelle d'une plateforme sociale au choix."
+      },
+      "ads": {
+        "name": "Gestion campagnes publicitaires",
+        "description": "Gestion d'une plateforme publicitaire au choix."
+      },
+      "seo": {
+        "name": "Optimisation SEO",
+        "description": "Nous améliorons la compréhension du site par Google."
+      },
+      "gmb": {
+        "name": "Google My Business (gestion mensuelle)",
+        "description": "Nous optimisons ta présence locale sur Google."
+      },
+      "website": {
+        "name": "Création ou refonte de site",
+        "description": "Nous créons ou améliorons ton site."
+      },
+      "logo": {
+        "name": "Création ou restyling logo",
+        "description": "Nous améliorons l'image de ta marque."
+      },
+      "gmb_setup": {
+        "name": "Setup Google My Business",
+        "description": "Configuration initiale du profil."
+      },
+      "social_extra": {
+        "name": "Plateforme sociale supplémentaire",
+        "description": "Gestion d'une deuxième plateforme sociale."
+      },
+      "ads_extra": {
+        "name": "Plateforme publicitaire supplémentaire",
+        "description": "Gestion d'une deuxième plateforme publicitaire."
+      },
+      "second_business": {
+        "name": "Gestion d'un second business",
+        "description": "Pour la gestion d'une activité supplémentaire distincte."
+      }
+    }
   },
   "thankYou": {
     "title": "Merci pour ta confiance!",
