@@ -1138,11 +1138,32 @@ def generate_pdf_evaluation(evaluation_text: str, audit_data: dict) -> bytes:
         return evaluation_text.encode('utf-8')
 
 async def send_confirmation_email_audit(audit_data: dict) -> bool:
-    """Send immediate confirmation email (Email 1)"""
+    """Send immediate confirmation email (Email 1) - Bilingual FR/IT"""
     to_email = audit_data.get('email')
     first_name = audit_data.get('fullName', '').split()[0] if audit_data.get('fullName') else 'Cliente'
+    language = audit_data.get('language', 'fr')
     
-    subject = "Abbiamo ricevuto la tua richiesta di valutazione"
+    # Email content based on language
+    if language == 'it':
+        subject = "Abbiamo ricevuto la tua richiesta di valutazione"
+        title = "Grazie per la tua richiesta"
+        greeting = f"Ciao {first_name},"
+        text1 = "abbiamo ricevuto correttamente la tua richiesta di valutazione strategica."
+        text2 = "In questo momento stiamo analizzando le informazioni che ci hai fornito."
+        highlight = "<strong>La valutazione verrà controllata e rifinita manualmente</strong> per garantirti un contenuto chiaro e preciso."
+        timing = "⏱ Riceverai la tua valutazione via email <strong>entro pochi minuti</strong>."
+        closing = "A presto,"
+        tagline = "Marketing strategico orientato ai risultati"
+    else:  # French (default)
+        subject = "Nous avons reçu votre demande d'évaluation"
+        title = "Merci pour votre demande"
+        greeting = f"Bonjour {first_name},"
+        text1 = "nous avons bien reçu votre demande d'évaluation stratégique."
+        text2 = "Nous analysons actuellement les informations que vous nous avez fournies."
+        highlight = "<strong>L'évaluation sera vérifiée et affinée manuellement</strong> pour vous garantir un contenu clair et précis."
+        timing = "⏱ Vous recevrez votre évaluation par email <strong>dans quelques minutes</strong>."
+        closing = "À bientôt,"
+        tagline = "Marketing stratégique orienté résultats"
     
     html_content = f"""
     <!DOCTYPE html>
@@ -1159,23 +1180,23 @@ async def send_confirmation_email_audit(audit_data: dict) -> bool:
     </head>
     <body>
         <div class="container">
-            <h1>Grazie per la tua richiesta</h1>
+            <h1>{title}</h1>
             
-            <p>Ciao {first_name},</p>
+            <p>{greeting}</p>
             
-            <p>abbiamo ricevuto correttamente la tua richiesta di valutazione strategica.</p>
+            <p>{text1}</p>
             
-            <p>In questo momento stiamo analizzando le informazioni che ci hai fornito.</p>
+            <p>{text2}</p>
             
             <div class="highlight">
-                <p style="margin: 0;"><strong>La valutazione verrà controllata e rifinita manualmente</strong> per garantirti un contenuto chiaro e preciso.</p>
+                <p style="margin: 0;">{highlight}</p>
             </div>
             
-            <p>⏱ Riceverai la tua valutazione via email <strong>entro pochi minuti</strong>.</p>
+            <p>{timing}</p>
             
             <div class="footer">
-                <p>A presto,<br><strong>Arxéon</strong></p>
-                <p>Marketing strategico orientato ai risultati<br>info@arxeon.ch | Lugano, Svizzera</p>
+                <p>{closing}<br><strong>Arxéon</strong></p>
+                <p>{tagline}<br>info@arxeon.ch | Lugano, Svizzera</p>
             </div>
         </div>
     </body>
