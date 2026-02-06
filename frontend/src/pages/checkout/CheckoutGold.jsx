@@ -20,22 +20,22 @@ const CheckoutGold = () => {
   const availableAddons = [
     {
       code: 'addon_second_business_monthly',
-      name: 'Gestione di un secondo business',
-      description: "Per la gestione di un'attività aggiuntiva distinta.",
+      nameKey: 'checkout.addons.second_business.name',
+      descKey: 'checkout.addons.second_business.description',
       priceMonthly: 1200,
       selectable: true
     },
     {
       code: 'oneshot_website',
-      name: 'Creazione o rifacimento sito',
-      description: 'Realizziamo o sistemiamo il tuo sito.',
+      nameKey: 'checkout.addons.website.name',
+      descKey: 'checkout.addons.website.description',
       priceOneShot: 800,
       selectable: true
     },
     {
       code: 'oneshot_logo',
-      name: 'Creazione o restyling logo',
-      description: "Miglioriamo l'immagine del tuo brand.",
+      nameKey: 'checkout.addons.logo.name',
+      descKey: 'checkout.addons.logo.description',
       priceOneShot: 250,
       selectable: true
     }
@@ -89,13 +89,13 @@ const CheckoutGold = () => {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.detail || 'Errore nella creazione del checkout');
+        throw new Error(data.detail || t('common.error'));
       }
 
       window.location.href = data.checkoutUrl;
     } catch (error) {
       console.error('Checkout error:', error);
-      toast.error(error.message || 'Si è verificato un errore. Riprova.');
+      toast.error(error.message || t('common.error'));
       setIsProcessing(false);
     }
   };
@@ -106,17 +106,17 @@ const CheckoutGold = () => {
       <section className="py-16 bg-[#161716] border-b border-[#343633]">
         <div className="max-w-[900px] mx-auto px-5 md:px-10">
           <Link to="/servizi" className="text-[#9a9a96] hover:text-[#c8f000] transition-colors text-sm mb-6 inline-flex items-center gap-2">
-            ← Torna ai pacchetti
+            {t('checkout.back_to_packages')}
           </Link>
           <div className="flex items-start justify-between flex-wrap gap-6">
             <div>
               <span className="text-[#6f716d] text-sm uppercase tracking-wider mb-2 block">Checkout</span>
-              <h1 className="text-[#c8f000] font-bold text-4xl md:text-5xl mb-2">Pacchetto Gold</h1>
-              <p className="text-[#9a9a96] text-lg">Collaboratore marketing dedicato</p>
+              <h1 className="text-[#c8f000] font-bold text-4xl md:text-5xl mb-2">{t('checkout.gold.title')}</h1>
+              <p className="text-[#9a9a96] text-lg">{t('checkout.gold.subtitle')}</p>
             </div>
             <div className="text-right">
               <span className="text-4xl font-bold text-white">CHF {basePrice.toLocaleString("it-CH")}</span>
-              <span className="text-[#9a9a96] ml-2">/ mese</span>
+              <span className="text-[#9a9a96] ml-2">{t('checkout.per_month')}</span>
             </div>
           </div>
         </div>
@@ -126,56 +126,56 @@ const CheckoutGold = () => {
       <section className="py-12 bg-[#1f211f]">
         <div className="max-w-[900px] mx-auto px-5 md:px-10">
           <div className="bg-[#2a2c29] p-6 md:p-8 rounded-xl border border-[#c8f000]">
-            <h2 className="text-white font-bold text-xl mb-6">Il pacchetto Gold include tutto</h2>
+            <h2 className="text-white font-bold text-xl mb-6">{t('checkout.gold.includes_title')}</h2>
             
             <div className="grid md:grid-cols-2 gap-6 mb-6">
               <div>
-                <h3 className="text-[#c8f000] font-semibold mb-4">Gestione operativa completa</h3>
+                <h3 className="text-[#c8f000] font-semibold mb-4">{t('checkout.gold.operational_title')}</h3>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
                     <Check className="text-[#c8f000] flex-shrink-0 mt-0.5" size={18} />
-                    <span className="text-[#9a9a96]">Sito internet e landing page</span>
+                    <span className="text-[#9a9a96]">{t('checkout.gold.operational1')}</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <Check className="text-[#c8f000] flex-shrink-0 mt-0.5" size={18} />
-                    <span className="text-[#9a9a96]">Social media (tutte le piattaforme)</span>
+                    <span className="text-[#9a9a96]">{t('checkout.gold.operational2')}</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <Check className="text-[#c8f000] flex-shrink-0 mt-0.5" size={18} />
-                    <span className="text-[#9a9a96]">Campagne pubblicitarie</span>
+                    <span className="text-[#9a9a96]">{t('checkout.gold.operational3')}</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <Check className="text-[#c8f000] flex-shrink-0 mt-0.5" size={18} />
-                    <span className="text-[#9a9a96]">Email marketing</span>
+                    <span className="text-[#9a9a96]">{t('checkout.gold.operational4')}</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <Check className="text-[#c8f000] flex-shrink-0 mt-0.5" size={18} />
-                    <span className="text-[#9a9a96]">SEO e ottimizzazione</span>
+                    <span className="text-[#9a9a96]">{t('checkout.gold.operational5')}</span>
                   </li>
                 </ul>
               </div>
               <div>
-                <h3 className="text-[#c8f000] font-semibold mb-4">Supervisione strategica</h3>
+                <h3 className="text-[#c8f000] font-semibold mb-4">{t('checkout.gold.strategic_title')}</h3>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
                     <Check className="text-[#c8f000] flex-shrink-0 mt-0.5" size={18} />
-                    <span className="text-[#9a9a96]">Analisi continua del business</span>
+                    <span className="text-[#9a9a96]">{t('checkout.gold.strategic1')}</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <Check className="text-[#c8f000] flex-shrink-0 mt-0.5" size={18} />
-                    <span className="text-[#9a9a96]">Direzione strategica dedicata</span>
+                    <span className="text-[#9a9a96]">{t('checkout.gold.strategic2')}</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <Check className="text-[#c8f000] flex-shrink-0 mt-0.5" size={18} />
-                    <span className="text-[#9a9a96]">Risposta entro 24h lavorative</span>
+                    <span className="text-[#9a9a96]">{t('checkout.gold.strategic3')}</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <Check className="text-[#c8f000] flex-shrink-0 mt-0.5" size={18} />
-                    <span className="text-[#9a9a96]">Presa in carico entro 24h lavorative</span>
+                    <span className="text-[#9a9a96]">{t('checkout.gold.strategic4')}</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <Check className="text-[#c8f000] flex-shrink-0 mt-0.5" size={18} />
-                    <span className="text-[#9a9a96]">Report e call periodiche</span>
+                    <span className="text-[#9a9a96]">{t('checkout.gold.strategic5')}</span>
                   </li>
                 </ul>
               </div>
@@ -184,8 +184,7 @@ const CheckoutGold = () => {
             <div className="bg-[#161716] p-4 rounded-lg border border-[#343633]">
               <p className="text-[#9a9a96] text-sm">
                 <Info className="inline-block text-[#c8f000] mr-2" size={16} />
-                Il pacchetto Gold è valido per <span className="text-white font-medium">un solo business e un solo settore</span>. 
-                Multi-business o multi-settore richiedono accordo separato.
+                {t('checkout.gold.scope_note')}
               </p>
             </div>
           </div>
@@ -195,9 +194,9 @@ const CheckoutGold = () => {
       {/* Add-on selezionabili */}
       <section className="py-12 bg-[#161716]">
         <div className="max-w-[900px] mx-auto px-5 md:px-10">
-          <h2 className="text-white font-bold text-2xl mb-3">Servizi aggiuntivi</h2>
+          <h2 className="text-white font-bold text-2xl mb-3">{t('checkout.gold.addons_title')}</h2>
           <p className="text-[#9a9a96] mb-8">
-            Puoi aggiungere questi servizi al tuo pacchetto Gold.
+            {t('checkout.gold.addons_subtitle')}
           </p>
 
           <div className="space-y-4">
@@ -221,12 +220,12 @@ const CheckoutGold = () => {
                   </div>
                   <div className="flex-grow">
                     <div className="flex flex-wrap items-start justify-between gap-2 mb-2">
-                      <h3 className="text-white font-medium">{addon.name}</h3>
+                      <h3 className="text-white font-medium">{t(addon.nameKey)}</h3>
                       <span className="text-[#c8f000] font-semibold">
                         {addon.priceMonthly ? `CHF ${addon.priceMonthly.toLocaleString("it-CH")}${t('checkout.per_month')}` : `CHF ${addon.priceOneShot} ${t('checkout.one_time')}`}
                       </span>
                     </div>
-                    <p className="text-[#9a9a96] text-sm">{addon.description}</p>
+                    <p className="text-[#9a9a96] text-sm">{t(addon.descKey)}</p>
                   </div>
                 </div>
               </div>
@@ -238,9 +237,9 @@ const CheckoutGold = () => {
       {/* Esigenze fuori perimetro */}
       <section className="py-12 bg-[#1f211f]">
         <div className="max-w-[900px] mx-auto px-5 md:px-10">
-          <h2 className="text-white font-bold text-2xl mb-3">Esigenze fuori dal perimetro standard</h2>
+          <h2 className="text-white font-bold text-2xl mb-3">{t('checkout.gold.custom_title')}</h2>
           <p className="text-[#9a9a96] mb-8">
-            Per progetti più complessi o esigenze particolari, possiamo valutare insieme le opzioni.
+            {t('checkout.gold.custom_subtitle')}
           </p>
 
           <div className="space-y-4">
@@ -251,15 +250,15 @@ const CheckoutGold = () => {
             >
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <h3 className="text-white font-medium mb-2">Progetto e-commerce</h3>
-                  <p className="text-[#9a9a96] text-sm">Vendita online di prodotti o servizi.</p>
+                  <h3 className="text-white font-medium mb-2">{t('checkout.gold.ecommerce_title')}</h3>
+                  <p className="text-[#9a9a96] text-sm">{t('checkout.gold.ecommerce_desc')}</p>
                 </div>
                 <div className="text-right flex-shrink-0">
-                  <p className="text-[#c8f000] font-semibold">A partire da CHF 8&apos;000</p>
-                  <p className="text-[#6f716d] text-sm">da definire in consulenza</p>
+                  <p className="text-[#c8f000] font-semibold">{t('checkout.gold.ecommerce_price')}</p>
+                  <p className="text-[#6f716d] text-sm">{t('checkout.gold.ecommerce_note')}</p>
                   <span className="btn-secondary mt-3 text-sm py-2 px-4 inline-flex items-center">
                     <MessageCircle size={14} className="mr-2" />
-                    Parliamone
+                    {t('checkout.gold.talk_cta')}
                   </span>
                 </div>
               </div>
@@ -272,14 +271,14 @@ const CheckoutGold = () => {
             >
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <h3 className="text-white font-medium mb-2">Progetto dedicato, complesso o analisi strategica avanzata</h3>
-                  <p className="text-[#9a9a96] text-sm">Per esigenze particolari che richiedono un approccio su misura.</p>
+                  <h3 className="text-white font-medium mb-2">{t('checkout.gold.custom_project_title')}</h3>
+                  <p className="text-[#9a9a96] text-sm">{t('checkout.gold.custom_project_desc')}</p>
                 </div>
                 <div className="text-right flex-shrink-0">
-                  <p className="text-[#c8f000] font-semibold">Solo su misura</p>
+                  <p className="text-[#c8f000] font-semibold">{t('checkout.gold.custom_project_price')}</p>
                   <span className="btn-secondary mt-3 text-sm py-2 px-4 inline-flex items-center">
                     <MessageCircle size={14} className="mr-2" />
-                    Richiedi consulenza
+                    {t('checkout.gold.consultation_cta')}
                   </span>
                 </div>
               </div>
