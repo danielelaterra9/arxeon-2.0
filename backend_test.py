@@ -13,6 +13,52 @@ from datetime import datetime
 # Backend URL from frontend/.env
 BACKEND_URL = "https://project-revival-26.preview.emergentagent.com"
 
+def test_api_health_check():
+    """Test the API health check endpoint"""
+    print("=" * 60)
+    print("TESTING API HEALTH CHECK")
+    print("=" * 60)
+    
+    print(f"Testing GET {BACKEND_URL}/api/")
+    
+    try:
+        response = requests.get(
+            f"{BACKEND_URL}/api/",
+            timeout=30
+        )
+        
+        print(f"\nResponse Status: {response.status_code}")
+        
+        if response.status_code == 200:
+            response_data = response.json()
+            print(f"Response Data: {json.dumps(response_data, indent=2)}")
+            
+            expected_message = "Arxéon API"
+            actual_message = response_data.get("message")
+            
+            if actual_message == expected_message:
+                print(f"✅ GET /api/ - SUCCESS")
+                print(f"   - Correct message: '{actual_message}'")
+                return True
+            else:
+                print(f"❌ GET /api/ - FAILED: Expected '{expected_message}', got '{actual_message}'")
+                return False
+        else:
+            print(f"❌ FAILED: HTTP {response.status_code}")
+            try:
+                error_data = response.json()
+                print(f"Error details: {json.dumps(error_data, indent=2)}")
+            except:
+                print(f"Error text: {response.text}")
+            return False
+            
+    except requests.exceptions.RequestException as e:
+        print(f"❌ FAILED: Request error - {e}")
+        return False
+    except Exception as e:
+        print(f"❌ FAILED: Unexpected error - {e}")
+        return False
+
 def test_free_audit_endpoint():
     """Test the /api/free-audit endpoint with valid data"""
     print("=" * 60)
