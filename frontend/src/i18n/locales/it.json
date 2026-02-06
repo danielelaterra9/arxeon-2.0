@@ -459,7 +459,110 @@
     "processing": "Elaborazione...",
     "budget_note": "Il budget pubblicitario non è incluso. È richiesto un budget minimo di CHF 300/mese per test e attivazione.",
     "select_platform": "Seleziona una piattaforma",
-    "select_category": "Seleziona una categoria operativa inclusa"
+    "select_category": "Seleziona una categoria operativa inclusa",
+    "basic": {
+      "title": "Pacchetto Basic",
+      "subtitle": "Consulenza strategica per decisioni autonome",
+      "includes_title": "Cosa include il pacchetto Basic",
+      "include1": "Analisi mensile del business e del marketing",
+      "include2": "Analisi strumenti e dati forniti dal cliente",
+      "include3": "1 consulenza strategica mensile (20-40 minuti)",
+      "note": "Con il pacchetto Basic ti aiutiamo a prendere decisioni migliori, ma l'implementazione resta a tuo carico.",
+      "addons_title": "Servizi aggiuntivi",
+      "addons_subtitle": "Aggiungi servizi operativi al tuo pacchetto Basic"
+    },
+    "premium": {
+      "title": "Pacchetto Premium",
+      "subtitle": "Consulenza + gestione operativa di un ambito",
+      "step1_title": "Categoria operativa inclusa",
+      "step1_desc": "Il pacchetto Premium include la gestione continuativa di una sola categoria. Seleziona quella più importante per te.",
+      "step2_social": "Su quale piattaforma vuoi che gestiamo i contenuti?",
+      "step2_ads": "Su quale piattaforma vuoi fare pubblicità?",
+      "step3_title": "Vuoi aggiungere altri servizi?",
+      "step3_desc": "Questi servizi non sono inclusi nel pacchetto base, ma possono essere aggiunti.",
+      "upgrade_message": "Se vuoi delegare più attività operative in parallelo, il pacchetto Gold è spesso più semplice ed efficiente.",
+      "upgrade_cta": "Valuta il pacchetto Gold",
+      "categories": {
+        "sito": "Gestione e aggiornamento del sito internet",
+        "social": "Gestione social media",
+        "ads": "Gestione campagne pubblicitarie",
+        "email": "Email marketing",
+        "seo": "SEO"
+      }
+    },
+    "gold": {
+      "title": "Pacchetto Gold",
+      "subtitle": "Collaboratore marketing dedicato",
+      "includes_title": "Il pacchetto Gold include tutto",
+      "operational_title": "Gestione operativa completa",
+      "operational1": "Sito internet e landing page",
+      "operational2": "Social media (tutte le piattaforme)",
+      "operational3": "Campagne pubblicitarie",
+      "operational4": "Email marketing",
+      "operational5": "SEO e ottimizzazione",
+      "strategic_title": "Supervisione strategica",
+      "strategic1": "Analisi continua del business",
+      "strategic2": "Direzione strategica dedicata",
+      "strategic3": "Risposta entro 24h lavorative",
+      "strategic4": "Presa in carico entro 24h lavorative",
+      "strategic5": "Report e call periodiche",
+      "scope_note": "Il pacchetto Gold è valido per un solo business e un solo settore. Multi-business o multi-settore richiedono accordo separato.",
+      "addons_title": "Servizi aggiuntivi",
+      "addons_subtitle": "Puoi aggiungere questi servizi al tuo pacchetto Gold.",
+      "custom_title": "Esigenze fuori dal perimetro standard",
+      "custom_subtitle": "Per progetti più complessi o esigenze particolari, possiamo valutare insieme le opzioni.",
+      "ecommerce_title": "Progetto e-commerce",
+      "ecommerce_desc": "Vendita online di prodotti o servizi.",
+      "ecommerce_price": "A partire da CHF 8'000",
+      "ecommerce_note": "da definire in consulenza",
+      "custom_project_title": "Progetto dedicato, complesso o analisi strategica avanzata",
+      "custom_project_desc": "Per esigenze particolari che richiedono un approccio su misura.",
+      "custom_project_price": "Solo su misura",
+      "talk_cta": "Parliamone",
+      "consultation_cta": "Richiedi consulenza"
+    },
+    "addons": {
+      "social": {
+        "name": "Gestione piattaforma social",
+        "description": "Gestione professionale di una piattaforma social a scelta."
+      },
+      "ads": {
+        "name": "Gestione campagne pubblicitarie",
+        "description": "Gestione di una piattaforma pubblicitaria a scelta."
+      },
+      "seo": {
+        "name": "Ottimizzazione SEO",
+        "description": "Miglioriamo la comprensione del sito da parte di Google."
+      },
+      "gmb": {
+        "name": "Google My Business (gestione mensile)",
+        "description": "Ottimizziamo la tua presenza locale su Google."
+      },
+      "website": {
+        "name": "Creazione o rifacimento sito",
+        "description": "Realizziamo o sistemiamo il tuo sito."
+      },
+      "logo": {
+        "name": "Creazione o restyling logo",
+        "description": "Miglioriamo l'immagine del tuo brand."
+      },
+      "gmb_setup": {
+        "name": "Setup Google My Business",
+        "description": "Configurazione iniziale del profilo."
+      },
+      "social_extra": {
+        "name": "Piattaforma social aggiuntiva",
+        "description": "Gestione di una seconda piattaforma social."
+      },
+      "ads_extra": {
+        "name": "Piattaforma ads aggiuntiva",
+        "description": "Gestione di una seconda piattaforma pubblicitaria."
+      },
+      "second_business": {
+        "name": "Gestione di un secondo business",
+        "description": "Per la gestione di un'attività aggiuntiva distinta."
+      }
+    }
   },
   "thankYou": {
     "title": "Grazie per la fiducia!",
