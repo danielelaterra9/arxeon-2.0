@@ -16,7 +16,7 @@ import {
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 const Valutazione = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const { trackViewValutazione, trackSubmitValutazione } = useAnalytics();
   const [isSubmitting, setIsSubmitting] = useState(false);
