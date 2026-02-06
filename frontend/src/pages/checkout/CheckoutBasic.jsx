@@ -26,44 +26,44 @@ const CheckoutBasic = () => {
   const availableAddons = [
     {
       code: 'addon_social_monthly',
-      name: 'Gestione piattaforma social',
-      description: 'Gestione professionale di una piattaforma social a scelta.',
+      nameKey: 'checkout.addons.social.name',
+      descKey: 'checkout.addons.social.description',
       priceMonthly: 400
     },
     {
       code: 'addon_ads_monthly',
-      name: 'Gestione campagne pubblicitarie',
-      description: 'Gestione di una piattaforma pubblicitaria a scelta.',
+      nameKey: 'checkout.addons.ads.name',
+      descKey: 'checkout.addons.ads.description',
       priceMonthly: 400
     },
     {
       code: 'addon_seo_monthly',
-      name: 'Ottimizzazione SEO',
-      description: 'Miglioriamo la comprensione del sito da parte di Google.',
+      nameKey: 'checkout.addons.seo.name',
+      descKey: 'checkout.addons.seo.description',
       priceMonthly: 500
     },
     {
       code: 'addon_gmb_monthly',
-      name: 'Google My Business (gestione mensile)',
-      description: 'Ottimizziamo la tua presenza locale su Google.',
+      nameKey: 'checkout.addons.gmb.name',
+      descKey: 'checkout.addons.gmb.description',
       priceMonthly: 100
     },
     {
       code: 'oneshot_website',
-      name: 'Creazione o rifacimento sito',
-      description: 'Realizziamo o sistemiamo il tuo sito.',
+      nameKey: 'checkout.addons.website.name',
+      descKey: 'checkout.addons.website.description',
       priceOneShot: 800
     },
     {
       code: 'oneshot_logo',
-      name: 'Creazione o restyling logo',
-      description: "Miglioriamo l'immagine del tuo brand.",
+      nameKey: 'checkout.addons.logo.name',
+      descKey: 'checkout.addons.logo.description',
       priceOneShot: 650
     },
     {
       code: 'oneshot_gmb_setup',
-      name: 'Setup Google My Business',
-      description: 'Configurazione iniziale del profilo.',
+      nameKey: 'checkout.addons.gmb_setup.name',
+      descKey: 'checkout.addons.gmb_setup.description',
       priceOneShot: 200
     }
   ];
@@ -124,7 +124,7 @@ const CheckoutBasic = () => {
       }
     } catch (error) {
       console.error('Checkout error:', error);
-      toast.error('Errore durante il checkout. Riprova.');
+      toast.error(t('common.error'));
     } finally {
       setIsProcessing(false);
     }
@@ -140,8 +140,8 @@ const CheckoutBasic = () => {
           </Link>
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div>
-              <h1 className="text-[#c8f000] font-bold text-3xl">Pacchetto Basic</h1>
-              <p className="text-[#9a9a96]">Consulenza strategica per decisioni autonome</p>
+              <h1 className="text-[#c8f000] font-bold text-3xl">{t('checkout.basic.title')}</h1>
+              <p className="text-[#9a9a96]">{t('checkout.basic.subtitle')}</p>
             </div>
             <div className="text-right">
               <span className="text-3xl font-bold text-white">CHF {basePrice}</span>
@@ -155,25 +155,25 @@ const CheckoutBasic = () => {
       <section className="py-12 bg-[#1f211f]">
         <div className="max-w-[900px] mx-auto px-5 md:px-10">
           <div className="bg-[#2a2c29] p-6 md:p-8 rounded-xl border border-[#343633]">
-            <h2 className="text-white font-semibold text-lg mb-4">Cosa include il pacchetto Basic</h2>
+            <h2 className="text-white font-semibold text-lg mb-4">{t('checkout.basic.includes_title')}</h2>
             <ul className="space-y-3 mb-6">
               <li className="flex items-start gap-3">
                 <Check className="text-[#c8f000] flex-shrink-0 mt-0.5" size={18} />
-                <span className="text-[#9a9a96]">Analisi mensile del business e del marketing</span>
+                <span className="text-[#9a9a96]">{t('checkout.basic.include1')}</span>
               </li>
               <li className="flex items-start gap-3">
                 <Check className="text-[#c8f000] flex-shrink-0 mt-0.5" size={18} />
-                <span className="text-[#9a9a96]">Analisi strumenti e dati forniti dal cliente</span>
+                <span className="text-[#9a9a96]">{t('checkout.basic.include2')}</span>
               </li>
               <li className="flex items-start gap-3">
                 <Check className="text-[#c8f000] flex-shrink-0 mt-0.5" size={18} />
-                <span className="text-[#9a9a96]">1 consulenza strategica mensile (20–40 minuti)</span>
+                <span className="text-[#9a9a96]">{t('checkout.basic.include3')}</span>
               </li>
             </ul>
             <div className="bg-[#161716] p-4 rounded-lg border border-[#343633]">
               <p className="text-[#9a9a96] text-sm leading-relaxed">
                 <Info className="inline-block text-[#c8f000] mr-2" size={16} />
-                Con il pacchetto Basic ti aiutiamo a prendere decisioni migliori, ma l&apos;implementazione resta a tuo carico.
+                {t('checkout.basic.note')}
               </p>
             </div>
           </div>
@@ -183,8 +183,8 @@ const CheckoutBasic = () => {
       {/* Add-ons Section */}
       <section className="py-12 bg-[#161716]">
         <div className="max-w-[900px] mx-auto px-5 md:px-10">
-          <h2 className="text-white font-semibold text-lg mb-2">Servizi aggiuntivi</h2>
-          <p className="text-[#9a9a96] text-sm mb-6">Aggiungi servizi operativi al tuo pacchetto Basic</p>
+          <h2 className="text-white font-semibold text-lg mb-2">{t('checkout.basic.addons_title')}</h2>
+          <p className="text-[#9a9a96] text-sm mb-6">{t('checkout.basic.addons_subtitle')}</p>
           
           <div className="space-y-3">
             {availableAddons.map((addon) => (
@@ -207,7 +207,7 @@ const CheckoutBasic = () => {
                   </div>
                   <div className="flex-grow">
                     <div className="flex flex-wrap items-start justify-between gap-2 mb-1">
-                      <h3 className="text-white font-medium">{addon.name}</h3>
+                      <h3 className="text-white font-medium">{t(addon.nameKey)}</h3>
                       <div className="text-right">
                         {addon.priceMonthly && (
                           <span className="text-[#c8f000] font-semibold">CHF {addon.priceMonthly}{t('checkout.per_month')}</span>
@@ -217,7 +217,7 @@ const CheckoutBasic = () => {
                         )}
                       </div>
                     </div>
-                    <p className="text-[#9a9a96] text-sm">{addon.description}</p>
+                    <p className="text-[#9a9a96] text-sm">{t(addon.descKey)}</p>
                   </div>
                 </div>
               </div>
