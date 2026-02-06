@@ -827,6 +827,7 @@ class FreeAuditRequest(BaseModel):
     mainProblem: str
     previousAttempts: Optional[str] = ""  # New field: tentativi precedenti
     improvementImportance: int = Field(ge=1, le=5, default=3)  # New field: importanza 1-5
+    language: Optional[str] = "fr"  # Language for emails: 'fr' or 'it'
 
 class FreeAuditResponse(BaseModel):
     id: str
