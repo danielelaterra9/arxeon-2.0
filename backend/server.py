@@ -1206,11 +1206,51 @@ async def send_confirmation_email_audit(audit_data: dict) -> bool:
     return await send_email(to_email, subject, html_content)
 
 async def send_evaluation_email_with_pdf(audit_data: dict, pdf_bytes: bytes, evaluation_result: dict) -> bool:
-    """Send evaluation email with PDF attachment (Email 2)"""
+    """Send evaluation email with PDF attachment (Email 2) - Bilingual FR/IT"""
     to_email = audit_data.get('email')
     first_name = audit_data.get('fullName', '').split()[0] if audit_data.get('fullName') else 'Cliente'
+    language = audit_data.get('language', 'fr')
+    score = evaluation_result.get('score', 5)
+    level = evaluation_result.get('level', 'Medio')
     
-    subject = "La tua valutazione strategica è pronta"
+    # Translate level if needed
+    level_translations = {
+        'it': {'Basso': 'Basso', 'Medio': 'Medio', 'Alto': 'Alto'},
+        'fr': {'Basso': 'Faible', 'Medio': 'Moyen', 'Alto': 'Élevé'}
+    }
+    translated_level = level_translations.get(language, level_translations['fr']).get(level, level)
+    
+    # Email content based on language
+    if language == 'it':
+        subject = "La tua valutazione strategica è pronta"
+        title = "La tua valutazione è pronta"
+        greeting = f"Ciao {first_name},"
+        intro = "in allegato trovi la <strong>valutazione strategica del tuo marketing</strong>, basata sulle informazioni che ci hai fornito."
+        level_label = "Livello di maturità"
+        doc_title = "Il documento evidenzia:"
+        bullet1 = "Le principali <strong>criticità attuali</strong>"
+        bullet2 = "I <strong>rischi</strong> se la situazione resta invariata"
+        bullet3 = "Le <strong>priorità strategiche</strong> su cui intervenire"
+        cta_intro = "Se vuoi capire come intervenire in modo concreto e quale tipo di supporto è più adatto al tuo caso, puoi esplorare le opzioni disponibili:"
+        cta_button = "Scopri i servizi disponibili"
+        alternative = "In alternativa, puoi rispondere a questa email per un primo confronto."
+        closing = "A presto,"
+        tagline = "Marketing strategico orientato ai risultati"
+    else:  # French (default)
+        subject = "Votre évaluation stratégique est prête"
+        title = "Votre évaluation est prête"
+        greeting = f"Bonjour {first_name},"
+        intro = "vous trouverez en pièce jointe <strong>l'évaluation stratégique de votre marketing</strong>, basée sur les informations que vous nous avez fournies."
+        level_label = "Niveau de maturité"
+        doc_title = "Le document met en évidence :"
+        bullet1 = "Les principales <strong>problématiques actuelles</strong>"
+        bullet2 = "Les <strong>risques</strong> si la situation reste inchangée"
+        bullet3 = "Les <strong>priorités stratégiques</strong> sur lesquelles intervenir"
+        cta_intro = "Si vous souhaitez comprendre comment intervenir concrètement et quel type d'accompagnement est le plus adapté à votre situation, vous pouvez explorer les options disponibles :"
+        cta_button = "Découvrir les services disponibles"
+        alternative = "Vous pouvez également répondre à cet email pour un premier échange."
+        closing = "À bientôt,"
+        tagline = "Marketing stratégique orienté résultats"
     
     html_content = f"""
     <!DOCTYPE html>
@@ -1234,37 +1274,37 @@ async def send_evaluation_email_with_pdf(audit_data: dict, pdf_bytes: bytes, eva
     </head>
     <body>
         <div class="container">
-            <h1>La tua valutazione è pronta</h1>
+            <h1>{title}</h1>
             
-            <p>Ciao {first_name},</p>
+            <p>{greeting}</p>
             
-            <p>in allegato trovi la <strong>valutazione strategica del tuo marketing</strong>, basata sulle informazioni che ci hai fornito.</p>
+            <p>{intro}</p>
             
             <div class="score-box">
-                <div class="score">{evaluation_result.get('score', 5)}/10</div>
-                <div class="level">Livello di maturità: {evaluation_result.get('level', 'Medio')}</div>
+                <div class="score">{score}/10</div>
+                <div class="level">{level_label}: {translated_level}</div>
             </div>
             
-            <p>Il documento evidenzia:</p>
+            <p>{doc_title}</p>
             <ul>
-                <li>Le principali <strong>criticità attuali</strong></li>
-                <li>I <strong>rischi</strong> se la situazione resta invariata</li>
-                <li>Le <strong>priorità strategiche</strong> su cui intervenire</li>
+                <li>{bullet1}</li>
+                <li>{bullet2}</li>
+                <li>{bullet3}</li>
             </ul>
             
-            <p>Se vuoi capire come intervenire in modo concreto e quale tipo di supporto è più adatto al tuo caso, puoi esplorare le opzioni disponibili:</p>
+            <p>{cta_intro}</p>
             
             <p style="text-align: center;">
-                <a href="{FRONTEND_URL}/servizi" class="cta">Scopri i servizi disponibili</a>
+                <a href="{FRONTEND_URL}/servizi" class="cta">{cta_button}</a>
             </p>
             
             <p class="secondary-link" style="text-align: center;">
-                In alternativa, puoi rispondere a questa email per un primo confronto.
+                {alternative}
             </p>
             
             <div class="footer">
-                <p>A presto,<br><strong>Arxéon</strong></p>
-                <p>Marketing strategico orientato ai risultati<br>info@arxeon.ch | Lugano, Svizzera</p>
+                <p>{closing}<br><strong>Arxéon</strong></p>
+                <p>{tagline}<br>info@arxeon.ch | Lugano, Svizzera</p>
             </div>
         </div>
     </body>
