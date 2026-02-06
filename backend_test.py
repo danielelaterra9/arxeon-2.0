@@ -19,20 +19,20 @@ def test_free_audit_endpoint():
     print("TESTING /api/free-audit ENDPOINT")
     print("=" * 60)
     
-    # Test data as specified in the review request
+    # Test data as specified in the review request - EXACT PAYLOAD
     test_data = {
-        "fullName": "Test User",
-        "email": "test@example.com",
-        "phone": "+41 123 456 789",
+        "fullName": "Test Utente Arxeon",
+        "email": "test@arxeon.ch",
+        "phone": "+41 79 123 4567",
         "companyName": "Test Company SA",
         "website": "https://testcompany.ch",
         "sector": "technology",
         "geoArea": "ticino",
         "channels": ["social", "ads"],
-        "objective": "acquisizione",
-        "budget": "500-1000",
-        "mainProblem": "Non riesco a generare lead qualificati dai social media",
-        "previousAttempts": "Ho provato con campagne Facebook ma senza risultati significativi",
+        "objective": "leads",
+        "budget": "1000_2000",
+        "mainProblem": "Vorremmo migliorare la nostra presenza online e generare più lead qualificati",
+        "previousAttempts": "Abbiamo provato con Facebook Ads ma senza risultati significativi",
         "improvementImportance": 4
     }
     
