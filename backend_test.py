@@ -267,6 +267,9 @@ def main():
     print(f"Backend URL: {BACKEND_URL}")
     print(f"Test started at: {datetime.now().isoformat()}")
     
+    # Test 0: API Health Check
+    health_success = test_api_health_check()
+    
     # Test 1: POST /api/free-audit
     audit_id = test_free_audit_endpoint()
     
@@ -280,6 +283,12 @@ def main():
     print("\n" + "=" * 60)
     print("TEST SUMMARY")
     print("=" * 60)
+    
+    if health_success:
+        print("✅ GET /api/ - PASSED")
+        print("   - API health check working")
+    else:
+        print("❌ GET /api/ - FAILED")
     
     if audit_id:
         print("✅ POST /api/free-audit - PASSED")
@@ -301,7 +310,7 @@ def main():
     print("   - Background task: AI generation started")
     print("   - Email 2: Evaluation with PDF (after 5 minutes)")
     
-    if audit_id and get_success:
+    if health_success and audit_id and get_success:
         print(f"\n🎉 OVERALL RESULT: SUCCESS")
         print(f"   Audit ID for reference: {audit_id}")
     else:
