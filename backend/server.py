@@ -1425,6 +1425,91 @@ async def get_free_audit(audit_id: str):
         raise HTTPException(status_code=404, detail="Audit not found")
     return audit
 
+# ============================================================
+# ELITE - STRATEGIC CONSULTATION
+# ============================================================
+
+class EliteConsultationRequest(BaseModel):
+    fullName: str
+    companyName: str
+    email: EmailStr
+    phone: Optional[str] = ""
+    interest: Literal["custom_ai_apps", "zane", "elite_2", "tbd"] = "tbd"
+    context: Optional[str] = ""
+    language: Optional[str] = "it"
+
+@api_router.post("/elite-consultation")
+async def create_elite_consultation(request: EliteConsultationRequest):
+    """Create a strategic consultation request for Arxéon Elite"""
+    consultation_id = str(uuid.uuid4())
+    data = request.model_dump()
+    data['id'] = consultation_id
+    data['status'] = 'pending'
+    data['created_at'] = datetime.now(timezone.utc).isoformat()
+
+    await db.elite_consultations.insert_one(data)
+    logger.info(f"Elite consultation request saved: {consultation_id}")
+
+    interest_labels = {
+        "custom_ai_apps": "Custom AI Apps",
+        "zane": "Zane (AI Chief of Staff)",
+        "elite_2": "Arxéon Elite 2.0",
+        "tbd": "Da definire"
+    }
+    interest_label = interest_labels.get(data['interest'], data['interest'])
+
+    # Internal notification email
+    internal_html = f"""
+    <!DOCTYPE html>
+    <html><body style="font-family: Inter, Arial, sans-serif; background:#161716; color:#fff; padding:32px;">
+      <div style="max-width:640px; margin:0 auto; background:#1f211f; border:1px solid #343633; border-radius:12px; padding:32px;">
+        <h2 style="color:#c8f000; margin:0 0 16px;">Nuova richiesta Elite</h2>
+        <p><strong>Nome:</strong> {data['fullName']}</p>
+        <p><strong>Azienda:</strong> {data['companyName']}</p>
+        <p><strong>Email:</strong> {data['email']}</p>
+        <p><strong>Telefono:</strong> {data.get('phone') or '—'}</p>
+        <p><strong>Interesse:</strong> {interest_label}</p>
+        <p><strong>Contesto:</strong><br/>{(data.get('context') or '—').replace(chr(10), '<br/>')}</p>
+      </div>
+    </body></html>
+    """
+    await send_email("info@arxeon.ch", f"[Elite] {data['companyName']} – {interest_label}", internal_html)
+
+    # Confirmation to user
+    first_name = data['fullName'].split()[0] if data['fullName'] else 'Cliente'
+    lang = data.get('language', 'it')
+    if lang == 'fr':
+        subject = "Arxéon Elite — Nous avons reçu votre demande"
+        body = f"""
+        <p>Bonjour {first_name},</p>
+        <p>Nous avons bien reçu votre demande de <strong>consultation stratégique Arxéon Elite</strong>.</p>
+        <p>Notre équipe vous contactera <strong>sous 24 heures</strong> pour planifier l'appel de 45 minutes.</p>
+        <p>À bientôt,<br/><strong>Arxéon Elite</strong></p>
+        """
+    else:
+        subject = "Arxéon Elite — Abbiamo ricevuto la tua richiesta"
+        body = f"""
+        <p>Ciao {first_name},</p>
+        <p>Abbiamo ricevuto correttamente la tua richiesta di <strong>consultazione strategica Arxéon Elite</strong>.</p>
+        <p>Il nostro team ti contatterà <strong>entro 24 ore</strong> per concordare la call riservata di 45 minuti.</p>
+        <p>A presto,<br/><strong>Arxéon Elite</strong></p>
+        """
+
+    user_html = f"""
+    <!DOCTYPE html>
+    <html><body style="font-family: Inter, Arial, sans-serif; background:#f5f5f5; color:#333; padding:40px; margin:0;">
+      <div style="max-width:600px; margin:0 auto; background:#fff; border-radius:12px; padding:40px; box-shadow:0 2px 10px rgba(0,0,0,0.08);">
+        <h1 style="color:#1a1a1a; margin-bottom:20px;">Arxéon Elite</h1>
+        {body}
+        <hr style="border:none; border-top:1px solid #eee; margin:32px 0;"/>
+        <p style="color:#888; font-size:13px;">Arxéon · Marketing strategico orientato ai risultati<br/>info@arxeon.ch · Lugano, Svizzera</p>
+      </div>
+    </body></html>
+    """
+    await send_email(data['email'], subject, user_html)
+
+    return {"id": consultation_id, "status": "received", "message": "Richiesta ricevuta"}
+
 # Include the router after all endpoints are defined
 app.include_router(api_router)
 
