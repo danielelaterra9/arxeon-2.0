@@ -34,6 +34,18 @@ Design: Professional, minimalist, elite. Dark theme with gold + blue accents.
 - Strategic Consultation contact form
 - IT/FR language switcher in header
 
+## Implemented (2025-12 / build 2 — Blueprint pivot)
+- ✅ "Elite" badge in header next to ARXEON wordmark
+- ✅ Header sub-bar with "← arxeon.ch" back-to-main link
+- ✅ Mobile menu (hamburger) with all nav links + CTA
+- ✅ Replaced Testimonials + Case History with **Technical Blueprint** section
+  - 3 architecture layers: Acquisition / Orchestration (Donapp) / Execution (13 Pillars)
+  - Live stats per layer (e.g. <60s response, 24/7 uptime, 99.5% availability)
+  - Technology stack list (LLM frontier, Vector DB, Orchestration, Observability, Cloud CH/EU, SOC2/GDPR)
+  - Editorial principle pull quote: "Mostriamo come è costruito. Non chiediamo di crederci sulla parola."
+- ✅ Footer updated with Blueprint anchor + arxeon.ch external link
+- ✅ Fixed mobile CSS specificity bug (`.btn-ghost` overriding Tailwind `hidden`)
+
 ## Implemented (2025-12 / build 1)
 - ✅ Full Italian + French bilingual content with seamless switcher
 - ✅ Hero with editorial Playfair Display typography + animated word reveal + gold italic accent on "sola." / "seule."

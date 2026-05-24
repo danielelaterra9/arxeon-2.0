@@ -104,7 +104,7 @@ export const Header = () => {
           <a
             href="#contact"
             data-testid="header-cta"
-            className="hidden sm:inline-flex btn-ghost"
+            className="!hidden sm:!inline-flex btn-ghost"
           >
             {t.nav.cta}
             <ArrowUpRight size={14} strokeWidth={1.5} />
