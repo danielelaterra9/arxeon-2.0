@@ -1,0 +1,200 @@
+{
+  "theme": "dark",
+  "archetype": "5 (Luxury) + 4 (Swiss & High-Contrast)",
+  "brand": {
+    "name": "ARXEON",
+    "positioning": "AI Factory - The fully autonomous business managed by AI. Swiss Quality, Elite, Minimalist.",
+    "target_audience": "Business owners and entrepreneurs seeking elite efficiency and scalability."
+  },
+  "colors": {
+    "background": {
+      "primary": "#0A0B0E",
+      "secondary": "#111317",
+      "glass": "rgba(17, 19, 23, 0.7)"
+    },
+    "text": {
+      "primary": "#FAFAFA",
+      "secondary": "#A1A5AB",
+      "accent": "#D4AF37",
+      "muted": "#5C6066"
+    },
+    "border": {
+      "default": "rgba(255, 255, 255, 0.08)",
+      "hover": "rgba(212, 175, 55, 0.4)",
+      "focus": "rgba(212, 175, 55, 0.8)"
+    },
+    "accents": {
+      "gold_primary": "#D4AF37",
+      "gold_light": "#E6C981",
+      "blue_midnight": "#121E33"
+    },
+    "rules": "Avoid generic tech-blue or neon. Color exists to highlight hierarchy. Use pure #0A0B0E for structural backgrounds to emulate obsidian. Gold (#D4AF37) is reserved for interactive states (hover), structural hairlines, and key emphasis. Deep Midnight Blue is used as an underlay for glass surfaces."
+  },
+  "typography": {
+    "font_families": {
+      "heading": "'Playfair Display', serif",
+      "body": "'IBM Plex Sans', sans-serif",
+      "mono": "'JetBrains Mono', monospace"
+    },
+    "google_fonts_import": "@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400&display=swap');",
+    "scales": {
+      "h1": "text-5xl sm:text-6xl lg:text-7xl font-light tracking-tight",
+      "h2": "text-4xl sm:text-5xl font-light tracking-tight",
+      "h3": "text-2xl sm:text-3xl font-light",
+      "body": "text-base leading-relaxed tracking-wide",
+      "label": "text-xs uppercase tracking-[0.2em] font-medium"
+    },
+    "rules": "Never use Inter for headings. Keep headings Light or Regular weight in Playfair Display. Overlines and labels must be uppercase IBM Plex Sans with extremely wide letter spacing."
+  },
+  "layout_and_spacing": {
+    "philosophy": "Swiss Grid precision mixed with editorial breathing room.",
+    "container": "max-w-7xl mx-auto px-6 sm:px-8 lg:px-12",
+    "section_padding": "py-24 sm:py-32 lg:py-40",
+    "grid_bento": "grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6",
+    "card_padding": "p-8 md:p-10",
+    "rules": "Never cramp content. Value negative space. Use asymmetry for visual tension. The 13 pillars grid should be dense but separated by thin 1px borders."
+  },
+  "components": {
+    "buttons": {
+      "primary": "bg-[#D4AF37] text-[#0A0B0E] rounded-none px-8 py-4 font-medium uppercase tracking-[0.1em] text-sm hover:bg-[#E6C981] transition-colors",
+      "secondary": "bg-transparent text-white border border-[#D4AF37]/40 rounded-none px-8 py-4 font-medium uppercase tracking-[0.1em] text-sm hover:bg-[#D4AF37]/10 hover:border-[#D4AF37] transition-all",
+      "glass": "bg-white/5 backdrop-blur-md border border-white/10 rounded-none px-6 py-3 hover:bg-white/10 transition-colors"
+    },
+    "cards": {
+      "default": "bg-[#111317] border border-white/5 rounded-none p-8 hover:border-[#D4AF37]/30 transition-all duration-500",
+      "glass": "bg-[#111317]/60 backdrop-blur-xl border border-white/10 rounded-none p-8"
+    },
+    "forms": {
+      "input": "bg-transparent border-b border-white/20 rounded-none px-0 py-3 text-white placeholder-white/30 focus:border-[#D4AF37] focus:ring-0 focus:outline-none transition-colors",
+      "label": "text-xs uppercase tracking-widest text-white/50 mb-1 block"
+    }
+  },
+  "interactions_and_motion": {
+    "hover": "Text elements reveal a 1px gold underline from left to right on hover. Cards subtly brighten their border.",
+    "scroll": "Slow, staggered fade-up reveal for lists (like the 13 Pillars) using Framer Motion.",
+    "micro": "Subtle grain overlay (fixed pointer-events-none noise texture over the entire page) for tactile editorial feel.",
+    "testing": "All interactive elements MUST include a data-testid attribute in kebab-case."
+  },
+  "content_structure": {
+    "global": {
+      "language_switcher": "IT / FR toggle in the header. Default to IT."
+    },
+    "header": {
+      "logo": "ARXEON (text wordmark, Playfair Display, tracking-widest)",
+      "navigation": ["Architettura", "Valore", "13 Pilastri", "Strategia"],
+      "cta": "Consultazione",
+      "style": "Sticky, glassmorphism (backdrop-blur-xl bg-[#0A0B0E]/70) border-b border-white/5"
+    },
+    "hero": {
+      "title_it": "L'Azienda che si gestisce da sola.",
+      "title_fr": "L'entreprise qui se gère toute seule.",
+      "subtitle_it": "Architettura d'impresa autonoma, guidata dall'Intelligenza Artificiale. Precisione svizzera, efficienza assoluta.",
+      "cta": "Richiedi Consultazione Strategica",
+      "visual": "Abstract luxury geometry background with slight dark fade at bottom.",
+      "bg_image": "https://static.prod-images.emergentagent.com/jobs/02fe3f37-2b7f-4045-9133-890cdb832754/images/3dfa838e50be1b984b456fa2963189d198f52cfe4f53d06b05b4edf8f1d9cc37.png"
+    },
+    "value_ladder": {
+      "title": "La Scala del Valore",
+      "tiers": [
+        {
+          "name": "Custom AI Apps",
+          "description": "Sviluppo rapido (15 giorni) di strumenti IA specifici per colli di bottiglia operativi.",
+          "price_model": "Entry",
+          "icon": "Cpu"
+        },
+        {
+          "name": "Donna 2.0",
+          "description": "L'Assistente IA definitiva. Il tuo Chief of Staff per coordinare ogni task aziendale.",
+          "price_model": "Core",
+          "icon": "UserCog"
+        },
+        {
+          "name": "Arxeon Elite 2.0",
+          "description": "L'AI Factory. Architettura autonoma completa basata su 13 pilastri interconnessi.",
+          "price_model": "High-Ticket",
+          "icon": "Building"
+        }
+      ]
+    },
+    "decision_architecture": {
+      "title": "Architettura Decisionale",
+      "description": "1 CEO AI e 5 Dirigenti AI per un ecosistema aziendale completamente autonomo.",
+      "visual": "Constellation diagram with CEO at center.",
+      "image_url": "https://static.prod-images.emergentagent.com/jobs/02fe3f37-2b7f-4045-9133-890cdb832754/images/5fcfbcb219aeaf3a6c719011e509a9efcc0c827784e0920a1dcc5b2c8dcae9cd.png",
+      "nodes": {
+        "center": "CEO AI",
+        "orbit": [
+          "Direttore Marketing AI",
+          "Direttore Vendite AI",
+          "Direttore Operations AI",
+          "Direttore Finanza AI",
+          "Direttore Customer Care AI"
+        ]
+      }
+    },
+    "pillars_13": {
+      "title": "I 13 Pilastri dell'AI Factory",
+      "layout": "Dense bento grid or masonry with 1px borders.",
+      "items": [
+        { "name": "Vendite Autonome", "icon": "TrendingUp" },
+        { "name": "Marketing Predittivo", "icon": "Target" },
+        { "name": "Customer Care 24/7", "icon": "MessageSquareText" },
+        { "name": "Operations Automatizzate", "icon": "Settings" },
+        { "name": "Finanza Intelligente", "icon": "PieChart" },
+        { "name": "Data Intelligence", "icon": "Database" },
+        { "name": "Lead Generation", "icon": "Magnet" },
+        { "name": "Content Factory", "icon": "PenTool" },
+        { "name": "CRM Autonomo", "icon": "Users" },
+        { "name": "Reporting Real-time", "icon": "Activity" },
+        { "name": "Quality Assurance AI", "icon": "ShieldCheck" },
+        { "name": "Procurement AI", "icon": "ShoppingCart" },
+        { "name": "HR & Talent AI", "icon": "UserPlus" }
+      ]
+    },
+    "strategy": {
+      "title": "Il Modello Strategico",
+      "description": "Bilanciamento perfetto tra High-Ticket exclusivity e automazione dei volumi.",
+      "bg_image": "https://images.unsplash.com/photo-1768062251809-739d987a42fe?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1OTV8MHwxfHNlYXJjaHwxfHxzd2lzcyUyMHdhdGNoJTIwbWVjaGFuaXNtJTIwbWFjcm98ZW58MHx8fHwxNzc5NjIwMDM1fDA&ixlib=rb-4.1.0&q=85"
+    },
+    "cta_section": {
+      "title": "Inizia la Trasformazione",
+      "form_fields": ["Azienda (Company Name)", "Email", "Telefono (Phone)"],
+      "button": "Prenota Consultazione"
+    }
+  },
+  "media": {
+    "images": [
+      {
+        "category": "hero_background",
+        "url": "https://static.prod-images.emergentagent.com/jobs/02fe3f37-2b7f-4045-9133-890cdb832754/images/3dfa838e50be1b984b456fa2963189d198f52cfe4f53d06b05b4edf8f1d9cc37.png",
+        "description": "Minimalist luxury dark geometric lines."
+      },
+      {
+        "category": "decision_architecture_diagram",
+        "url": "https://static.prod-images.emergentagent.com/jobs/02fe3f37-2b7f-4045-9133-890cdb832754/images/5fcfbcb219aeaf3a6c719011e509a9efcc0c827784e0920a1dcc5b2c8dcae9cd.png",
+        "description": "CEO AI and 5 Dirigenti AI architectural visualization."
+      },
+      {
+        "category": "strategy_background",
+        "url": "https://images.unsplash.com/photo-1768062251809-739d987a42fe?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1OTV8MHwxfHNlYXJjaHwxfHxzd2lzcyUyMHdhdGNoJTIwbWVjaGFuaXNtJTIwbWFjcm98ZW58MHx8fHwxNzc5NjIwMDM1fDA&ixlib=rb-4.1.0&q=85",
+        "description": "Swiss watch mechanism representing precision and automation."
+      },
+      {
+        "category": "texture_abstract",
+        "url": "https://images.unsplash.com/photo-1660914256311-918659fae88f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NjV8MHwxfHNlYXJjaHwzfHxkYXJrJTIwYWJzdHJhY3QlMjBhcmNoaXRlY3R1cmV8ZW58MHx8fHwxNzc5NjIwMDM1fDA&ixlib=rb-4.1.0&q=85",
+        "description": "Dark maze abstraction for the Value Ladder section."
+      }
+    ]
+  },
+  "instructions_to_main_agent": [
+    "Install and use lucide-react for all specified icons.",
+    "Use framer-motion for smooth reveal animations (staggerChildren for the 13 Pillars grid).",
+    "Add a fixed <div> with a low opacity SVG noise filter pattern overlay to give the entire page an editorial, non-digital tactile texture.",
+    "Structure forms using raw HTML inputs customized with Tailwind for a sharp, border-bottom only minimalist aesthetic.",
+    "Header must be sticky with backdrop-blur. The ARXEON logo is pure text in Playfair Display.",
+    "Follow the typography strict rules: Playfair Display for Headings, IBM Plex Sans for body. Do not default to Inter.",
+    "Ensure the IT/FR language toggle works by conditionally rendering text based on a simple React state or context.",
+    "Use `data-testid` on all buttons, the language toggle, and form inputs for testing.",
+    "Avoid using Shadcn Cards. Use raw `div` with precise tailwind classes defined in guidelines for the ultimate custom premium feel."
+  ]
+}
