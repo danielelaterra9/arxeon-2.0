@@ -2,6 +2,7 @@ import React from "react";
 import { Header } from "../components/Header";
 import { Hero } from "../components/Hero";
 import { ValueLadder } from "../components/ValueLadder";
+import { EliteIntro } from "../components/EliteIntro";
 import { DecisionArchitecture } from "../components/DecisionArchitecture";
 import { Pillars13 } from "../components/Pillars13";
 import { TechnicalBlueprint } from "../components/TechnicalBlueprint";
@@ -17,6 +18,7 @@ export default function LandingPage() {
       <main className="pt-8">
         <Hero />
         <ValueLadder />
+        <EliteIntro />
         <DecisionArchitecture />
         <Pillars13 />
         <TechnicalBlueprint />

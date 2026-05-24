@@ -1,5 +1,5 @@
 // Bilingual content (IT default, FR translation).
-// Product naming: "Donapp" (rebrand of Donna 2.0).
+// Product naming: "Zane" (AI Chief of Staff, rebranded from Donna 2.0 / Donapp).
 
 export const translations = {
   it: {
@@ -14,62 +14,80 @@ export const translations = {
       eliteBadge: "Elite",
     },
     hero: {
-      overline: "ARXEON · AI FACTORY",
+      overline: "ARXEON ELITE · AI FACTORY",
       title: "L'Azienda che si gestisce da sola.",
       subtitle:
         "Architettura d'impresa autonoma, guidata dall'Intelligenza Artificiale. Precisione svizzera, efficienza assoluta.",
       ctaPrimary: "Richiedi Consultazione Strategica",
-      ctaSecondary: "Esplora l'Architettura",
+      ctaSecondary: "Esplora le Soluzioni",
       meta: [
-        { k: "13", v: "Pilastri AI" },
-        { k: "1+5", v: "CEO · Dirigenti AI" },
-        { k: "15", v: "Giorni · Custom Apps" },
-        { k: "24/7", v: "Operatività" },
+        { k: "15", v: "Giorni · Custom AI Apps" },
+        { k: "24/7", v: "Zane · Chief of Staff IA" },
+        { k: "13", v: "Pilastri · Elite Architecture" },
+        { k: "CH", v: "Swiss Engineered" },
       ],
     },
     valueLadder: {
-      overline: "La Scala del Valore",
-      title: "Tre porte. Un'unica visione.",
+      overline: "Le Soluzioni",
+      title: "Due acceleratori. Un'unica architettura.",
       subtitle:
-        "Dalla soluzione puntuale all'azienda completamente autonoma. Scegli il livello di trasformazione adatto al tuo momento strategico.",
+        "Inizia con un risultato concreto in 15 giorni. Scala con un Chief of Staff IA. Poi, quando sei pronto, accedi all'AI Factory completa.",
+      featuredOverline: "Conversione Rapida",
+      featuredHeading: "I due ingressi più veloci.",
       tiers: [
         {
-          tag: "Entry",
+          tag: "Livello 1 · Entry",
           name: "Custom AI Apps",
-          tagline: "Sblocco operativo.",
+          tagline: "Risultato in 15 giorni. Garantito.",
           description:
-            "Sviluppo rapido in 15 giorni di strumenti IA dedicati per eliminare i colli di bottiglia operativi più critici della tua azienda.",
+            "Identifichiamo il collo di bottiglia che ti sta costando di più. Costruiamo l'app IA su misura che lo elimina. Live in produzione in 15 giorni di calendario, non un giorno di più. Nessun consulente, nessun proof-of-concept eterno: codice che lavora.",
           features: [
-            "Delivery garantita in 15 giorni",
-            "Integrazione con stack esistente",
-            "Specifico per il tuo bottleneck",
+            "Delivery contrattuale in 15 giorni",
+            "Integrazione diretta col tuo stack attuale",
+            "ROI misurabile dal primo mese",
+            "Codice di proprietà del cliente",
           ],
+          cta: "Sblocca il tuo collo di bottiglia",
+          highlight: "POPOLARE",
         },
         {
-          tag: "Core",
-          name: "Donapp",
-          tagline: "Il tuo Chief of Staff IA.",
+          tag: "Livello 2 · Core",
+          name: "Zane",
+          tagline: "Il Chief of Staff IA che non dorme mai.",
           description:
-            "L'Assistente IA definitiva. Donapp coordina ogni task aziendale, libera il tempo del founder e orchestra l'operatività quotidiana.",
+            "Zane è l'Assistente IA che ogni founder ha sempre desiderato. Memoria aziendale, decisioni in autonomia, esecuzione 24/7. Coordina team, gestisce calendari, scrive proposal, processa email e ti restituisce 30+ ore alla settimana. Non un chatbot. Un Chief of Staff.",
           features: [
-            "Coordinamento multi-canale 24/7",
-            "Memoria contestuale aziendale",
-            "Esecuzione autonoma dei task",
+            "Memoria contestuale dell'azienda",
+            "Esecuzione autonoma multi-task",
+            "Integrato con Email, Slack, CRM, Calendar",
+            "Onboarding completo in 7 giorni",
           ],
-        },
-        {
-          tag: "High-Ticket",
-          name: "Arxeon Elite 2.0",
-          tagline: "L'AI Factory completa.",
-          description:
-            "L'architettura autonoma totale. 13 pilastri interconnessi, 1 CEO AI e 5 Dirigenti AI che dirigono l'impresa con precisione svizzera.",
-          features: [
-            "Architettura completa 13 pilastri",
-            "1 CEO AI + 5 Dirigenti AI",
-            "Governance e reporting executive",
-          ],
+          cta: "Conosci Zane",
+          highlight: "RICHIESTO",
         },
       ],
+      premiumOverline: "L'Upgrade Definitivo",
+      premium: {
+        tag: "Livello Premium",
+        name: "Arxeon Elite 2.0",
+        tagline: "L'AI Factory completa.",
+        description:
+          "Quando hai già stabilizzato il modello e vuoi automatizzare l'intera azienda. 13 pilastri, 1 CEO AI e 5 Dirigenti AI orchestrano marketing, vendite, operations, finanza e customer care. Per chi vuole un'azienda che si gestisce da sola.",
+        features: [
+          "Architettura completa 13 pilastri",
+          "1 CEO AI + 5 Dirigenti AI",
+          "Governance e reporting executive",
+          "Implementazione fased (3-6 mesi)",
+        ],
+        cta: "Esplora l'AI Factory",
+      },
+    },
+    eliteIntro: {
+      overline: "Livello Premium · Arxeon Elite 2.0",
+      title: "Per chi è pronto all'AI Factory completa.",
+      subtitle:
+        "Hai già stabilizzato Custom Apps e Zane? Sei pronto a costruire un'azienda che si gestisce da sola. Quello che segue è l'architettura completa: 13 pilastri, 1 CEO AI, 5 Dirigenti AI.",
+      cta: "Continua a esplorare",
     },
     architecture: {
       overline: "Architettura Decisionale",
@@ -162,9 +180,9 @@ export const translations = {
         },
         {
           k: "L2",
-          name: "Orchestration Layer · Donapp",
+          name: "Orchestration Layer · Zane",
           subtitle: "Il Chief of Staff IA",
-          desc: "Donapp è il sistema operativo dell'azienda. Riceve, prioritizza e dispatcha ogni task ai sotto-sistemi corretti. Memoria contestuale, decision logic, escalation rules.",
+          desc: "Zane è il sistema operativo dell'azienda. Riceve, prioritizza e dispatcha ogni task ai sotto-sistemi corretti. Memoria contestuale, decision logic, escalation rules.",
           nodes: [
             "Context Memory persistente",
             "Task router multi-agente",
@@ -228,7 +246,7 @@ export const translations = {
         phone: "+39 ...",
         message: "Cosa vorresti automatizzare per primo?",
       },
-      tierOptions: ["Custom AI Apps", "Donapp", "Arxeon Elite 2.0", "Da definire"],
+      tierOptions: ["Custom AI Apps", "Zane", "Arxeon Elite 2.0", "Da definire"],
       submit: "Prenota Consultazione",
       submitting: "Invio in corso...",
       successTitle: "Richiesta ricevuta.",
@@ -246,7 +264,7 @@ export const translations = {
         company: "Azienda",
         contact: "Contatti",
       },
-      products: ["Custom AI Apps", "Donapp", "Arxeon Elite 2.0"],
+      products: ["Custom AI Apps", "Zane", "Arxeon Elite 2.0"],
       company: ["Architettura", "Blueprint Tecnico", "Strategia", "Consultazione"],
       mainSite: "arxeon.ch (sito principale)",
     },
@@ -264,62 +282,80 @@ export const translations = {
       eliteBadge: "Elite",
     },
     hero: {
-      overline: "ARXEON · USINE IA",
+      overline: "ARXEON ELITE · USINE IA",
       title: "L'entreprise qui se gère toute seule.",
       subtitle:
         "Architecture d'entreprise autonome, pilotée par l'Intelligence Artificielle. Précision suisse, efficacité absolue.",
       ctaPrimary: "Demander une Consultation Stratégique",
-      ctaSecondary: "Explorer l'Architecture",
+      ctaSecondary: "Explorer les Solutions",
       meta: [
-        { k: "13", v: "Piliers IA" },
-        { k: "1+5", v: "CEO · Dirigeants IA" },
-        { k: "15", v: "Jours · Custom Apps" },
-        { k: "24/7", v: "Opérationnel" },
+        { k: "15", v: "Jours · Custom AI Apps" },
+        { k: "24/7", v: "Zane · Chief of Staff IA" },
+        { k: "13", v: "Piliers · Elite Architecture" },
+        { k: "CH", v: "Swiss Engineered" },
       ],
     },
     valueLadder: {
-      overline: "L'Échelle de Valeur",
-      title: "Trois portes. Une vision.",
+      overline: "Les Solutions",
+      title: "Deux accélérateurs. Une seule architecture.",
       subtitle:
-        "De la solution ponctuelle à l'entreprise entièrement autonome. Choisissez le niveau de transformation adapté à votre moment stratégique.",
+        "Commencez par un résultat concret en 15 jours. Passez à l'échelle avec un Chief of Staff IA. Puis, quand vous êtes prêt, accédez à l'Usine IA complète.",
+      featuredOverline: "Conversion Rapide",
+      featuredHeading: "Les deux entrées les plus rapides.",
       tiers: [
         {
-          tag: "Entry",
+          tag: "Niveau 1 · Entry",
           name: "Custom AI Apps",
-          tagline: "Déblocage opérationnel.",
+          tagline: "Résultat en 15 jours. Garanti.",
           description:
-            "Développement rapide en 15 jours d'outils IA dédiés pour éliminer les goulots d'étranglement opérationnels les plus critiques de votre entreprise.",
+            "Nous identifions le goulot d'étranglement qui vous coûte le plus. Nous construisons l'app IA sur mesure qui l'élimine. Live en production en 15 jours calendaires, pas un de plus. Pas de consultant, pas de proof-of-concept éternel : du code qui travaille.",
           features: [
-            "Livraison garantie en 15 jours",
-            "Intégration au stack existant",
-            "Spécifique à votre goulot",
+            "Livraison contractuelle en 15 jours",
+            "Intégration directe à votre stack actuel",
+            "ROI mesurable dès le premier mois",
+            "Code propriété du client",
           ],
+          cta: "Débloquez votre goulot",
+          highlight: "POPULAIRE",
         },
         {
-          tag: "Core",
-          name: "Donapp",
-          tagline: "Votre Chief of Staff IA.",
+          tag: "Niveau 2 · Core",
+          name: "Zane",
+          tagline: "Le Chief of Staff IA qui ne dort jamais.",
           description:
-            "L'Assistant IA ultime. Donapp coordonne chaque tâche de l'entreprise, libère le temps du fondateur et orchestre l'opérationnel quotidien.",
+            "Zane est l'Assistant IA que chaque fondateur a toujours voulu. Mémoire d'entreprise, décisions en autonomie, exécution 24/7. Il coordonne les équipes, gère les calendriers, rédige les propositions, traite les emails et vous rend 30+ heures par semaine. Pas un chatbot. Un Chief of Staff.",
           features: [
-            "Coordination multi-canal 24/7",
             "Mémoire contextuelle de l'entreprise",
-            "Exécution autonome des tâches",
+            "Exécution autonome multi-tâches",
+            "Intégré à Email, Slack, CRM, Calendar",
+            "Onboarding complet en 7 jours",
           ],
-        },
-        {
-          tag: "High-Ticket",
-          name: "Arxeon Elite 2.0",
-          tagline: "L'Usine IA complète.",
-          description:
-            "L'architecture autonome totale. 13 piliers interconnectés, 1 CEO IA et 5 Dirigeants IA qui dirigent l'entreprise avec une précision suisse.",
-          features: [
-            "Architecture complète 13 piliers",
-            "1 CEO IA + 5 Dirigeants IA",
-            "Gouvernance et reporting executive",
-          ],
+          cta: "Découvrir Zane",
+          highlight: "DEMANDÉ",
         },
       ],
+      premiumOverline: "L'Upgrade Ultime",
+      premium: {
+        tag: "Niveau Premium",
+        name: "Arxeon Elite 2.0",
+        tagline: "L'Usine IA complète.",
+        description:
+          "Lorsque vous avez déjà stabilisé votre modèle et que vous voulez automatiser toute l'entreprise. 13 piliers, 1 CEO IA et 5 Dirigeants IA orchestrent marketing, ventes, operations, finance et customer care. Pour ceux qui veulent une entreprise qui se gère toute seule.",
+        features: [
+          "Architecture complète 13 piliers",
+          "1 CEO IA + 5 Dirigeants IA",
+          "Gouvernance et reporting executive",
+          "Implémentation phasée (3-6 mois)",
+        ],
+        cta: "Explorer l'Usine IA",
+      },
+    },
+    eliteIntro: {
+      overline: "Niveau Premium · Arxeon Elite 2.0",
+      title: "Pour ceux qui sont prêts à l'Usine IA complète.",
+      subtitle:
+        "Vous avez déjà stabilisé Custom Apps et Zane ? Vous êtes prêt à construire une entreprise qui se gère toute seule. Ce qui suit est l'architecture complète : 13 piliers, 1 CEO IA, 5 Dirigeants IA.",
+      cta: "Continuer l'exploration",
     },
     architecture: {
       overline: "Architecture Décisionnelle",
@@ -412,9 +448,9 @@ export const translations = {
         },
         {
           k: "L2",
-          name: "Orchestration Layer · Donapp",
+          name: "Orchestration Layer · Zane",
           subtitle: "Le Chief of Staff IA",
-          desc: "Donapp est le système d'exploitation de l'entreprise. Il reçoit, priorise et dispatche chaque tâche aux sous-systèmes corrects. Mémoire contextuelle, logique de décision, règles d'escalade.",
+          desc: "Zane est le système d'exploitation de l'entreprise. Il reçoit, priorise et dispatche chaque tâche aux sous-systèmes corrects. Mémoire contextuelle, logique de décision, règles d'escalade.",
           nodes: [
             "Context Memory persistante",
             "Task router multi-agent",
@@ -478,7 +514,7 @@ export const translations = {
         phone: "+33 ...",
         message: "Qu'aimeriez-vous automatiser en premier ?",
       },
-      tierOptions: ["Custom AI Apps", "Donapp", "Arxeon Elite 2.0", "À définir"],
+      tierOptions: ["Custom AI Apps", "Zane", "Arxeon Elite 2.0", "À définir"],
       submit: "Réserver la Consultation",
       submitting: "Envoi en cours...",
       successTitle: "Demande reçue.",
@@ -496,7 +532,7 @@ export const translations = {
         company: "Société",
         contact: "Contact",
       },
-      products: ["Custom AI Apps", "Donapp", "Arxeon Elite 2.0"],
+      products: ["Custom AI Apps", "Zane", "Arxeon Elite 2.0"],
       company: ["Architecture", "Blueprint Technique", "Stratégie", "Consultation"],
       mainSite: "arxeon.ch (site principal)",
     },

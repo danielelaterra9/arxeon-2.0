@@ -3,7 +3,7 @@ import os
 import pytest
 import requests
 
-BASE_URL = os.environ.get("REACT_APP_BACKEND_URL", "https://autonomous-business-2.preview.emergentagent.com").rstrip("/")
+BASE_URL = os.environ.get("REACT_APP_BACKEND_URL", "").rstrip("/")
 API = f"{BASE_URL}/api"
 
 
@@ -31,7 +31,7 @@ class TestConsultationCreate:
             "company": "TEST_Acme SA",
             "email": "test_acme@example.com",
             "phone": "+39 333 1234567",
-            "tier": "Donapp",
+            "tier": "Zane",
             "language": "it",
             "message": "Test message",
         }
@@ -41,7 +41,7 @@ class TestConsultationCreate:
         assert data["company"] == payload["company"]
         assert data["email"] == payload["email"]
         assert data["phone"] == payload["phone"]
-        assert data["tier"] == "Donapp"
+        assert data["tier"] == "Zane"
         assert data["language"] == "it"
         assert isinstance(data.get("id"), str) and len(data["id"]) > 10
         assert "created_at" in data
