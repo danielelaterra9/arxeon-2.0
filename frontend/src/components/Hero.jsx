@@ -47,9 +47,10 @@ export const Hero = () => {
 
             <h1
               data-testid="hero-title"
+              aria-label={t.hero.title}
               className="font-display text-5xl sm:text-6xl lg:text-7xl xl:text-8xl leading-[1.02] text-white max-w-5xl"
             >
-              {t.hero.title.split(" ").map((word, i) => (
+              {t.hero.title.split(" ").map((word, i, arr) => (
                 <motion.span
                   key={i}
                   initial={{ opacity: 0, y: 40 }}
@@ -68,6 +69,7 @@ export const Hero = () => {
                   ) : (
                     word
                   )}
+                  {i < arr.length - 1 ? " " : ""}
                 </motion.span>
               ))}
             </h1>
