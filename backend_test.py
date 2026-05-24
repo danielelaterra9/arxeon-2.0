@@ -11,7 +11,7 @@ import uuid
 from datetime import datetime
 
 # Backend URL from frontend/.env
-BACKEND_URL = "https://project-revival-26.preview.emergentagent.com"
+BACKEND_URL = "https://audit-flow-test-1.preview.emergentagent.com"
 
 def test_api_health_check():
     """Test the API health check endpoint"""
