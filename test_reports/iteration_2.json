@@ -1,0 +1,56 @@
+{
+  "summary": "Iteration 2 e2e testing of Arxeon Elite 2.0 landing (Blueprint pivot). Backend: 9/9 pytest pass (root, consultation valid/minimal/invalid-email/missing-fields/empty-company/persistence). Frontend: 25/25 functional assertions pass (hero IT title, NO testimonials/case-history sections, blueprint-section with 3 layers + stats + principle quote, nav-link-blueprint clickable+#blueprint scroll, elite-badge with 'Elite' text, back-to-main-site -> https://arxeon.ch, tier-card-1=Donapp, 13 pillars, 5 orbit nodes, no 'Donna 2.0' string anywhere, IT->FR switch updates blueprint title to 'L'anatomie d'une Usine IA.', contact form fills+submits+success state, mobile-menu opens with all 5 nav links). One UI/layout bug found: header overflows horizontally on mobile viewport, pushing mobile-menu-toggle off-screen.",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {
+        "endpoint": "POST /api/consultation",
+        "issue": "Latent: original concern about logger forward-reference is now RESOLVED — logger is initialised at module-top before routes. No action needed."
+      }
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "Header.jsx (data-testid='header-cta')",
+        "issue": "On mobile viewports (<640px) the desktop CTA button 'CONSULTAZIONE' remains visible and pushes the mobile-menu-toggle outside the viewport. Measured: viewport=390px, document.body.scrollWidth=464px, mobile-menu-toggle bounding box x=467 (beyond viewport). Root cause: the .btn-ghost custom CSS class declares 'display: inline-flex' which overrides Tailwind's 'hidden' utility because the custom stylesheet is loaded after Tailwind's utilities (CSS specificity is equal, last one wins). The user must scroll horizontally to reach the hamburger.",
+        "selector": "[data-testid='header-cta']",
+        "priority": "HIGH"
+      }
+    ],
+    "integration_issues": [],
+    "design_issues": [
+      {
+        "screen": "Hero",
+        "issues": ["Pre-existing: hero title spans render visually spaced via margin but textContent collapses to 'L'Aziendachesigestiscedasola.' (literal spaces are present this iteration in JSX but spans + margin still affect SR / DOM readouts). Confirmed unchanged from iteration_1."]
+      },
+      {
+        "screen": "Header (mobile)",
+        "issues": ["See ui_bugs above — header-cta should be hidden below 640px to avoid horizontal overflow."]
+      }
+    ]
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_consultation.py",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "action_items": [
+    "Fix Header.jsx mobile overflow: ensure .btn-ghost respects Tailwind utilities. Quick fix options: (a) add `!hidden sm:!inline-flex` to header-cta to force the Tailwind class to win, OR (b) wrap CTA in a hidden-on-mobile div, OR (c) raise specificity of the `hidden` rule, OR (d) remove `display: inline-flex` from .btn-ghost base and only apply on a modifier."
+  ],
+  "critical_code_review_comments": [
+    "Header.jsx: hidden-sm-inline-flex pattern is being overridden by .btn-ghost custom display — class ordering in CSS bundles can silently break responsiveness. Tailwind utilities should use ! prefix or be authored as layer utilities to guarantee priority over component classes.",
+    "TechnicalBlueprint.jsx is well-structured (~225 LOC), uses correct data-testid coverage, animates with framer-motion viewport gating, and properly destructures translations.",
+    "translations.js correctly sets caseHistory/testimonials = null so removed sections cannot render.",
+    "server.py logger forward-ref noted in iteration_1 is now fixed (logging configured before routes).",
+    "MongoDB _id properly excluded via projection on GET /api/consultation.",
+    "Frontend uses process.env.REACT_APP_BACKEND_URL consistently; no hardcoded URLs found."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "100%", "frontend": "96% (25/26 — mobile header overflow is the single failing UX check; the functional mobile menu still works once toggle is clicked via JS)"},
+  "test_credentials": "N/A — no auth on this app.",
+  "seed_data_creation": "POST /api/consultation called multiple times with TEST_-prefixed companies and e2e_blueprint@example.com / test_persist_marker@example.com. Records remain in MongoDB; no DELETE endpoint.",
+  "retest_needed": true,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Backend unchanged & green. All blueprint section data-testids present and verified. Language switch IT<->FR works. Contact form e2e works. Mobile menu HTML is correct and opens via click — but the mobile-menu-toggle button itself sits at x≈467 on a 390px viewport because the desktop header-cta button overflows. Functional click works via JS / horizontal scroll, but a real user on mobile cannot tap the hamburger without scrolling. Fix is a one-line className change.",
+  "rca_of_the_issue": "REPRO: set viewport to 390x844, navigate to /. Observe header 'CONSULTAZIONE' button is visible. Inspect mobile-menu-toggle: getBoundingClientRect().x = 467, document.body.scrollWidth = 464, window.innerWidth = 390. The hamburger is rendered to the right of the visible area. CAUSE: <a data-testid='header-cta' className='hidden sm:inline-flex btn-ghost'> — Tailwind's `.hidden { display: none }` and the project's custom `.btn-ghost { display: inline-flex; ... }` have equal CSS specificity (both single class); whichever appears later in the compiled stylesheet wins. In this build .btn-ghost wins, so `hidden` is ineffective at <640px. MITIGATION: use Tailwind's important modifier (`!hidden sm:!inline-flex`) on header-cta, or remove `display: inline-flex` from .btn-ghost base and apply it through a Tailwind layer utility, or change the class order so `.hidden` is appended later."
+}

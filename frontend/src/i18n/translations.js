@@ -8,7 +8,10 @@ export const translations = {
       valore: "Valore",
       pilastri: "13 Pilastri",
       strategia: "Strategia",
+      blueprint: "Blueprint",
       cta: "Consultazione",
+      backToMain: "arxeon.ch",
+      eliteBadge: "Elite",
     },
     hero: {
       overline: "ARXEON · AI FACTORY",
@@ -132,6 +135,81 @@ export const translations = {
         },
       ],
     },
+    caseHistory: null,
+    testimonials: null,
+    blueprint: {
+      overline: "Blueprint Tecnico",
+      title: "L'anatomia di un'AI Factory.",
+      subtitle:
+        "Niente case study patinati. Niente testimonianze. Qui mostriamo l'architettura tecnica che costruiamo per ogni cliente. Un sistema reale, non una promessa.",
+      layers: [
+        {
+          k: "L1",
+          name: "Acquisition Layer",
+          subtitle: "Pipeline di acquisizione autonoma",
+          desc: "Identificazione, qualifica e routing dei lead in tempo reale. L'IA filtra il rumore prima che arrivi a un essere umano.",
+          nodes: [
+            "Lead Capture multicanale",
+            "Enrichment & Scoring IA",
+            "Qualifica conversazionale",
+            "Routing automatico al canale corretto",
+            "Scheduling e first-touch",
+          ],
+          stats: [
+            { v: "< 60s", l: "Time to first response" },
+            { v: "94%", l: "Lead qualificati correttamente" },
+          ],
+        },
+        {
+          k: "L2",
+          name: "Orchestration Layer · Donapp",
+          subtitle: "Il Chief of Staff IA",
+          desc: "Donapp è il sistema operativo dell'azienda. Riceve, prioritizza e dispatcha ogni task ai sotto-sistemi corretti. Memoria contestuale, decision logic, escalation rules.",
+          nodes: [
+            "Context Memory persistente",
+            "Task router multi-agente",
+            "Priority queue dinamica",
+            "Escalation logic configurabile",
+            "Executive reporting in tempo reale",
+          ],
+          stats: [
+            { v: "24/7", l: "Operatività" },
+            { v: "n+1", l: "Agenti coordinati" },
+          ],
+        },
+        {
+          k: "L3",
+          name: "Execution Layer · 13 Pilastri",
+          subtitle: "I sotto-sistemi specializzati",
+          desc: "Ogni pilastro è un servizio autonomo con API, monitoring e fallback. Vendite, Marketing, Finanza, Operations: tutto disaccoppiato, tutto osservabile.",
+          nodes: [
+            "Microservizi specializzati per dominio",
+            "API contract & observability",
+            "Quality Assurance IA su ogni output",
+            "Fallback umano configurabile",
+            "Dashboard executive consolidata",
+          ],
+          stats: [
+            { v: "13", l: "Sotto-sistemi attivi" },
+            { v: "99.5%", l: "Uptime garantito" },
+          ],
+        },
+      ],
+      stackOverline: "Stack tecnologico",
+      stack: [
+        "LLM frontier · GPT / Claude / Gemini",
+        "Vector DB · Memoria contestuale",
+        "Orchestration · Agent framework proprietario",
+        "Observability · Logging + tracing end-to-end",
+        "Infrastructure · Cloud svizzero / EU",
+        "Security · SOC2-ready, GDPR-native",
+      ],
+      principle: {
+        overline: "Principio operativo",
+        quote:
+          "Mostriamo come è costruito. Non chiediamo di crederci sulla parola.",
+      },
+    },
     cta: {
       overline: "Consultazione Strategica",
       title: "Inizia la trasformazione.",
@@ -169,7 +247,8 @@ export const translations = {
         contact: "Contatti",
       },
       products: ["Custom AI Apps", "Donapp", "Arxeon Elite 2.0"],
-      company: ["Architettura", "Strategia", "Consultazione"],
+      company: ["Architettura", "Blueprint Tecnico", "Strategia", "Consultazione"],
+      mainSite: "arxeon.ch (sito principale)",
     },
   },
 
@@ -179,7 +258,10 @@ export const translations = {
       valore: "Valeur",
       pilastri: "13 Piliers",
       strategia: "Stratégie",
+      blueprint: "Blueprint",
       cta: "Consultation",
+      backToMain: "arxeon.ch",
+      eliteBadge: "Elite",
     },
     hero: {
       overline: "ARXEON · USINE IA",
@@ -303,6 +385,81 @@ export const translations = {
         },
       ],
     },
+    caseHistory: null,
+    testimonials: null,
+    blueprint: {
+      overline: "Blueprint Technique",
+      title: "L'anatomie d'une Usine IA.",
+      subtitle:
+        "Pas de case studies lustrés. Pas de témoignages. Ici nous montrons l'architecture technique que nous construisons pour chaque client. Un système réel, pas une promesse.",
+      layers: [
+        {
+          k: "L1",
+          name: "Acquisition Layer",
+          subtitle: "Pipeline d'acquisition autonome",
+          desc: "Identification, qualification et routing des leads en temps réel. L'IA filtre le bruit avant qu'il n'atteigne un humain.",
+          nodes: [
+            "Lead Capture multicanal",
+            "Enrichment & Scoring IA",
+            "Qualification conversationnelle",
+            "Routing automatique vers le bon canal",
+            "Scheduling et first-touch",
+          ],
+          stats: [
+            { v: "< 60s", l: "Temps de première réponse" },
+            { v: "94%", l: "Leads qualifiés correctement" },
+          ],
+        },
+        {
+          k: "L2",
+          name: "Orchestration Layer · Donapp",
+          subtitle: "Le Chief of Staff IA",
+          desc: "Donapp est le système d'exploitation de l'entreprise. Il reçoit, priorise et dispatche chaque tâche aux sous-systèmes corrects. Mémoire contextuelle, logique de décision, règles d'escalade.",
+          nodes: [
+            "Context Memory persistante",
+            "Task router multi-agent",
+            "Priority queue dynamique",
+            "Logique d'escalade configurable",
+            "Executive reporting en temps réel",
+          ],
+          stats: [
+            { v: "24/7", l: "Opérationnel" },
+            { v: "n+1", l: "Agents coordonnés" },
+          ],
+        },
+        {
+          k: "L3",
+          name: "Execution Layer · 13 Piliers",
+          subtitle: "Les sous-systèmes spécialisés",
+          desc: "Chaque pilier est un service autonome avec API, monitoring et fallback. Ventes, Marketing, Finance, Operations : tout est découplé, tout est observable.",
+          nodes: [
+            "Microservices spécialisés par domaine",
+            "API contract & observability",
+            "Quality Assurance IA sur chaque sortie",
+            "Fallback humain configurable",
+            "Dashboard executive consolidé",
+          ],
+          stats: [
+            { v: "13", l: "Sous-systèmes actifs" },
+            { v: "99.5%", l: "Uptime garanti" },
+          ],
+        },
+      ],
+      stackOverline: "Stack technologique",
+      stack: [
+        "LLM frontier · GPT / Claude / Gemini",
+        "Vector DB · Mémoire contextuelle",
+        "Orchestration · Framework d'agents propriétaire",
+        "Observability · Logging + tracing de bout en bout",
+        "Infrastructure · Cloud suisse / UE",
+        "Security · SOC2-ready, GDPR-native",
+      ],
+      principle: {
+        overline: "Principe opérationnel",
+        quote:
+          "Nous montrons comment c'est construit. Nous ne demandons pas de nous croire sur parole.",
+      },
+    },
     cta: {
       overline: "Consultation Stratégique",
       title: "Commencez la transformation.",
@@ -340,7 +497,8 @@ export const translations = {
         contact: "Contact",
       },
       products: ["Custom AI Apps", "Donapp", "Arxeon Elite 2.0"],
-      company: ["Architecture", "Stratégie", "Consultation"],
+      company: ["Architecture", "Blueprint Technique", "Stratégie", "Consultation"],
+      mainSite: "arxeon.ch (site principal)",
     },
   },
 };

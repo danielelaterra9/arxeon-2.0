@@ -1,9 +1,12 @@
 import React from "react";
+import { ArrowUpRight } from "lucide-react";
 import { useLanguage } from "../i18n/LanguageContext";
 
 export const Footer = () => {
   const { t, lang } = useLanguage();
   const year = new Date().getFullYear();
+
+  const companyAnchors = ["#architecture", "#blueprint", "#strategy", "#contact"];
 
   return (
     <footer
@@ -13,17 +16,32 @@ export const Footer = () => {
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className="grid grid-cols-12 gap-10 mb-16">
           <div className="col-span-12 lg:col-span-5">
-            <div className="font-display text-3xl sm:text-4xl tracking-[0.35em] text-white mb-6">
-              ARXEON
+            <div className="flex items-center gap-3 mb-6">
+              <div className="font-display text-3xl sm:text-4xl tracking-[0.35em] text-white">
+                ARXEON
+              </div>
+              <span className="text-[0.6rem] uppercase tracking-[0.3em] text-[#0a0b0e] bg-[#d4af37] px-2 py-1 leading-none">
+                {t.nav.eliteBadge}
+              </span>
             </div>
             <p className="font-display italic text-xl text-[#d4af37] mb-4">
               {t.footer.tagline}
             </p>
-            <p className="text-sm text-white/40 max-w-md leading-relaxed">
+            <p className="text-sm text-white/40 max-w-md leading-relaxed mb-8">
               {lang === "it"
                 ? "AI Factory · Architettura d'impresa autonoma. Precisione svizzera, esecuzione costante."
                 : "Usine IA · Architecture d'entreprise autonome. Précision suisse, exécution constante."}
             </p>
+            <a
+              href="https://arxeon.ch"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-testid="footer-main-site-link"
+              className="inline-flex items-center gap-2 overline text-[#d4af37] hover:text-[#e6c981] transition-colors"
+            >
+              {t.footer.mainSite}
+              <ArrowUpRight size={14} strokeWidth={1.5} />
+            </a>
           </div>
 
           <div className="col-span-6 lg:col-span-2 lg:col-start-8">
@@ -45,7 +63,7 @@ export const Footer = () => {
             </ul>
           </div>
 
-          <div className="col-span-6 lg:col-span-2">
+          <div className="col-span-6 lg:col-span-3">
             <h4 className="overline text-white/40 mb-6">
               {t.footer.sections.company}
             </h4>
@@ -53,7 +71,7 @@ export const Footer = () => {
               {t.footer.company.map((c, i) => (
                 <li key={c}>
                   <a
-                    href={["#architecture", "#strategy", "#contact"][i]}
+                    href={companyAnchors[i] || "#contact"}
                     data-testid={`footer-company-${c.replace(/\s+/g, "-").toLowerCase()}`}
                     className="text-sm text-white/65 hover:text-[#d4af37] transition-colors"
                   >
