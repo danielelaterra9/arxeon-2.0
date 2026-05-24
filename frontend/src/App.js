@@ -15,6 +15,7 @@ import CheckoutPremium from "./pages/checkout/CheckoutPremium";
 import CheckoutGold from "./pages/checkout/CheckoutGold";
 import ThankYou from "./pages/ThankYou";
 import Onboarding from "./pages/Onboarding";
+import Elite from "./pages/Elite";
 
 // Layout component to conditionally show footer
 const Layout = ({ children }) => {
@@ -43,6 +44,7 @@ function App() {
             <Route path="/valutazione" element={<Valutazione />} />
             <Route path="/valutazione/conferma" element={<ValutazioneConferma />} />
             <Route path="/metodo" element={<Metodo />} />
+            <Route path="/elite" element={<Elite />} />
             <Route path="/contatti" element={<Contatti />} />
             <Route path="/checkout/basic" element={<CheckoutBasic />} />
             <Route path="/checkout/premium" element={<CheckoutPremium />} />
