@@ -34,6 +34,17 @@ Design: Professional, minimalist, elite. Dark theme with gold + blue accents.
 - Strategic Consultation contact form
 - IT/FR language switcher in header
 
+## Implemented (2025-12 / build 3 — Rebrand + Hierarchy)
+- ✅ **Page name** = "Arxeon Elite" (browser title updated)
+- ✅ **Donapp → Zane** rebrand throughout IT/FR, components, form, footer
+- ✅ **Sales hierarchy** redesigned in ValueLadder:
+  - 2 large featured cards (Custom AI Apps · POPOLARE + Zane · RICHIESTO with gold-fill CTA)
+  - Arxeon Elite 2.0 demoted to a separate premium banner below ("L'Upgrade Definitivo")
+- ✅ Aggressive sales copy: "Risultato in 15 giorni. Garantito." / "Il Chief of Staff IA che non dorme mai." + named CTAs per tier
+- ✅ NEW `EliteIntro` transition section between ValueLadder and DecisionArchitecture — frames Elite content as the "premium upgrade"
+- ✅ Hero overline now "ARXEON ELITE · AI FACTORY"; hero meta strip rewritten to lead with Custom Apps + Zane
+- ✅ Tested: backend 9/9 ✅, frontend 18/18 ✅ (iteration_3)
+
 ## Implemented (2025-12 / build 2 — Blueprint pivot)
 - ✅ "Elite" badge in header next to ARXEON wordmark
 - ✅ Header sub-bar with "← arxeon.ch" back-to-main link
