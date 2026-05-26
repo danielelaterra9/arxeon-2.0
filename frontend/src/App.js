@@ -23,12 +23,13 @@ const Layout = ({ children }) => {
   const isCheckout = location.pathname.startsWith('/checkout');
   const isThankYou = location.pathname === '/thank-you';
   const isOnboarding = location.pathname === '/onboarding';
+  const isElite = location.pathname === '/elite';
   
   return (
     <>
-      <Header />
+      {!isElite && <Header />}
       {children}
-      {!isCheckout && !isThankYou && !isOnboarding && <Footer />}
+      {!isCheckout && !isThankYou && !isOnboarding && !isElite && <Footer />}
     </>
   );
 };
