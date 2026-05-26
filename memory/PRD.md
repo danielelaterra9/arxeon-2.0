@@ -34,6 +34,20 @@ Design: Professional, minimalist, elite. Dark theme with gold + blue accents.
 - Strategic Consultation contact form
 - IT/FR language switcher in header
 
+## Implemented (2025-12 / build 4 — ROI Pivot + Pricing + Calculator)
+- ✅ **Removed ALL "Swiss/svizzera/Suisse/Précision" claims** from visible DOM (IT + FR). Tone switched from "Swiss precision" to ROI/business-elite.
+- ✅ Hero subtitle rewritten: "Più tempo per il founder. Più margine per l'azienda. Meno costi fissi..."
+- ✅ Strategy section retitled "Modello Economico · High-Ticket. Volume automatizzato. Margini protetti." (point #03 "Output Costante")
+- ✅ **NEW `ZanePricing`** section with 3 plans:
+  - **Zane Lite** — CHF 450 setup + CHF 78/mo (Organizzazione personale d'élite)
+  - **Zane Business** — CHF 2'500 setup + CHF 780/mo (Sostituisce 3 dipendenti) · HIGHLIGHTED with gold-fill CTA + "PIÙ SCELTO"
+  - **Zane Elite** — CHF 5'000 setup + CHF 5'000/mo (Intelligenza strategica + analisi predittiva)
+- ✅ **NEW `SavingsCalculator`** — interactive ROI widget. Formula: `employees × hours × 220 × CHF 55`. Reactive output (annual savings, hours/year, FTE equivalent). Swiss-locale apostrophe formatting. Max-clamps hours at 8.
+- ✅ ValueLadder Custom AI Apps CTA → `#roi-calculator`; Zane CTA → `#zane-pricing`
+- ✅ Contact form tier options expanded to include all 3 Zane plans
+- ✅ README.md added for GitHub `arxeon-2.0` repo export with deployment instructions (subdomain or subpath, NO iframes)
+- ✅ Tested: backend 12/12 ✅, frontend 20/20 ✅ (iteration_4)
+
 ## Implemented (2025-12 / build 3 — Rebrand + Hierarchy)
 - ✅ **Page name** = "Arxeon Elite" (browser title updated)
 - ✅ **Donapp → Zane** rebrand throughout IT/FR, components, form, footer
