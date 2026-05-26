@@ -29,8 +29,8 @@ export const Footer = () => {
             </p>
             <p className="text-sm text-white/40 max-w-md leading-relaxed mb-8">
               {lang === "it"
-                ? "AI Factory · Architettura d'impresa autonoma. Precisione svizzera, esecuzione costante."
-                : "Usine IA · Architecture d'entreprise autonome. Précision suisse, exécution constante."}
+                ? "AI Factory · Architettura d'impresa autonoma. Più tempo, più margine, meno costi fissi."
+                : "Usine IA · Architecture d'entreprise autonome. Plus de temps, plus de marge, moins de coûts fixes."}
             </p>
             <a
               href="https://arxeon.ch"
@@ -90,7 +90,7 @@ export const Footer = () => {
             © {year} ARXEON · {t.footer.rights}
           </p>
           <p className="text-xs text-white/35 font-mono-arx tracking-[0.2em] uppercase">
-            Made with precision · CH / IT / FR
+            B2B · IT / FR · Arxeon Elite
           </p>
         </div>
       </div>

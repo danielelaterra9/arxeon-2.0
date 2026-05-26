@@ -2,6 +2,8 @@ import React from "react";
 import { Header } from "../components/Header";
 import { Hero } from "../components/Hero";
 import { ValueLadder } from "../components/ValueLadder";
+import { ZanePricing } from "../components/ZanePricing";
+import { SavingsCalculator } from "../components/SavingsCalculator";
 import { EliteIntro } from "../components/EliteIntro";
 import { DecisionArchitecture } from "../components/DecisionArchitecture";
 import { Pillars13 } from "../components/Pillars13";
@@ -18,6 +20,8 @@ export default function LandingPage() {
       <main className="pt-8">
         <Hero />
         <ValueLadder />
+        <ZanePricing />
+        <SavingsCalculator />
         <EliteIntro />
         <DecisionArchitecture />
         <Pillars13 />

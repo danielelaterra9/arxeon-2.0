@@ -34,8 +34,9 @@ export const Header = () => {
             ← {t.nav.backToMain}
           </a>
           <span className="hidden sm:inline text-white/35">
-            Swiss Made · {lang === "it" ? "Confidenziale" : "Confidentiel"} ·
-            B2B
+            {lang === "it"
+              ? "B2B · Riservato · Su selezione"
+              : "B2B · Confidentiel · Sur sélection"}
           </span>
         </div>
       </div>

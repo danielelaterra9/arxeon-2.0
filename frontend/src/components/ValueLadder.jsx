@@ -128,7 +128,7 @@ export const ValueLadder = () => {
                 </ul>
 
                 <a
-                  href="#contact"
+                  href={isZane ? "#zane-pricing" : "#roi-calculator"}
                   data-testid={`tier-cta-${i}`}
                   className={`inline-flex items-center justify-center gap-3 w-full sm:w-auto px-8 py-4 text-sm uppercase tracking-[0.12em] font-medium transition-all duration-300 ${
                     isZane

@@ -96,6 +96,31 @@ class TestConsultationCreate:
         assert r.status_code == 422
 
 
+class TestZaneTiers:
+    """New Zane Lite/Business/Elite tier acceptance (iteration 4)."""
+
+    @pytest.mark.parametrize("tier", ["Zane Lite", "Zane Business", "Zane Elite"])
+    def test_zane_tier(self, api_client, tier):
+        payload = {
+            "company": f"TEST_{tier.replace(' ', '_')}",
+            "email": f"test_{tier.lower().replace(' ', '_')}@example.com",
+            "phone": "+39 333 9876543",
+            "tier": tier,
+            "language": "it",
+        }
+        r = api_client.post(f"{API}/consultation", json=payload)
+        assert r.status_code == 200, r.text
+        created_id = r.json()["id"]
+        assert r.json()["tier"] == tier
+
+        # Persistence check
+        rl = api_client.get(f"{API}/consultation")
+        assert rl.status_code == 200
+        match = next((it for it in rl.json() if it["id"] == created_id), None)
+        assert match is not None, "record not persisted"
+        assert match["tier"] == tier
+
+
 # ===== Consultation GET + persistence =====
 class TestConsultationList:
     def test_list_after_create(self, api_client):
