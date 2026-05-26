@@ -19,7 +19,7 @@ const formatNumber = (n, digits = 0) =>
   }).format(n);
 
 export const SavingsCalculator = () => {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const c = t.savingsCalculator;
 
   const [employees, setEmployees] = useState(8);
@@ -85,7 +85,9 @@ export const SavingsCalculator = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-px bg-white/5 border border-white/5">
           {/* Inputs */}
           <div className="lg:col-span-5 bg-[#0d0f13] p-8 sm:p-10 lg:p-12">
-            <div className="overline text-white/45 mb-8">Input</div>
+            <div className="overline text-white/45 mb-8">
+              {lang === "it" ? "Punto di partenza" : "Point de départ"}
+            </div>
 
             <div className="space-y-10">
               <div>
@@ -125,7 +127,7 @@ export const SavingsCalculator = () => {
                   className="w-full bg-transparent border-b border-white/20 focus:border-[#d4af37] outline-none transition-colors py-3 font-display text-4xl sm:text-5xl text-white"
                 />
                 <div className="mt-2 font-mono-arx text-[0.65rem] text-white/40 tracking-wider">
-                  Max 8 h/giorno
+                  {lang === "it" ? "Max 8 h/giorno" : "Max 8 h/jour"}
                 </div>
               </div>
             </div>
@@ -158,7 +160,7 @@ export const SavingsCalculator = () => {
                   {formatCHF(annualSavings)}
                 </span>
                 <span className="font-display text-2xl sm:text-3xl text-white/60">
-                  CHF/anno
+                  {lang === "it" ? "CHF/anno" : "CHF/an"}
                 </span>
               </div>
               <p className="mt-4 text-sm text-white/55 leading-relaxed max-w-md">

@@ -34,6 +34,21 @@ Design: Professional, minimalist, elite. Dark theme with gold + blue accents.
 - Strategic Consultation contact form
 - IT/FR language switcher in header
 
+## Implemented (2025-12 / build 5 — Narrativa Umano + AI)
+- ✅ **Cambio narrativa fondamentale**: Zane non è un "sostituto" — è uno **scudo operativo** che assorbe attrito e complessità.
+- ✅ **Hero subtitle** riscritto: "Più tempo per il founder. Più energia per il team. Meno attrito..."
+- ✅ **Hero meta**: "Ore/Settimana **restituite al team**", "−40% **Attrito operativo**", "Operatività **senza burnout**"
+- ✅ **ZanePricing** taglines pivot:
+  - Lite: "Recupera la tua energia, focalizzati sul tuo core business."
+  - Business: "Potenzia il team eliminando i colli di bottiglia operativi."
+  - Elite: "La tua bussola strategica per navigare la complessità senza stress."
+- ✅ **ValueLadder Zane card**: "Lo scudo operativo del tuo team." Niente più "3 dipendenti sostituiti" — è "Elimina i colli di bottiglia operativi del team"
+- ✅ **SavingsCalculator** reframed: "Capacità strategica recuperata", "Energia restituita al team", "Non persone rimosse: persone liberate", "Capacità (FTE) liberata per il valore". CTA: "Trasforma questo tempo in valore strategico"
+- ✅ **Strategy** rewritten: "Volume Sostenibile" (no burnout), "Energia Restituita" replaces "Tempo Recuperato"
+- ✅ **EliteIntro / Premium tier**: −40% "attrito operativo" (non "costi operativi"); "Scala senza esaurire il team"
+- ✅ FR mirror completo · meta description IT aggiornata · Footer tagline updated
+- ✅ Verificato: zero occorrenze di "sostituisce 3 / remplace 3 / 3 dipendenti / 3 employés" nel codice
+
 ## Implemented (2025-12 / build 4 — ROI Pivot + Pricing + Calculator)
 - ✅ **Removed ALL "Swiss/svizzera/Suisse/Précision" claims** from visible DOM (IT + FR). Tone switched from "Swiss precision" to ROI/business-elite.
 - ✅ Hero subtitle rewritten: "Più tempo per il founder. Più margine per l'azienda. Meno costi fissi..."

@@ -29,8 +29,8 @@ export const Footer = () => {
             </p>
             <p className="text-sm text-white/40 max-w-md leading-relaxed mb-8">
               {lang === "it"
-                ? "AI Factory · Architettura d'impresa autonoma. Più tempo, più margine, meno costi fissi."
-                : "Usine IA · Architecture d'entreprise autonome. Plus de temps, plus de marge, moins de coûts fixes."}
+                ? "AI Factory · Lo scudo operativo che assorbe la complessità e libera il team per il valore strategico."
+                : "Usine IA · Le bouclier opérationnel qui absorbe la complexité et libère l'équipe pour la valeur stratégique."}
             </p>
             <a
               href="https://arxeon.ch"
