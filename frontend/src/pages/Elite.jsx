@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import {
   ArrowRight,
   ArrowUpRight,
@@ -63,6 +64,14 @@ const Pillar = ({ num, icon: Icon, title, desc }) => (
 );
 
 const Elite = () => {
+  const { t, i18n } = useTranslation();
+  const currentLang = (i18n.language || 'it').substring(0, 2);
+
+  const changeLang = (code) => {
+    i18n.changeLanguage(code);
+    localStorage.setItem('arxeon-lang', code);
+  };
+
   const [form, setForm] = useState({
     fullName: '',
     companyName: '',
@@ -78,7 +87,6 @@ const Elite = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  // ROI calc: 8 persone => 193'600 CHF/anno (baseline ~24'200 per person)
   const roiAnnual = useMemo(() => {
     const perPerson = 24200;
     return Math.round(roiPeople * perPerson).toLocaleString('de-CH').replace(/,/g, "'");
@@ -92,11 +100,11 @@ const Elite = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!form.fullName.trim() || !form.companyName.trim() || !form.email.trim()) {
-      toast.error('Compila i campi obbligatori');
+      toast.error(t('elite.contact.err_required'));
       return;
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
-      toast.error('Email non valida');
+      toast.error(t('elite.contact.err_email'));
       return;
     }
     setSubmitting(true);
@@ -104,85 +112,41 @@ const Elite = () => {
       const res = await fetch(`${BACKEND_URL}/api/elite-consultation`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...form, language: 'it' }),
+        body: JSON.stringify({ ...form, language: currentLang }),
       });
       if (!res.ok) throw new Error('error');
-      toast.success('Richiesta inviata. Ti contatteremo entro 24 ore.');
+      toast.success(t('elite.contact.ok_sent'));
       setForm({ fullName: '', companyName: '', email: '', phone: '', interest: 'tbd', context: '' });
     } catch {
-      toast.error('Errore nell\'invio. Riprova.');
+      toast.error(t('elite.contact.err_send'));
     } finally {
       setSubmitting(false);
     }
   };
 
   const pillars = [
-    { n: 1, i: TrendingUp, t: 'Vendite Autonome', d: 'Pipeline gestita end-to-end dall\'IA.' },
-    { n: 2, i: Target, t: 'Marketing Predittivo', d: 'Campagne ottimizzate in tempo reale.' },
-    { n: 3, i: MessageSquare, t: 'Customer Care 24/7', d: 'Supporto multilingua sempre attivo.' },
-    { n: 4, i: Settings, t: 'Operations Automatizzate', d: 'Workflow eseguiti senza supervisione.' },
-    { n: 5, i: PieChart, t: 'Finanza Intelligente', d: 'Controllo, budget, forecast automatico.' },
-    { n: 6, i: Database, t: 'Data Intelligence', d: 'Insight strategici da ogni dato aziendale.' },
-    { n: 7, i: Sparkles, t: 'Lead Generation', d: 'Acquisizione qualificata in continuo.' },
-    { n: 8, i: PenTool, t: 'Content Factory', d: 'Produzione di contenuto su scala industriale.' },
-    { n: 9, i: Users, t: 'CRM Autonomo', d: 'Relazioni cliente coltivate dall\'IA.' },
-    { n: 10, i: Activity, t: 'Reporting Real-time', d: 'Dashboard executive sempre aggiornata.' },
-    { n: 11, i: ShieldCheck, t: 'Quality Assurance AI', d: 'Controllo qualità su ogni output.' },
-    { n: 12, i: ShoppingCart, t: 'Procurement AI', d: 'Approvvigionamento ottimizzato in autonomia.' },
-    { n: 13, i: UserPlus, t: 'HR & Talent AI', d: 'Selezione e onboarding automatizzati.' },
+    { n: 1, i: TrendingUp, key: 'p1' },
+    { n: 2, i: Target, key: 'p2' },
+    { n: 3, i: MessageSquare, key: 'p3' },
+    { n: 4, i: Settings, key: 'p4' },
+    { n: 5, i: PieChart, key: 'p5' },
+    { n: 6, i: Database, key: 'p6' },
+    { n: 7, i: Sparkles, key: 'p7' },
+    { n: 8, i: PenTool, key: 'p8' },
+    { n: 9, i: Users, key: 'p9' },
+    { n: 10, i: Activity, key: 'p10' },
+    { n: 11, i: ShieldCheck, key: 'p11' },
+    { n: 12, i: ShoppingCart, key: 'p12' },
+    { n: 13, i: UserPlus, key: 'p13' },
   ];
 
   const zanePlans = [
-    {
-      id: 'lite',
-      name: 'Zane Lite',
-      tagline: 'Recupera la tua energia, focalizzati sul tuo core business.',
-      audience: 'FOUNDER · LIBERI PROFESSIONISTI · SOLOPRENEUR',
-      price: '78',
-      setup: 'Setup CHF 450',
-      description: 'Il tuo scudo personale IA. Filtra email, organizza il calendario, prepara briefing, gestisce ricerche e follow-up. Recuperi lucidità mentale e tempo per il lavoro che ti ha portato fin qui.',
-      features: [
-        'Inbox filtrata e priorità giornaliere',
-        'Calendario e scheduling senza attrito',
-        'Briefing personali quotidiani e settimanali',
-        'Memoria contestuale persistente',
-        'Onboarding in 7 giorni',
-      ],
-    },
-    {
-      id: 'business',
-      name: 'Zane Business',
-      featured: true,
-      tagline: 'Potenzia il team eliminando i colli di bottiglia operativi.',
-      audience: 'PMI · STUDI PROFESSIONALI · AZIENDE 10-50 PERSONE',
-      price: '780',
-      setup: 'Setup CHF 2\'500',
-      description: 'Outreach ripetitivo, gestione lead, ticket di assistenza, coordinamento operativo. Zane assorbe il rumore. Le persone tornano a fare il lavoro per cui le hai assunte: relazioni, decisioni, valore.',
-      features: [
-        'Outreach automatizzato e qualifica lead',
-        'Customer Care 24/7 multilingua',
-        'Operations e workflow senza attrito',
-        'Integrazioni CRM / ERP / Email',
-        'Dashboard salute del team operativo',
-      ],
-    },
-    {
-      id: 'elite',
-      name: 'Zane Elite',
-      tagline: 'La tua bussola strategica per navigare la complessità senza stress.',
-      audience: 'AZIENDE STRUTTURATE · HOLDING · CEO D\'ÉLITE',
-      price: '5\'000',
-      setup: 'Setup CHF 5\'000',
-      description: 'Oltre l\'operatività. Zane Elite gestisce la complessità che ti tiene sveglio la notte: analisi predittiva, simulazione scenari, executive briefing. Tu decidi con la mente libera, con i numeri già letti.',
-      features: [
-        'Analisi predittiva sui KPI aziendali',
-        'Executive briefing settimanali sintetizzati',
-        'Simulazione scenari decisionali',
-        'Integrazione data warehouse e BI',
-        'Account dedicato Arxeon',
-      ],
-    },
+    { id: 'lite', price: '78', featured: false },
+    { id: 'business', price: '780', featured: true },
+    { id: 'elite', price: "5'000", featured: false },
   ];
+
+  const navBadges = t('elite.nav.badges', { returnObjects: true });
 
   return (
     <main className="bg-[#0a0b0a] text-white elite-page min-h-screen" data-testid="elite-page">
@@ -190,10 +154,6 @@ const Elite = () => {
         .elite-page {
           --gold: #c8a46b;
           --gold-bright: #d4b681;
-          --ink: #0a0b0a;
-          --ink-2: #0e0f0e;
-          --panel: #131413;
-          --line: #222421;
           font-family: 'Inter', -apple-system, system-ui, sans-serif;
         }
         .elite-page .serif,
@@ -297,12 +257,15 @@ const Elite = () => {
         <div className="max-w-[1500px] mx-auto px-6 md:px-12">
           <div className="flex items-center justify-between py-3 text-[10px] tracking-[0.22em] uppercase">
             <Link to="/" className="text-[#6f716d] hover:text-[#c8a46b] transition-colors flex items-center gap-2" data-testid="back-to-arxeon">
-              ← Arxeon.ch
+              ← {t('elite.nav.back')}
             </Link>
             <div className="text-[#6f716d] hidden sm:flex items-center gap-3">
-              <span>B2B</span><span className="text-[#3a3c38]">·</span>
-              <span>Riservato</span><span className="text-[#3a3c38]">·</span>
-              <span>Su selezione</span>
+              {Array.isArray(navBadges) && navBadges.map((b, i) => (
+                <React.Fragment key={i}>
+                  <span>{b}</span>
+                  {i < navBadges.length - 1 && <span className="text-[#3a3c38]">·</span>}
+                </React.Fragment>
+              ))}
             </div>
           </div>
         </div>
@@ -321,20 +284,32 @@ const Elite = () => {
               </span>
             </div>
             <nav className="hidden lg:flex items-center gap-9 text-[10px] tracking-[0.25em] uppercase text-[#9a9a96] font-medium">
-              <button onClick={() => scrollTo('valore')} className="hover:text-[#c8a46b] transition-colors underline underline-offset-8 decoration-[#c8a46b]/30" data-testid="nav-valore">Valore</button>
-              <button onClick={() => scrollTo('architettura')} className="hover:text-[#c8a46b] transition-colors underline underline-offset-8 decoration-[#c8a46b]/30" data-testid="nav-architettura">Architettura</button>
-              <button onClick={() => scrollTo('pilastri')} className="hover:text-[#c8a46b] transition-colors underline underline-offset-8 decoration-[#c8a46b]/30" data-testid="nav-pilastri">13 Pilastri</button>
-              <button onClick={() => scrollTo('blueprint')} className="hover:text-[#c8a46b] transition-colors underline underline-offset-8 decoration-[#c8a46b]/30" data-testid="nav-blueprint">Blueprint</button>
-              <button onClick={() => scrollTo('strategia')} className="hover:text-[#c8a46b] transition-colors underline underline-offset-8 decoration-[#c8a46b]/30" data-testid="nav-strategia">Strategia</button>
+              <button onClick={() => scrollTo('valore')} className="hover:text-[#c8a46b] transition-colors underline underline-offset-8 decoration-[#c8a46b]/30" data-testid="nav-valore">{t('elite.nav.valore')}</button>
+              <button onClick={() => scrollTo('architettura')} className="hover:text-[#c8a46b] transition-colors underline underline-offset-8 decoration-[#c8a46b]/30" data-testid="nav-architettura">{t('elite.nav.architettura')}</button>
+              <button onClick={() => scrollTo('pilastri')} className="hover:text-[#c8a46b] transition-colors underline underline-offset-8 decoration-[#c8a46b]/30" data-testid="nav-pilastri">{t('elite.nav.pilastri')}</button>
+              <button onClick={() => scrollTo('blueprint')} className="hover:text-[#c8a46b] transition-colors underline underline-offset-8 decoration-[#c8a46b]/30" data-testid="nav-blueprint">{t('elite.nav.blueprint')}</button>
+              <button onClick={() => scrollTo('strategia')} className="hover:text-[#c8a46b] transition-colors underline underline-offset-8 decoration-[#c8a46b]/30" data-testid="nav-strategia">{t('elite.nav.strategia')}</button>
             </nav>
             <div className="flex items-center gap-6">
               <div className="hidden md:flex items-center gap-2 text-[10px] tracking-[0.22em] uppercase">
-                <span className="text-[#c8a46b]">IT</span>
+                <button
+                  onClick={() => changeLang('it')}
+                  className={`transition-colors px-1 py-1 ${currentLang === 'it' ? 'text-[#c8a46b]' : 'text-[#6f716d] hover:text-white'}`}
+                  data-testid="lang-it"
+                >
+                  IT
+                </button>
                 <span className="text-[#3a3c38]">·</span>
-                <span className="text-[#6f716d]">FR</span>
+                <button
+                  onClick={() => changeLang('fr')}
+                  className={`transition-colors px-1 py-1 ${currentLang === 'fr' ? 'text-[#c8a46b]' : 'text-[#6f716d] hover:text-white'}`}
+                  data-testid="lang-fr"
+                >
+                  FR
+                </button>
               </div>
               <button onClick={() => scrollTo('contatto')} className="btn-outline !py-3 !px-5" data-testid="cta-consultazione-top">
-                Consultazione <ArrowUpRight size={12} />
+                {t('elite.nav.consultazione')} <ArrowUpRight size={12} />
               </button>
             </div>
           </div>
@@ -345,146 +320,118 @@ const Elite = () => {
       <section className="relative pt-20 pb-32 md:pt-32 md:pb-40" data-testid="hero-section">
         <div className="absolute inset-0 pointer-events-none opacity-30" style={{ backgroundImage: 'radial-gradient(ellipse 1200px 600px at 60% 50%, rgba(200,164,107,0.06), transparent 70%)' }}></div>
         <div className="max-w-[1500px] mx-auto px-6 md:px-12 relative">
-          <Label>Arxeon Elite · AI Factory</Label>
+          <Label>{t('elite.hero.label')}</Label>
           <h1 className="display text-6xl md:text-8xl lg:text-9xl text-white leading-[0.95] mb-12 max-w-5xl" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 500 }}>
-            L'Azienda che si gestisce da <span className="italic-gold">sola.</span>
+            {t('elite.hero.title_1')} <span className="italic-gold">{t('elite.hero.title_em')}</span>
           </h1>
           <p className="text-lg md:text-xl text-[#9a9a96] max-w-2xl leading-relaxed mb-14">
-            Più tempo per il founder. Più energia per il team. Meno attrito sulle attività ripetitive. L'IA che assorbe la complessità, lasciando le persone libere di creare valore.
+            {t('elite.hero.subtitle')}
           </p>
           <div className="flex flex-wrap gap-4 mb-24">
             <button onClick={() => scrollTo('contatto')} className="btn-gold" data-testid="cta-consultazione-hero">
-              Richiedi consultazione strategica <ArrowRight size={14} />
+              {t('elite.hero.cta_primary')} <ArrowRight size={14} />
             </button>
             <button onClick={() => scrollTo('valore')} className="btn-outline" data-testid="cta-soluzioni">
-              Esplora le soluzioni
+              {t('elite.hero.cta_secondary')}
             </button>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl">
-            <Stat value="15" label="Giorni · ROI Custom AI Apps" />
-            <Stat value="30+" label="Ore/settimana restituite al team" />
-            <Stat value="−40%" label="Attrito operativo · Elite 2.0" />
-            <Stat value="24/7" label="Operatività senza burnout" />
+            <Stat value="15" label={t('elite.stats.s1_label')} />
+            <Stat value="30+" label={t('elite.stats.s2_label')} />
+            <Stat value="−40%" label={t('elite.stats.s3_label')} />
+            <Stat value="24/7" label={t('elite.stats.s4_label')} />
           </div>
 
           <div className="mt-20 flex flex-col items-center text-[#6f716d]">
-            <div className="text-[10px] tracking-[0.3em] uppercase mb-3">Scroll</div>
+            <div className="text-[10px] tracking-[0.3em] uppercase mb-3">{t('elite.hero.scroll')}</div>
             <ArrowDown size={16} className="animate-bounce" />
           </div>
         </div>
       </section>
 
-      {/* VALUE LADDER (2 cards) */}
+      {/* VALUE LADDER */}
       <section id="valore" className="py-24 md:py-32 border-t border-[#1a1c1a]" data-testid="value-ladder-section">
         <div className="max-w-[1500px] mx-auto px-6 md:px-12">
-          <Label>Le soluzioni</Label>
+          <Label>{t('elite.value.label')}</Label>
           <h2 className="display text-5xl md:text-7xl text-white leading-tight mb-6 max-w-5xl" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 500 }}>
-            Due acceleratori. <span className="italic-gold">Un'unica architettura.</span>
+            {t('elite.value.title_1')} <span className="italic-gold">{t('elite.value.title_em')}</span>
           </h2>
-          <p className="text-[#9a9a96] text-lg max-w-3xl mb-20 leading-relaxed">
-            Inizia con un risultato concreto in 15 giorni. Scala con un Chief of Staff IA. Poi, quando sei pronto, accedi all'AI Factory completa.
-          </p>
+          <p className="text-[#9a9a96] text-lg max-w-3xl mb-20 leading-relaxed">{t('elite.value.subtitle')}</p>
 
           <div className="grid lg:grid-cols-2 gap-px bg-[#1a1c1a]">
             {/* Custom AI Apps */}
             <div className="bg-[#0e0f0e] p-10 md:p-14" data-testid="card-custom-ai-apps">
               <div className="flex items-center gap-3 mb-8">
-                <span className="bg-[#c8a46b] text-[#0a0b0a] text-[9px] tracking-[0.25em] uppercase px-2.5 py-1 font-semibold">★ Popolare</span>
-                <span className="micro">Livello 1 · Entry</span>
+                <span className="bg-[#c8a46b] text-[#0a0b0a] text-[9px] tracking-[0.25em] uppercase px-2.5 py-1 font-semibold">{t('elite.value.apps.badge')}</span>
+                <span className="micro">{t('elite.value.apps.level')}</span>
               </div>
-              <h3 className="display text-4xl md:text-5xl text-white mb-3" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 500 }}>
-                Custom AI Apps
-              </h3>
-              <p className="italic-gold text-base mb-8 italic">Risultato in 15 giorni. Garantito.</p>
-              <p className="text-[#9a9a96] text-[15px] leading-relaxed mb-10">
-                Identifichiamo il collo di bottiglia che ti sta costando di più. Costruiamo l'app IA su misura che lo elimina. Live in produzione in 15 giorni di calendario, non un giorno di più.
-              </p>
+              <h3 className="display text-4xl md:text-5xl text-white mb-3" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 500 }}>{t('elite.value.apps.name')}</h3>
+              <p className="italic-gold text-base mb-8 italic">{t('elite.value.apps.tagline')}</p>
+              <p className="text-[#9a9a96] text-[15px] leading-relaxed mb-10">{t('elite.value.apps.desc')}</p>
               <ul className="space-y-4 mb-10">
-                {[
-                  'Payback medio entro 60 giorni dal go-live',
-                  'Integrazione diretta col tuo stack attuale',
-                  'Codice di proprietà del cliente · zero lock-in',
-                ].map((it, i) => (
-                  <li key={i} className="flex items-start gap-4 text-white/90 text-sm">
+                {['f1', 'f2', 'f3'].map((f) => (
+                  <li key={f} className="flex items-start gap-4 text-white/90 text-sm">
                     <Check size={14} className="text-[#c8a46b] flex-shrink-0 mt-1" strokeWidth={2.5} />
-                    <span>{it}</span>
+                    <span>{t(`elite.value.apps.${f}`)}</span>
                   </li>
                 ))}
               </ul>
               <button onClick={() => scrollTo('roi')} className="btn-gold" data-testid="cta-custom-ai-apps">
-                Calcola il tuo ROI <ArrowRight size={14} />
+                {t('elite.value.apps.cta')} <ArrowRight size={14} />
               </button>
             </div>
 
             {/* Zane */}
             <div className="bg-[#0e0f0e] p-10 md:p-14 relative" data-testid="card-zane">
               <div className="flex items-center gap-3 mb-8">
-                <span className="bg-[#c8a46b] text-[#0a0b0a] text-[9px] tracking-[0.25em] uppercase px-2.5 py-1 font-semibold">★ Richiesto</span>
-                <span className="micro">Livello 2 · Core</span>
+                <span className="bg-[#c8a46b] text-[#0a0b0a] text-[9px] tracking-[0.25em] uppercase px-2.5 py-1 font-semibold">{t('elite.value.zane.badge')}</span>
+                <span className="micro">{t('elite.value.zane.level')}</span>
               </div>
-              <h3 className="display text-4xl md:text-5xl text-white mb-3" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 500 }}>
-                Zane
-              </h3>
-              <p className="italic-gold text-base mb-8 italic">Il Chief of Staff IA che non dorme mai.</p>
-              <p className="text-[#9a9a96] text-[15px] leading-relaxed mb-10">
-                Zane è l'Assistente IA che ogni founder ha sempre desiderato. Memoria aziendale, decisioni in autonomia, esecuzione 24/7. Coordina team, gestisce calendari, scrive proposal, processa email e ti restituisce 30+ ore alla settimana. Non un chatbot. Un Chief of Staff.
-              </p>
+              <h3 className="display text-4xl md:text-5xl text-white mb-3" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 500 }}>{t('elite.value.zane.name')}</h3>
+              <p className="italic-gold text-base mb-8 italic">{t('elite.value.zane.tagline')}</p>
+              <p className="text-[#9a9a96] text-[15px] leading-relaxed mb-10">{t('elite.value.zane.desc')}</p>
               <ul className="space-y-4 mb-10">
-                {[
-                  'Da CHF 78/mese · Setup da CHF 450',
-                  'Elimina i colli di bottiglia operativi del team',
-                  '30+ ore/settimana restituite al lavoro strategico',
-                  'Onboarding completo in 7 giorni',
-                ].map((it, i) => (
-                  <li key={i} className="flex items-start gap-4 text-white/90 text-sm">
+                {['f1', 'f2', 'f3', 'f4'].map((f) => (
+                  <li key={f} className="flex items-start gap-4 text-white/90 text-sm">
                     <Check size={14} className="text-[#c8a46b] flex-shrink-0 mt-1" strokeWidth={2.5} />
-                    <span>{it}</span>
+                    <span>{t(`elite.value.zane.${f}`)}</span>
                   </li>
                 ))}
               </ul>
               <button onClick={() => scrollTo('piani-zane')} className="btn-gold" data-testid="cta-zane">
-                Vedi i piani Zane <ArrowRight size={14} />
+                {t('elite.value.zane.cta')} <ArrowRight size={14} />
               </button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* L'UPGRADE DEFINITIVO - Elite 2.0 panel */}
+      {/* L'UPGRADE DEFINITIVO */}
       <section className="py-24 md:py-32 border-t border-[#1a1c1a]" data-testid="upgrade-section">
         <div className="max-w-[1500px] mx-auto px-6 md:px-12">
-          <Label>L'upgrade definitivo</Label>
+          <Label>{t('elite.upgrade.label')}</Label>
           <div className="border border-[#222421] bg-gradient-to-br from-[#131413] to-[#0e0f0e]">
             <div className="grid lg:grid-cols-2">
               <div className="p-10 md:p-16 border-b lg:border-b-0 lg:border-r border-[#222421]">
                 <div className="flex items-center gap-2 micro mb-8">
-                  <Building2 size={14} className="text-[#c8a46b]" /> · Livello Premium
+                  <Building2 size={14} className="text-[#c8a46b]" /> · {t('elite.upgrade.level')}
                 </div>
-                <h3 className="display text-5xl md:text-6xl text-white mb-3" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 500 }}>
-                  Arxeon Elite 2.0
-                </h3>
-                <p className="italic-gold text-lg mb-12 italic">L'azienda intera, senza l'attrito.</p>
+                <h3 className="display text-5xl md:text-6xl text-white mb-3" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 500 }}>{t('elite.upgrade.name')}</h3>
+                <p className="italic-gold text-lg mb-12 italic">{t('elite.upgrade.tagline')}</p>
               </div>
               <div className="p-10 md:p-16">
-                <p className="text-[#9a9a96] text-[15px] leading-relaxed mb-10">
-                  Per founder che vogliono ridurre del 40% l'attrito operativo senza sacrificare il fatturato. 13 pilastri, 1 CEO AI e 5 Dirigenti AI gestiscono il rumore quotidiano. Il team umano lavora sulle decisioni che contano davvero.
-                </p>
+                <p className="text-[#9a9a96] text-[15px] leading-relaxed mb-10">{t('elite.upgrade.desc')}</p>
                 <div className="grid sm:grid-cols-2 gap-6 mb-10">
-                  {[
-                    '−40% attrito operativo nei primi 12 mesi',
-                    'Scala il fatturato senza esaurire il team',
-                    'Reporting executive consolidato in tempo reale',
-                    'Implementazione phased (3-6 mesi)',
-                  ].map((t, i) => (
-                    <div key={i} className="flex items-start gap-4">
+                  {['p1', 'p2', 'p3', 'p4'].map((p, i) => (
+                    <div key={p} className="flex items-start gap-4">
                       <span className="text-[#c8a46b] text-[10px] font-mono tracking-wider mt-1">0{i + 1}</span>
-                      <span className="text-white/90 text-sm leading-relaxed">{t}</span>
+                      <span className="text-white/90 text-sm leading-relaxed">{t(`elite.upgrade.${p}`)}</span>
                     </div>
                   ))}
                 </div>
                 <button onClick={() => scrollTo('architettura')} className="link-gold" data-testid="cta-explore-ai-factory">
-                  Esplora l'AI Factory <ArrowRight size={12} />
+                  {t('elite.upgrade.cta')} <ArrowRight size={12} />
                 </button>
               </div>
             </div>
@@ -492,24 +439,22 @@ const Elite = () => {
         </div>
       </section>
 
-      {/* ARCHITETTURA - Elite 2.0 intro */}
+      {/* ARCHITETTURA INTRO */}
       <section id="architettura" className="py-24 md:py-32 border-t border-[#1a1c1a]" data-testid="architecture-intro">
         <div className="max-w-[1500px] mx-auto px-6 md:px-12">
-          <Label>Livello Premium · Arxeon Elite 2.0</Label>
+          <Label>{t('elite.architettura.label')}</Label>
           <div className="grid lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-8">
               <h2 className="display text-5xl md:text-7xl text-white leading-tight mb-8" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 500 }}>
-                Per chi è pronto all'<span className="italic-gold">AI Factory completa.</span>
+                {t('elite.architettura.title_1')}<span className="italic-gold">{t('elite.architettura.title_em')}</span>
               </h2>
-              <p className="text-[#9a9a96] text-lg leading-relaxed max-w-3xl">
-                Hai già stabilizzato Custom Apps e Zane? Sei pronto a ridurre del 40% l'attrito operativo dell'intera azienda senza sacrificare il fatturato. Quello che segue è l'architettura completa: 13 pilastri, 1 CEO AI, 5 Dirigenti AI.
-              </p>
+              <p className="text-[#9a9a96] text-lg leading-relaxed max-w-3xl">{t('elite.architettura.desc')}</p>
             </div>
             <div className="lg:col-span-4 text-center lg:text-right">
               <div className="display text-[200px] md:text-[260px] text-[#c8a46b]/15 leading-none -mb-8" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 500 }}>
                 2.0
               </div>
-              <div className="micro">Scroll <ArrowDown className="inline ml-1" size={12} /></div>
+              <div className="micro">{t('elite.hero.scroll')} <ArrowDown className="inline ml-1" size={12} /></div>
             </div>
           </div>
         </div>
@@ -518,36 +463,34 @@ const Elite = () => {
       {/* CEO AI ORB */}
       <section className="py-24 md:py-32 border-t border-[#1a1c1a]" data-testid="decisional-architecture">
         <div className="max-w-[1500px] mx-auto px-6 md:px-12">
-          <Label>Architettura decisionale</Label>
+          <Label>{t('elite.decisional.label')}</Label>
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
               <h2 className="display text-5xl md:text-6xl text-white leading-tight mb-8" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 500 }}>
-                1 CEO AI. 5 Dirigenti AI. <span className="italic-gold">Zero attriti.</span>
+                {t('elite.decisional.title_1')} <span className="italic-gold">{t('elite.decisional.title_em')}</span>
               </h2>
-              <p className="text-[#9a9a96] text-lg leading-relaxed mb-12">
-                Una costellazione di intelligenze coordinate. Il CEO AI orchestra le decisioni strategiche; i cinque Dirigenti AI eseguono con autonomia totale nei rispettivi dipartimenti.
-              </p>
+              <p className="text-[#9a9a96] text-lg leading-relaxed mb-12">{t('elite.decisional.desc')}</p>
               <div className="space-y-1">
                 {[
-                  { i: Megaphone, t: 'Direttore Marketing AI' },
-                  { i: TrendingUp, t: 'Direttore Vendite AI' },
-                  { i: GitBranch, t: 'Direttore Operations AI' },
-                  { i: Wallet, t: 'Direttore Finanza AI' },
-                  { i: Heart, t: 'Direttore Customer Care AI' },
+                  { i: Megaphone, k: 'dir1' },
+                  { i: TrendingUp, k: 'dir2' },
+                  { i: GitBranch, k: 'dir3' },
+                  { i: Wallet, k: 'dir4' },
+                  { i: Heart, k: 'dir5' },
                 ].map((it, idx) => {
                   const Icon = it.i;
                   return (
                     <div key={idx} className="flex items-center gap-6 py-4 border-b border-[#1a1c1a]" data-testid={`director-${idx + 1}`}>
                       <span className="text-[#c8a46b]/50 text-[10px] font-mono tracking-wider">0{idx + 1}</span>
                       <Icon size={16} className="text-[#c8a46b]" strokeWidth={1.5} />
-                      <span className="text-white text-[15px]">{it.t}</span>
+                      <span className="text-white text-[15px]">{t(`elite.decisional.${it.k}`)}</span>
                     </div>
                   );
                 })}
               </div>
             </div>
 
-            {/* Orb diagram */}
+            {/* Orb */}
             <div className="relative aspect-square max-w-[520px] mx-auto w-full" data-testid="ceo-ai-orb">
               <svg className="absolute inset-0 w-full h-full" viewBox="0 0 520 520" fill="none">
                 <circle cx="260" cy="260" r="200" stroke="#c8a46b" strokeOpacity="0.15" strokeWidth="1" strokeDasharray="3 4" />
@@ -558,30 +501,28 @@ const Elite = () => {
                 <line x1="260" y1="260" x2="90" y2="200" stroke="#c8a46b" strokeOpacity="0.2" strokeWidth="1" strokeDasharray="2 3" />
               </svg>
 
-              {/* CEO center */}
               <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
                 <div className="w-44 h-44 md:w-52 md:h-52 rounded-full border border-[#c8a46b]/50 bg-[#0e0f0e] flex flex-col items-center justify-center shadow-[0_0_60px_rgba(200,164,107,0.15)]">
                   <Crown size={24} className="text-[#c8a46b] mb-3" strokeWidth={1.5} />
-                  <div className="display text-3xl text-white mb-1" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 500 }}>CEO AI</div>
-                  <div className="text-[9px] tracking-[0.25em] uppercase text-[#6f716d]">Orchestrazione · Strategia</div>
+                  <div className="display text-3xl text-white mb-1" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 500 }}>{t('elite.decisional.ceo')}</div>
+                  <div className="text-[9px] tracking-[0.25em] uppercase text-[#6f716d] text-center px-3">{t('elite.decisional.ceo_sub')}</div>
                 </div>
               </div>
 
-              {/* Satellites */}
               {[
-                { x: '50%', y: '12%', icon: Megaphone, label: 'Marketing' },
-                { x: '88%', y: '38%', icon: TrendingUp, label: 'Vendite' },
-                { x: '75%', y: '85%', icon: GitBranch, label: 'Operations' },
-                { x: '25%', y: '85%', icon: Wallet, label: 'Finanza' },
-                { x: '12%', y: '38%', icon: Heart, label: 'Customer Care' },
+                { x: '50%', y: '12%', icon: Megaphone, k: 'sat1' },
+                { x: '88%', y: '38%', icon: TrendingUp, k: 'sat2' },
+                { x: '75%', y: '85%', icon: GitBranch, k: 'sat3' },
+                { x: '25%', y: '85%', icon: Wallet, k: 'sat4' },
+                { x: '12%', y: '38%', icon: Heart, k: 'sat5' },
               ].map((s, i) => {
                 const Icon = s.icon;
                 return (
-                  <div key={i} className="absolute -translate-x-1/2 -translate-y-1/2 text-center" style={{ left: s.x, top: s.y }} data-testid={`satellite-${s.label.toLowerCase().replace(' ', '-')}`}>
+                  <div key={i} className="absolute -translate-x-1/2 -translate-y-1/2 text-center" style={{ left: s.x, top: s.y }} data-testid={`satellite-${i + 1}`}>
                     <div className="w-14 h-14 rounded-full border border-[#c8a46b]/40 bg-[#0e0f0e] flex items-center justify-center mb-2 mx-auto">
                       <Icon size={16} className="text-[#c8a46b]" strokeWidth={1.5} />
                     </div>
-                    <div className="text-[10px] tracking-[0.22em] uppercase text-[#9a9a96] whitespace-nowrap">{s.label}</div>
+                    <div className="text-[10px] tracking-[0.22em] uppercase text-[#9a9a96] whitespace-nowrap">{t(`elite.decisional.${s.k}`)}</div>
                   </div>
                 );
               })}
@@ -593,29 +534,26 @@ const Elite = () => {
       {/* 13 PILLARS */}
       <section id="pilastri" className="py-24 md:py-32 border-t border-[#1a1c1a]" data-testid="pillars-section">
         <div className="max-w-[1500px] mx-auto px-6 md:px-12">
-          <Label>Fondamenta</Label>
+          <Label>{t('elite.pillars.label')}</Label>
           <div className="grid lg:grid-cols-2 gap-12 mb-16 items-start">
             <h2 className="display text-5xl md:text-7xl text-white leading-tight" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 500 }}>
-              I <span className="italic-gold">13 Pilastri</span> dell'AI Factory.
+              {t('elite.pillars.title_1')} <span className="italic-gold">{t('elite.pillars.title_em')}</span> {t('elite.pillars.title_2')}
             </h2>
             <div>
-              <p className="text-[#9a9a96] text-lg leading-relaxed mb-8">
-                Ogni pilastro è un sotto-sistema autonomo. Insieme, formano l'architettura di un'azienda che opera senza intervento umano sui processi ripetibili.
-              </p>
+              <p className="text-[#9a9a96] text-lg leading-relaxed mb-8">{t('elite.pillars.desc')}</p>
               <div className="display text-9xl text-[#c8a46b]/15 leading-none text-right" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 500 }}>13</div>
             </div>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-px bg-[#1a1c1a]">
             {pillars.map((p) => (
-              <Pillar key={p.n} num={p.n} icon={p.i} title={p.t} desc={p.d} />
+              <Pillar key={p.n} num={p.n} icon={p.i} title={t(`elite.pillars.${p.key}_t`)} desc={t(`elite.pillars.${p.key}_d`)} />
             ))}
-            {/* Infinity card */}
             <div className="bg-gradient-to-br from-[#c8a46b]/10 via-[#131413] to-[#0e0f0e] border border-[#c8a46b]/30 p-6 flex flex-col justify-between" data-testid="pillar-infinity">
               <div className="display text-7xl text-[#c8a46b] leading-none" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 500 }}>∞</div>
               <div>
-                <h3 className="font-serif text-xl text-white mb-2" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 500 }}>Sistema Unico</h3>
-                <p className="text-[#7a7c78] text-sm leading-relaxed">Tutti i pilastri operano come un'unica intelligenza coordinata.</p>
+                <h3 className="font-serif text-xl text-white mb-2" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 500 }}>{t('elite.pillars.infinity_title')}</h3>
+                <p className="text-[#7a7c78] text-sm leading-relaxed">{t('elite.pillars.infinity_desc')}</p>
               </div>
             </div>
           </div>
@@ -625,14 +563,12 @@ const Elite = () => {
       {/* PIANI ZANE */}
       <section id="piani-zane" className="py-24 md:py-32 border-t border-[#1a1c1a]" data-testid="zane-plans-section">
         <div className="max-w-[1500px] mx-auto px-6 md:px-12">
-          <Label>Piani Zane</Label>
+          <Label>{t('elite.zanePlans.label')}</Label>
           <div className="grid lg:grid-cols-2 gap-12 mb-20 items-start">
             <h2 className="display text-5xl md:text-7xl text-white leading-tight" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 500 }}>
-              Tre piani. Tre livelli di <span className="italic-gold">attrito eliminato.</span>
+              {t('elite.zanePlans.title_1')} <span className="italic-gold">{t('elite.zanePlans.title_em')}</span>
             </h2>
-            <p className="text-[#9a9a96] text-lg leading-relaxed">
-              Zane scala con la complessità che vuoi delegare. Da scudo personale per il founder, a partner che potenzia il team operativo, fino a bussola strategica per navigare la complessità aziendale. Tutti i prezzi sono in CHF, IVA esclusa.
-            </p>
+            <p className="text-[#9a9a96] text-lg leading-relaxed">{t('elite.zanePlans.desc')}</p>
           </div>
 
           <div className="grid lg:grid-cols-3 gap-px bg-[#1a1c1a]">
@@ -644,28 +580,28 @@ const Elite = () => {
               >
                 {p.featured && (
                   <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#c8a46b] text-[#0a0b0a] text-[9px] tracking-[0.25em] uppercase px-3 py-1.5 font-semibold whitespace-nowrap">
-                    ✦ Più scelto
+                    {t('elite.zanePlans.featured_badge')}
                   </div>
                 )}
                 <h3 className="display text-3xl md:text-4xl text-white mb-3" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 500 }}>
-                  {p.name}
+                  {t(`elite.zanePlans.${p.id}.name`)}
                 </h3>
-                <p className="italic-gold text-sm italic mb-6 leading-relaxed">{p.tagline}</p>
+                <p className="italic-gold text-sm italic mb-6 leading-relaxed">{t(`elite.zanePlans.${p.id}.tagline`)}</p>
                 <div className="text-[9px] tracking-[0.22em] uppercase text-[#6f716d] mb-8 leading-relaxed">
-                  {p.audience}
+                  {t(`elite.zanePlans.${p.id}.audience`)}
                 </div>
                 <div className="flex items-baseline gap-2 mb-2">
                   <span className="display text-6xl text-white" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 500 }}>{p.price}</span>
-                  <span className="text-[#9a9a96] text-sm">CHF/mese</span>
+                  <span className="text-[#9a9a96] text-sm">{t('elite.zanePlans.currency_period')}</span>
                 </div>
-                <div className="text-[#6f716d] text-xs mb-10">{p.setup}</div>
+                <div className="text-[#6f716d] text-xs mb-10">{t(`elite.zanePlans.${p.id}.setup`)}</div>
                 <div className="dotted-line mb-8"></div>
-                <p className="text-[#9a9a96] text-sm leading-relaxed mb-8">{p.description}</p>
+                <p className="text-[#9a9a96] text-sm leading-relaxed mb-8">{t(`elite.zanePlans.${p.id}.desc`)}</p>
                 <ul className="space-y-3 mb-10">
-                  {p.features.map((f, i) => (
-                    <li key={i} className="flex items-start gap-3 text-sm text-white/90">
+                  {['f1', 'f2', 'f3', 'f4', 'f5'].map((f) => (
+                    <li key={f} className="flex items-start gap-3 text-sm text-white/90">
                       <Check size={13} className="text-[#c8a46b] flex-shrink-0 mt-1" strokeWidth={2.5} />
-                      <span>{f}</span>
+                      <span>{t(`elite.zanePlans.${p.id}.${f}`)}</span>
                     </li>
                   ))}
                 </ul>
@@ -677,37 +613,33 @@ const Elite = () => {
                   className={p.featured ? 'btn-gold w-full justify-center' : 'btn-outline w-full justify-center'}
                   data-testid={`select-${p.id}`}
                 >
-                  Scegli {p.name.replace('Zane ', '')} <ArrowRight size={14} />
+                  {t('elite.zanePlans.select')} {t(`elite.zanePlans.${p.id}.name`).replace('Zane ', '')} <ArrowRight size={14} />
                 </button>
               </div>
             ))}
           </div>
 
-          <p className="text-[#6f716d] text-sm mt-12 max-w-2xl leading-relaxed">
-            Tutti i piani includono fatturazione mensile, possibilità di upgrade in qualsiasi momento e cancellazione con 30 giorni di preavviso.
-          </p>
+          <p className="text-[#6f716d] text-sm mt-12 max-w-2xl leading-relaxed">{t('elite.zanePlans.footer_note')}</p>
         </div>
       </section>
 
-      {/* ROI CALCULATOR */}
+      {/* ROI */}
       <section id="roi" className="py-24 md:py-32 border-t border-[#1a1c1a]" data-testid="roi-section">
         <div className="max-w-[1500px] mx-auto px-6 md:px-12">
-          <Label><Building2 size={12} className="text-[#c8a46b]" /> Calcolatore di capacità strategica</Label>
+          <Label><Building2 size={12} className="text-[#c8a46b]" /> {t('elite.roi.label')}</Label>
           <div className="grid lg:grid-cols-2 gap-16 mb-16 items-start">
             <h2 className="display text-4xl md:text-6xl text-white leading-tight" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 500 }}>
-              Quanta energia ti sta rubando <span className="italic-gold">l'attrito operativo?</span>
+              {t('elite.roi.title_1')} <span className="italic-gold">{t('elite.roi.title_em')}</span>
             </h2>
-            <p className="text-[#9a9a96] text-base leading-relaxed">
-              Inserisci due numeri. Calcoliamo quanto tempo e quanta capacità strategica il tuo team potrebbe restituire all'attività ad alto valore — usando il costo medio orario di mercato (CHF 55/ora fully loaded, 220 giornate lavorative).
-            </p>
+            <p className="text-[#9a9a96] text-base leading-relaxed">{t('elite.roi.desc')}</p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-px bg-[#1a1c1a]">
             <div className="bg-[#0e0f0e] p-10 md:p-14">
-              <div className="micro mb-3">Punto di partenza</div>
+              <div className="micro mb-3">{t('elite.roi.input_label')}</div>
               <div className="dotted-line mb-12"></div>
               <label className="block">
-                <div className="text-[10px] tracking-[0.22em] uppercase text-[#9a9a96] mb-6">Numero di persone nel team operativo</div>
+                <div className="text-[10px] tracking-[0.22em] uppercase text-[#9a9a96] mb-6">{t('elite.roi.input_field')}</div>
                 <input
                   type="number"
                   min="1"
@@ -720,23 +652,19 @@ const Elite = () => {
                 />
               </label>
               <div className="dotted-line mt-8"></div>
-              <p className="text-[#6f716d] text-xs mt-6 leading-relaxed">
-                Considera tutte le persone del team che svolgono attività ripetitive ad alto attrito (email, follow-up, coordinamento, reportistica).
-              </p>
+              <p className="text-[#6f716d] text-xs mt-6 leading-relaxed">{t('elite.roi.input_hint')}</p>
             </div>
 
             <div className="bg-gradient-to-br from-[#c8a46b]/[0.06] to-[#0e0f0e] p-10 md:p-14 relative" data-testid="roi-result">
-              <div className="micro mb-3 text-[#c8a46b]"><TrendingUp size={12} className="inline mr-2" />Capacità strategica recuperata · valore annuo</div>
+              <div className="micro mb-3 text-[#c8a46b]"><TrendingUp size={12} className="inline mr-2" />{t('elite.roi.result_label')}</div>
               <div className="dotted-line mb-12"></div>
               <div className="flex items-baseline gap-3 mb-3">
                 <span className="display text-7xl md:text-8xl text-[#c8a46b]" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 500 }}>
                   {roiAnnual}
                 </span>
-                <span className="display text-2xl text-[#c8a46b]/70" style={{ fontFamily: "'Cormorant Garamond', serif" }}>CHF/anno</span>
+                <span className="display text-2xl text-[#c8a46b]/70" style={{ fontFamily: "'Cormorant Garamond', serif" }}>{t('elite.roi.result_period')}</span>
               </div>
-              <p className="text-[#9a9a96] text-sm leading-relaxed mt-6">
-                Energia restituita al team per attività ad alto valore. Non persone licenziate: persone più libere di fare il lavoro per cui le hai assunte.
-              </p>
+              <p className="text-[#9a9a96] text-sm leading-relaxed mt-6">{t('elite.roi.result_desc')}</p>
             </div>
           </div>
         </div>
@@ -746,74 +674,21 @@ const Elite = () => {
       <section id="blueprint" className="py-24 md:py-32 border-t border-[#1a1c1a]" data-testid="blueprint-section">
         <div className="max-w-[1500px] mx-auto px-6 md:px-12">
           <div className="flex items-center gap-3 mb-8">
-            <Label>Blueprint tecnico</Label>
+            <Label>{t('elite.blueprint.label')}</Label>
             <span className="inline-flex items-center gap-2 text-[10px] tracking-[0.22em] uppercase text-[#c8a46b] -mt-8">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#c8a46b] animate-pulse"></span> Live
+              <span className="w-1.5 h-1.5 rounded-full bg-[#c8a46b] animate-pulse"></span> {t('elite.blueprint.live')}
             </span>
           </div>
           <h2 className="display text-5xl md:text-7xl text-white leading-tight mb-8 max-w-5xl" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 500 }}>
-            L'anatomia di un'<span className="italic-gold">AI Factory.</span>
+            {t('elite.blueprint.title_1')}<span className="italic-gold">{t('elite.blueprint.title_em')}</span>
           </h2>
-          <p className="text-[#9a9a96] text-lg max-w-3xl mb-20 leading-relaxed">
-            Niente case study patinati. Niente testimonianze. Qui mostriamo l'architettura tecnica che costruiamo per ogni cliente. Un sistema reale, non una promessa.
-          </p>
+          <p className="text-[#9a9a96] text-lg max-w-3xl mb-20 leading-relaxed">{t('elite.blueprint.desc')}</p>
 
           <div className="space-y-px bg-[#1a1c1a]">
             {[
-              {
-                layer: 'L1',
-                icon: Layers,
-                title: 'Acquisition Layer',
-                subtitle: 'Pipeline di acquisizione autonoma',
-                desc: 'Identificazione, qualifica e routing dei lead in tempo reale. L\'IA filtra il rumore prima che arrivi a un essere umano.',
-                components: [
-                  'Lead Capture multicanale',
-                  'Enrichment & Scoring IA',
-                  'Qualifica conversazionale',
-                  'Routing automatico al canale corretto',
-                  'Scheduling e first-touch',
-                ],
-                metrics: [
-                  { v: '< 60s', l: 'Time to first response' },
-                  { v: '94%', l: 'Lead qualificati correttamente' },
-                ],
-              },
-              {
-                layer: 'L2',
-                icon: Network,
-                title: 'Orchestration Layer · Zane',
-                subtitle: 'Il Chief of Staff IA',
-                desc: 'Zane è il sistema operativo dell\'azienda. Riceve, prioritizza e dispatcha ogni task ai sotto-sistemi corretti. Memoria contestuale, decision logic, escalation rules.',
-                components: [
-                  'Context Memory persistente',
-                  'Task router multi-agente',
-                  'Priority queue dinamica',
-                  'Escalation logic configurabile',
-                  'Executive reporting in tempo reale',
-                ],
-                metrics: [
-                  { v: '24/7', l: 'Operatività' },
-                  { v: 'n+1', l: 'Agenti coordinati' },
-                ],
-              },
-              {
-                layer: 'L3',
-                icon: Boxes,
-                title: 'Execution Layer · 13 Pilastri',
-                subtitle: 'I sotto-sistemi specializzati',
-                desc: 'Ogni pilastro è un servizio autonomo con API, monitoring e fallback. Vendite, Marketing, Finanza, Operations: tutto disaccoppiato, tutto osservabile.',
-                components: [
-                  'Microservizi specializzati per dominio',
-                  'API contract & observability',
-                  'Quality Assurance IA su ogni output',
-                  'Fallback umano configurabile',
-                  'Dashboard executive consolidata',
-                ],
-                metrics: [
-                  { v: '13', l: 'Sotto-sistemi attivi' },
-                  { v: '99.5%', l: 'Uptime garantito' },
-                ],
-              },
+              { layer: 'L1', icon: Layers, key: 'l1' },
+              { layer: 'L2', icon: Network, key: 'l2' },
+              { layer: 'L3', icon: Boxes, key: 'l3' },
             ].map((layer) => {
               const Icon = layer.icon;
               return (
@@ -822,31 +697,32 @@ const Elite = () => {
                     <div className="lg:col-span-4">
                       <div className="micro mb-6 text-[#c8a46b]">· Layer {layer.layer}</div>
                       <Icon size={28} className="text-[#c8a46b] mb-6" strokeWidth={1.5} />
-                      <h3 className="display text-3xl md:text-4xl text-white mb-3" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 500 }}>
-                        {layer.title}
-                      </h3>
-                      <p className="italic-gold text-sm italic mb-6">{layer.subtitle}</p>
-                      <p className="text-[#9a9a96] text-sm leading-relaxed">{layer.desc}</p>
+                      <h3 className="display text-3xl md:text-4xl text-white mb-3" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 500 }}>{t(`elite.blueprint.${layer.key}_title`)}</h3>
+                      <p className="italic-gold text-sm italic mb-6">{t(`elite.blueprint.${layer.key}_sub`)}</p>
+                      <p className="text-[#9a9a96] text-sm leading-relaxed">{t(`elite.blueprint.${layer.key}_desc`)}</p>
                     </div>
                     <div className="lg:col-span-5">
-                      <div className="micro mb-6">Componenti</div>
+                      <div className="micro mb-6">{t('elite.blueprint.components')}</div>
                       <ul className="space-y-3">
-                        {layer.components.map((c, i) => (
-                          <li key={i} className="flex items-start gap-4 text-sm text-white/90 py-2 border-b border-[#1a1c1a]">
+                        {['c1', 'c2', 'c3', 'c4', 'c5'].map((c, i) => (
+                          <li key={c} className="flex items-start gap-4 text-sm text-white/90 py-2 border-b border-[#1a1c1a]">
                             <span className="text-[#c8a46b]/60 text-[10px] font-mono mt-1 w-5">0{i + 1}</span>
                             <span className="text-[#6f716d] mt-1">—</span>
-                            <span className="flex-1">{c}</span>
+                            <span className="flex-1">{t(`elite.blueprint.${layer.key}_${c}`)}</span>
                           </li>
                         ))}
                       </ul>
                     </div>
                     <div className="lg:col-span-3 space-y-6">
-                      {layer.metrics.map((m, i) => (
+                      {[
+                        { v: layer.key === 'l1' ? '< 60s' : layer.key === 'l2' ? '24/7' : '13', l: `${layer.key}_m1_l` },
+                        { v: layer.key === 'l1' ? '94%' : layer.key === 'l2' ? 'n+1' : '99.5%', l: `${layer.key}_m2_l` },
+                      ].map((m, i) => (
                         <div key={i}>
                           <div className="display text-5xl text-[#c8a46b] mb-1 leading-none" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 500 }}>
                             {m.v}
                           </div>
-                          <div className="text-[9px] tracking-[0.22em] uppercase text-[#6f716d]">{m.l}</div>
+                          <div className="text-[9px] tracking-[0.22em] uppercase text-[#6f716d]">{t(`elite.blueprint.${m.l}`)}</div>
                         </div>
                       ))}
                     </div>
@@ -858,106 +734,72 @@ const Elite = () => {
 
           {/* Stack */}
           <div className="mt-12 bg-[#0e0f0e] border border-[#222421] p-10 md:p-14" data-testid="tech-stack">
-            <div className="micro mb-8">Stack tecnologico</div>
+            <div className="micro mb-8">{t('elite.blueprint.stack_label')}</div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-5">
-              {[
-                ['LLM frontier', 'GPT / Claude / Gemini'],
-                ['Vector DB', 'Memoria contestuale'],
-                ['Orchestration', 'Agent framework proprietario'],
-                ['Observability', 'Logging + tracing end-to-end'],
-                ['Infrastructure', 'Cloud svizzero / EU'],
-                ['Security', 'SOC2-ready, GDPR-native'],
-              ].map(([k, v], i) => (
-                <div key={i} className="flex items-center justify-between gap-4 pb-4 border-b border-[#1a1c1a]">
-                  <span className="text-white text-sm font-medium">{k}</span>
-                  <span className="text-[#9a9a96] text-xs text-right">{v}</span>
+              {['llm', 'vdb', 'orc', 'obs', 'inf', 'sec'].map((s) => (
+                <div key={s} className="flex items-center justify-between gap-4 pb-4 border-b border-[#1a1c1a]">
+                  <span className="text-white text-sm font-medium">{t(`elite.blueprint.stack.${s}_k`)}</span>
+                  <span className="text-[#9a9a96] text-xs text-right">{t(`elite.blueprint.stack.${s}_v`)}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Principle quote */}
+          {/* Principle */}
           <div className="mt-16 bg-[#0e0f0e] border border-[#222421] p-10 md:p-14 max-w-3xl">
-            <div className="micro mb-6 text-[#c8a46b]"><ShieldCheck size={12} className="inline mr-2" />Principio operativo</div>
+            <div className="micro mb-6 text-[#c8a46b]"><ShieldCheck size={12} className="inline mr-2" />{t('elite.blueprint.principle_label')}</div>
             <blockquote>
               <p className="display text-2xl md:text-3xl text-white/95 italic leading-relaxed" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-                "Mostriamo come è costruito. Non chiediamo di crederci sulla parola."
+                "{t('elite.blueprint.principle_quote')}"
               </p>
-              <footer className="micro mt-8">Arxeon · Engineering</footer>
+              <footer className="micro mt-8">{t('elite.blueprint.principle_author')}</footer>
             </blockquote>
           </div>
         </div>
       </section>
 
-      {/* STRATEGIC MODEL */}
+      {/* STRATEGIA */}
       <section id="strategia" className="py-24 md:py-32 border-t border-[#1a1c1a]" data-testid="strategy-section">
         <div className="max-w-[1500px] mx-auto px-6 md:px-12">
-          <Label>Modello strategico</Label>
+          <Label>{t('elite.strategy.label')}</Label>
           <h2 className="display text-5xl md:text-7xl text-white leading-tight mb-8 max-w-5xl" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 500 }}>
-            High-Ticket. Volume automatizzato. <span className="italic-gold">Equilibrio svizzero.</span>
+            {t('elite.strategy.title_1')} <span className="italic-gold">{t('elite.strategy.title_em')}</span>
           </h2>
-          <p className="text-[#9a9a96] text-lg max-w-3xl mb-20 leading-relaxed">
-            Arxeon non è solo automazione. È un modello strategico che bilancia l'esclusività high-ticket con l'efficienza dei volumi gestiti dall'IA.
-          </p>
+          <p className="text-[#9a9a96] text-lg max-w-3xl mb-20 leading-relaxed">{t('elite.strategy.desc')}</p>
 
           <div className="grid md:grid-cols-2 gap-px bg-[#1a1c1a]">
-            {[
-              {
-                t: 'Esclusività High-Ticket',
-                d: 'Posizionamento premium, prezzi difesi, clienti selezionati. L\'IA non comprime i ricavi: difende il margine unitario.',
-              },
-              {
-                t: 'Volume Automatizzato',
-                d: 'L\'IA assorbe i picchi operativi che farebbero collassare un team umano. Scali senza burnout, senza turnover, senza l\'ansia delle nuove assunzioni.',
-              },
-              {
-                t: 'Output Costante',
-                d: 'Processi standardizzati, governance rigorosa, qualità prevedibile su ogni transazione. Niente giornate storte, niente errori per stanchezza.',
-              },
-              {
-                t: 'Energia Restituita',
-                d: 'Il founder e il team tornano sul lavoro che hanno scelto: relazioni, visione, decisioni strategiche. L\'IA assorbe il rumore quotidiano.',
-              },
-            ].map((p, i) => (
-              <div key={i} className="bg-[#0e0f0e] p-10 md:p-14" data-testid={`strategy-${i + 1}`}>
+            {['s1', 's2', 's3', 's4'].map((s, i) => (
+              <div key={s} className="bg-[#0e0f0e] p-10 md:p-14" data-testid={`strategy-${i + 1}`}>
                 <div className="flex items-baseline gap-6 mb-6">
-                  <span className="display text-5xl text-[#c8a46b]/30" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 500 }}>
-                    0{i + 1}
-                  </span>
+                  <span className="display text-5xl text-[#c8a46b]/30" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 500 }}>0{i + 1}</span>
                 </div>
                 <h3 className="display text-3xl md:text-4xl text-white mb-6" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 500 }}>
-                  {p.t}
+                  {t(`elite.strategy.${s}_t`)}
                 </h3>
-                <p className="text-[#9a9a96] text-[15px] leading-relaxed">{p.d}</p>
+                <p className="text-[#9a9a96] text-[15px] leading-relaxed">{t(`elite.strategy.${s}_d`)}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CONTACT FORM */}
+      {/* CONTACT */}
       <section id="contatto" className="py-24 md:py-32 border-t border-[#1a1c1a]" data-testid="contact-section">
         <div className="max-w-[1500px] mx-auto px-6 md:px-12">
           <div className="grid lg:grid-cols-12 gap-16">
             <div className="lg:col-span-5">
-              <Label>Consultazione strategica</Label>
+              <Label>{t('elite.contact.label')}</Label>
               <h2 className="display text-5xl md:text-7xl text-white leading-tight mb-8" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 500 }}>
-                Inizia la <span className="italic-gold">trasformazione.</span>
+                {t('elite.contact.title_1')} <span className="italic-gold">{t('elite.contact.title_em')}</span>
               </h2>
-              <p className="text-[#9a9a96] text-lg leading-relaxed mb-12">
-                Una conversazione riservata di 45 minuti con il team Arxeon. Valutiamo il fit, mappiamo il bottleneck principale, definiamo il percorso.
-              </p>
+              <p className="text-[#9a9a96] text-lg leading-relaxed mb-12">{t('elite.contact.desc')}</p>
               <div className="space-y-px bg-[#1a1c1a]">
-                {[
-                  { v: '45\'', l: 'Consultazione riservata' },
-                  { v: '24h', l: 'Risposta garantita' },
-                  { v: '1:1', l: 'Con il team Arxeon' },
-                ].map((it, i) => (
-                  <div key={i} className="bg-[#0a0b0a] flex items-baseline gap-6 py-6 px-2">
+                {['info1', 'info2', 'info3'].map((k) => (
+                  <div key={k} className="bg-[#0a0b0a] flex items-baseline gap-6 py-6 px-2">
                     <div className="display text-3xl text-[#c8a46b] min-w-[70px]" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 500 }}>
-                      {it.v}
+                      {t(`elite.contact.${k}_v`)}
                     </div>
-                    <div className="text-[#9a9a96] text-sm">{it.l}</div>
+                    <div className="text-[#9a9a96] text-sm">{t(`elite.contact.${k}_l`)}</div>
                   </div>
                 ))}
               </div>
@@ -967,31 +809,31 @@ const Elite = () => {
               <form onSubmit={handleSubmit} className="bg-[#0e0f0e] border border-[#222421] p-10 md:p-14 space-y-10" data-testid="elite-consultation-form">
                 <div className="grid md:grid-cols-2 gap-x-10 gap-y-10">
                   <div>
-                    <label className="micro block mb-3">Nome <span className="text-[#c8a46b]">*</span></label>
-                    <input type="text" name="fullName" value={form.fullName} onChange={(e) => setForm({ ...form, fullName: e.target.value })} className="input-elite" placeholder="Mario Rossi" data-testid="input-fullname" required />
+                    <label className="micro block mb-3">{t('elite.contact.f_name')} <span className="text-[#c8a46b]">*</span></label>
+                    <input type="text" value={form.fullName} onChange={(e) => setForm({ ...form, fullName: e.target.value })} className="input-elite" placeholder="Mario Rossi" data-testid="input-fullname" required />
                   </div>
                   <div>
-                    <label className="micro block mb-3">Azienda <span className="text-[#c8a46b]">*</span></label>
-                    <input type="text" name="companyName" value={form.companyName} onChange={(e) => setForm({ ...form, companyName: e.target.value })} className="input-elite" placeholder="La tua società" data-testid="input-company" required />
+                    <label className="micro block mb-3">{t('elite.contact.f_company')} <span className="text-[#c8a46b]">*</span></label>
+                    <input type="text" value={form.companyName} onChange={(e) => setForm({ ...form, companyName: e.target.value })} className="input-elite" placeholder="—" data-testid="input-company" required />
                   </div>
                   <div>
-                    <label className="micro block mb-3">Email <span className="text-[#c8a46b]">*</span></label>
-                    <input type="email" name="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className="input-elite" placeholder="tu@azienda.com" data-testid="input-email" required />
+                    <label className="micro block mb-3">{t('elite.contact.f_email')} <span className="text-[#c8a46b]">*</span></label>
+                    <input type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className="input-elite" placeholder="—" data-testid="input-email" required />
                   </div>
                   <div>
-                    <label className="micro block mb-3">Telefono</label>
-                    <input type="tel" name="phone" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className="input-elite" placeholder="+39 ..." data-testid="input-phone" />
+                    <label className="micro block mb-3">{t('elite.contact.f_phone')}</label>
+                    <input type="tel" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className="input-elite" placeholder="+41 ..." data-testid="input-phone" />
                   </div>
                 </div>
 
                 <div>
-                  <label className="micro block mb-5">Livello di interesse</label>
+                  <label className="micro block mb-5">{t('elite.contact.f_interest_label')}</label>
                   <div className="flex flex-wrap gap-2">
                     {[
-                      { id: 'custom_ai_apps', label: 'Custom AI Apps' },
-                      { id: 'zane', label: 'Zane' },
-                      { id: 'elite_2', label: 'Arxeon Elite 2.0' },
-                      { id: 'tbd', label: 'Da definire' },
+                      { id: 'custom_ai_apps', k: 'f_int_apps' },
+                      { id: 'zane', k: 'f_int_zane' },
+                      { id: 'elite_2', k: 'f_int_elite' },
+                      { id: 'tbd', k: 'f_int_tbd' },
                     ].map((opt) => (
                       <button
                         key={opt.id}
@@ -1004,26 +846,24 @@ const Elite = () => {
                         }`}
                         data-testid={`interest-${opt.id}`}
                       >
-                        {opt.label}
+                        {t(`elite.contact.${opt.k}`)}
                       </button>
                     ))}
                   </div>
                 </div>
 
                 <div>
-                  <label className="micro block mb-3">Contesto <span className="text-[#5a5c58] normal-case tracking-normal">(opzionale)</span></label>
-                  <textarea name="context" value={form.context} onChange={(e) => setForm({ ...form, context: e.target.value })} rows={3} className="input-elite resize-none" placeholder="Cosa vorresti automatizzare per primo?" data-testid="input-context" />
+                  <label className="micro block mb-3">{t('elite.contact.f_context')} <span className="text-[#5a5c58] normal-case tracking-normal">{t('elite.contact.f_optional')}</span></label>
+                  <textarea value={form.context} onChange={(e) => setForm({ ...form, context: e.target.value })} rows={3} className="input-elite resize-none" placeholder={t('elite.contact.f_context_ph')} data-testid="input-context" />
                 </div>
 
                 <div className="pt-6 border-t border-[#222421] flex flex-col md:flex-row gap-6 md:items-center md:justify-between">
-                  <p className="text-[#6f716d] text-xs leading-relaxed max-w-sm">
-                    I tuoi dati sono trattati con riservatezza assoluta. Nessuna terza parte.
-                  </p>
+                  <p className="text-[#6f716d] text-xs leading-relaxed max-w-sm">{t('elite.contact.f_privacy')}</p>
                   <button type="submit" disabled={submitting} className="btn-gold disabled:opacity-50 disabled:cursor-not-allowed" data-testid="submit-consultation">
                     {submitting ? (
-                      <><Loader2 size={14} className="animate-spin" /> Invio...</>
+                      <><Loader2 size={14} className="animate-spin" /> {t('elite.contact.f_submitting')}</>
                     ) : (
-                      <>Prenota consultazione <ArrowRight size={14} /></>
+                      <>{t('elite.contact.f_submit')} <ArrowRight size={14} /></>
                     )}
                   </button>
                 </div>
@@ -1045,41 +885,43 @@ const Elite = () => {
                 <span className="bg-[#c8a46b] text-[#0a0b0a] text-[9px] tracking-[0.25em] uppercase px-2.5 py-1 font-semibold">Elite</span>
               </div>
               <p className="italic-gold italic text-xl mb-6" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-                L'Azienda che si gestisce da sola.
+                {t('elite.footer.tagline')}
               </p>
               <p className="text-[#9a9a96] text-sm leading-relaxed max-w-md mb-10">
-                AI Factory · Lo scudo operativo che assorbe la complessità e libera il team per il valore strategico.
+                {t('elite.footer.desc')}
               </p>
               <Link to="/" className="link-gold" data-testid="footer-arxeon-link">
-                Arxeon.ch (sito principale) <ArrowUpRight size={12} />
+                {t('elite.footer.main_site')} <ArrowUpRight size={12} />
               </Link>
             </div>
 
             <div className="lg:col-span-3">
-              <div className="micro mb-6">Prodotti</div>
+              <div className="micro mb-6">{t('elite.footer.prodotti')}</div>
               <ul className="space-y-4">
-                <li><button onClick={() => scrollTo('valore')} className="text-[#9a9a96] hover:text-[#c8a46b] text-sm transition-colors">Custom AI Apps</button></li>
-                <li><button onClick={() => scrollTo('piani-zane')} className="text-[#9a9a96] hover:text-[#c8a46b] text-sm transition-colors">Zane</button></li>
-                <li><button onClick={() => scrollTo('architettura')} className="text-[#9a9a96] hover:text-[#c8a46b] text-sm transition-colors">Arxeon Elite 2.0</button></li>
+                <li><button onClick={() => scrollTo('valore')} className="text-[#9a9a96] hover:text-[#c8a46b] text-sm transition-colors">{t('elite.footer.p_apps')}</button></li>
+                <li><button onClick={() => scrollTo('piani-zane')} className="text-[#9a9a96] hover:text-[#c8a46b] text-sm transition-colors">{t('elite.footer.p_zane')}</button></li>
+                <li><button onClick={() => scrollTo('architettura')} className="text-[#9a9a96] hover:text-[#c8a46b] text-sm transition-colors">{t('elite.footer.p_elite')}</button></li>
               </ul>
             </div>
 
             <div className="lg:col-span-4">
-              <div className="micro mb-6">Azienda</div>
+              <div className="micro mb-6">{t('elite.footer.azienda')}</div>
               <ul className="space-y-4">
-                <li><button onClick={() => scrollTo('architettura')} className="text-[#9a9a96] hover:text-[#c8a46b] text-sm transition-colors">Architettura</button></li>
-                <li><button onClick={() => scrollTo('blueprint')} className="text-[#9a9a96] hover:text-[#c8a46b] text-sm transition-colors">Blueprint Tecnico</button></li>
-                <li><button onClick={() => scrollTo('strategia')} className="text-[#9a9a96] hover:text-[#c8a46b] text-sm transition-colors">Strategia</button></li>
-                <li><button onClick={() => scrollTo('contatto')} className="text-[#9a9a96] hover:text-[#c8a46b] text-sm transition-colors">Consultazione</button></li>
+                <li><button onClick={() => scrollTo('architettura')} className="text-[#9a9a96] hover:text-[#c8a46b] text-sm transition-colors">{t('elite.footer.a_arch')}</button></li>
+                <li><button onClick={() => scrollTo('blueprint')} className="text-[#9a9a96] hover:text-[#c8a46b] text-sm transition-colors">{t('elite.footer.a_blue')}</button></li>
+                <li><button onClick={() => scrollTo('strategia')} className="text-[#9a9a96] hover:text-[#c8a46b] text-sm transition-colors">{t('elite.footer.a_strat')}</button></li>
+                <li><button onClick={() => scrollTo('contatto')} className="text-[#9a9a96] hover:text-[#c8a46b] text-sm transition-colors">{t('elite.footer.a_cons')}</button></li>
               </ul>
             </div>
           </div>
 
           <div className="border-t border-[#1a1c1a] pt-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-[10px] tracking-[0.22em] uppercase text-[#6f716d]">
-            <div>© 2026 Arxeon · Tutti i diritti riservati.</div>
+            <div>{t('elite.footer.rights')}</div>
             <div className="flex items-center gap-3">
               <span>B2B</span><span className="text-[#3a3c38]">·</span>
-              <span><span className="text-[#c8a46b]">IT</span> / FR</span>
+              <button onClick={() => changeLang('it')} className={currentLang === 'it' ? 'text-[#c8a46b]' : 'hover:text-white transition-colors'}>IT</button>
+              <span>/</span>
+              <button onClick={() => changeLang('fr')} className={currentLang === 'fr' ? 'text-[#c8a46b]' : 'hover:text-white transition-colors'}>FR</button>
               <span className="text-[#3a3c38]">·</span>
               <span>Arxeon Elite</span>
             </div>
